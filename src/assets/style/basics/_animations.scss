@@ -1,0 +1,31 @@
+@keyframes widen {
+  0% {
+    width: 50px;
+  }
+
+  100% {
+    width: 200px;
+  }
+}
+
+@keyframes shorten {
+  0% {
+    width: 200px;
+  }
+
+  100% {
+    width: 50px;
+  }
+}
+
+@keyframes title-animation {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

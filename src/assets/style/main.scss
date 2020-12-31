@@ -1,0 +1,17 @@
+// BASICS
+@import './basics/variables';
+@import './basics/helpers';
+@import './basics/base';
+@import './basics/typography';
+@import './basics/animations';
+// VIEWS
+@import './views/home';
+
+// COMPONENTS
+@import './components/template-app';
+@import './components/template-list';
+@import './components/template-add';
+@import './components/template-preview';
+
+//MODALS
+// @import './modals/screen-modal';
