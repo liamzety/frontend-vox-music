@@ -10,7 +10,6 @@ self.addEventListener('install', event => {
 
     const urlsToCache = [
         '/',
-        'js'
     ];
     event.waitUntil(
         caches.open('my-cache1').then(cache => {

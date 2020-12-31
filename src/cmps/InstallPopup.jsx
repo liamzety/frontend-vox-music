@@ -8,12 +8,10 @@ export default function InstallPopup() {
         window.deferredPrompt = {};
         window.addEventListener("beforeinstallprompt", (e) => {
             // this event does not fire if the application is already installed
-            // then your popup wil be still hidden ;)
             setTimeout(() => {
                 setIsAppInstalled(true)
             }, 3000);
             e.preventDefault();
-
             // store install avaliable event
             window.deferredPrompt = e;
         });
