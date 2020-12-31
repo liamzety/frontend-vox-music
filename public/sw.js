@@ -27,7 +27,7 @@ self.addEventListener('fetch', event => {
         // the response is resolved to null if there is no match 
         caches.match(event.request)
             .then(response => {
-                var res = response;
+                let res = response;
 
                 if (!res) {
                     console.log('NOT IN CACHE, FETCHED FROM NETWORK!')
