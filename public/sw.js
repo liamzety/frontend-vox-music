@@ -22,7 +22,7 @@ self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                var res = response;
+                let res = response;
 
                 if (!res) {
                     console.log('NOT IN CACHE, FETCHED FROM NETWORK!')
