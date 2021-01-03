@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-import InstallPopup from './cmps/InstallPopup';
 import routes from './routes';
-
+// Cmps
+import { Navbar } from './cmps/Navbar';
+import InstallPopup from './cmps/InstallPopup';
+// Styles
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/style/theme';
 import { GlobalStyles } from './assets/style/global';
-import { Navbar } from './cmps/Navbar';
 
 function App() {
   const { theme } = useSelector(state => state.themeReducer)

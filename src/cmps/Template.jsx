@@ -1,9 +1,19 @@
 import React, { useEffect } from 'react';
-import { TemplateAdd } from './TemplateAdd';
-import { TemplateList } from './TemplateList';
 import { useDispatch, useSelector } from 'react-redux'
 import { loadTemplates, addTemplate, removeTemplate, updateTemplate } from "../store/actions/templateActions";
+// Cmps
+import { TemplateAdd } from './TemplateAdd';
+import { TemplateList } from './TemplateList';
+// Styles
+import styled from 'styled-components';
 
+const MainSec = styled.section`
+background-color:${({ theme }) => theme.mainSec};
+color: ${({ theme }) => theme.mainSecTxt};
+`;
+const Title = styled.h1`
+font-size: 1.5em;
+`;
 
 export function Template() {
   const dispatch = useDispatch();
@@ -27,16 +37,14 @@ export function Template() {
     dispatch(updateTemplate(templateToUpdate))
   }
   return (
-    <section className="template-app">
-      <h1 data-title="template">Template</h1>
+    <MainSec>
+      <Title>Template</Title>
       <TemplateList
         templates={templates}
         onUpdateTemplate={onUpdateTemplate}
         onRemoveTemplate={onRemoveTemplate} />
-
       <TemplateAdd onAddTemplate={onAddTemplate} />
-
-    </section>
+    </MainSec>
   );
 }
 
