@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { StoreContext } from '../store';
 import { useObserver } from 'mobx-react';
 // Cmps
@@ -16,7 +16,7 @@ const Title = styled.h1`
 `;
 
 export function Template() {
-  const store = React.useContext(StoreContext)
+  const store = useContext(StoreContext)
   useEffect(() => {
     getTemplates()
   }, [])

@@ -5,6 +5,8 @@ export const StoreContext = React.createContext()
 export const StoreProvider = ({ children }) => {
     const store = useLocalStore(() => ({
         templates: [],
+        theme: 'light',
+        //Template
         setTemplates: (temps) => {
             store.templates = temps
         },
@@ -18,6 +20,10 @@ export const StoreProvider = ({ children }) => {
         updateTemplate: (temp) => {
             const tempIdx = store.templates.findIndex(template => template._id === temp._id)
             store.templates[tempIdx] = temp
+        },
+        //Theme
+        setTheme: (theme) => {
+            store.theme = theme
         },
     }))
 
