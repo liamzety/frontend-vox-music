@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { loadTemplates, addTemplate, removeTemplate, updateTemplate } from "../store/actions/templateActions";
+import { StoreContext } from '../store';
+import { useObserver } from 'mobx-react';
 // Cmps
 import { TemplateAdd } from './TemplateAdd';
 import { TemplateList } from './TemplateList';
 // Styles
 import styled from 'styled-components';
+import { templateService } from '../services/templateService';
 
 const MainSec = styled.section`
 background-color:${({ theme }) => theme.mainSec};
@@ -15,36 +16,40 @@ const Title = styled.h1`
 `;
 
 export function Template() {
-  const dispatch = useDispatch();
-  const { templates } = useSelector((state) => state.templateReducer);
-
+  const store = React.useContext(StoreContext)
   useEffect(() => {
-    dispatch(loadTemplates())
-  }, [dispatch])
+    getTemplates()
+  }, [])
 
+  async function getTemplates() {
+    store.setTemplates(await templateService.query())
+  }
 
-  function onAddTemplate(templateToAdd) {
-    if (!templateToAdd) return
-    dispatch(addTemplate(templateToAdd))
+  async function onAddTemplate(templateToAdd) {
+    const templateAdded = await templateService.add(templateToAdd)
+    store.addTemplate(templateAdded)
   }
 
   function onRemoveTemplate(tempId) {
-    dispatch(removeTemplate(tempId))
+    templateService.remove(tempId)
+    store.removeTemplate(tempId)
   }
 
   function onUpdateTemplate(templateToUpdate) {
-    dispatch(updateTemplate(templateToUpdate))
+    templateService.update(templateToUpdate)
+    store.updateTemplate(templateToUpdate)
   }
-  return (
+  return useObserver(() => (
     <MainSec>
       <Title>Template</Title>
       <TemplateList
-        templates={templates}
+        templates={store.templates}
         onUpdateTemplate={onUpdateTemplate}
         onRemoveTemplate={onRemoveTemplate} />
       <TemplateAdd onAddTemplate={onAddTemplate} />
     </MainSec>
-  );
+
+  ));
 }
 
 

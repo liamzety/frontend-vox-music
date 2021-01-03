@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
-export function TemplatePreview(props) {
-    const { template, onRemoveTemplate, onUpdateTemplate } = props
+export function TemplatePreview({ template, onRemoveTemplate, onUpdateTemplate }) {
     const [templateToUpdate, setTemplateToUpdate] = useState(template)
 
     function onUpdateTempInp(ev) {

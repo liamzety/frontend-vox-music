@@ -7,7 +7,6 @@ export const templateService = {
     add
 }
 
-
 async function query() {
     return await httpService.get('template')
 }
