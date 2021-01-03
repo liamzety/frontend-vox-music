@@ -12,7 +12,6 @@ background-color:${({ theme }) => theme.mainSec};
 color: ${({ theme }) => theme.mainSecTxt};
 `;
 const Title = styled.h1`
-font-size: 1.5em;
 `;
 
 export function Template() {
