@@ -1,6 +1,8 @@
 import Axios from 'axios';
 
-const BASE_URL = 'https://vox-music-api.herokuapp.com/api/'
+const BASE_URL = process.env.NODE_ENV === 'production'
+    ? 'https://vox-music-api.herokuapp.com/api/'
+    : '//localhost:3030/api/'
 var axios = Axios.create({
     withCredentials: true
 });

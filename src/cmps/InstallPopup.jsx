@@ -47,10 +47,10 @@ export default function InstallPopup() {
     }
 
     return isAppInstalled ? (
-        <div class="install-popup">
-            <div class="container flex align-center space-between h100">
+        <div className="install-popup">
+            <div className="container flex align-center space-between h100">
                 <h2>Download our awesome app!</h2>
-                <button onClick={handleInstall} class="install-btn">install</button>
+                <button onClick={handleInstall} className="install-btn">install</button>
             </div>
         </div>
     )

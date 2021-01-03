@@ -21,8 +21,6 @@ self.addEventListener('install', event => {
 
 
 self.addEventListener('fetch', event => {
-    console.log('Fetch of: ', event.request.url);
-
     event.respondWith(
         // the response is resolved to null if there is no match 
         caches.match(event.request)
@@ -30,10 +28,7 @@ self.addEventListener('fetch', event => {
                 let res = response;
 
                 if (!res) {
-                    console.log('NOT IN CACHE, FETCHED FROM NETWORK!')
                     res = fetch(event.request)
-                } else {
-                    console.log('FOUND IN CACHE')
                 }
                 return res
             })
