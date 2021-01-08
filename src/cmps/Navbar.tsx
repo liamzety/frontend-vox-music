@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { StoreContext } from '../store';
+import React from 'react';
+import { useStore } from '../store/StoreContext';
 
-export function Navbar() {
-    const store = useContext(StoreContext)
+export const Navbar = () => {
+    const store = useStore()
 
-    const toggleTheme = () => {
+    const toggleTheme = (): void =>  {
         if (store.theme === 'light') store.setTheme('dark')
         else store.setTheme('light')
     }

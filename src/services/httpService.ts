@@ -6,21 +6,24 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 var axios = Axios.create({
     withCredentials: true
 });
+type methodType = 
+    "get" | "GET" | "delete" | "DELETE" | "head" | "HEAD" | "options" | "OPTIONS" | "post" | "POST" | "put" | "PUT" | "patch" | "PATCH" | "purge" | "PURGE" | "link" | "LINK" | "unlink" | "UNLINK" | undefined
+
 export default {
-    get(endpoint, data) {
+    get(endpoint:string, data?:any) {
         return ajax(endpoint, 'GET', data)
     },
-    post(endpoint, data) {
+    post(endpoint:string, data?:any) {
         return ajax(endpoint, 'POST', data)
     },
-    put(endpoint, data) {
+    put(endpoint:string, data?:any) {
         return ajax(endpoint, 'PUT', data)
     },
-    delete(endpoint, data) {
+    delete(endpoint:string, data?:any) {
         return ajax(endpoint, 'DELETE', data)
     }
 }
-async function ajax(endpoint, method = 'get', data = null) {
+async function ajax(endpoint:any, method:methodType = 'get', data = null) {
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,
@@ -31,9 +34,6 @@ async function ajax(endpoint, method = 'get', data = null) {
     } catch (err) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: ${data}`);
         console.dir(err);
-        if (err.response && err.response.status === 401) {
-            // window.location.assign('/#/login');
-        }
         throw err;
     }
 }

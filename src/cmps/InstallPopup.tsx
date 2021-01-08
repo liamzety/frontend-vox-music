@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from 'react';
 
+interface Window {
+    webkitURL?: any;
+    deferredPrompt?:any;
+    addEventListener?:any;
+    matchMedia?:any;
+    navigator?:any;
+}
+
+declare var window: Window;
+
+if (window.webkitURL !== undefined) {
+    console.log(window.webkitURL);
+}
+
 export default function InstallPopup() {
     const [isAppInstalled, setIsAppInstalled] = useState(false)
 
     useEffect(() => {
         // variable store event
         window.deferredPrompt = {};
-        window.addEventListener("beforeinstallprompt", (e) => {
+        window.addEventListener("beforeinstallprompt", (e:Event) => {
             // this event does not fire if the application is already installed
             setTimeout(() => {
                 setIsAppInstalled(true)
@@ -34,7 +48,7 @@ export default function InstallPopup() {
 
     const handleInstall = () => {
         window.deferredPrompt.prompt();
-        window.deferredPrompt.userChoice.then((choiceResult) => {
+        window.deferredPrompt.userChoice.then((choiceResult:any) => {
             if (choiceResult.outcome === "accepted") {
                 // user accept the prompt
                 // we hide the popup

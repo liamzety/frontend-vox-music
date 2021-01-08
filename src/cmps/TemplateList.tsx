@@ -2,10 +2,15 @@ import React from 'react'
 import { Loader } from './Loader'
 import { TemplatePreview } from './TemplatePreview'
 import { useObserver } from 'mobx-react';
+// Types
+import { TemplateType } from '../types/Template';
 
-export function TemplateList(props) {
-    const { templates, onUpdateTemplate, onRemoveTemplate } = props
-
+interface TemplateListProps {
+    templates:TemplateType[]
+    onUpdateTemplate:(templateToUpdate:TemplateType) => void
+    onRemoveTemplate:(tempId:string) => void
+  }
+export function TemplateList({templates, onUpdateTemplate, onRemoveTemplate}:TemplateListProps) {
     return useObserver(() => (
         !templates || templates.length === 0 ?
             <Loader />

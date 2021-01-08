@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
+import App from './App.tsx';
 import './assets/style/main.scss';
-import { StoreProvider } from './store/index.js';
+import { StoreProvider } from './store/StoreContext';
 
 ReactDOM.render(
   <React.StrictMode>

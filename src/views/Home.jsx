@@ -1,5 +1,5 @@
 import React from 'react'
-import { Template } from '../cmps/Template'
+import { Template } from '../cmps/Template.tsx'
 
 export function Home() {
   return (

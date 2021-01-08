@@ -1,9 +1,12 @@
+import { GlobalVars } from './global'
 export const lightTheme = {
-    mainSec: '#E2E2E2',
-    mainSecTxt: '#363537',
+    mainSection: GlobalVars.lightMain,
+    mainSectionTxt: GlobalVars.lightTxt,
+    mainSectionTitle: GlobalVars.lightTitle
 }
 
 export const darkTheme = {
-    mainSec: '#363537',
-    mainSecTxt: '#FAFAFA',
+    mainSection: GlobalVars.darkMain,
+    mainSectionTxt: GlobalVars.darkTxt,
+    mainSectionTitle: GlobalVars.darkTitle
 }

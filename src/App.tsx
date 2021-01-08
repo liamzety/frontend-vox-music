@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes';
 import { useObserver } from 'mobx-react';
@@ -10,13 +10,13 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/style/theme';
 import { GlobalStyles } from './assets/style/global';
 // Store
-import { StoreContext } from './store';
+import { useStore } from './store/StoreContext';
 
 function App() {
-  const store = useContext(StoreContext)
+  const themeStore = useStore()
 
   return useObserver(() => (
-    <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeStore.theme === 'light' ? lightTheme : darkTheme}>
       <main className="app">
         <GlobalStyles />
         <InstallPopup />

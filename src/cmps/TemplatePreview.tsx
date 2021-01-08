@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
+// Types
+import {TemplateType} from '../types/Template'
 
-export function TemplatePreview({ template, onRemoveTemplate, onUpdateTemplate }) {
+interface TemplatePreviewProps {
+    template:TemplateType ;
+    onRemoveTemplate:(tempId:string) => void;
+     onUpdateTemplate:(templateToUpdate:TemplateType) => void;
+}
+export function TemplatePreview({ template, onRemoveTemplate, onUpdateTemplate }:TemplatePreviewProps) {
     const [templateToUpdate, setTemplateToUpdate] = useState(template)
 
-    function onUpdateTempInp(ev) {
+    function onUpdateTempInp(ev:React.FormEvent<HTMLInputElement>) {
         setTemplateToUpdate({
             ...templateToUpdate,
-            [ev.target.name]: ev.target.value
+            [ev.currentTarget.name]: ev.currentTarget.value
         })
     }
     return (

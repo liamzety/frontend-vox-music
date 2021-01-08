@@ -1,4 +1,5 @@
 import httpService from "./httpService"
+import {TemplateType} from '../types/Template'
 
 export const templateService = {
     query,
@@ -8,16 +9,18 @@ export const templateService = {
 }
 
 async function query() {
-    return await httpService.get('template')
+    const templates = await httpService.get('template')
+    console.log('templates', templates)
+    return templates
 }
-async function add(template) {
+async function add(template:TemplateType) {
     return await httpService.post('template', template);
 }
-function remove(tempId) {
+function remove(tempId:string) {
     httpService.delete(`template/${tempId}`)
 
 }
-function update(tempToUpdate) {
+function update(tempToUpdate:TemplateType) {
     httpService.put(`template/${tempToUpdate._id}`, tempToUpdate)
 }
 
