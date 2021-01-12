@@ -1,33 +1,54 @@
-import React, { useState } from 'react'
-import {TemplateType} from '../types/Template'
+import React, { useState ,useEffect} from 'react'
+import { youtubeService } from '../services/youtubeService'
+import { PlaylistType } from '../types/Playlist'
+import { AutoSuggest } from './AutoSuggest'
 
 
  interface TemplateAddProps {
-    onAddTemplate: (templateToAdd:TemplateType) => Promise<any>
+    onAddTemplate: (songToSuggest:PlaylistType) => Promise<any>
   }
 export  function TemplateAdd({onAddTemplate}:TemplateAddProps){
-    const [templateToAdd, setTemplateToAdd] = useState<TemplateType>({
-        name:'',
-        hairColor:'',
-        _id:''
+    const [songToSuggest, setSongToSuggest] = useState({
+        name:''
     })
 
-     function onAddTempInp(ev:React.FormEvent<HTMLInputElement>) {
-        setTemplateToAdd({
-            ...templateToAdd,
-            [ev.currentTarget.name]: ev.currentTarget.value
-        })
-    }
-    return (
-        <form className="template-add"
-            onSubmit={ev => {
-                ev.preventDefault()
-                onAddTemplate(templateToAdd)
+    const [autoSuggest, setAutoSuggest] = useState({
+        isOn:false,
+        suggestions:[]
+    })
 
-            }}>
+      async function onAddTempInp(ev:React.FormEvent<HTMLInputElement>) {
+          setSongToSuggest({ name: ev.currentTarget.value })
+           const suggestions = await getVideos(songToSuggest.name!)
+           console.log(suggestions)
+           setAutoSuggest(prevState => {
+                return {
+                    ...prevState,
+                    isOn:true,
+                    suggestions
+                }
+            })
+        }
+
+        const getVideos = async (query:string) => {
+          const res = await youtubeService.get(query)
+          console.log({res})
+          return res
+        }
+       
+    return (
+        <form className="template-add">
             <input onChange={onAddTempInp} name="name" type="text" placeholder="template" />
-            <input onChange={onAddTempInp} name="hairColor" type="text" placeholder="hair color" />
-            <button>Add template</button>
+            {autoSuggest.isOn && <AutoSuggest 
+            onAddTemplate={onAddTemplate}
+            suggestions={autoSuggest.suggestions}/>}
+            {/* {test.isOn &&
+            <div>
+                <img src={test.thumbnails.default.url} alt=""/>
+                <h1>title:{test.title}</h1>
+                <h1>desc:{test.description}</h1>
+            </div>
+            } */}
         </form>
     )
 }

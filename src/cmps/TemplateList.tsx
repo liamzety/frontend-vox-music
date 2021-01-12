@@ -3,11 +3,11 @@ import { Loader } from './Loader'
 import { TemplatePreview } from './TemplatePreview'
 import { useObserver } from 'mobx-react';
 // Types
-import { TemplateType } from '../types/Template';
+import { PlaylistType } from '../types/Playlist';
 
 interface TemplateListProps {
-    templates:TemplateType[]
-    onUpdateTemplate:(templateToUpdate:TemplateType) => void
+    templates:PlaylistType[]
+    onUpdateTemplate:(templateToUpdate:PlaylistType) => void
     onRemoveTemplate:(tempId:string) => void
   }
 export function TemplateList({templates, onUpdateTemplate, onRemoveTemplate}:TemplateListProps) {

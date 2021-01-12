@@ -1,11 +1,12 @@
 import httpService from "./httpService"
 import {PlaylistType} from '../types/Playlist'
 
-export const templateService = {
+export const playlistService = {
     query,
     update,
     remove,
-    add
+    add,
+    getById
 }
 
 async function query() {
@@ -14,6 +15,9 @@ async function query() {
 }
 async function add(template:PlaylistType) {
     return await httpService.post('template', template);
+}
+async function getById(playlistId:string)   {
+    return await httpService.get(`template/${playlistId}`);
 }
 function remove(tempId:string) {
     httpService.delete(`template/${tempId}`)

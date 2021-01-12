@@ -1,18 +1,18 @@
-import {TemplateType} from '../../types/Template'
+import {PlaylistType} from '../../types/Playlist'
 export  const createTemplateStore:any = {
         templates: [],
-        setTemplates: function(temps:TemplateType[])  {
+        setTemplates: function(temps:PlaylistType[])  {
             this.templates = temps
         },
-        addTemplate: function(temp:TemplateType) {
+        addTemplate: function(temp:PlaylistType) {
             this.templates.push(temp)
         },
         removeTemplate: function(tempId:string) {
-            this.templates = this.templates.filter((template:TemplateType) => template._id !== tempId)
+            this.templates = this.templates.filter((template:PlaylistType) => template._id !== tempId)
 
         },
-        updateTemplate: function(temp:TemplateType) {
-            const tempIdx = this.templates.findIndex((template:TemplateType) => template._id === temp._id)
+        updateTemplate: function(temp:PlaylistType) {
+            const tempIdx = this.templates.findIndex((template:PlaylistType) => template._id === temp._id)
             this.templates[tempIdx] = temp
         }
 }

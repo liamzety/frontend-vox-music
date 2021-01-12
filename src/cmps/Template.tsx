@@ -8,8 +8,9 @@ import { templateService } from '../services/templateService';
 // Styles
 import styled from 'styled-components';
 // Types
-import {TemplateType} from '../types/Template'
+import {PlaylistType} from '../types/Playlist'
 import { useStore } from '../store/StoreContext';
+import { youtubeService } from '../services/youtubeService';
 
 const MainSection = styled.section`
 background-color:${({ theme }) => theme.mainSection};
@@ -29,7 +30,14 @@ export function Template() {
     store.setTemplates(await templateService.query())
   }
 
-  async function onAddTemplate(templateToAdd:TemplateType): Promise<void> {
+  async function onAddTemplate(snippet:any): Promise<void> {
+    const templateToAdd = {
+      isOn:true,
+           url:snippet.thumbnails.default.url,
+         title:snippet.title,
+         description:snippet.description
+
+    }
     const templateAdded = await templateService.add(templateToAdd)
     store.addTemplate(templateAdded)
   }
@@ -39,7 +47,7 @@ export function Template() {
     store.removeTemplate(tempId)
   }
 
-  function onUpdateTemplate(templateToUpdate:TemplateType):void {
+  function onUpdateTemplate(templateToUpdate:PlaylistType):void {
     templateService.update(templateToUpdate)
     store.updateTemplate(templateToUpdate)
   }

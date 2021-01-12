@@ -12,4 +12,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-navigator.serviceWorker.register('./sw.js');
+// navigator.serviceWorker.register('./sw.js');
