@@ -21,14 +21,18 @@ export function Home() {
     store.setPlaylists(await playlistService.query())
   }
 
-  async function onAddPlaylist(snippet:any): Promise<void> {
-    const playlistToAdd = {
-      isOn:true,
-           url:snippet.thumbnails.default.url,
-         title:snippet.title,
-         description:snippet.description
+  // async function onAddPlaylist(snippet:any): Promise<void> {
+  //   const playlistToAdd = {
+  //     isOn:true,
+  //          url:snippet.thumbnails.default.url,
+  //        title:snippet.title,
+  //        description:snippet.description
 
-    }
+  //   }
+  //   const playlistAdded = await playlistService.add(playlistToAdd)
+  //   store.addPlaylist(playlistAdded)
+  // }
+  async function onAddPlaylist(playlistToAdd:any): Promise<void> {
     const playlistAdded = await playlistService.add(playlistToAdd)
     store.addPlaylist(playlistAdded)
   }

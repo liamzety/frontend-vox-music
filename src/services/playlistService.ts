@@ -9,6 +9,7 @@ export const playlistService = {
     getById
 }
 
+
 async function query() {
     const playlists = await httpService.get('playlist')
     return playlists
@@ -17,7 +18,8 @@ async function add(playlist:PlaylistType) {
     return await httpService.post('playlist', playlist);
 }
 async function getById(playlistId:string)   {
-    return await httpService.get(`playlist/${playlistId}`);
+    const playlist = await httpService.get(`playlist/${playlistId}`);
+    return playlist
 }
 function remove(playlistId:string) {
     httpService.delete(`playlist/${playlistId}`)

@@ -17,11 +17,11 @@ export const PlaylistPreview = ({ playlist, onRemovePlaylist, onUpdatePlaylist }
             [ev.currentTarget.name]: ev.currentTarget.value
         })
     }
-    const _prettyUrl = (title:string) :string => {
-        return title.replace(/\s/g, '_')
+    const _prettyUrl = (name:string | undefined) :string => {
+        return name!.replace(/\s/g, '_')
     }
     return (
-        <Link to={`/player/${_prettyUrl(playlist.title)}=${playlist._id}`}>
+        <Link to={`/player/${_prettyUrl(playlist.name)}=${playlist._id}`}>
         <div className="playlist-preview">
             {/* <p>{playlist.name}</p>
             <button onClick={() => onRemovePlaylist(playlist._id)}>Remove</button>
@@ -32,9 +32,9 @@ export const PlaylistPreview = ({ playlist, onRemovePlaylist, onUpdatePlaylist }
                 <input placeholder="change name" name="name" onChange={onUpdateTempInp} type="text" />
                 <button>Save</button>
             </form> */}
-            <img src={playlist.url} />
-            <h2>{playlist.title}</h2>
-            {/* <button onClick={() => onRemovePlaylist(playlist._id!)}>Remove</button> */}
+            <img src={playlist.img} />
+            <h2>{playlist.name}</h2>
+            <button onClick={() => onRemovePlaylist(playlist._id!)}>Remove</button>
         </div>
         </Link>
     )

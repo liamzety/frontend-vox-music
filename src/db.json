@@ -1,0 +1,46 @@
+{
+    "playlists": [
+        {
+            "_id":"1",
+            "name":"playlist1",
+            "description":"description",
+            "img":"img",
+            "genre":"genre",
+            "songs": [
+                {
+                    "title":"songname1",
+                    "url":"songurl"
+                },
+                {
+                    "title":"songname2",
+                    "url":"songurl"
+                },
+                {
+                    "title":"songname3",
+                    "url":"songurl"
+                }
+            ]
+        },
+        {
+            "_id":"2",
+            "name":"playlist2",
+            "description":"description",
+            "img":"img",
+            "genre":"genre",
+            "songs": [
+                {
+                    "title":"songname1",
+                    "url":"songurl"
+                },
+                {
+                    "title":"songname2",
+                    "url":"songurl"
+                },
+                {
+                    "title":"songname3",
+                    "url":"songurl"
+                }
+            ]
+        }
+    ]
+}
