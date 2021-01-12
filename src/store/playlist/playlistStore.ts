@@ -1,18 +1,18 @@
 import {PlaylistType} from '../../types/Playlist'
 export  const createPlaylistStore:any = {
         playlists: [],
-        setPlaylists: function(temps:PlaylistType[])  {
-            this.playlists = temps
+        setPlaylists: function(playlists:PlaylistType[])  {
+            this.playlists = playlists
         },
-        addPlaylist: function(temp:PlaylistType) {
-            this.playlists.push(temp)
+        addPlaylist: function(playlist:PlaylistType) {
+            this.playlists.push(playlist)
         },
-        removePlaylist: function(tempId:string) {
-            this.playlists = this.playlists.filter((playlist:PlaylistType) => playlist._id !== tempId)
+        removePlaylist: function(playlistId:string) {
+            this.playlists = this.playlists.filter((playlist:PlaylistType) => playlist._id !== playlistId)
 
         },
-        updatePlaylist: function(temp:PlaylistType) {
-            const tempIdx = this.playlists.findIndex((playlist:PlaylistType) => playlist._id === temp._id)
-            this.playlists[tempIdx] = temp
+        updatePlaylist: function(playlist:PlaylistType) {
+            const playlistIdx = this.playlists.findIndex((playlist:PlaylistType) => playlist._id === playlist._id)
+            this.playlists[playlistIdx] = playlist
         }
 }

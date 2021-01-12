@@ -8,7 +8,7 @@ import { PlaylistType } from '../types/Playlist';
 interface PlaylistListProps {
     playlists:PlaylistType[]
     onUpdatePlaylist:(playlistToUpdate:PlaylistType) => void
-    onRemovePlaylist:(tempId:string) => void
+    onRemovePlaylist:(playlistId:string) => void
   }
 export function PlaylistList({playlists, onUpdatePlaylist, onRemovePlaylist}:PlaylistListProps) {
     return useObserver(() => (

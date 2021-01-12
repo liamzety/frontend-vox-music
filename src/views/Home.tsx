@@ -33,9 +33,9 @@ export function Home() {
     store.addPlaylist(playlistAdded)
   }
 
-  function onRemovePlaylist(tempId:string):void {
-    playlistService.remove(tempId)
-    store.removePlaylist(tempId)
+  function onRemovePlaylist(playlistId:string):void {
+    playlistService.remove(playlistId)
+    store.removePlaylist(playlistId)
   }
 
   function onUpdatePlaylist(playlistToUpdate:PlaylistType):void {

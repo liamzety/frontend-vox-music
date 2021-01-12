@@ -19,11 +19,11 @@ async function add(playlist:PlaylistType) {
 async function getById(playlistId:string)   {
     return await httpService.get(`playlist/${playlistId}`);
 }
-function remove(tempId:string) {
-    httpService.delete(`playlist/${tempId}`)
+function remove(playlistId:string) {
+    httpService.delete(`playlist/${playlistId}`)
 
 }
-function update(tempToUpdate:PlaylistType) {
-    httpService.put(`playlist/${tempToUpdate._id}`, tempToUpdate)
+function update(playlistToUpdate:PlaylistType) {
+    httpService.put(`playlist/${playlistToUpdate._id}`, playlistToUpdate)
 }
 

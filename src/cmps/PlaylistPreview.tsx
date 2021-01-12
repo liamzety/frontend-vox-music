@@ -5,7 +5,7 @@ import {PlaylistType} from '../types/Playlist'
 
 interface PlaylistPreviewProps {
     playlist:PlaylistType ;
-    onRemovePlaylist:(tempId:string) => void;
+    onRemovePlaylist:(playlistId:string) => void;
      onUpdatePlaylist:(playlistToUpdate:PlaylistType) => void;
 }
 export const PlaylistPreview = ({ playlist, onRemovePlaylist, onUpdatePlaylist } :PlaylistPreviewProps) => {
