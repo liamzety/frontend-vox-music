@@ -4,10 +4,10 @@ import { PlaylistType } from '../types/Playlist'
 import { AutoSuggest } from './AutoSuggest'
 
 
- interface TemplateAddProps {
-    onAddTemplate: (songToSuggest:PlaylistType) => Promise<any>
+ interface PlaylistAddProps {
+    onAddPlaylist: (songToSuggest:PlaylistType) => Promise<any>
   }
-export  function TemplateAdd({onAddTemplate}:TemplateAddProps){
+export  function PlaylistAdd({onAddPlaylist}:PlaylistAddProps){
     const [songToSuggest, setSongToSuggest] = useState({
         name:''
     })
@@ -37,10 +37,10 @@ export  function TemplateAdd({onAddTemplate}:TemplateAddProps){
         }
        
     return (
-        <form className="template-add">
-            <input onChange={onAddTempInp} name="name" type="text" placeholder="template" />
+        <form className="playlist-add">
+            <input onChange={onAddTempInp} name="name" type="text" placeholder="playlist" />
             {autoSuggest.isOn && <AutoSuggest 
-            onAddTemplate={onAddTemplate}
+            onAddPlaylist={onAddPlaylist}
             suggestions={autoSuggest.suggestions}/>}
             {/* {test.isOn &&
             <div>

@@ -10,20 +10,20 @@ export const playlistService = {
 }
 
 async function query() {
-    const templates = await httpService.get('template')
-    return templates
+    const playlists = await httpService.get('playlist')
+    return playlists
 }
-async function add(template:PlaylistType) {
-    return await httpService.post('template', template);
+async function add(playlist:PlaylistType) {
+    return await httpService.post('playlist', playlist);
 }
 async function getById(playlistId:string)   {
-    return await httpService.get(`template/${playlistId}`);
+    return await httpService.get(`playlist/${playlistId}`);
 }
 function remove(tempId:string) {
-    httpService.delete(`template/${tempId}`)
+    httpService.delete(`playlist/${tempId}`)
 
 }
 function update(tempToUpdate:PlaylistType) {
-    httpService.put(`template/${tempToUpdate._id}`, tempToUpdate)
+    httpService.put(`playlist/${tempToUpdate._id}`, tempToUpdate)
 }
 
