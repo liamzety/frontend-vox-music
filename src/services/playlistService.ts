@@ -1,5 +1,6 @@
 import httpService from "./httpService"
 import {PlaylistType} from '../types/Playlist'
+import { songService } from "./songService"
 
 export const playlistService = {
     query,
@@ -18,8 +19,8 @@ async function add(playlist:PlaylistType) {
     return await httpService.post('playlist', playlist);
 }
 async function getById(playlistId:string)   {
-    const playlist = await httpService.get(`playlist/${playlistId}`);
-    return playlist
+    return await httpService.get(`playlist/${playlistId}`);
+
 }
 function remove(playlistId:string) {
     httpService.delete(`playlist/${playlistId}`)

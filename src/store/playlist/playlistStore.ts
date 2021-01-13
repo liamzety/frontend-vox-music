@@ -12,7 +12,7 @@ export  const createPlaylistStore:any = {
 
         },
         updatePlaylist: function(playlist:PlaylistType) {
-            const playlistIdx = this.playlists.findIndex((playlist:PlaylistType) => playlist._id === playlist._id)
+            const playlistIdx = this.playlists.findIndex((_playlist:PlaylistType) => _playlist._id === playlist._id)
             this.playlists[playlistIdx] = playlist
         }
 }
