@@ -4,11 +4,8 @@ import { songService } from '../services/songService';
 import { youtubeService } from '../services/youtubeService';
 import { PlaylistType } from '../types/Playlist';
 import { AutoSuggest } from '../cmps/AutoSuggest';
-import { useObserver } from 'mobx-react';
 import { useStore } from '../store/StoreContext';
 export function Player(props: any) {
-  const store = useStore();
-
   const [currPlaylist, setCurrPlaylist] = useState<PlaylistType>({
     _id: '',
     name: '',
@@ -24,9 +21,6 @@ export function Player(props: any) {
 
   const getPlaylist = async (playlistId: string) => {
     let { playlist, playlistSongs } = await playlistService.getById(playlistId);
-    console.log('playlist', playlist);
-    console.log('playlistSongs', playlistSongs);
-
     setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
   };
 
@@ -50,12 +44,20 @@ export function Player(props: any) {
       };
     });
   }
-  const onAddSong = async (snippet: any) => {
-    const { title } = snippet;
-    const { url } = snippet.thumbnails.default;
-    const playlist_id = currPlaylist._id!;
+  const [currPlaying, setCurrPlaying] = useState(null);
+  const onAddSong = async (songData: any) => {
+    const { title } = songData.snippet;
+    const { url } = songData.snippet.thumbnails.default;
+    const video_id = songData.id.videoId;
 
-    const songAdded = await songService.add({ title, url, playlist_id });
+    const playlist_id = currPlaylist._id!;
+    const songAdded = await songService.add({
+      title,
+      url,
+      video_id,
+      playlist_id,
+    });
+
     setCurrPlaylist((prevState) => {
       return {
         ...prevState,
@@ -65,7 +67,6 @@ export function Player(props: any) {
   };
   const getVideos = async (query: string) => {
     const res = await youtubeService.get(query);
-    console.log(res);
     return res;
   };
   return (
@@ -77,7 +78,17 @@ export function Player(props: any) {
       {currPlaylist.songs.length > 0 ? (
         <ul>
           {currPlaylist.songs.map((song: any, idx: any) => {
-            return <li key={idx}>{song.title}</li>;
+            return (
+              <li
+                key={idx}
+                onClick={() => {
+                  console.log(song.video_id);
+                  setCurrPlaying(song.video_id);
+                }}
+              >
+                <h3>{song.title}</h3>
+              </li>
+            );
           })}
         </ul>
       ) : (
@@ -97,6 +108,13 @@ export function Player(props: any) {
           suggestions={autoSuggest.suggestions}
         />
       )}
+
+      <h1>player</h1>
+      <iframe
+        title="UNIQRE"
+        src={`https://www.youtube.com/embed/${currPlaying}`}
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+      ></iframe>
     </div>
   );
 }
