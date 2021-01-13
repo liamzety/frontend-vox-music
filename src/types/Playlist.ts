@@ -8,9 +8,4 @@ export interface PlaylistType {
   img:string;
   songs:Array<SongType>;
 
-  // isOn?:boolean;
-  // _id?:string;
-  //   url:string
-  // title:string;
-  // description:string;
   }

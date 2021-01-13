@@ -23,7 +23,7 @@ export default {
         return ajax(endpoint, 'DELETE', data)
     }
 }
-async function ajax(endpoint:any, method:methodType = 'get', data = null) {
+async function ajax(endpoint:any, method:methodType = 'get', data:any = null) {
     try {
         const res = await axios({
             url: `${BASE_URL}${endpoint}`,

@@ -25,7 +25,7 @@ export const PlaylistPreview = ({
     return name!.replace(/\s/g, '_');
   };
   return (
-    <Link to={`/player/${_prettyUrl(playlist.name)}=${playlist._id}`}>
+    <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
       <div className="playlist-preview">
         <img src={playlist.img} />
         <h2>{playlist.name}</h2>

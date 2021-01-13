@@ -4,8 +4,9 @@ import { songService } from '../services/songService';
 import { youtubeService } from '../services/youtubeService';
 import { PlaylistType } from '../types/Playlist';
 import { AutoSuggest } from '../cmps/AutoSuggest';
-import { useStore } from '../store/StoreContext';
-export function Player(props: any) {
+import { Player } from '../cmps/Player';
+
+export function Main(props: any) {
   const [currPlaylist, setCurrPlaylist] = useState<PlaylistType>({
     _id: '',
     name: '',
@@ -70,7 +71,7 @@ export function Player(props: any) {
     return res;
   };
   return (
-    <div className="player">
+    <div className="main">
       <img src={currPlaylist.img} alt="thumbnail" />
       <h1>{currPlaylist.name}</h1>
       <h2>{currPlaylist.description}</h2>
@@ -82,7 +83,6 @@ export function Player(props: any) {
               <li
                 key={idx}
                 onClick={() => {
-                  console.log(song.video_id);
                   setCurrPlaying(song.video_id);
                 }}
               >
@@ -109,12 +109,13 @@ export function Player(props: any) {
         />
       )}
 
-      <h1>player</h1>
+      {/* <h1>player</h1>
       <iframe
         title="UNIQRE"
         src={`https://www.youtube.com/embed/${currPlaying}`}
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      ></iframe>
+      ></iframe> */}
+      <Player currPlayingUrl={currPlaying} />
     </div>
   );
 }

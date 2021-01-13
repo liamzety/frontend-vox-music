@@ -1,5 +1,5 @@
 import { Home } from './views/Home'
-import { Player } from './views/Player'
+import { Main } from './views/Main'
 
 export default [
     {
@@ -7,7 +7,7 @@ export default [
         component: Home
     },
     {
-        path: '/player/:songName=:songId',
-        component: Player
+        path: '/main/:songName=:songId',
+        component: Main
     }
 ]
