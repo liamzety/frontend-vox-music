@@ -4,12 +4,20 @@ import { PlayerType } from '../types/Player';
 
 interface PlayerProps {
   currPlayingUrl: string;
+  idx: number;
+  handleNextPrevSong: (val: string, idx: number) => void;
 }
-export function Player({ currPlayingUrl }: PlayerProps) {
+export function Player({
+  currPlayingUrl,
+  idx,
+  handleNextPrevSong,
+}: PlayerProps) {
   const [player, setPlayer] = useState<PlayerType>({
     isPlaying: true,
     duration: null,
     time: 0,
+    volume: 0.3,
+    isMuted: false,
   });
   const reactPlayerRef = useRef(null);
 
@@ -50,6 +58,25 @@ export function Player({ currPlayingUrl }: PlayerProps) {
       };
     });
   };
+  // When user slides and selects different volume
+  const handleSongVolume = (ev: any) => {
+    const volume = +ev.currentTarget.value;
+    setPlayer((prevState) => {
+      return {
+        ...prevState,
+        volume,
+      };
+    });
+  };
+  const toggleSongMute = () => {
+    setPlayer((prevState) => {
+      return {
+        ...prevState,
+        isMuted: !prevState.isMuted,
+      };
+    });
+  };
+
   const _getFormattedMinutes = (duration: number) => {
     if (!duration) return '0:00';
     if (duration >= 28144451) return 'Live';
@@ -76,6 +103,8 @@ export function Player({ currPlayingUrl }: PlayerProps) {
         playing={player.isPlaying}
         onDuration={setDuration}
         onProgress={handleProgress}
+        volume={player.volume}
+        muted={player.isMuted}
         className="hidden"
         ref={reactPlayerRef}
       />
@@ -88,11 +117,28 @@ export function Player({ currPlayingUrl }: PlayerProps) {
           value={player.time}
           min="0"
           max={player.duration}
+          step="1"
         />
+        <input
+          onChange={handleSongVolume}
+          type="range"
+          value={player.volume}
+          min="0"
+          max="1"
+          step="0.01"
+        />
+        <button onClick={toggleSongMute}>mute</button>
         <p>
           {_getFormattedMinutes(player.time)} /{' '}
           {_getFormattedMinutes(player.duration)}
         </p>
+
+        <button onClick={handleNextPrevSong.bind({}, 'next', idx)}>
+          NEXT SONG
+        </button>
+        <button onClick={handleNextPrevSong.bind({}, 'prev', idx)}>
+          PREV SONG
+        </button>
       </div>
     </div>
   );

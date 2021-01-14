@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { playlistService } from '../services/playlistService';
-import { songService } from '../services/songService';
-import { youtubeService } from '../services/youtubeService';
 import { PlaylistType } from '../types/Playlist';
-import { AutoSuggest } from '../cmps/AutoSuggest';
 import { Player } from '../cmps/Player';
+import { useStore } from '../store/StoreContext';
+import { SongList } from '../cmps/SongList';
+import { SongSearch } from '../cmps/SongSearch';
 
 export function Main(props: any) {
+  const store = useStore();
+
   const [currPlaylist, setCurrPlaylist] = useState<PlaylistType>({
     _id: '',
     name: '',
@@ -18,57 +20,64 @@ export function Main(props: any) {
 
   useEffect(() => {
     getPlaylist(props.match.params.songId);
-  }, []);
+  }, [props.match.params.songId]);
 
   const getPlaylist = async (playlistId: string) => {
     let { playlist, playlistSongs } = await playlistService.getById(playlistId);
     setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
   };
 
-  const [songToSuggest, setSongToSuggest] = useState({
-    name: '',
-  });
+  // Fires when a user searches for songs to add
 
-  const [autoSuggest, setAutoSuggest] = useState({
-    isOn: false,
-    suggestions: [],
+  const [currPlaying, setCurrPlaying] = useState({
+    songUrl: '',
+    idx: null,
   });
-
-  async function onAddSongInp(ev: React.FormEvent<HTMLInputElement>) {
-    setSongToSuggest({ name: ev.currentTarget.value });
-    const suggestions = await getVideos(songToSuggest.name!);
-    setAutoSuggest((prevState) => {
-      return {
-        ...prevState,
-        isOn: true,
-        suggestions,
-      };
-    });
-  }
-  const [currPlaying, setCurrPlaying] = useState(null);
   const onAddSong = async (songData: any) => {
-    const { title } = songData.snippet;
-    const { url } = songData.snippet.thumbnails.default;
     const video_id = songData.id.videoId;
+    if (findIfExsits(video_id)) {
+      store.alert('This song has already been added!', 'alert');
+      store.clearAlert();
+    }
 
-    const playlist_id = currPlaylist._id!;
-    const songAdded = await songService.add({
-      title,
-      url,
-      video_id,
-      playlist_id,
-    });
-
-    setCurrPlaylist((prevState) => {
-      return {
-        ...prevState,
-        songs: [songAdded, ...prevState.songs],
-      };
-    });
+    /*** ---------COMMENT THIS IN/OUT WHEN QUERIES ARE OUT/IN-----------  ***/
+    // let { title } = songData.snippet;
+    // title = title.replace(/&#39;/i, "'");
+    // const { url } = songData.snippet.thumbnails.default;
+    // const playlist_id = currPlaylist._id!;
+    // const songAdded = await songService.add({
+    //   title,
+    //   url,
+    //   video_id,
+    //   playlist_id,
+    // });
+    // setCurrPlaylist((prevState) => {
+    //   return {
+    //     ...prevState,
+    //     songs: [songAdded, ...prevState.songs],
+    //   };
+    // });
   };
-  const getVideos = async (query: string) => {
-    const res = await youtubeService.get(query);
-    return res;
+  const handleNextPrevSong = (val: string, idx: number) => {
+    const nextSongIdx = idx + 1 > currPlaylist.songs.length - 1 ? 0 : idx + 1;
+    const nextSongUrl = currPlaylist.songs[nextSongIdx].video_id;
+
+    const prevSongIdx = idx - 1 < 0 ? currPlaylist.songs.length - 1 : idx - 1;
+    const prevSongUrl = currPlaylist.songs[prevSongIdx].video_id;
+
+    if (val === 'next') {
+      setCurrPlaying({ songUrl: nextSongUrl, idx: nextSongIdx });
+    } else {
+      setCurrPlaying({ songUrl: prevSongUrl, idx: prevSongIdx });
+    }
+  };
+
+  const findIfExsits = (video_id: string): boolean => {
+    return currPlaylist.songs.some((song) => song.video_id === video_id);
+  };
+  // When user selects a song
+  const handleSongSelect = (data: { songUrl: string; idx: number }): void => {
+    setCurrPlaying(data);
   };
   return (
     <div className="main">
@@ -76,46 +85,16 @@ export function Main(props: any) {
       <h1>{currPlaylist.name}</h1>
       <h2>{currPlaylist.description}</h2>
       <p>Genre: {currPlaylist.genre}</p>
-      {currPlaylist.songs.length > 0 ? (
-        <ul>
-          {currPlaylist.songs.map((song: any, idx: any) => {
-            return (
-              <li
-                key={idx}
-                onClick={() => {
-                  setCurrPlaying(song.video_id);
-                }}
-              >
-                <h3>{song.title}</h3>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <h1>add new songs</h1>
-      )}
-
-      <input
-        onChange={onAddSongInp}
-        name="search"
-        type="text"
-        placeholder="song search"
+      <SongList
+        handleSongSelect={handleSongSelect}
+        currPlaylist={currPlaylist}
       />
-
-      {autoSuggest.isOn && (
-        <AutoSuggest
-          onAddSong={onAddSong}
-          suggestions={autoSuggest.suggestions}
-        />
-      )}
-
-      {/* <h1>player</h1>
-      <iframe
-        title="UNIQRE"
-        src={`https://www.youtube.com/embed/${currPlaying}`}
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-      ></iframe> */}
-      <Player currPlayingUrl={currPlaying} />
+      <SongSearch onAddSong={onAddSong} />
+      <Player
+        currPlayingUrl={currPlaying.songUrl}
+        idx={currPlaying.idx}
+        handleNextPrevSong={handleNextPrevSong}
+      />
     </div>
   );
 }

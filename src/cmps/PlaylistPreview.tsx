@@ -27,7 +27,7 @@ export const PlaylistPreview = ({
   return (
     <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
       <div className="playlist-preview">
-        <img src={playlist.img} />
+        <img src={playlist.img} alt="Playlist" />
         <h2>{playlist.name}</h2>
         <button
           onClick={(ev) => {

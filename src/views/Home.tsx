@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 // Cmps
 import { Banner } from '../cmps/Banner';
 import { PlaylistAdd } from '../cmps/PlaylistAdd';
@@ -12,13 +12,15 @@ import { useStore } from '../store/StoreContext';
 import { useObserver } from 'mobx-react';
 export function Home() {
   const store = useStore();
+
+  const getPlaylists = useCallback(async () => {
+    store.setPlaylists(await playlistService.query());
+  }, [store]);
+
   useEffect(() => {
     getPlaylists();
-  }, []);
+  }, [getPlaylists]);
 
-  async function getPlaylists(): Promise<void> {
-    store.setPlaylists(await playlistService.query());
-  }
   async function onAddPlaylist(playlistToAdd: any): Promise<void> {
     const playlistAdded = await playlistService.add(playlistToAdd);
     store.addPlaylist(playlistAdded);

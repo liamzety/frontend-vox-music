@@ -1,6 +1,6 @@
 import {PlaylistType} from '../../types/Playlist'
-export  const createPlaylistStore:any = {
-        playlists: [],
+export  const createPlaylistStore = {
+        playlists: [] as PlaylistType[],
         setPlaylists: function(playlists:PlaylistType[])  {
             this.playlists = playlists
         },
