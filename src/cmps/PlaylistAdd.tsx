@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
+import { cloudinaryService } from '../services/cloudinaryService';
 import { PlaylistType } from '../types/Playlist';
+import { FiUpload } from 'react-icons/fi';
+import {
+  PlaylistAddImgLabel,
+  PlaylistAddImgLoader,
+  PlayListAddForm,
+} from '../assets/style/components/playlistAdd';
+import loader from '../assets/img/loader.gif';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
@@ -8,7 +16,7 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
   const DEFAULT_IMG = 'https://picsum.photos/200';
   const DEFAULT_NAME = 'My New Playlist!';
   const DEFAULT_DESCRIPTION = 'This is my awesome playlist!';
-  const DEFAULT_GENRE = 'cyberpunk';
+  const DEFAULT_GENRE = 'Cyberpunk';
 
   const [playlistToAdd, setPlaylistToAdd] = useState<PlaylistType>({
     name: DEFAULT_NAME,
@@ -17,6 +25,8 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
     img: DEFAULT_IMG,
     songs: [],
   });
+  const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
+
   async function onAddPlaylistInp(ev: React.FormEvent<HTMLInputElement>) {
     const { value, name } = ev.currentTarget;
     setPlaylistToAdd((prevState) => {
@@ -26,21 +36,47 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
       };
     });
   }
-
+  const uploadImg = async (ev: any) => {
+    setIsImgUploading(true);
+    const res = await cloudinaryService.uploadImg(ev.target.files[0]);
+    setIsImgUploading(false);
+    setPlaylistToAdd((prevState) => {
+      return {
+        ...prevState,
+        img: res.url,
+      };
+    });
+  };
   return (
-    <form
-      className="playlist-add"
+    <PlayListAddForm
       onSubmit={(ev) => {
         ev.preventDefault();
+        if (isImgUploading) return;
         onAddPlaylist(playlistToAdd);
       }}
     >
-      <input
-        onChange={onAddPlaylistInp}
-        name="img"
-        type="file"
-        placeholder="playlist img"
-      />
+      {isImgUploading ? (
+        <PlaylistAddImgLabel htmlFor="imgUpload">
+          <PlaylistAddImgLoader src={loader} alt="" />
+          <p>Loading...</p>
+        </PlaylistAddImgLabel>
+      ) : (
+        <div>
+          <PlaylistAddImgLabel htmlFor="imgUpload">
+            <FiUpload />
+            <p>Upload Playlist Image</p>
+          </PlaylistAddImgLabel>
+          <input
+            onChange={uploadImg}
+            name="img"
+            id="imgUpload"
+            type="file"
+            placeholder="playlist img"
+            hidden
+          />
+        </div>
+      )}
+
       <input
         onChange={onAddPlaylistInp}
         name="name"
@@ -60,6 +96,6 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
         placeholder="playlist description"
       />
       <button>ok</button>
-    </form>
+    </PlayListAddForm>
   );
 }

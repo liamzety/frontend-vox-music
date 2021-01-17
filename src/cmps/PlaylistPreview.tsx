@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  PlaylistPreviewContainer,
+  PlaylistPreviewThumbnail,
+} from '../assets/style/components/playlistPreview';
 // Types
 import { PlaylistType } from '../types/Playlist';
 
@@ -26,8 +30,8 @@ export const PlaylistPreview = ({
   };
   return (
     <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
-      <div className="playlist-preview">
-        <img src={playlist.img} alt="Playlist" />
+      <PlaylistPreviewContainer>
+        <PlaylistPreviewThumbnail src={playlist.img} alt="Playlist" />
         <h2>{playlist.name}</h2>
         <button
           onClick={(ev) => {
@@ -37,7 +41,7 @@ export const PlaylistPreview = ({
         >
           Remove
         </button>
-      </div>
+      </PlaylistPreviewContainer>
     </Link>
   );
 };
