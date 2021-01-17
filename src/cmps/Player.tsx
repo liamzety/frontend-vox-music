@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
+import { PlayerContainer } from '../assets/style/components/player';
 import { PlayerType } from '../types/Player';
 
 interface PlayerProps {
@@ -81,11 +82,11 @@ export function Player({
     if (!duration) return '0:00';
     if (duration >= 28144451) return 'Live';
 
-    var hrs = ~~(duration / 3600);
-    var mins = ~~((duration % 3600) / 60);
-    var secs = ~~duration % 60;
+    const hrs = ~~(duration / 3600);
+    const mins = ~~((duration % 3600) / 60);
+    const secs = ~~duration % 60;
 
-    var ret = '';
+    let ret = '';
 
     if (hrs > 0) {
       ret += '' + hrs + ':' + (mins < 10 ? '0' : '');
@@ -97,7 +98,7 @@ export function Player({
   };
 
   return (
-    <div className={`player ${currPlayingUrl ? '' : 'hidden'}`}>
+    <PlayerContainer className={`player ${currPlayingUrl ? '' : 'hidden'}`}>
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${currPlayingUrl}`}
         playing={player.isPlaying}
@@ -140,6 +141,6 @@ export function Player({
           PREV SONG
         </button>
       </div>
-    </div>
+    </PlayerContainer>
   );
 }

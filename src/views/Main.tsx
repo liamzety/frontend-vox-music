@@ -5,6 +5,10 @@ import { Player } from '../cmps/Player';
 import { useStore } from '../store/StoreContext';
 import { SongList } from '../cmps/SongList';
 import { SongSearch } from '../cmps/SongSearch';
+import { songService } from '../services/songService';
+import { regService } from '../services/regService';
+//  Styles
+import { MainContainer } from '../assets/style/components/main';
 
 export function Main(props: any) {
   const store = useStore();
@@ -27,8 +31,6 @@ export function Main(props: any) {
     setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
   };
 
-  // Fires when a user searches for songs to add
-
   const [currPlaying, setCurrPlaying] = useState({
     songUrl: '',
     idx: null,
@@ -40,23 +42,22 @@ export function Main(props: any) {
       store.clearAlert();
     }
 
-    /*** ---------COMMENT THIS IN/OUT WHEN QUERIES ARE OUT/IN-----------  ***/
-    // let { title } = songData.snippet;
-    // title = title.replace(/&#39;/i, "'");
-    // const { url } = songData.snippet.thumbnails.default;
-    // const playlist_id = currPlaylist._id!;
-    // const songAdded = await songService.add({
-    //   title,
-    //   url,
-    //   video_id,
-    //   playlist_id,
-    // });
-    // setCurrPlaylist((prevState) => {
-    //   return {
-    //     ...prevState,
-    //     songs: [songAdded, ...prevState.songs],
-    //   };
-    // });
+    let { title } = songData.snippet;
+    title = regService.replaceCharRef(title);
+    const { url } = songData.snippet.thumbnails.default;
+    const playlist_id = currPlaylist._id!;
+    const songAdded = await songService.add({
+      title,
+      url,
+      video_id,
+      playlist_id,
+    });
+    setCurrPlaylist((prevState) => {
+      return {
+        ...prevState,
+        songs: [songAdded, ...prevState.songs],
+      };
+    });
   };
   const handleNextPrevSong = (val: string, idx: number) => {
     const nextSongIdx = idx + 1 > currPlaylist.songs.length - 1 ? 0 : idx + 1;
@@ -71,7 +72,7 @@ export function Main(props: any) {
       setCurrPlaying({ songUrl: prevSongUrl, idx: prevSongIdx });
     }
   };
-
+  // Checks if the song the user wants to add already exsits in the playlist
   const findIfExsits = (video_id: string): boolean => {
     return currPlaylist.songs.some((song) => song.video_id === video_id);
   };
@@ -80,7 +81,7 @@ export function Main(props: any) {
     setCurrPlaying(data);
   };
   return (
-    <div className="main">
+    <MainContainer className="main">
       <img src={currPlaylist.img} alt="thumbnail" />
       <h1>{currPlaylist.name}</h1>
       <h2>{currPlaylist.description}</h2>
@@ -95,6 +96,6 @@ export function Main(props: any) {
         idx={currPlaying.idx}
         handleNextPrevSong={handleNextPrevSong}
       />
-    </div>
+    </MainContainer>
   );
 }

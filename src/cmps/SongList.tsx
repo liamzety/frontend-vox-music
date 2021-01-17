@@ -1,21 +1,30 @@
 import React from 'react';
+// Styles
+import {
+  SongContainer,
+  SongListContainer,
+  SongThumbnail,
+  SongTitle,
+} from '../assets/style/components/songList';
 
 export function SongList({ currPlaylist, handleSongSelect }: any) {
   if (currPlaylist.songs.length === 0) return <h1>Add new songs!</h1>;
   return (
-    <ul>
+    <SongListContainer>
       {currPlaylist.songs.map((song: any, idx: any) => {
         return (
-          <li
+          <SongContainer
+            className="test"
             key={idx}
             onClick={() => {
               handleSongSelect({ songUrl: song.video_id, idx });
             }}
           >
-            <h3>{song.title}</h3>
-          </li>
+            <SongThumbnail src={song.url} alt="" />
+            <SongTitle>{song.title}</SongTitle>
+          </SongContainer>
         );
       })}
-    </ul>
+    </SongListContainer>
   );
 }

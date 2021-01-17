@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { youtubeService } from '../services/youtubeService';
+import { storageService } from '../services/storageService';
 import { AutoSuggest } from './AutoSuggest';
 
 interface songSearchProps {
@@ -13,16 +14,18 @@ export function SongSearch({ onAddSong }: songSearchProps) {
     isOn: false,
     suggestions: [],
   });
+  // Fires when a user searches for songs to add
   async function onAddSongInp(ev: React.FormEvent<HTMLInputElement>) {
     setSongToSuggest({ name: ev.currentTarget.value });
 
-    /*** ----------USE THIS WHEN QUERIES ARE UP-----------  ***/
+    /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
+    const suggestions = await storageService.load();
+    console.log('suggestions,', suggestions);
+    /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
     // const suggestions = await getVideos(songToSuggest.name!);
 
-    /*** ----------THIS IS WHEN YOUTUBE QUERIES RUN OUT FOR THE DAY!---------------- ***/
-    const suggestions = {
-      items: [{ id: { videoId: '1wYNFfgrXTI' }, snippet: { title: 'test' } }],
-    };
+    /*** OPTIONAL -->  (save to storage new search words)    ***/
+    // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
 
     setAutoSuggest((prevState: any) => {
       return {
