@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
-import { PlayerContainer } from '../assets/style/components/player';
+import {
+  PlayerContainer,
+  PlayerWrapper,
+} from '../assets/style/components/player';
 import { PlayerType } from '../types/Player';
 
 interface PlayerProps {
@@ -80,7 +83,7 @@ export function Player({
 
   const _getFormattedMinutes = (duration: number) => {
     if (!duration) return '0:00';
-    if (duration >= 28144451) return 'Live';
+    if (duration >= 86400) return 'Live';
 
     const hrs = ~~(duration / 3600);
     const mins = ~~((duration % 3600) / 60);
@@ -98,7 +101,7 @@ export function Player({
   };
 
   return (
-    <PlayerContainer className={`player ${currPlayingUrl ? '' : 'hidden'}`}>
+    <PlayerWrapper className={`${currPlayingUrl ? '' : 'hidden'}`}>
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${currPlayingUrl}`}
         playing={player.isPlaying}
@@ -106,11 +109,11 @@ export function Player({
         onProgress={handleProgress}
         volume={player.volume}
         muted={player.isMuted}
-        className="hidden"
         ref={reactPlayerRef}
+        hidden
       />
 
-      <div className="player flex space-between align-center fixed">
+      <PlayerContainer>
         <button onClick={togglePlay}>Play</button>
         <input
           onChange={handleSongTime}
@@ -140,7 +143,7 @@ export function Player({
         <button onClick={handleNextPrevSong.bind({}, 'prev', idx)}>
           PREV SONG
         </button>
-      </div>
-    </PlayerContainer>
+      </PlayerContainer>
+    </PlayerWrapper>
   );
 }
