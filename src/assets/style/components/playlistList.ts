@@ -11,6 +11,7 @@ export const PlaylistListContainer = styled.div<Props>`
   overflow:hidden;
   min-height:200px;
   margin:0 50px;
+  scroll-behavior: smooth;
   `;
 export const PlaylistListContainerGrid = styled.div`
  display:grid;

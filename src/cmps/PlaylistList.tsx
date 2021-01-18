@@ -21,12 +21,6 @@ export function PlaylistList({
   const history = useHistory();
   const pathname = history.location.pathname;
   useEffect(() => {
-    setScrollOptions((prevState) => {
-      return {
-        ...prevState,
-        scrollMax: listContainerRef.current.clientWidth,
-      };
-    });
     checkOverflow();
   }, [playlists.length]);
   const getPlaylistPreviews = () => {
@@ -48,22 +42,10 @@ export function PlaylistList({
   };
 
   const listContainerRef: any = React.createRef();
-  const [scrollOptions, setScrollOptions] = useState({
-    scrollAmount: 0,
-    scrollMin: 0,
-    scrollMax: null,
-  });
+
   const handleScrollVertical = (left: boolean) => {
-    listContainerRef.current.scrollTo({
-      top: 0,
-      left: left
-        ? Math.max((scrollOptions.scrollAmount += 500), scrollOptions.scrollMax)
-        : Math.min(
-            (scrollOptions.scrollAmount -= 500),
-            scrollOptions.scrollMin
-          ),
-      behavior: 'smooth',
-    });
+    if (left) listContainerRef.current.scrollLeft += 500;
+    else listContainerRef.current.scrollLeft -= 500;
   };
 
   const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
