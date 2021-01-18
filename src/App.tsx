@@ -19,7 +19,7 @@ function App() {
     <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
       <main className="app">
         <GlobalStyles />
-        <InstallPopup />
+        {/* <InstallPopup /> */}
         <Navbar />
         <Router>
           <Switch>

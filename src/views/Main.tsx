@@ -82,15 +82,17 @@ export function Main(props: any) {
   };
   return (
     <MainContainer className="main">
-      <img src={currPlaylist.img} alt="thumbnail" />
-      <h1>{currPlaylist.name}</h1>
-      <h2>{currPlaylist.description}</h2>
-      <p>Genre: {currPlaylist.genre}</p>
-      <SongList
-        handleSongSelect={handleSongSelect}
-        currPlaylist={currPlaylist}
-      />
-      <SongSearch onAddSong={onAddSong} />
+      <div className="container">
+        <img src={currPlaylist.img} alt="thumbnail" />
+        <h1>{currPlaylist.name}</h1>
+        <h2>{currPlaylist.description}</h2>
+        <p>Genre: {currPlaylist.genre}</p>
+        <SongList
+          handleSongSelect={handleSongSelect}
+          currPlaylist={currPlaylist}
+        />
+        <SongSearch onAddSong={onAddSong} />
+      </div>
       <Player
         currPlayingUrl={currPlaying.songUrl}
         idx={currPlaying.idx}

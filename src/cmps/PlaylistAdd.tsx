@@ -8,6 +8,7 @@ import {
   PlayListAddForm,
 } from '../assets/style/components/playlistAdd';
 import loader from '../assets/img/loader.gif';
+import { genreService } from '../services/genreService';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
@@ -27,12 +28,22 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
   });
   const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
 
-  async function onAddPlaylistInp(ev: React.FormEvent<HTMLInputElement>) {
-    const { value, name } = ev.currentTarget;
+  async function onAddPlaylistInp(event: React.FormEvent<HTMLInputElement>) {
+    const { value, name } = event.currentTarget;
     setPlaylistToAdd((prevState) => {
       return {
         ...prevState,
         [name]: value,
+      };
+    });
+  }
+  async function onAddPlaylistSelect(
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) {
+    setPlaylistToAdd((prevState) => {
+      return {
+        ...prevState,
+        genre: event.currentTarget.value,
       };
     });
   }
@@ -83,12 +94,16 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
         type="text"
         placeholder="playlist name"
       />
-      <input
-        onChange={onAddPlaylistInp}
-        name="genre"
-        type="text"
-        placeholder="playlist genre"
-      />
+      <select onChange={onAddPlaylistSelect} name="genre" id="">
+        {genreService.getGenreList().map((genre, idx) => {
+          return (
+            <option key={idx} value={genre}>
+              {genre}
+            </option>
+          );
+        })}
+      </select>
+
       <input
         onChange={onAddPlaylistInp}
         name="description"

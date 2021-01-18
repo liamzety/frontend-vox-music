@@ -4,6 +4,7 @@ export const PlaylistPreviewContainer = styled.div`
  display:flex;
  flex-direction:column;
  align-items:center;
+ margin-right:100px;
 
   `;
 

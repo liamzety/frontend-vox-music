@@ -32,7 +32,7 @@ export const PlaylistPreview = ({
     <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
       <PlaylistPreviewContainer>
         <PlaylistPreviewThumbnail src={playlist.img} alt="Playlist" />
-        <h2>{playlist.name}</h2>
+        <h5>{playlist.name}</h5>
         <button
           onClick={(ev) => {
             ev.preventDefault();

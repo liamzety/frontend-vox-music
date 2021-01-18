@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 // Cmps
 import { Banner } from '../cmps/Banner';
 import { PlaylistAdd } from '../cmps/PlaylistAdd';
-import { PlaylistList } from '../cmps/PlaylistList';
+import { GenreList } from '../cmps/GenreList';
 // Service
 import { playlistService } from '../services/playlistService';
 // Types
@@ -36,14 +36,16 @@ export function Home() {
     store.updatePlaylist(playlistToUpdate);
   }
   return useObserver(() => (
-    <div className="home">
+    <div className="home ">
       <Banner />
-      <PlaylistList
-        playlists={store.playlists}
-        onUpdatePlaylist={onUpdatePlaylist}
-        onRemovePlaylist={onRemovePlaylist}
-      />
-      <PlaylistAdd onAddPlaylist={onAddPlaylist} />
+      <div className="container">
+        <PlaylistAdd onAddPlaylist={onAddPlaylist} />
+        <GenreList
+          playlists={store.playlists}
+          onUpdatePlaylist={onUpdatePlaylist}
+          onRemovePlaylist={onRemovePlaylist}
+        />
+      </div>
     </div>
   ));
 }

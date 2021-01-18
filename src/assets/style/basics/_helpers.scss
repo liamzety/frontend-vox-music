@@ -1,8 +1,13 @@
+.container {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .flex {
   display: flex;
 }
 
-.column {
+.col {
   flex-direction: column;
 }
 

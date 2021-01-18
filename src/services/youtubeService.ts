@@ -11,7 +11,6 @@ export const youtubeService = {
     get,
 }
 async function get(query:string):Promise<any> {
-    
     try {
         const res = await axios.get(`${SEARCH_URL}?videoCategoryId=10&part=id,snippet&videoEmbeddable=true&type=video&maxResults=10&q=${query}&key=${API_KEY}`);
         return res.data;

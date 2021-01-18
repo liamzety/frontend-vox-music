@@ -19,8 +19,14 @@ export function SongSearch({ onAddSong }: songSearchProps) {
     setSongToSuggest({ name: ev.currentTarget.value });
 
     /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
-    const suggestions = await storageService.load();
-    console.log('suggestions,', suggestions);
+    let suggestions: any;
+    if (storageService.load('cyberpunk')) {
+      suggestions = storageService.load('cyberpunk');
+    } else {
+      await storageService.save('cyberpunk', await getVideos('cyberpunk'));
+      suggestions = storageService.load();
+    }
+
     /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
     // const suggestions = await getVideos(songToSuggest.name!);
 
