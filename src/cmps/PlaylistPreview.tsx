@@ -29,8 +29,8 @@ export const PlaylistPreview = ({
     return name!.replace(/\s/g, '_');
   };
   return (
-    <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
-      <PlaylistPreviewContainer>
+    <PlaylistPreviewContainer>
+      <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
         <PlaylistPreviewThumbnail src={playlist.img} alt="Playlist" />
         <h5>{playlist.name}</h5>
         <button
@@ -41,7 +41,7 @@ export const PlaylistPreview = ({
         >
           Remove
         </button>
-      </PlaylistPreviewContainer>
-    </Link>
+      </Link>
+    </PlaylistPreviewContainer>
   );
 };

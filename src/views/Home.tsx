@@ -21,7 +21,7 @@ export function Home() {
     getPlaylists();
   }, [getPlaylists]);
 
-  async function onAddPlaylist(playlistToAdd: any): Promise<void> {
+  async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
     const playlistAdded = await playlistService.add(playlistToAdd);
     store.addPlaylist(playlistAdded);
   }
