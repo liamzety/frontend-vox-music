@@ -12,6 +12,7 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from 'react-icons/io';
+import { useSwipeable } from 'react-swipeable';
 export function PlaylistList({
   genre,
   playlists,
@@ -44,8 +45,31 @@ export function PlaylistList({
   const listContainerRef: any = React.createRef();
 
   const handleScrollVertical = (left: boolean) => {
-    if (left) listContainerRef.current.scrollLeft += 500;
-    else listContainerRef.current.scrollLeft -= 500;
+    const scrollMax = listContainerRef.current.scrollWidth;
+    const scrollMin = 0;
+
+    if (left) Math.max((listContainerRef.current.scrollLeft += 500), scrollMax);
+    else Math.min((listContainerRef.current.scrollLeft -= 500), scrollMin);
+  };
+  const handlers = useSwipeable({
+    onSwipedLeft: (eventData) => handleScrollVerticalMobile(true, eventData),
+    onSwipedRight: (eventData) => handleScrollVerticalMobile(false, eventData),
+  });
+
+  const handleScrollVerticalMobile = (left: boolean, eventData: any) => {
+    const scrollMax = listContainerRef.current.scrollWidth;
+    const scrollMin = 0;
+    if (left) {
+      Math.max(
+        (listContainerRef.current.scrollLeft -= eventData.deltaX),
+        scrollMax
+      );
+    } else {
+      Math.min(
+        (listContainerRef.current.scrollLeft -= eventData.deltaX),
+        scrollMin
+      );
+    }
   };
 
   const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
@@ -57,6 +81,14 @@ export function PlaylistList({
           listContainerRef.current.scrollHeight
     );
   }
+
+  const refPassthrough = (el: any) => {
+    // call useSwipeable ref prop with el
+    handlers.ref(el);
+
+    // set myRef el so you can access it yourself
+    listContainerRef.current = el;
+  };
 
   return (
     <div>
@@ -70,7 +102,7 @@ export function PlaylistList({
       <PlaylistListContainer
         justifyCenter={pathname === '/' ? ' initial' : 'center'}
         wrap={pathname === '/' ? ' no-wrap' : 'wrap'}
-        ref={listContainerRef}
+        ref={refPassthrough}
       >
         {pathname === '/' && (
           <SlideBtnLeft onClick={handleScrollVertical.bind({}, false)}>
