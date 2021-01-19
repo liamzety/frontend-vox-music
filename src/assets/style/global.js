@@ -1,21 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 export const GlobalVars = {
-  lightMain: '#f1f1f1',
-  lightTxt: '#333',
-  lightTitle: 'purple',
-  darkMain: '#333',
-  darkTxt: '#f1f1f1',
-  darkTitle: 'red',
+  whiteMain: '#f1f1f1',
+  blackMain: '#161616',
+  redMain: '#ff003c',
+  yellowMain: '#fcee09',
 
-  lightInnerContainer: '#e5e3e3',
-  darkInnerContainer: '#555',
+  whiteSec: '#e8e8e8',
+  blackSec: '#333',
 
-  lightSongHover: '#f1f1f1',
-  darkSongHover: '#333',
 
-  lightHr: '#f1f1f1',
-  darkHr: '#333'
+  whiteTertiary: '#dcdcdc',
+  blackTertiary: '#252525'
 }
 
 export const GlobalStyles = createGlobalStyle`
@@ -25,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
   outline-style: none;
   margin: 0;
   padding: 0;
-  font-family: font1;
+  font-family: Tomorrow-Regular;
   transition: all 0.25s linear, color 0ms;
 }
 
@@ -47,7 +44,10 @@ a {
     filter: brightness(75%);
   }
 }
-
+body {
+ background:${({ theme }) => theme.mainBg};
+ color:${({ theme }) => theme.mainTxt};
+}
 button {
   cursor: pointer;
   transition: 0.3s;
@@ -82,6 +82,87 @@ button {
   width: 100%;
   height: 100%;
 }
- 
-  `
 
+  `
+export const Title = styled.h1`
+  font-size:5.5rem;
+  color: ${GlobalVars.yellowMain};
+  `;
+export const SubTitle = styled.h3`
+font-size:2rem;
+color: ${GlobalVars.yellowMain};
+`;
+export const MainButton = styled.button`
+    width: 230px;
+    height: 60px; 
+    border: 0;
+    outline: none;
+    background-color: ${GlobalVars.blackMain};
+    cursor: pointer;
+    position: relative;
+    font-size: .85rem;
+    text-transform: uppercase;
+    color: ${GlobalVars.blackMain};
+    clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
+  
+  .btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background-color: ${GlobalVars.yellowMain};
+    clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
+    
+  }
+  
+  &.btn-secondary {
+    background-color: ${GlobalVars.whiteTxtPrimary} ;
+  }
+  
+  &.btn-secondary .btn-content {
+    background-color: ${GlobalVars.redMain};
+    color: ${GlobalVars.whiteTxtPrimary};
+  }
+  
+  .btn-label {
+    font-size: .40rem;
+    position: absolute;
+    bottom: -1px;
+    right: 8%;
+    padding: 0 5px;
+    background-color: #fcee09;
+    z-index: 3;
+    border-left: 1px solid #00f0ff;
+  }
+  
+  &.btn-secondary .btn-label {
+    background-color: ${GlobalVars.whiteTxtPrimary};
+    color: #050a0e;
+  }
+  
+  .btn-glitch {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fcee09;
+    filter: drop-shadow(-2px 3px #67e3f3) drop-shadow(-1px -3px #02d8f3) drop-shadow(2px 1px #02d8f3);
+  }
+  
+  &.btn-secondary .btn-glitch {
+    background-color: #ff003c;
+  }
+  
+  &:hover .btn-glitch,
+  &:hover .btn-content::after
+ {
+    display: block;
+    animation: glitch-animation 2s linear 0s infinite;
+  }
+`;

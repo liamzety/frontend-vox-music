@@ -25,7 +25,7 @@ export function Genre(props: any) {
   }
 
   return useObserver(() => (
-    <div>
+    <div className="container-y container-x">
       <h1>Add more </h1>
 
       <PlaylistList
