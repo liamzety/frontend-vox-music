@@ -1,9 +1,15 @@
 import React from 'react';
 import loader from '../../assets/img/loader.gif';
-export const Loader: React.FC = () => {
+import { LoaderStyle } from './loader-styles';
+
+interface LoaderProps {
+  position?: 'absolute' | 'fixed';
+  size?: string;
+}
+export const Loader: React.FC<LoaderProps> = ({ position, size }) => {
   return (
-    <div className="loader">
-      <img src={loader} alt="" />
-    </div>
+    <LoaderStyle position={position} size={size}>
+      <img src={loader} alt="Loading" />
+    </LoaderStyle>
   );
 };

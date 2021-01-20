@@ -5,7 +5,7 @@ export interface ButtonProps {
   primary?: boolean;
   size?: 'small' | 'medium' | 'large';
   label: string;
-  content: string;
+  content: any;
   color?: string;
   bgColor?: string;
   cb: () => void;
@@ -21,6 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
   cb,
   ...props
 }) => {
+  console.log('content', content);
   return (
     <ButtonStyle
       onClick={cb}

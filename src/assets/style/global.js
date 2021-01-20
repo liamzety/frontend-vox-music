@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import styled from 'styled-components';
 
 export const GlobalVars = {
   whiteMain: '#f1f1f1',
@@ -73,23 +72,6 @@ button {
   z-index: 999;
 }
 
-.loader {
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
   `
-export const Title = styled.h1`
-  font-size:5.5rem;
-  color: ${GlobalVars.yellowMain};
-  `;
-export const SubTitle = styled.h3`
-font-size:2rem;
-color: ${GlobalVars.yellowMain};
-`;
+
 

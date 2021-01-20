@@ -43,7 +43,7 @@ export const Home: React.FC = () => {
   };
   return useObserver(() => (
     <div>
-      <Banner onHandleScroll={onHandleScroll} />
+      <Banner onHandleScroll={onHandleScroll} playlists={store.playlists} />
       <div className="container-x">
         <PlaylistAdd onAddPlaylist={onAddPlaylist} />
 

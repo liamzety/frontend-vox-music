@@ -8,6 +8,4 @@ export const PlaylistAddImgLabel = styled.label`
  display:flex;
  align-items:cneter;
   `;
-export const PlaylistAddImgLoader = styled.img`
-width:20px
-  `;
+

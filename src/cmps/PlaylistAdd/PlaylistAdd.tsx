@@ -2,13 +2,9 @@ import React, { useState } from 'react';
 import { cloudinaryService } from '../../services/cloudinaryService';
 import { PlaylistType } from '../../types/Playlist';
 import { FiUpload } from 'react-icons/fi';
-import {
-  PlaylistAddImgLabel,
-  PlaylistAddImgLoader,
-  PlayListAddForm,
-} from './playlistAdd-styles';
-import loader from '../../assets/img/loader.gif';
+import { PlaylistAddImgLabel, PlayListAddForm } from './playlistAdd-styles';
 import { genreService } from '../../services/genreService';
+import { Loader } from '../Loader/Loader';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
@@ -68,7 +64,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
     >
       {isImgUploading ? (
         <PlaylistAddImgLabel htmlFor="imgUpload">
-          <PlaylistAddImgLoader src={loader} alt="" />
+          <Loader size="25px" />
           <p>Loading...</p>
         </PlaylistAddImgLabel>
       ) : (

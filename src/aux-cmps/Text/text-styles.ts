@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GlobalVars } from '../../assets/style/global';
 
 interface Props {
     size?: string;
@@ -6,6 +7,18 @@ interface Props {
     bold?:boolean;
   }
 export const TextStyle = styled.p<Props>`
+    &.banner-title {
+        font-size:5.5rem;
+        font-weight:${({bold = true} ) => bold ? '700' : '400'};
+         color: ${GlobalVars.yellowMain};
+    
+    }
+    &.banner-sub-title {
+        font-size:2rem;
+        font-weight:${({bold = true} ) => bold ? '700' : '400'};
+         color: ${GlobalVars.yellowMain};
+    
+    }
     &.h1 {
         font-size:3rem;
         font-weight:${({bold = true} ) => bold ? '700' : '400'};

@@ -6,8 +6,8 @@ import {
   BannerWallpaper,
   BannerWallpaperContainer,
 } from './banner-styles';
-import { Title, SubTitle } from '../../assets/style/global';
 import { Button } from '../../aux-cmps/Button/Button';
+import { Text } from '../../aux-cmps/Text/Text';
 //wallpapers
 import wallpaper1 from '../../assets/img/wallpaper/wallpaper1.jpg';
 import wallpaper2 from '../../assets/img/wallpaper/wallpaper2.jpg';
@@ -15,10 +15,16 @@ import wallpaper3 from '../../assets/img/wallpaper/wallpaper3.jpg';
 import wallpaper4 from '../../assets/img/wallpaper/wallpaper4.jpg';
 import wallpaper5 from '../../assets/img/wallpaper/wallpaper5.jpg';
 import wallpaper6 from '../../assets/img/wallpaper/wallpaper6.jpg';
+import { PlaylistType } from '../../types/Playlist';
+import { Loader } from '../Loader/Loader';
 interface BannerProps {
   onHandleScroll: () => void;
+  playlists: PlaylistType[];
 }
-export const Banner: React.FC<BannerProps> = ({ onHandleScroll }) => {
+export const Banner: React.FC<BannerProps> = ({
+  onHandleScroll,
+  playlists,
+}) => {
   const [currImg, setCurrImg] = useState(1);
 
   const wallpapers = [
@@ -49,12 +55,14 @@ export const Banner: React.FC<BannerProps> = ({ onHandleScroll }) => {
     <BannerContainer>
       <BannerContainerInner className="container-x">
         <BannerContainerInner>
-          <Title>Vox Music</Title>
-          <SubTitle>No better place to be.</SubTitle>
+          <Text type="banner-title">Vox Music</Text>
+          <Text type="banner-sub-title">Immerse Youself.</Text>
         </BannerContainerInner>
         <Button
           label="r25"
-          content="Start Listening_"
+          content={
+            playlists.length === 0 ? <Loader size="50%" /> : 'Start Listening_'
+          }
           cb={onHandleScroll}
           size="large"
         />

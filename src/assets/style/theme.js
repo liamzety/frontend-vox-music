@@ -3,16 +3,22 @@ export const lightTheme = {
     mainBg: GlobalVars.whiteMain,
     mainTxt: GlobalVars.redMain,
     songHover: GlobalVars.whiteTertiary,
-    hr: GlobalVars.whiteMain,
 
-    secBg: GlobalVars.whiteSec
+    secBg: GlobalVars.whiteSec,
+
+    hr: GlobalVars.whiteMain,
+    navbar: GlobalVars.whiteMain,
+    neon: GlobalVars.redMain
 }
 
 export const darkTheme = {
     mainBg: GlobalVars.blackMain,
     mainTxt: GlobalVars.yellowMain,
     songHover: GlobalVars.blackTertiary,
-    hr: GlobalVars.blackMain,
 
-    secBg: GlobalVars.blackSec
+    secBg: GlobalVars.blackSec,
+
+    hr: GlobalVars.blackMain,
+    navbar: GlobalVars.blackMain,
+    neon: GlobalVars.yellowMain
 }
