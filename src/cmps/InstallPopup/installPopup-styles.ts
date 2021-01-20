@@ -10,7 +10,7 @@ export const InstallPopupContainer = styled.div`
         box-shadow: 0 10px 10px rgba(0, 0, 0, 0.137);
         padding: 10px 20vw;
         color: #f1f1f1;
-
+        z-index:10;
         & * {
                 margin: 0;
         }

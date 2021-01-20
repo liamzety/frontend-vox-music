@@ -4,11 +4,14 @@ export const lightTheme = {
     mainTxt: GlobalVars.redMain,
     songHover: GlobalVars.whiteTertiary,
 
-    secBg: GlobalVars.whiteSec,
+    secBg: GlobalVars.whiteSecondary,
 
     hr: GlobalVars.whiteMain,
     navbar: GlobalVars.whiteMain,
-    neon: GlobalVars.redMain
+    neon: GlobalVars.redMain,
+
+    mainModal: GlobalVars.whiteSecondary,
+    neonModal: GlobalVars.redMain,
 }
 
 export const darkTheme = {
@@ -16,9 +19,12 @@ export const darkTheme = {
     mainTxt: GlobalVars.yellowMain,
     songHover: GlobalVars.blackTertiary,
 
-    secBg: GlobalVars.blackSec,
+    secBg: GlobalVars.blackSecondary,
 
     hr: GlobalVars.blackMain,
     navbar: GlobalVars.blackMain,
-    neon: GlobalVars.yellowMain
+    neon: GlobalVars.yellowMain,
+
+    mainModal: GlobalVars.blackSecondary,
+    neonModal: GlobalVars.redMain,
 }

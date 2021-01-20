@@ -10,6 +10,7 @@ input {
 	margin-bottom: 1.5em;
 	font-size: 1em;
 	line-height: 1.5;
+	cursor:pointer;
 }
 .l {
     background-color: rgba(0,0,0,0.7);

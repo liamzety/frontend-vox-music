@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 // Cmps
 import { Banner } from '../../cmps/Banner/Banner';
-import { PlaylistAdd } from '../../cmps/PlaylistAdd/PlaylistAdd';
 import { GenreList } from '../../cmps/GenreList/GenreList';
 // Service
 import { playlistService } from '../../services/playlistService';
@@ -22,11 +21,6 @@ export const Home: React.FC = () => {
     getPlaylists();
   }, [getPlaylists]);
 
-  async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
-    const playlistAdded = await playlistService.add(playlistToAdd);
-    store.addPlaylist(playlistAdded);
-  }
-
   function onRemovePlaylist(playlistId: string): void {
     playlistService.remove(playlistId);
     store.removePlaylist(playlistId);
@@ -45,8 +39,6 @@ export const Home: React.FC = () => {
     <div>
       <Banner onHandleScroll={onHandleScroll} playlists={store.playlists} />
       <div className="container-x">
-        <PlaylistAdd onAddPlaylist={onAddPlaylist} />
-
         <div ref={genreListRef}>
           <GenreList
             playlists={store.playlists}

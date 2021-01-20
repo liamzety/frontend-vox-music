@@ -37,7 +37,11 @@ export const Navbar: React.FC = () => {
         <NavOptionsContainer>
           <Link to="/about"></Link>
           <Link to="/genre"></Link>
-          {!isTopPage && <button>Create Playlist</button>}
+          {!isTopPage && (
+            <button onClick={store.toggleModal.bind({}, 'addPlaylist')}>
+              Create Playlist
+            </button>
+          )}
           <button>P</button>
           <ThemeSwitcher toggleTheme={toggleTheme} />
         </NavOptionsContainer>

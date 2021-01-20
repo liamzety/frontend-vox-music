@@ -12,7 +12,7 @@ interface Props {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index:999;
+    z-index:10;
     img {
         width:${({size}) => (size ? size : '100%' )};
         height:${({size}) => (size ? size : '100%' )};

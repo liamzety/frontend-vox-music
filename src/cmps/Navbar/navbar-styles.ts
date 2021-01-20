@@ -8,7 +8,7 @@ export const NavbarContainer = styled.nav<Props>`
     position:fixed;
     width:100%;
     height:50px;
-    z-index:10;
+    z-index:9;
   `;
 export const NavbarContainerInner = styled.div`
    display:flex;

@@ -11,15 +11,27 @@ import { lightTheme, darkTheme } from './assets/style/theme';
 import { GlobalStyles } from './assets/style/global';
 // Store
 import { useStore } from './store/StoreContext';
+import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
+import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
 
 function App() {
   const store = useStore();
+  const getModal = () => {
+    switch (store.modal.type) {
+      case 'addPlaylist':
+        return <PlaylistAddModal />;
 
+      default:
+      // code block
+    }
+  };
   return useObserver(() => (
     <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
       <main className="app">
         <GlobalStyles />
         {/* <InstallPopup /> */}
+        {store.modal.isOn && getModal()}
+        {store.modal.isOn && <ScreenWrapper />}
         <Router>
           <Navbar />
           <Switch>
