@@ -103,7 +103,6 @@ export const Player: React.FC<PlayerProps> = ({
         url={`https://www.youtube.com/watch?v=${currPlayingUrl}`}
         playing={player.isPlaying}
         onReady={() => {
-          console.log('ready');
           reactPlayerRef.current.seekTo(0, 'seconds');
         }}
         onDuration={setDuration}
