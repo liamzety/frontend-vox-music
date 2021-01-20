@@ -4,6 +4,8 @@ import {
   PlaylistPreviewContainer,
   PlaylistPreviewThumbnail,
 } from '../assets/style/components/playlistPreview';
+import { Text } from '../aux-cmps/Text';
+
 // Types
 import { PlaylistType } from '../types/Playlist';
 
@@ -32,7 +34,7 @@ export const PlaylistPreview = ({
     <PlaylistPreviewContainer>
       <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
         <PlaylistPreviewThumbnail src={playlist.img} alt="Playlist" />
-        <h5>{playlist.name}</h5>
+        <Text type="p">{playlist.name}</Text>
         <button
           onClick={(ev) => {
             ev.preventDefault();

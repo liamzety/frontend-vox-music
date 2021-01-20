@@ -7,7 +7,7 @@ import {
   BannerWallpaperContainer,
 } from '../assets/style/components/banner';
 import { Title, SubTitle } from '../assets/style/global';
-import { MainBtn } from '../aux-cmps/MainBtn';
+import { Button } from '../aux-cmps/Button';
 //wallpapers
 import wallpaper1 from '../assets/img/wallpaper/wallpaper1.jpg';
 import wallpaper2 from '../assets/img/wallpaper/wallpaper2.jpg';
@@ -16,7 +16,7 @@ import wallpaper4 from '../assets/img/wallpaper/wallpaper4.jpg';
 import wallpaper5 from '../assets/img/wallpaper/wallpaper5.jpg';
 import wallpaper6 from '../assets/img/wallpaper/wallpaper6.jpg';
 interface BannerProps {
-  onHandleScroll: (type: string) => void;
+  onHandleScroll: () => void;
 }
 export function Banner({ onHandleScroll }: BannerProps) {
   const [currImg, setCurrImg] = useState(1);
@@ -52,10 +52,11 @@ export function Banner({ onHandleScroll }: BannerProps) {
           <Title>Vox Music</Title>
           <SubTitle>No better place to be.</SubTitle>
         </BannerContainerInner>
-        <MainBtn
+        <Button
           label="r25"
           content="Start Listening_"
-          cb={onHandleScroll.bind({}, 'genre-list')}
+          cb={onHandleScroll}
+          size="large"
         />
       </BannerContainerInner>
       <BannerWallpaperContainer>

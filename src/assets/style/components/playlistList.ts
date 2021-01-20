@@ -8,10 +8,19 @@ export const PlaylistListContainer = styled.div<Props>`
   align-items:center;
   justify-content: ${props => props.justifyCenter};
   flex-wrap: ${props => props.wrap};
-  overflow:hidden;
+  overflow:overlay;
   min-height:200px;
   margin:0 50px;
   scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width:1px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  
+  }
   `;
 export const PlaylistListContainerGrid = styled.div`
  display:grid;
@@ -29,6 +38,9 @@ export const SlideBtnRight = styled.div`
     &:hover {
       opacity:0.8;
     }
+    &:active {
+      transform: scale(0.58);
+    }
   }
 `;
 export const SlideBtnLeft = styled.div`
@@ -40,6 +52,9 @@ export const SlideBtnLeft = styled.div`
     opacity:0.5;
     &:hover {
       opacity:0.8;
+    }
+    &:active {
+      transform: scale(0.58);
     }
   }
 `;
