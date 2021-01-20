@@ -45,8 +45,10 @@ export const Main: React.FC<Props> = ({
   const onAddSong = async (songData: any) => {
     const video_id = songData.id.videoId;
     if (findIfExsits(video_id)) {
+      console.log('wtf');
       store.alert('This song has already been added!', 'alert');
       store.clearAlert();
+      return;
     }
 
     let { title } = songData.snippet;
