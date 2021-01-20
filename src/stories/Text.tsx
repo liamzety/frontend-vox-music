@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextStyle } from '../assets/style/components/aux-cmps/text';
+import { TextStyle } from '../aux-cmps/Text/text-styles';
 
 export interface TextProps {
   type: 'h1' | 'h2' | 'h3' | 'h4' | 'p';

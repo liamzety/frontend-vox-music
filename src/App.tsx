@@ -3,8 +3,8 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes';
 import { useObserver } from 'mobx-react';
 // Cmps
-import { Navbar } from './cmps/Navbar';
-import InstallPopup from './cmps/InstallPopup';
+import { Navbar } from './cmps/Navbar/Navbar';
+import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
 // Styles
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/style/theme';

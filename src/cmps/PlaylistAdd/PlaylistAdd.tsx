@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { cloudinaryService } from '../services/cloudinaryService';
-import { PlaylistType } from '../types/Playlist';
+import { cloudinaryService } from '../../services/cloudinaryService';
+import { PlaylistType } from '../../types/Playlist';
 import { FiUpload } from 'react-icons/fi';
 import {
   PlaylistAddImgLabel,
   PlaylistAddImgLoader,
   PlayListAddForm,
-} from '../assets/style/components/playlistAdd';
-import loader from '../assets/img/loader.gif';
-import { genreService } from '../services/genreService';
+} from './playlistAdd-styles';
+import loader from '../../assets/img/loader.gif';
+import { genreService } from '../../services/genreService';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
 }
-export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
+export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
   const DEFAULT_IMG = 'https://picsum.photos/200';
   const DEFAULT_NAME = 'My New Playlist!';
   const DEFAULT_DESCRIPTION = 'This is my awesome playlist!';
@@ -113,4 +113,4 @@ export function PlaylistAdd({ onAddPlaylist }: PlaylistAddProps) {
       <button>ok</button>
     </PlayListAddForm>
   );
-}
+};

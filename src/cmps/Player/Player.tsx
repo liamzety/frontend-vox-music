@@ -1,21 +1,18 @@
 import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
-import {
-  PlayerContainer,
-  PlayerWrapper,
-} from '../assets/style/components/player';
-import { PlayerType } from '../types/Player';
+import { PlayerContainer, PlayerWrapper } from './player-styles';
+import { PlayerType } from '../../types/Player';
 
 interface PlayerProps {
   currPlayingUrl: string;
   idx: number;
   handleNextPrevSong: (val: string, idx: number) => void;
 }
-export function Player({
+export const Player: React.FC<PlayerProps> = ({
   currPlayingUrl,
   idx,
   handleNextPrevSong,
-}: PlayerProps) {
+}) => {
   const [player, setPlayer] = useState<PlayerType>({
     isPlaying: true,
     duration: null,
@@ -146,4 +143,4 @@ export function Player({
       </PlayerContainer>
     </PlayerWrapper>
   );
-}
+};

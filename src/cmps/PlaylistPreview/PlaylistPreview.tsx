@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom';
 import {
   PlaylistPreviewContainer,
   PlaylistPreviewThumbnail,
-} from '../assets/style/components/playlistPreview';
-import { Text } from '../aux-cmps/Text';
+} from './playlistPreview-styles';
+import { Text } from '../../aux-cmps/Text/Text';
 
 // Types
-import { PlaylistType } from '../types/Playlist';
+import { PlaylistType } from '../../types/Playlist';
 
 interface PlaylistPreviewProps {
   playlist: PlaylistType;
   onRemovePlaylist: (playlistId: string) => void;
   onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
 }
-export const PlaylistPreview = ({
+export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
   playlist,
   onRemovePlaylist,
   onUpdatePlaylist,
-}: PlaylistPreviewProps) => {
+}) => {
   const [playlistToUpdate, setPlaylistToUpdate] = useState(playlist);
 
   const onUpdateTempInp = (ev: React.FormEvent<HTMLInputElement>) => {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { youtubeService } from '../services/youtubeService';
-import { storageService } from '../services/storageService';
-import { AutoSuggest } from './AutoSuggest';
+import { youtubeService } from '../../services/youtubeService';
+import { storageService } from '../../services/storageService';
+import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
 
 interface songSearchProps {
   onAddSong: (suggestion: any) => void;
 }
-export function SongSearch({ onAddSong }: songSearchProps) {
+export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   const [songToSuggest, setSongToSuggest] = useState({
     name: '',
   });
@@ -61,4 +61,4 @@ export function SongSearch({ onAddSong }: songSearchProps) {
       )}
     </>
   );
-}
+};

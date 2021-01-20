@@ -1,13 +1,26 @@
 import React from 'react';
+import { PlaylistType } from '../../types/Playlist';
 // Styles
 import {
   SongContainer,
   SongListContainer,
   SongThumbnail,
   SongTitle,
-} from '../assets/style/components/songList';
-
-export function SongList({ currPlaylist, handleSongSelect }: any) {
+} from './songList-styles';
+interface SongListProps {
+  currPlaylist: PlaylistType;
+  handleSongSelect: ({
+    songUrl,
+    idx,
+  }: {
+    songUrl: string;
+    idx: number;
+  }) => void;
+}
+export const SongList: React.FC<SongListProps> = ({
+  currPlaylist,
+  handleSongSelect,
+}) => {
   if (currPlaylist.songs.length === 0) return <h1>Add new songs!</h1>;
   return (
     <SongListContainer>
@@ -27,4 +40,4 @@ export function SongList({ currPlaylist, handleSongSelect }: any) {
       })}
     </SongListContainer>
   );
-}
+};

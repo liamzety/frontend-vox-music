@@ -5,7 +5,7 @@ import {
   InstallPopupBtn,
   InstallPopupCloseBtn,
   InstallPopupWordContainer,
-} from '../assets/style/components/installPopup';
+} from './installPopup-styles';
 
 interface Window {
   webkitURL?: any;
@@ -21,7 +21,7 @@ if (window.webkitURL !== undefined) {
   console.log(window.webkitURL);
 }
 
-export default function InstallPopup() {
+export const InstallPopup: React.FC = () => {
   const [isAppInstalled, setIsAppInstalled] = useState(false);
 
   useEffect(() => {
@@ -85,4 +85,4 @@ export default function InstallPopup() {
       </InstallPopupInnerContainer>
     </InstallPopupContainer>
   );
-}
+};

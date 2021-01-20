@@ -1,12 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-  NavbarContainer,
-  NavbarContainerInner,
-} from '../assets/style/components/navbar';
-import { useStore } from '../store/StoreContext';
+import { NavbarContainer, NavbarContainerInner } from './navbar-styles';
+import { useStore } from '../../store/StoreContext';
 
-export const Navbar = () => {
+export const Navbar: React.FC = () => {
   const store = useStore();
 
   const toggleTheme = (): void => {

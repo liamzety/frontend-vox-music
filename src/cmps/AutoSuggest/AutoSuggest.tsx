@@ -1,11 +1,14 @@
 import React from 'react';
-import { regService } from '../services/regService';
+import { regService } from '../../services/regService';
 
 interface AutoSuggestProps {
   onAddSong: (suggestion: any) => void;
   suggestions: any;
 }
-export function AutoSuggest({ suggestions, onAddSong }: AutoSuggestProps) {
+export const AutoSuggest: React.FC<AutoSuggestProps> = ({
+  suggestions,
+  onAddSong,
+}) => {
   return (
     <div>
       <ul>
@@ -19,4 +22,4 @@ export function AutoSuggest({ suggestions, onAddSong }: AutoSuggestProps) {
       </ul>
     </div>
   );
-}
+};

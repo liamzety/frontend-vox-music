@@ -5,20 +5,20 @@ import {
   BannerContainerInner,
   BannerWallpaper,
   BannerWallpaperContainer,
-} from '../assets/style/components/banner';
-import { Title, SubTitle } from '../assets/style/global';
-import { Button } from '../aux-cmps/Button';
+} from './banner-styles';
+import { Title, SubTitle } from '../../assets/style/global';
+import { Button } from '../../aux-cmps/Button/Button';
 //wallpapers
-import wallpaper1 from '../assets/img/wallpaper/wallpaper1.jpg';
-import wallpaper2 from '../assets/img/wallpaper/wallpaper2.jpg';
-import wallpaper3 from '../assets/img/wallpaper/wallpaper3.jpg';
-import wallpaper4 from '../assets/img/wallpaper/wallpaper4.jpg';
-import wallpaper5 from '../assets/img/wallpaper/wallpaper5.jpg';
-import wallpaper6 from '../assets/img/wallpaper/wallpaper6.jpg';
+import wallpaper1 from '../../assets/img/wallpaper/wallpaper1.jpg';
+import wallpaper2 from '../../assets/img/wallpaper/wallpaper2.jpg';
+import wallpaper3 from '../../assets/img/wallpaper/wallpaper3.jpg';
+import wallpaper4 from '../../assets/img/wallpaper/wallpaper4.jpg';
+import wallpaper5 from '../../assets/img/wallpaper/wallpaper5.jpg';
+import wallpaper6 from '../../assets/img/wallpaper/wallpaper6.jpg';
 interface BannerProps {
   onHandleScroll: () => void;
 }
-export function Banner({ onHandleScroll }: BannerProps) {
+export const Banner: React.FC<BannerProps> = ({ onHandleScroll }) => {
   const [currImg, setCurrImg] = useState(1);
 
   const wallpapers = [
@@ -72,4 +72,4 @@ export function Banner({ onHandleScroll }: BannerProps) {
       </BannerWallpaperContainer>
     </BannerContainer>
   ));
-}
+};

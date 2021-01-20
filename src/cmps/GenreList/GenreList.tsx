@@ -1,22 +1,22 @@
 import React from 'react';
-import { Loader } from './Loader';
+import { Loader } from '../Loader/Loader';
 import { useObserver } from 'mobx-react';
 // Types
-import { PlaylistType } from '../types/Playlist';
+import { PlaylistType } from '../../types/Playlist';
 // Styles
-import { genreService } from '../services/genreService';
-import { PlaylistList } from './PlaylistList';
+import { genreService } from '../../services/genreService';
+import { PlaylistList } from '../PlaylistList/PlaylistList';
 
 interface GenreListProps {
   playlists: PlaylistType[];
   onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
   onRemovePlaylist: (playlistId: string) => void;
 }
-export function GenreList({
+export const GenreList: React.FC<GenreListProps> = ({
   playlists,
   onUpdatePlaylist,
   onRemovePlaylist,
-}: GenreListProps) {
+}) => {
   return useObserver(() => (
     <div>
       {!playlists || playlists.length === 0 ? (
@@ -36,4 +36,4 @@ export function GenreList({
       )}
     </div>
   ));
-}
+};

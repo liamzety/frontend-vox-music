@@ -1,17 +1,17 @@
 import React, { useEffect, useCallback, useRef } from 'react';
 // Cmps
-import { Banner } from '../cmps/Banner';
-import { PlaylistAdd } from '../cmps/PlaylistAdd';
-import { GenreList } from '../cmps/GenreList';
+import { Banner } from '../../cmps/Banner/Banner';
+import { PlaylistAdd } from '../../cmps/PlaylistAdd/PlaylistAdd';
+import { GenreList } from '../../cmps/GenreList/GenreList';
 // Service
-import { playlistService } from '../services/playlistService';
+import { playlistService } from '../../services/playlistService';
 // Types
-import { PlaylistType } from '../types/Playlist';
+import { PlaylistType } from '../../types/Playlist';
 //Store
-import { useStore } from '../store/StoreContext';
+import { useStore } from '../../store/StoreContext';
 import { useObserver } from 'mobx-react';
-import { scrollService } from '../services/scrollService';
-export function Home() {
+import { scrollService } from '../../services/scrollService';
+export const Home: React.FC = () => {
   const store = useStore();
 
   const getPlaylists = useCallback(async () => {
@@ -57,4 +57,4 @@ export function Home() {
       </div>
     </div>
   ));
-}
+};

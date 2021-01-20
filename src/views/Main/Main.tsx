@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { playlistService } from '../services/playlistService';
-import { PlaylistType } from '../types/Playlist';
-import { Player } from '../cmps/Player';
-import { useStore } from '../store/StoreContext';
-import { SongList } from '../cmps/SongList';
-import { SongSearch } from '../cmps/SongSearch';
-import { songService } from '../services/songService';
-import { regService } from '../services/regService';
+import { playlistService } from '../../services/playlistService';
+import { PlaylistType } from '../../types/Playlist';
+import { Player } from '../../cmps/Player/Player';
+import { useStore } from '../../store/StoreContext';
+import { SongList } from '../../cmps/SongList/SongList';
+import { SongSearch } from '../../cmps/SongSearch/SongSearch';
+import { songService } from '../../services/songService';
+import { regService } from '../../services/regService';
+import { RouteComponentProps } from 'react-router-dom';
 
-export function Main(props: any) {
+interface MatchParams {
+  songId: string;
+}
+interface Props extends RouteComponentProps<MatchParams> {}
+export const Main: React.FC<Props> = ({
+  match: {
+    params: { songId },
+  },
+}) => {
   const store = useStore();
 
   const [currPlaylist, setCurrPlaylist] = useState<PlaylistType>({
@@ -21,8 +30,8 @@ export function Main(props: any) {
   });
 
   useEffect(() => {
-    getPlaylist(props.match.params.songId);
-  }, [props.match.params.songId]);
+    getPlaylist(songId);
+  }, [songId]);
 
   const getPlaylist = async (playlistId: string) => {
     let { playlist, playlistSongs } = await playlistService.getById(playlistId);
@@ -98,4 +107,4 @@ export function Main(props: any) {
       />
     </div>
   );
-}
+};

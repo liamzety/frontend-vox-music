@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonStyle } from '../assets/style/components/aux-cmps/button';
+import { ButtonStyle } from './button-styles';
 
 export interface ButtonProps {
   primary?: boolean;

@@ -4,21 +4,28 @@ import {
   PlaylistListContainer,
   SlideBtnRight,
   SlideBtnLeft,
-} from '../assets/style/components/playlistList';
-import { PlaylistType } from '../types/Playlist';
-import { PlaylistPreview } from './PlaylistPreview';
-import { Text } from '../aux-cmps/Text';
+} from './playlistList-styles';
+import { PlaylistType } from '../../types/Playlist';
+import { PlaylistPreview } from '../PlaylistPreview/PlaylistPreview';
+import { Text } from '../../aux-cmps/Text/Text';
 // icons
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from 'react-icons/io';
-export function PlaylistList({
+
+interface PlaylistListProps {
+  genre: string;
+  playlists: PlaylistType[];
+  onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
+  onRemovePlaylist: (playlistId: string) => void;
+}
+export const PlaylistList: React.FC<PlaylistListProps> = ({
   genre,
   playlists,
   onRemovePlaylist,
   onUpdatePlaylist,
-}: any) {
+}) => {
   const history = useHistory();
   const pathname = history.location.pathname;
   useEffect(() => {
@@ -90,4 +97,4 @@ export function PlaylistList({
       </PlaylistListContainer>
     </div>
   );
-}
+};
