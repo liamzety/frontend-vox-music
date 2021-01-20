@@ -1,26 +1,18 @@
 import { GlobalVars } from './global'
 export const lightTheme = {
-    mainSection: GlobalVars.lightMain,
-    mainSectionTxt: GlobalVars.lightTxt,
-    mainSectionTitle: GlobalVars.lightTitle,
+    mainBg: GlobalVars.whiteMain,
+    mainTxt: GlobalVars.redMain,
+    songHover: GlobalVars.whiteTertiary,
+    hr: GlobalVars.whiteMain,
 
-    playList: GlobalVars.lightInnerContainer,
-
-    songHover: GlobalVars.lightSongHover,
-
-    hr: GlobalVars.lightHr,
+    secBg: GlobalVars.whiteSec
 }
 
 export const darkTheme = {
-    mainSection: GlobalVars.darkMain,
-    mainSectionTxt: GlobalVars.darkTxt,
-    mainSectionTitle: GlobalVars.darkTitle,
+    mainBg: GlobalVars.blackMain,
+    mainTxt: GlobalVars.yellowMain,
+    songHover: GlobalVars.blackTertiary,
+    hr: GlobalVars.blackMain,
 
-    playList: GlobalVars.darkInnerContainer,
-
-    songHover: GlobalVars.darkSongHover,
-
-    hr: GlobalVars.darkHr,
-
-
+    secBg: GlobalVars.blackSec
 }

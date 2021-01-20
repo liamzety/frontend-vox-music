@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 const SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search'
-const DETAILS_URL = 'https://www.googleapis.com/youtube/v3/videos'
-
 const API_KEY = process.env.REACT_APP_YOUTUBE_KEY;
 
 

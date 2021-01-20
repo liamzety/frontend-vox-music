@@ -7,8 +7,6 @@ import { SongList } from '../cmps/SongList';
 import { SongSearch } from '../cmps/SongSearch';
 import { songService } from '../services/songService';
 import { regService } from '../services/regService';
-//  Styles
-import { MainContainer } from '../assets/style/components/main';
 
 export function Main(props: any) {
   const store = useStore();
@@ -81,8 +79,8 @@ export function Main(props: any) {
     setCurrPlaying(data);
   };
   return (
-    <MainContainer className="main">
-      <div className="container">
+    <div className="container-y">
+      <div className="container-x ">
         <img src={currPlaylist.img} alt="thumbnail" />
         <h1>{currPlaylist.name}</h1>
         <h2>{currPlaylist.description}</h2>
@@ -98,6 +96,6 @@ export function Main(props: any) {
         idx={currPlaying.idx}
         handleNextPrevSong={handleNextPrevSong}
       />
-    </MainContainer>
+    </div>
   );
 }

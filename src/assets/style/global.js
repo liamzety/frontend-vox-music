@@ -1,21 +1,18 @@
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 export const GlobalVars = {
-  lightMain: '#f1f1f1',
-  lightTxt: '#333',
-  lightTitle: 'purple',
-  darkMain: '#333',
-  darkTxt: '#f1f1f1',
-  darkTitle: 'red',
+  whiteMain: '#f1f1f1',
+  blackMain: '#161616',
+  redMain: '#ff003c',
+  yellowMain: '#fcee09',
 
-  lightInnerContainer: '#e5e3e3',
-  darkInnerContainer: '#555',
+  whiteSec: '#e8e8e8',
+  blackSec: '#333',
 
-  lightSongHover: '#f1f1f1',
-  darkSongHover: '#333',
 
-  lightHr: '#f1f1f1',
-  darkHr: '#333'
+  whiteTertiary: '#dcdcdc',
+  blackTertiary: '#252525'
 }
 
 export const GlobalStyles = createGlobalStyle`
@@ -25,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
   outline-style: none;
   margin: 0;
   padding: 0;
-  font-family: font1;
+  font-family: Tomorrow-Regular;
   transition: all 0.25s linear, color 0ms;
 }
 
@@ -47,7 +44,10 @@ a {
     filter: brightness(75%);
   }
 }
-
+body {
+ background:${({ theme }) => theme.mainBg};
+ color:${({ theme }) => theme.mainTxt};
+}
 button {
   cursor: pointer;
   transition: 0.3s;
@@ -82,6 +82,14 @@ button {
   width: 100%;
   height: 100%;
 }
- 
+
   `
+export const Title = styled.h1`
+  font-size:5.5rem;
+  color: ${GlobalVars.yellowMain};
+  `;
+export const SubTitle = styled.h3`
+font-size:2rem;
+color: ${GlobalVars.yellowMain};
+`;
 

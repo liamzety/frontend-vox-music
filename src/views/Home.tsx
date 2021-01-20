@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 // Cmps
 import { Banner } from '../cmps/Banner';
 import { PlaylistAdd } from '../cmps/PlaylistAdd';
@@ -10,6 +10,7 @@ import { PlaylistType } from '../types/Playlist';
 //Store
 import { useStore } from '../store/StoreContext';
 import { useObserver } from 'mobx-react';
+import { scrollService } from '../services/scrollService';
 export function Home() {
   const store = useStore();
 
@@ -35,16 +36,24 @@ export function Home() {
     playlistService.update(playlistToUpdate);
     store.updatePlaylist(playlistToUpdate);
   }
+  const genreListRef = useRef(null);
+
+  const onHandleScroll = () => {
+    scrollService.handleScroll(genreListRef);
+  };
   return useObserver(() => (
-    <div className="home ">
-      <Banner />
-      <div className="container">
+    <div>
+      <Banner onHandleScroll={onHandleScroll} />
+      <div className="container-x">
         <PlaylistAdd onAddPlaylist={onAddPlaylist} />
-        <GenreList
-          playlists={store.playlists}
-          onUpdatePlaylist={onUpdatePlaylist}
-          onRemovePlaylist={onRemovePlaylist}
-        />
+
+        <div ref={genreListRef}>
+          <GenreList
+            playlists={store.playlists}
+            onUpdatePlaylist={onUpdatePlaylist}
+            onRemovePlaylist={onRemovePlaylist}
+          />
+        </div>
       </div>
     </div>
   ));

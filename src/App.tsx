@@ -20,8 +20,8 @@ function App() {
       <main className="app">
         <GlobalStyles />
         {/* <InstallPopup /> */}
-        <Navbar />
         <Router>
+          <Navbar />
           <Switch>
             {routes.map((route) => (
               <Route

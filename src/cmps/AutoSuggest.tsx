@@ -1,7 +1,11 @@
 import React from 'react';
 import { regService } from '../services/regService';
 
-export function AutoSuggest({ suggestions, onAddSong }: any) {
+interface AutoSuggestProps {
+  onAddSong: (suggestion: any) => void;
+  suggestions: any;
+}
+export function AutoSuggest({ suggestions, onAddSong }: AutoSuggestProps) {
   return (
     <div>
       <ul>
