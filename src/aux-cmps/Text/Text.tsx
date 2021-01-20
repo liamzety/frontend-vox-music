@@ -1,20 +1,19 @@
 import React from 'react';
-import { TextStyle } from '../aux-cmps/Text/text-styles';
+import { TextStyle } from './text-styles';
 
 export interface TextProps {
   type: 'h1' | 'h2' | 'h3' | 'h4' | 'p';
   size?: string;
-  color?: string;
   bold?: boolean;
-  content: string;
+  color?: string;
 }
 
 export const Text: React.FC<TextProps> = ({
   type,
   size,
   color,
-  content,
   bold,
+  children,
   ...props
 }) => {
   return (
@@ -25,7 +24,7 @@ export const Text: React.FC<TextProps> = ({
       bold={bold}
       {...props}
     >
-      {content}
+      {children}
     </TextStyle>
   );
 };
