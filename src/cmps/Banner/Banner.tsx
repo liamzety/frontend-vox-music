@@ -58,14 +58,9 @@ export const Banner: React.FC<BannerProps> = ({
           <Text type="banner-title">Vox Music</Text>
           <Text type="banner-sub-title">Immerse Youself.</Text>
         </BannerContainerInner>
-        <Button
-          label="r25"
-          content={
-            playlists.length === 0 ? <Loader size="50%" /> : 'Start Listening_'
-          }
-          cb={onHandleScroll}
-          size="large"
-        />
+        <Button label="r25" cb={onHandleScroll} size="large">
+          {playlists.length === 0 ? <Loader size="50%" /> : 'Start Listening_'}
+        </Button>
       </BannerContainerInner>
       <BannerWallpaperContainer>
         {wallpapers.map((src, idx) => (

@@ -5,14 +5,17 @@ import { Genre } from './views/Genre/Genre'
 export default [
     {
         path: '/',
+        exact: true,
         component: Home
     },
     {
-        path: '/genre/:genre',
+        path: '/genre/:genre?',
+        exact: false,
         component: Genre
     },
     {
         path: '/main/:songName=:songId',
+        exact: true,
         component: Main
     }
 ]

@@ -21,7 +21,7 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
   const history = useHistory();
   const pathname = history.location.pathname;
   const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
-  const listContainerRef: any = React.createRef();
+  const listContainerRef = React.createRef<HTMLDivElement>();
 
   useEffect(() => {
     setIsOverflowing(scrollService.checkOverflow(listContainerRef));
@@ -32,7 +32,14 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
       (playlist: PlaylistType) => playlist.genre === genre
     );
     if (playlistPreviewsByGenre.length === 0)
-      return <h2>No Playlists Found 😞</h2>;
+      return (
+        <Text type="h3">
+          No Playlists Found{' '}
+          <span role="img" aria-label="emoji-sad">
+            😞
+          </span>{' '}
+        </Text>
+      );
     return playlistPreviewsByGenre.map(
       (playlist: PlaylistType, idx: number) => (
         <PlaylistPreview
@@ -48,10 +55,10 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
     <div>
       <div className="flex space-between align-center">
         {pathname === '/' && <Text type="h3">{genre}</Text>}
-        {pathname === '/' ? (
-          <Link to={`/genre/${genre}`}>SHOW ALL</Link>
-        ) : (
-          <Link to="/">Go Back</Link>
+        {pathname === '/' && (
+          <Link to={`/genre/${genre}`}>
+            <Text type="a">Show All</Text>
+          </Link>
         )}
       </div>
 
@@ -77,7 +84,6 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
             />
           </>
         )}
-
         {getPlaylistPreviews()}
       </PlaylistListContainer>
     </div>

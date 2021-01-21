@@ -3,6 +3,7 @@ import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from 'react-icons/io';
+import { Svg } from '../Svg/Svg';
 import {
   SlideButtonRight,
   SlideButtonLeft,
@@ -26,10 +27,14 @@ export const SlideButton: React.FC<SlideButtonProps> = ({
   return (
     <SlideButtonContainer position={position} maxWidth={maxWidth}>
       <SlideButtonRight leftRight={leftRight} onClick={cbRight}>
-        <IoIosArrowDroprightCircle />
+        <Svg color="slideBtnSvg" size="2.5rem">
+          <IoIosArrowDroprightCircle />
+        </Svg>
       </SlideButtonRight>
       <SlideButtonLeft leftRight={leftRight} onClick={cbLeft}>
-        <IoIosArrowDropleftCircle />
+        <Svg color="slideBtnSvg" size="2.5rem">
+          <IoIosArrowDropleftCircle />
+        </Svg>
       </SlideButtonLeft>
     </SlideButtonContainer>
   );

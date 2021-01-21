@@ -1,14 +1,19 @@
 import styled from 'styled-components';
+import { neon } from '../../assets/style/global';
 interface Props {
   isTopPage:boolean
 }
 export const NavbarContainer = styled.nav<Props>`
-    background:${({isTopPage,theme}) => isTopPage ? 'transparent' : theme.navbar};
-    box-shadow:${({isTopPage,theme}) => isTopPage ? 'none' : `0px -7px 26px -4px  ${theme.neon}`} ;
+    background:${({isTopPage,theme}) => isTopPage ? 'transparent' : `url(${theme.materialBg})`};
+    background-size:150px;
+    box-shadow:${({isTopPage}) => isTopPage ? 'none' : ` 0px -7px 26px 2px black`} ;
     position:fixed;
     width:100%;
     height:50px;
     z-index:9;
+    svg {
+      margin-right:5px;
+    }
   `;
 export const NavbarContainerInner = styled.div`
    display:flex;

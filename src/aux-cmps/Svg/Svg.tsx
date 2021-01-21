@@ -2,14 +2,14 @@ import React from 'react';
 import { SvgStyle } from './svg-styles';
 
 interface SvgProps {
-  color: string;
+  color?: string;
   size: string;
-  icon: any;
+  children: JSX.Element;
 }
-export const Svg: React.FC<SvgProps> = ({ color, size, icon }) => {
+export const Svg: React.FC<SvgProps> = ({ color, size, children }) => {
   return (
     <SvgStyle color={color} size={size}>
-      {icon}
+      {children}
     </SvgStyle>
   );
 };

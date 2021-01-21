@@ -20,9 +20,7 @@ function App() {
     switch (store.modal.type) {
       case 'addPlaylist':
         return <PlaylistAddModal />;
-
       default:
-      // code block
     }
   };
   return useObserver(() => (
@@ -39,7 +37,7 @@ function App() {
             {routes.map((route) => (
               <Route
                 key={route.path}
-                exact
+                exact={route.exact}
                 component={route.component}
                 path={route.path}
               />

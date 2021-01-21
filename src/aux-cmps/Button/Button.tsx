@@ -2,22 +2,20 @@ import React from 'react';
 import { ButtonStyle } from './button-styles';
 
 export interface ButtonProps {
-  primary?: boolean;
   size?: 'small' | 'medium' | 'large';
   label: string;
-  content: any;
+  children: string | JSX.Element | (string | JSX.Element)[];
   color?: string;
   bgColor?: string;
   cb: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
-  primary = true,
   size = 'medium',
   label,
-  content,
-  color = 'black',
-  bgColor = 'yellow',
+  children,
+  color = 'mainBtnTxt',
+  bgColor = 'mainBtn',
   cb,
   ...props
 }) => {
@@ -26,10 +24,10 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={cb}
       color={color}
       bgColor={bgColor}
-      className={`${primary ? '' : 'btn-secondary'} btn-${size}`}
+      className={`btn-${size}`}
       {...props}
     >
-      <span className="btn-content">{content}</span>
+      <span className="btn-content">{children}</span>
       <span className="btn-glitch"></span>
       <span className="btn-label">{label}</span>
     </ButtonStyle>

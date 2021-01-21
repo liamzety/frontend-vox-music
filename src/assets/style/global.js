@@ -15,6 +15,16 @@ export const GlobalVars = {
   redTint: '#ff151529',
   yellowTint: '#fffa1526',
 }
+export const neon = (sh2 = '#FF00DE', sh1 = '#FFFFFF') => `
+color: ${sh1};
+text-shadow:
+ 
+    0 0 5px ${sh1},
+    0 0 10px ${sh1},
+    0 0 15px ${sh2},
+    0 0 25px ${sh2},
+    0 0 50px ${sh2};
+`
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -23,13 +33,14 @@ export const GlobalStyles = createGlobalStyle`
   outline-style: none;
   margin: 0;
   padding: 0;
-  font-family: Tomorrow-Regular;
   transition: all 0.2s linear, color 0ms;
 }
-
-html {
-  font-size: 16px;
+body {
+ background-image:url(${({ theme }) => theme.materialBg});
+ background-size:150px;
+ color:${({ theme }) => theme.mainTxt};
 }
+
 
 img {
   object-fit: cover;
@@ -41,10 +52,7 @@ a {
   cursor: pointer;
 
 }
-body {
- background:${({ theme }) => theme.mainBg};
- color:${({ theme }) => theme.mainTxt};
-}
+
 button {
   cursor: pointer;
   transition: 0.3s;

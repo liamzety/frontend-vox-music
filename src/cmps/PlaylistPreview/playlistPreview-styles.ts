@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-interface Props {
-  src:any
-}
-export const PlaylistPreviewContainer = styled.div<Props>`
+
+export const PlaylistPreviewContainer = styled.div`
  display:flex;
  flex-direction:column;
  align-items:center;
- background-image:url(${({src}) => src});
  color:${({theme}) => theme.chipBorder};
  margin: 25px 0;
  &:not(:last-child) {
@@ -16,16 +13,23 @@ export const PlaylistPreviewContainer = styled.div<Props>`
  &:hover {
    transform: scale(0.95);
   }
+
   `;
-export const CardTopContainer = styled.div`
+  interface CardTopContainerProps {
+    src:string
+  }
+export const CardTopContainer = styled.div<CardTopContainerProps>`
   width:200px;
   height:150px;
   display:flex;
   flex-direction:column;
   align-items: center;
   justify-content: center;
-  padding:5px;
-  background-color:${({theme}) => theme.chipTint};
+   background-blend-mode: multiply;
+  background-image:url(${({src}) => src});
+  background-position: center;
+  background-size: cover;
+
 `
 export const CardBottomContainer = styled.div`
 width: 200px;
@@ -35,8 +39,15 @@ padding: 0 15px;
 display:flex;
 align-items: center;
 justify-content: space-between;
-svg {
-
+padding: 0 25px;
+p {
+  display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
 }
+
+
   `;
 

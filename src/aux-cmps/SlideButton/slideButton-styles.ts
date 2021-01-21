@@ -17,7 +17,6 @@ export const SlideButtonRight = styled.div<SlideButtonProps>`
   right: ${({leftRight}) => leftRight};
   svg {
     cursor:pointer;
-    font-size:2rem;
     opacity:0.5;
     &:hover {
       opacity:0.8;
@@ -32,7 +31,6 @@ export const SlideButtonLeft = styled.div<SlideButtonProps>`
   left: ${({leftRight}) => leftRight};
   svg {
     cursor:pointer;
-    font-size:2rem;
     opacity:0.5;
     &:hover {
       opacity:0.8;

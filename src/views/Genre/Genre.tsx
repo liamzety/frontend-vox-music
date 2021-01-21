@@ -12,6 +12,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { GenreContainer } from './genre-styles';
 import { scrollService } from '../../services/scrollService';
 import { SlideButton } from '../../aux-cmps/SlideButton/SlideButton';
+import { Text } from '../../aux-cmps/Text/Text';
 
 interface MatchParams {
   genre: string;
@@ -25,7 +26,7 @@ export const Genre: React.FC<Props> = ({
   const store = useStore();
   const [genres, setGenres] = useState<Array<string>>();
   const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
-  const listContainerRef: any = React.createRef();
+  const listContainerRef = React.createRef<HTMLDivElement>();
 
   const getPlaylists = useCallback(async () => {
     const playlists = await playlistService.query();
@@ -35,16 +36,13 @@ export const Genre: React.FC<Props> = ({
   }, [store]);
 
   useEffect(() => {
+    console.log('im here', genre);
     getPlaylists();
   }, [getPlaylists]);
   useEffect(() => {
     setIsOverflowing(scrollService.checkOverflow(listContainerRef));
   }, [listContainerRef]);
 
-  function onRemovePlaylist(playlistId: string): void {
-    playlistService.remove(playlistId);
-    store.removePlaylist(playlistId);
-  }
   function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
     playlistService.update(playlistToUpdate);
     store.updatePlaylist(playlistToUpdate);
@@ -53,19 +51,21 @@ export const Genre: React.FC<Props> = ({
     return (
       genres &&
       genres.map((genre: string, idx: number) => (
-        <Link
-          className="flex align-center text-center"
-          key={idx}
-          to={`/genre/${genre}`}
-        >
-          {genre}
+        <Link className="flex align-center text-center" to={`/genre/${genre}`}>
+          <Text type="a" key={idx}>
+            {genre}
+          </Text>
         </Link>
       ))
     );
   };
   return useObserver(() => (
     <div className="container-y container-x">
-      <h1>{genre} </h1>
+      <Text type="a">
+        <Link to="/">Go Back</Link>{' '}
+      </Text>
+
+      <Text type="h2">{genre || 'Genres'} </Text>
       {isOverflowing && (
         <SlideButton
           maxWidth="740px"
@@ -86,11 +86,13 @@ export const Genre: React.FC<Props> = ({
       <div className="flex justify-center">
         <GenreContainer ref={listContainerRef}>{getGenreList()}</GenreContainer>
       </div>
-      <PlaylistList
-        genre={genre}
-        playlists={store.playlists}
-        onUpdatePlaylist={onUpdatePlaylist}
-      />
+      {genre && (
+        <PlaylistList
+          genre={genre}
+          playlists={store.playlists}
+          onUpdatePlaylist={onUpdatePlaylist}
+        />
+      )}
     </div>
   ));
 };

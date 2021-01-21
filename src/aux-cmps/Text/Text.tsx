@@ -2,7 +2,16 @@ import React from 'react';
 import { TextStyle } from './text-styles';
 
 export interface TextProps {
-  type: 'banner-title' | 'banner-sub-title' | 'h1' | 'h2' | 'h3' | 'h4' | 'p';
+  type:
+    | 'banner-title'
+    | 'banner-sub-title'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'p'
+    | 'a'
+    | 'logo';
   size?: string;
   bold?: boolean;
   color?: string;

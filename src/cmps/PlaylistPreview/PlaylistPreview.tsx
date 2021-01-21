@@ -47,17 +47,16 @@ export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
     return res;
   };
   return (
-    <PlaylistPreviewContainer
-      src={playlist.img}
-      data-augmented-ui={`${chips} border`}
-    >
+    <PlaylistPreviewContainer data-augmented-ui={`${chips} border`}>
       <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
-        <CardTopContainer></CardTopContainer>
+        <CardTopContainer src={playlist.img}></CardTopContainer>
         <CardBottomContainer>
-          <Text type="h4" color="secTxt">
+          <Text type="p" bold={true} size="1.2rem" color="secTxt">
             {playlist.name}
           </Text>
-          <Svg color="mainSvg" size="1.5rem" icon={<FaRegPlayCircle />} />
+          <Svg color="mainSvg" size="1.5rem">
+            <FaRegPlayCircle />
+          </Svg>
         </CardBottomContainer>
       </Link>
     </PlaylistPreviewContainer>

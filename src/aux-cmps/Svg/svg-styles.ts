@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 interface Props {
-    color:string,
+    color?:string,
     size:string
 }
 export const SvgStyle = styled.div<Props>`
 svg {
-    color: ${({color,theme}) => theme[color]};
+    color: ${({color,theme}) => color ? color : theme[color]};
     font-size: ${({size}) => size};
 }
 `

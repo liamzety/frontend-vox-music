@@ -6,15 +6,15 @@ interface Props {
   color:string
 }
 export const ButtonStyle = styled.button<Props>`
-    
+    font-family: Bicubik ; 
     border: 0;
     outline: none;
-    background-color: ${props => props.bgColor === 'yellow' ? GlobalVars.blackMain : GlobalVars.whiteMain};
+    background-color: ${({color,theme}) => theme[color]};
     cursor: pointer;
     position: relative;
     font-size: .85rem;
     text-transform: uppercase;
-    color: ${props => props.color === 'black' ? GlobalVars.blackMain : GlobalVars.whiteMain};
+    color: ${({color,theme}) => theme[color]};
     clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
   
   .btn-content {
@@ -26,12 +26,10 @@ export const ButtonStyle = styled.button<Props>`
     left: 2px;
     right: 2px;
     bottom: 2px;
-    background-color: ${props => props.bgColor === 'yellow' ? GlobalVars.yellowMain : GlobalVars.redMain};
+    background-color: ${({bgColor,theme}) => theme[bgColor]};
     clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
     
   }
-  
-
   
   .btn-label {
     font-size: .40rem;
@@ -39,12 +37,10 @@ export const ButtonStyle = styled.button<Props>`
     bottom: -1px;
     right: 8%;
     padding: 0 5px;
-    background-color: ${props => props.bgColor === 'yellow' ? GlobalVars.yellowMain : GlobalVars.redMain};
+    background-color: ${({bgColor,theme}) => theme[bgColor]};
     z-index: 3;
     border-left: 1px solid #00f0ff;
   }
-  
-
   
   .btn-glitch {
     display: none;
@@ -53,13 +49,10 @@ export const ButtonStyle = styled.button<Props>`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #fcee09;
+    background-color: ${({bgColor,theme}) => theme[bgColor]};
     filter: drop-shadow(-2px 3px #67e3f3) drop-shadow(-1px -3px #02d8f3) drop-shadow(2px 1px #02d8f3);
   }
   
-  &.btn-secondary .btn-glitch {
-    background-color: #ff003c;
-  }
   
   &:hover .btn-glitch,
   &:hover .btn-content::after
@@ -70,13 +63,16 @@ export const ButtonStyle = styled.button<Props>`
   &.btn-small {
     width: 120px;
     height: 40px; 
+    font-size: .75rem;
   }
   &.btn-medium {
     width: 180px;
     height: 50px; 
+    font-size: .80rem;
   }
   &.btn-large {
     width: 230px;
     height: 60px; 
+    font-size: .85rem;
   }
   `;

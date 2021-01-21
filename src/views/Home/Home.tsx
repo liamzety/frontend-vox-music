@@ -25,10 +25,11 @@ export const Home: React.FC = () => {
     playlistService.update(playlistToUpdate);
     store.updatePlaylist(playlistToUpdate);
   }
-  const genreListRef = useRef(null);
+  const genreListRef = useRef<HTMLDivElement>(null);
 
   const onHandleScroll = () => {
     scrollService.handleScroll(genreListRef);
+    
   };
   return useObserver(() => (
     <div>

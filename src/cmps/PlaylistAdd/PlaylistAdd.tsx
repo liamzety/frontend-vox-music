@@ -5,12 +5,13 @@ import { FiUpload } from 'react-icons/fi';
 import { PlaylistAddImgLabel, PlayListAddForm } from './playlistAdd-styles';
 import { genreService } from '../../services/genreService';
 import { Loader } from '../Loader/Loader';
+import templatePlaylistImg from '../../assets/img/vox-music.png';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
 }
 export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
-  const DEFAULT_IMG = 'https://picsum.photos/200';
+  const DEFAULT_IMG = templatePlaylistImg;
   const DEFAULT_NAME = 'My New Playlist!';
   const DEFAULT_DESCRIPTION = 'This is my awesome playlist!';
   const DEFAULT_GENRE = 'Cyberpunk';

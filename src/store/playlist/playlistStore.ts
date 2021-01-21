@@ -4,6 +4,7 @@ export  const createPlaylistStore = {
         setPlaylists: function(playlists:PlaylistType[])  {
             this.playlists = playlists
         },
+        
         addPlaylist: function(playlist:PlaylistType) {
             this.playlists.push(playlist)
         },
@@ -16,3 +17,4 @@ export  const createPlaylistStore = {
             this.playlists[playlistIdx] = playlist
         }
 }
+

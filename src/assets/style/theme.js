@@ -1,14 +1,22 @@
 import { GlobalVars } from './global'
+import materialBg from '../img/material-bg.png'
+import materialBgLight from '../img/material-bg-light.png'
+
 export const lightTheme = {
+    materialBg: materialBgLight,
+
     mainBg: GlobalVars.whiteMain,
-    mainTxt: GlobalVars.redMain,
+    mainBtn: GlobalVars.blackMain,
+    mainBtnTxt: GlobalVars.redMain,
+    mainTxt: GlobalVars.blackMain,
     mainSvg: GlobalVars.blackMain,
 
     songHover: GlobalVars.whiteTertiary,
 
-    secTxt: GlobalVars.blackMain,
+    secTxt: GlobalVars.redMain,
     secBg: GlobalVars.whiteSecondary,
 
+    bannerTitle: GlobalVars.redMain,
     hr: GlobalVars.whiteMain,
     navbar: GlobalVars.whiteMain,
     neon: GlobalVars.redMain,
@@ -16,12 +24,17 @@ export const lightTheme = {
     mainModal: GlobalVars.whiteSecondary,
     neonModal: GlobalVars.redMain,
 
-    chipBorder: GlobalVars.yellowMain,
-    chipTint: GlobalVars.yellowTint
+    chipBorder: GlobalVars.blackMain,
+
+    slideBtnSvg: GlobalVars.blackMain
 }
 
 export const darkTheme = {
+    materialBg: materialBg,
+
     mainBg: GlobalVars.blackMain,
+    mainBtn: GlobalVars.yellowMain,
+    mainBtnTxt: GlobalVars.blackMain,
     mainTxt: GlobalVars.yellowMain,
     mainSvg: GlobalVars.blackMain,
 
@@ -30,6 +43,7 @@ export const darkTheme = {
     secTxt: GlobalVars.blackMain,
     secBg: GlobalVars.blackSecondary,
 
+    bannerTitle: GlobalVars.yellowMain,
     hr: GlobalVars.blackMain,
     navbar: GlobalVars.blackMain,
     neon: GlobalVars.yellowMain,
@@ -38,5 +52,6 @@ export const darkTheme = {
     neonModal: GlobalVars.redMain,
 
     chipBorder: GlobalVars.redMain,
-    chipTint: GlobalVars.redTint
+
+    slideBtnSvg: GlobalVars.yellowMain
 }

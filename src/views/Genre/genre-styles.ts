@@ -10,7 +10,7 @@ scroll-behavior: smooth;
 a:not(:last-child) {
     width:fit-content;
     min-width: 80px;
-    margin-right:20px;
+    margin-right:100px;
 }
 &::-webkit-scrollbar {
     width:1px;
