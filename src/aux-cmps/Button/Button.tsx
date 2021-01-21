@@ -21,7 +21,6 @@ export const Button: React.FC<ButtonProps> = ({
   cb,
   ...props
 }) => {
-  console.log('content', content);
   return (
     <ButtonStyle
       onClick={cb}

@@ -31,6 +31,7 @@ function App() {
         <GlobalStyles />
         {/* <InstallPopup /> */}
         {store.modal.isOn && getModal()}
+        {/* <PlaylistAddModal /> */}
         {store.modal.isOn && <ScreenWrapper />}
         <Router>
           <Navbar />

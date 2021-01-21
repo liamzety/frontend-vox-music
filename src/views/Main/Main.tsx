@@ -7,7 +7,7 @@ import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
 import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 interface MatchParams {
   songId: string;
@@ -45,7 +45,6 @@ export const Main: React.FC<Props> = ({
   const onAddSong = async (songData: any) => {
     const video_id = songData.id.videoId;
     if (findIfExsits(video_id)) {
-      console.log('wtf');
       store.alert('This song has already been added!', 'alert');
       store.clearAlert();
       return;
@@ -89,6 +88,10 @@ export const Main: React.FC<Props> = ({
   const handleSongSelect = (data: { songUrl: string; idx: number }): void => {
     setCurrPlaying(data);
   };
+  const onRemovePlaylist = (playlistId: string): void => {
+    playlistService.remove(playlistId);
+    store.removePlaylist(playlistId);
+  };
   return (
     <div className="container-y">
       <div className="container-x ">
@@ -96,6 +99,15 @@ export const Main: React.FC<Props> = ({
         <h1>{currPlaylist.name}</h1>
         <h2>{currPlaylist.description}</h2>
         <p>Genre: {currPlaylist.genre}</p>
+        <Link to={`/`}>
+          <button
+            onClick={() => {
+              onRemovePlaylist(currPlaylist._id!);
+            }}
+          >
+            Delete Playlist
+          </button>
+        </Link>
         <SongList
           handleSongSelect={handleSongSelect}
           currPlaylist={currPlaylist}

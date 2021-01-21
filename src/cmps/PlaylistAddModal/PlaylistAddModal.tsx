@@ -14,7 +14,7 @@ export const PlaylistAddModal: React.FC = () => {
     store.toggleModal();
   }
   return (
-    <PlaylistAddModalStyles>
+    <PlaylistAddModalStyles data-augmented-ui=" tr-2-clip-xy b-clip-x border">
       <PlaylistAdd onAddPlaylist={onAddPlaylist} />
     </PlaylistAddModalStyles>
   );

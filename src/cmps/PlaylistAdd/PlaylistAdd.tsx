@@ -33,13 +33,12 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
       };
     });
   }
-  async function onAddPlaylistSelect(
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) {
+  function onAddPlaylistSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    const targetValue = event.currentTarget.value;
     setPlaylistToAdd((prevState) => {
       return {
         ...prevState,
-        genre: event.currentTarget.value,
+        genre: targetValue,
       };
     });
   }
@@ -59,6 +58,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
       onSubmit={(ev) => {
         ev.preventDefault();
         if (isImgUploading) return;
+        console.log('playlistToAdd', playlistToAdd);
         onAddPlaylist(playlistToAdd);
       }}
     >

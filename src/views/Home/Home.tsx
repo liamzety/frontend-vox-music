@@ -21,11 +21,6 @@ export const Home: React.FC = () => {
     getPlaylists();
   }, [getPlaylists]);
 
-  function onRemovePlaylist(playlistId: string): void {
-    playlistService.remove(playlistId);
-    store.removePlaylist(playlistId);
-  }
-
   function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
     playlistService.update(playlistToUpdate);
     store.updatePlaylist(playlistToUpdate);
@@ -43,7 +38,6 @@ export const Home: React.FC = () => {
           <GenreList
             playlists={store.playlists}
             onUpdatePlaylist={onUpdatePlaylist}
-            onRemovePlaylist={onRemovePlaylist}
           />
         </div>
       </div>

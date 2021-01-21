@@ -15,7 +15,7 @@ export const Navbar: React.FC = () => {
   const [isTopPage, setIsTopPage] = useState(true);
   useEffect(() => {
     window.onscroll = function () {
-      if (window.pageYOffset > window.innerHeight) {
+      if (window.pageYOffset > window.innerHeight - 100) {
         setIsTopPage(false);
       } else {
         setIsTopPage(true);
@@ -23,7 +23,6 @@ export const Navbar: React.FC = () => {
     };
   }, []);
   const toggleTheme = (): void => {
-    console.log('here');
     if (store.theme === 'light') {
       store.setTheme('dark');
     } else {
@@ -37,11 +36,9 @@ export const Navbar: React.FC = () => {
         <NavOptionsContainer>
           <Link to="/about"></Link>
           <Link to="/genre"></Link>
-          {!isTopPage && (
-            <button onClick={store.toggleModal.bind({}, 'addPlaylist')}>
-              Create Playlist
-            </button>
-          )}
+          <button onClick={store.toggleModal.bind({}, 'addPlaylist')}>
+            Create Playlist
+          </button>
           <button>P</button>
           <ThemeSwitcher toggleTheme={toggleTheme} />
         </NavOptionsContainer>

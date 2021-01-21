@@ -1,17 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalVars = {
-  whiteMain: '#f1f1f1',
+  whiteMain: '#e1dde4',
   blackMain: '#161616',
   redMain: '#ff003c',
   yellowMain: '#fcee09',
 
-  whiteSecondary: '#e8e8e8',
+  whiteSecondary: '#cdc9d0',
   blackSecondary: '#333',
 
-
   whiteTertiary: '#dcdcdc',
-  blackTertiary: '#252525'
+  blackTertiary: '#252525',
+
+  redTint: '#ff151529',
+  yellowTint: '#fffa1526',
 }
 
 export const GlobalStyles = createGlobalStyle`
@@ -22,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   font-family: Tomorrow-Regular;
-  transition: all 0.25s linear, color 0ms;
+  transition: all 0.2s linear, color 0ms;
 }
 
 html {
@@ -37,11 +39,7 @@ a {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
-  transition: 0.3s;
 
-  &:hover {
-    filter: brightness(75%);
-  }
 }
 body {
  background:${({ theme }) => theme.mainBg};

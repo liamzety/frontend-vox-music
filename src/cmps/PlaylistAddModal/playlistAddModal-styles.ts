@@ -12,6 +12,6 @@ height:50vh;
 box-shadow:${({theme}) =>  `0px 0px 19px -9px  ${theme.neonModal}`} ;
 z-index:11;
 @media (max-width: 1080px) {
-    width:100vw;
+    width:90vw;
 }
 `;

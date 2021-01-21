@@ -12,12 +12,10 @@ interface PlaylistListProps {
   genre: string;
   playlists: PlaylistType[];
   onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
-  onRemovePlaylist: (playlistId: string) => void;
 }
 export const PlaylistList: React.FC<PlaylistListProps> = ({
   genre,
   playlists,
-  onRemovePlaylist,
   onUpdatePlaylist,
 }) => {
   const history = useHistory();
@@ -40,7 +38,6 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
         <PlaylistPreview
           key={idx}
           playlist={playlist}
-          onRemovePlaylist={onRemovePlaylist}
           onUpdatePlaylist={onUpdatePlaylist}
         />
       )
@@ -65,7 +62,6 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
       >
         {pathname === '/' && isOverflowing && (
           <>
-            <div className="haha"></div>
             <SlideButton
               cbRight={scrollService.handleScrollVertical.bind(
                 {},

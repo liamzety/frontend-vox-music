@@ -9,12 +9,10 @@ import { PlaylistList } from '../PlaylistList/PlaylistList';
 interface GenreListProps {
   playlists: PlaylistType[];
   onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
-  onRemovePlaylist: (playlistId: string) => void;
 }
 export const GenreList: React.FC<GenreListProps> = ({
   playlists,
   onUpdatePlaylist,
-  onRemovePlaylist,
 }) => {
   return useObserver(() => (
     <div>
@@ -24,7 +22,6 @@ export const GenreList: React.FC<GenreListProps> = ({
             return (
               <PlaylistList
                 key={idx}
-                onRemovePlaylist={onRemovePlaylist}
                 onUpdatePlaylist={onUpdatePlaylist}
                 playlists={playlists}
                 genre={genre}

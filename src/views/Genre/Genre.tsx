@@ -89,7 +89,6 @@ export const Genre: React.FC<Props> = ({
       <PlaylistList
         genre={genre}
         playlists={store.playlists}
-        onRemovePlaylist={onRemovePlaylist}
         onUpdatePlaylist={onUpdatePlaylist}
       />
     </div>

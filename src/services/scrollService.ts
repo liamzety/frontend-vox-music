@@ -13,8 +13,6 @@ function handleScroll(ref:any) {
 
 }
 function checkOverflow(ref:any) {
-  console.log('ref.current.offsetWidth',ref.current.getBoundingClientRect().width)
-  console.log('ref.current.scrollWidth',ref.current.scrollWidth)
   return ref.current.offsetWidth < ref.current.scrollWidth || ref.current.offsetHeight < ref.current.scrollHeight
 }
 
