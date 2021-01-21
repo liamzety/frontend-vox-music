@@ -8,7 +8,7 @@ export default [
         component: Home
     },
     {
-        path: '/:genre',
+        path: '/genre/:genre',
         component: Genre
     },
     {

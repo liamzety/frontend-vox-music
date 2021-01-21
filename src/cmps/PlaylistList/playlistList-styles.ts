@@ -28,33 +28,3 @@ export const PlaylistListContainerGrid = styled.div`
  grid-gap:25px;
  min-height:200px;
   `;
-export const SlideBtnRight = styled.div`
-  position: absolute;
-  right: 15px;
-  svg {
-    cursor:pointer;
-    font-size:2rem;
-    opacity:0.5;
-    &:hover {
-      opacity:0.8;
-    }
-    &:active {
-      transform: scale(0.58);
-    }
-  }
-`;
-export const SlideBtnLeft = styled.div`
-  position: absolute;
-  left: 15px;
-  svg {
-    cursor:pointer;
-    font-size:2rem;
-    opacity:0.5;
-    &:hover {
-      opacity:0.8;
-    }
-    &:active {
-      transform: scale(0.58);
-    }
-  }
-`;

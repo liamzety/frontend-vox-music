@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import {
-  PlaylistListContainer,
-  SlideBtnRight,
-  SlideBtnLeft,
-} from './playlistList-styles';
+import { PlaylistListContainer } from './playlistList-styles';
 import { PlaylistType } from '../../types/Playlist';
 import { PlaylistPreview } from '../PlaylistPreview/PlaylistPreview';
 import { Text } from '../../aux-cmps/Text/Text';
-// icons
-import {
-  IoIosArrowDropleftCircle,
-  IoIosArrowDroprightCircle,
-} from 'react-icons/io';
+import { scrollService } from '../../services/scrollService';
+
+import { SlideButton } from '../../aux-cmps/SlideButton/SlideButton';
 
 interface PlaylistListProps {
   genre: string;
@@ -28,9 +22,13 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
 }) => {
   const history = useHistory();
   const pathname = history.location.pathname;
+  const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
+  const listContainerRef: any = React.createRef();
+
   useEffect(() => {
-    checkOverflow();
+    setIsOverflowing(scrollService.checkOverflow(listContainerRef));
   }, [playlists.length]);
+
   const getPlaylistPreviews = () => {
     const playlistPreviewsByGenre = playlists.filter(
       (playlist: PlaylistType) => playlist.genre === genre
@@ -49,51 +47,42 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
     );
   };
 
-  const listContainerRef: any = React.createRef();
-  const handleScrollVertical = (left: boolean) => {
-    const scrollMax = listContainerRef.current.scrollWidth;
-    const scrollMin = 0;
-
-    if (left) Math.max((listContainerRef.current.scrollLeft += 500), scrollMax);
-    else Math.min((listContainerRef.current.scrollLeft -= 500), scrollMin);
-  };
-
-  const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
-  function checkOverflow() {
-    setIsOverflowing(
-      listContainerRef.current.clientWidth <
-        listContainerRef.current.scrollWidth ||
-        listContainerRef.current.clientHeight <
-          listContainerRef.current.scrollHeight
-    );
-  }
-
   return (
     <div>
-      {pathname === '/' && <Text type="h3">{genre}</Text>}
-      {pathname === '/' ? (
-        <Link to={`/${genre}`}>SHOW ALL</Link>
-      ) : (
-        <Link to="/">Go Back</Link>
-      )}
+      <div className="flex space-between align-center">
+        {pathname === '/' && <Text type="h3">{genre}</Text>}
+        {pathname === '/' ? (
+          <Link to={`/genre/${genre}`}>SHOW ALL</Link>
+        ) : (
+          <Link to="/">Go Back</Link>
+        )}
+      </div>
 
       <PlaylistListContainer
         justifyCenter={pathname === '/' ? ' initial' : 'center'}
         wrap={pathname === '/' ? ' no-wrap' : 'wrap'}
         ref={listContainerRef}
       >
-        {pathname === '/' && (
-          <SlideBtnLeft onClick={handleScrollVertical.bind({}, false)}>
-            {isOverflowing && <IoIosArrowDropleftCircle />}
-          </SlideBtnLeft>
+        {pathname === '/' && isOverflowing && (
+          <>
+            <div className="haha"></div>
+            <SlideButton
+              cbRight={scrollService.handleScrollVertical.bind(
+                {},
+                true,
+                listContainerRef
+              )}
+              cbLeft={scrollService.handleScrollVertical.bind(
+                {},
+                false,
+                listContainerRef
+              )}
+              leftRight="15px"
+            />
+          </>
         )}
 
         {getPlaylistPreviews()}
-        {pathname === '/' && (
-          <SlideBtnRight onClick={handleScrollVertical.bind({}, true)}>
-            {isOverflowing && <IoIosArrowDroprightCircle />}
-          </SlideBtnRight>
-        )}
       </PlaylistListContainer>
     </div>
   );
