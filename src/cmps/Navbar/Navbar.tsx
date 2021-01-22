@@ -13,12 +13,17 @@ import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { AiOutlineUser } from 'react-icons/ai';
+import { useObserver } from 'mobx-react';
 
 export const Navbar: React.FC = () => {
   const store = useStore();
   const history = useHistory();
 
   const [isTopPage, setIsTopPage] = useState(true);
+  const [profileModal, setProfileModal] = useState({
+    isOn: false,
+  });
+
   useEffect(() => {
     history.listen((location) => {
       if (
@@ -48,7 +53,18 @@ export const Navbar: React.FC = () => {
       store.setTheme('light');
     }
   };
-  return (
+  const toggleProfileOptionsModal = () => {
+    setProfileModal((prevState) => {
+      return {
+        ...prevState,
+        isOn: !prevState.isOn,
+      };
+    });
+  };
+  const handleLogout = () => {
+    console.log('logging out');
+  };
+  return useObserver(() => (
     <NavbarContainer isTopPage={isTopPage}>
       <NavbarContainerInner className="container-x">
         <Link to="/">
@@ -65,15 +81,29 @@ export const Navbar: React.FC = () => {
           >
             Create Playlist_
           </Button>
-          <Button cb={() => {}} size="small" label="x11">
-            <Svg size="1.3rem">
-              <AiOutlineUser />
-            </Svg>
-            Profile
-          </Button>
+
+          {store.user.isSignedIn ? (
+            <div onClick={toggleProfileOptionsModal}>
+              <img src={store.user.imgUrl} alt="" />
+              <h1>{store.user.name}</h1>
+              {profileModal.isOn && (
+                <button onClick={handleLogout}>logout</button>
+              )}
+            </div>
+          ) : (
+            <Link to={`/login`}>
+              <Text type="a">
+                <Svg size="1.3rem">
+                  <AiOutlineUser />
+                </Svg>
+                Log in
+              </Text>
+            </Link>
+          )}
+
           <ThemeSwitcher toggleTheme={toggleTheme} />
         </NavOptionsContainer>
       </NavbarContainerInner>
     </NavbarContainer>
-  );
+  ));
 };

@@ -10,6 +10,7 @@ import { PlaylistType } from '../../types/Playlist';
 import { useStore } from '../../store/StoreContext';
 import { useObserver } from 'mobx-react';
 import { scrollService } from '../../services/scrollService';
+
 export const Home: React.FC = () => {
   const store = useStore();
 
@@ -18,6 +19,7 @@ export const Home: React.FC = () => {
   }, [store]);
 
   useEffect(() => {
+    console.log('xxxx', store.user.isSignedIn);
     getPlaylists();
   }, [getPlaylists]);
 
@@ -29,7 +31,6 @@ export const Home: React.FC = () => {
 
   const onHandleScroll = () => {
     scrollService.handleScroll(genreListRef);
-    
   };
   return useObserver(() => (
     <div>

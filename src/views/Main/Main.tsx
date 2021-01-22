@@ -10,12 +10,12 @@ import { regService } from '../../services/regService';
 import { Link, RouteComponentProps } from 'react-router-dom';
 
 interface MatchParams {
-  songId: string;
+  playlistId: string;
 }
 interface Props extends RouteComponentProps<MatchParams> {}
 export const Main: React.FC<Props> = ({
   match: {
-    params: { songId },
+    params: { playlistId },
   },
 }) => {
   const store = useStore();
@@ -30,9 +30,9 @@ export const Main: React.FC<Props> = ({
   });
 
   useEffect(() => {
-    getPlaylist(songId);
-  }, [songId]);
-
+    getPlaylist(playlistId);
+  }, [playlistId]);
+  // ---------------------Playlist CRUD ------------------
   const getPlaylist = async (playlistId: string) => {
     let { playlist, playlistSongs } = await playlistService.getById(playlistId);
     setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
@@ -42,6 +42,11 @@ export const Main: React.FC<Props> = ({
     songUrl: '',
     idx: null,
   });
+  const onRemovePlaylist = (playlistId: string): void => {
+    playlistService.remove(playlistId);
+    store.removePlaylist(playlistId);
+  };
+  // ---------------------Song CRUD ------------------
   const onAddSong = async (songData: any) => {
     const video_id = songData.id.videoId;
     if (findIfExsits(video_id)) {
@@ -67,6 +72,16 @@ export const Main: React.FC<Props> = ({
       };
     });
   };
+  const onRemoveSong = (songId: string): void => {
+    songService.remove(songId);
+    setCurrPlaylist((prevState) => {
+      return {
+        ...prevState,
+        songs: [...prevState.songs.filter((song) => song._id !== songId)],
+      };
+    });
+  };
+
   const handleNextPrevSong = (val: string, idx: number) => {
     const nextSongIdx = idx + 1 > currPlaylist.songs.length - 1 ? 0 : idx + 1;
     const nextSongUrl = currPlaylist.songs[nextSongIdx].video_id;
@@ -88,10 +103,7 @@ export const Main: React.FC<Props> = ({
   const handleSongSelect = (data: { songUrl: string; idx: number }): void => {
     setCurrPlaying(data);
   };
-  const onRemovePlaylist = (playlistId: string): void => {
-    playlistService.remove(playlistId);
-    store.removePlaylist(playlistId);
-  };
+
   return (
     <div className="container-y">
       <div className="container-x ">
@@ -111,6 +123,7 @@ export const Main: React.FC<Props> = ({
         <SongList
           handleSongSelect={handleSongSelect}
           currPlaylist={currPlaylist}
+          onRemoveSong={onRemoveSong}
         />
         <SongSearch onAddSong={onAddSong} />
       </div>

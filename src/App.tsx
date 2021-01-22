@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes';
 import { useObserver } from 'mobx-react';
@@ -13,6 +13,7 @@ import { GlobalStyles } from './assets/style/global';
 import { useStore } from './store/StoreContext';
 import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
 import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
+import { cookieService } from './services/cookieService';
 
 function App() {
   const store = useStore();
@@ -23,6 +24,12 @@ function App() {
       default:
     }
   };
+  useEffect(() => {
+    if (cookieService.getCookie('user')) {
+      store.setUser(JSON.parse(cookieService.getCookie('user')));
+    }
+  }, []);
+
   return useObserver(() => (
     <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
       <main className="app">

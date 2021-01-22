@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../../aux-cmps/Button/Button';
 import { PlaylistType } from '../../types/Playlist';
 // Styles
 import {
@@ -9,6 +10,7 @@ import {
 } from './songList-styles';
 interface SongListProps {
   currPlaylist: PlaylistType;
+  onRemoveSong: (songId: string) => void;
   handleSongSelect: ({
     songUrl,
     idx,
@@ -19,6 +21,7 @@ interface SongListProps {
 }
 export const SongList: React.FC<SongListProps> = ({
   currPlaylist,
+  onRemoveSong,
   handleSongSelect,
 }) => {
   if (currPlaylist.songs.length === 0) return <h1>Add new songs!</h1>;
@@ -35,6 +38,16 @@ export const SongList: React.FC<SongListProps> = ({
           >
             <SongThumbnail src={song.url} alt="" />
             <SongTitle>{song.title}</SongTitle>
+            <Button
+              cb={(ev: any) => {
+                ev.stopPropagation();
+                onRemoveSong(song._id);
+              }}
+              label="x88"
+              size="small"
+            >
+              X
+            </Button>
           </SongContainer>
         );
       })}
