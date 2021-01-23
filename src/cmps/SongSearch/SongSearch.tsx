@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { youtubeService } from '../../services/youtubeService';
 import { storageService } from '../../services/storageService';
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
+import { debounce } from 'lodash';
 
 interface songSearchProps {
   onAddSong: (suggestion: any) => void;
@@ -14,6 +15,20 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     isOn: false,
     suggestions: [],
   });
+
+  const handler = useCallback(
+    debounce((suggestions: any) => {
+      setAutoSuggest((prevState: any) => {
+        return {
+          ...prevState,
+          isOn: true,
+          suggestions,
+        };
+      });
+    }, 800),
+    []
+  );
+
   // Fires when a user searches for songs to add
   async function onAddSongInp(ev: React.FormEvent<HTMLInputElement>) {
     setSongToSuggest({ name: ev.currentTarget.value });
@@ -32,14 +47,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
 
     /*** OPTIONAL -->  (save to storage new search words)    ***/
     // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
-
-    setAutoSuggest((prevState: any) => {
-      return {
-        ...prevState,
-        isOn: true,
-        suggestions,
-      };
-    });
+    handler(suggestions);
   }
   const getVideos = async (query: string) => {
     const res = await youtubeService.get(query);

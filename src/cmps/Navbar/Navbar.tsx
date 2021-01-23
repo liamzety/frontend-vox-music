@@ -7,13 +7,13 @@ import {
   NavbarContainer,
   NavbarContainerInner,
   NavOptionsContainer,
+  UnkownUserPng,
 } from './navbar-styles';
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
-import { Svg } from '../../aux-cmps/Svg/Svg';
-import { AiOutlineUser } from 'react-icons/ai';
 import { useObserver } from 'mobx-react';
+import { Svg } from '../../aux-cmps/Svg/Svg';
 
 export const Navbar: React.FC = () => {
   const store = useStore();
@@ -35,7 +35,7 @@ export const Navbar: React.FC = () => {
         setIsTopPage(true);
       }
     });
-    window.onscroll = function () {
+    window.onscroll = () => {
       if (
         window.pageYOffset > window.innerHeight - 100 ||
         history.location.pathname !== '/'
@@ -92,12 +92,7 @@ export const Navbar: React.FC = () => {
             </div>
           ) : (
             <Link to={`/login`}>
-              <Text type="a">
-                <Svg size="1.3rem" color="mainTxt">
-                  <AiOutlineUser />
-                </Svg>
-                Log in
-              </Text>
+              <UnkownUserPng />
             </Link>
           )}
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { GlobalVars } from '../../assets/style/global';
+import unknownUserPng from '../../assets/img/unknown-user.png';
+import {remConverter} from '../../assets/style/global';
 
 interface Props {
   isTopPage:boolean
@@ -31,5 +32,13 @@ export const NavOptionsContainer = styled.div<Props>`
    & > *:not(:last-child) {
      margin-right:25px;
    }
+ 
+  `;
+export const UnkownUserPng = styled.div`
+    background-image: url(${unknownUserPng});
+    width: ${remConverter(50)};
+    height: ${remConverter(50)};
+    background-position: center;
+    background-size: contain;
  
   `;
