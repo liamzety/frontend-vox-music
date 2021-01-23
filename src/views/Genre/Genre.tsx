@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
+import { Link, RouteComponentProps } from 'react-router-dom';
 // Service
 import { playlistService } from '../../services/playlistService';
 import { genreService } from '../../services/genreService';
@@ -7,8 +8,6 @@ import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 //Cmps
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
-import { PlaylistType } from '../../types/Playlist';
-import { Link, RouteComponentProps } from 'react-router-dom';
 import { GenreContainer } from './genre-styles';
 import { scrollService } from '../../services/scrollService';
 import { SlideButton } from '../../aux-cmps/SlideButton/SlideButton';
@@ -37,28 +36,22 @@ export const Genre: React.FC<Props> = observer(
     }, [store]);
 
     useEffect(() => {
-      console.log('im here', genre);
       getPlaylists();
     }, [getPlaylists]);
     useEffect(() => {
       setIsOverflowing(scrollService.checkOverflow(listContainerRef));
     }, [listContainerRef]);
 
-    function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
-      playlistService.update(playlistToUpdate);
-      store.updatePlaylist(playlistToUpdate);
-    }
     const getGenreList = () => {
       return (
         genres &&
         genres.map((genre: string, idx: number) => (
           <Link
+            key={idx}
             className="flex align-center text-center"
             to={`/genre/${genre}`}
           >
-            <Text type="a" key={idx}>
-              {genre}
-            </Text>
+            <Text type="a">{genre}</Text>
           </Link>
         ))
       );
@@ -92,13 +85,7 @@ export const Genre: React.FC<Props> = observer(
             {getGenreList()}
           </GenreContainer>
         </div>
-        {genre && (
-          <PlaylistList
-            genre={genre}
-            playlists={store.playlists}
-            onUpdatePlaylist={onUpdatePlaylist}
-          />
-        )}
+        {genre && <PlaylistList genre={genre} playlists={store.playlists} />}
       </div>
     );
   }

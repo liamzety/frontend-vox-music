@@ -1,9 +1,12 @@
 import React from 'react';
+// Icons
 import {
   IoIosArrowDropleftCircle,
   IoIosArrowDroprightCircle,
 } from 'react-icons/io';
+// Cmps
 import { Svg } from '../Svg/Svg';
+// Styles
 import {
   SlideButtonRight,
   SlideButtonLeft,

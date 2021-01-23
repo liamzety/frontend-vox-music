@@ -1,37 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Text } from '../../aux-cmps/Text/Text';
+// Types
+import { PlaylistType } from '../../types/Playlist';
+import { Svg } from '../../aux-cmps/Svg/Svg';
+// Icons
+import { FaRegPlayCircle } from 'react-icons/fa';
 //Styles
 import {
   PlaylistPreviewContainer,
   CardTopContainer,
   CardBottomContainer,
 } from './playlistPreview-styles';
-// Icons
-import { FaRegPlayCircle } from 'react-icons/fa';
-// Types
-import { PlaylistType } from '../../types/Playlist';
-import { Svg } from '../../aux-cmps/Svg/Svg';
+// Cmps
+import { Text } from '../../aux-cmps/Text/Text';
 
 interface PlaylistPreviewProps {
   playlist: PlaylistType;
-  onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
 }
 export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
   playlist,
-  onUpdatePlaylist,
 }) => {
-  const [playlistToUpdate, setPlaylistToUpdate] = useState(playlist);
   const [chips, setChips] = useState(null);
   useEffect(() => {
     setChips(getChipVariation);
   }, []);
-  const onUpdateTempInp = (ev: React.FormEvent<HTMLInputElement>) => {
-    setPlaylistToUpdate({
-      ...playlistToUpdate,
-      [ev.currentTarget.name]: ev.currentTarget.value,
-    });
-  };
+
   const _prettyUrl = (name: string | undefined): string => {
     return name!.replace(/\s/g, '_');
   };

@@ -1,4 +1,5 @@
 import React from 'react';
+// Styles
 import { ThemeSwitcherStyle } from './themeSwitcher-styles';
 interface ThemeSwitcherProps {
   toggleTheme: () => void;

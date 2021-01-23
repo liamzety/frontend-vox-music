@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes';
+// Store
+import { useStore } from './store/StoreContext';
 import { observer } from 'mobx-react';
-// Cmps
-import { Navbar } from './cmps/Navbar/Navbar';
-import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
+// Services
+import { cookieService } from './services/cookieService';
 // Styles
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/style/theme';
-import { GlobalStyles } from './assets/style/global';
-// Store
-import { useStore } from './store/StoreContext';
+import { GlobalStyles } from './assets/style/main';
+// Cmps
+import { Navbar } from './cmps/Navbar/Navbar';
+import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
 import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
 import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
-import { cookieService } from './services/cookieService';
 import { Player } from './cmps/Player/Player';
 
 const App = observer(() => {

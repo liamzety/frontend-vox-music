@@ -1,9 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { playlistService } from '../../services/playlistService';
+// Store
 import { useStore } from '../../store/StoreContext';
+// Services
+import { playlistService } from '../../services/playlistService';
+// Types
 import { PlaylistType } from '../../types/Playlist';
+// Cmps
 import { PlaylistAdd } from '../PlaylistAdd/PlaylistAdd';
+// Styles
 import { PlaylistAddModalStyles } from './playlistAddModal-styles';
 
 export const PlaylistAddModal: React.FC = () => {

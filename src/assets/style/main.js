@@ -1,24 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalVars = {
-  whiteMain: '#e1dde4',
-  blackMain: '#161616',
-  redMain: '#ff003c',
-  yellowMain: '#fcee09',
+import { animations } from './basics/animations';
+import { helpers } from './basics/helpers';
+import { typography } from './basics/typography';
 
-  whiteSecondary: '#cdc9d0',
-  blackSecondary: '#333',
 
-  whiteTertiary: '#dcdcdc',
-  blackTertiary: '#252525',
-
-  redTint: '#ff151529',
-  yellowTint: '#fffa1526',
-}
 export const neon = (sh2 = '#FF00DE', sh1 = '#FFFFFF') => `
 color: ${sh1};
 text-shadow:
- 
     0 0 5px ${sh1},
     0 0 10px ${sh1},
     0 0 15px ${sh2},
@@ -30,6 +19,9 @@ export const remConverter = (pix) => {
 }
 
 export const GlobalStyles = createGlobalStyle`
+${animations}
+${typography}
+${helpers}
 
 * {
   box-sizing: border-box;

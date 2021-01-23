@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
-import { PlayerContainer, PlayerWrapper } from './player-styles';
+// Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Styles
+import { PlayerContainer, PlayerWrapper } from './player-styles';
 
 export const Player: React.FC = observer(() => {
   const store = useStore();

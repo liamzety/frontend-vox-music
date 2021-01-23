@@ -1,4 +1,5 @@
 import React from 'react';
+// Styles
 import { ButtonStyle } from './button-styles';
 
 export interface ButtonProps {

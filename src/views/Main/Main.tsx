@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
-import { playlistService } from '../../services/playlistService';
+import React, { useEffect, useCallback } from 'react';
+import { Link, RouteComponentProps } from 'react-router-dom';
+// Store
 import { useStore } from '../../store/StoreContext';
-import { SongList } from '../../cmps/SongList/SongList';
-import { SongSearch } from '../../cmps/SongSearch/SongSearch';
+import { observer } from 'mobx-react';
+// Types
+import { PlaylistType } from '../../types/Playlist';
+// Services
+import { playlistService } from '../../services/playlistService';
 import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
-import { Link, RouteComponentProps } from 'react-router-dom';
-import { observer } from 'mobx-react';
+// Cmps
+import { SongList } from '../../cmps/SongList/SongList';
+import { SongSearch } from '../../cmps/SongSearch/SongSearch';
 
 interface MatchParams {
   playlistId: string;
@@ -20,21 +25,28 @@ export const Main: React.FC<Props> = observer(
   }) => {
     const store = useStore();
 
+    const getPlaylist = useCallback(
+      async (playlistId: string) => {
+        let { playlist, playlistSongs } = await playlistService.getById(
+          playlistId
+        );
+        store.setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
+      },
+      [store]
+    );
     useEffect(() => {
       getPlaylist(playlistId);
-    }, [playlistId]);
+    }, [getPlaylist, playlistId]);
     // ---------------------Playlist CRUD ------------------
-    const getPlaylist = async (playlistId: string) => {
-      let { playlist, playlistSongs } = await playlistService.getById(
-        playlistId
-      );
-      store.setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
-    };
 
     const onRemovePlaylist = (playlistId: string): void => {
       playlistService.remove(playlistId);
       store.removePlaylist(playlistId);
     };
+    function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
+      playlistService.update(playlistToUpdate);
+      store.updatePlaylist(playlistToUpdate);
+    }
     // ---------------------Song CRUD ------------------
     const onAddSong = async (songData: any) => {
       const video_id = songData.id.videoId;

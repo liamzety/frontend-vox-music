@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../aux-cmps/Button/Button';
+// Types
 import { PlaylistType } from '../../types/Playlist';
 // Styles
 import {
@@ -8,6 +8,9 @@ import {
   SongThumbnail,
   SongTitle,
 } from './songList-styles';
+// Cmps
+import { Button } from '../../aux-cmps/Button/Button';
+
 interface SongListProps {
   currPlaylist: PlaylistType;
   onRemoveSong: (songId: string) => void;

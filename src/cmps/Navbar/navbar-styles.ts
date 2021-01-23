@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import unknownUserPng from '../../assets/img/unknown-user.png';
-import {remConverter} from '../../assets/style/global';
+import {remConverter} from '../../assets/style/main';
 
 interface Props {
   isTopPage:boolean

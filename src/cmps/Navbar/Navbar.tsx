@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// store
+// Store
 import { useStore } from '../../store/StoreContext';
-//styles
+import { observer } from 'mobx-react';
+// Styles
 import {
   NavbarContainer,
   NavbarContainerInner,
   NavOptionsContainer,
   UnkownUserPng,
 } from './navbar-styles';
+// Cmps
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
-import { observer } from 'mobx-react';
 
 export const Navbar: React.FC = observer(() => {
   const store = useStore();
@@ -22,25 +23,7 @@ export const Navbar: React.FC = observer(() => {
   const [profileModal, setProfileModal] = useState({
     isOn: false,
   });
-
-  useEffect(() => {
-    history.listen((location) => {
-      if (
-        window.pageYOffset > window.innerHeight - 100 ||
-        location.pathname !== '/'
-      ) {
-        setIsTopPage(false);
-      } else {
-        setIsTopPage(true);
-      }
-    });
-    window.addEventListener('scroll', handlePageScroll);
-    return () => {
-      window.removeEventListener('scroll', handlePageScroll);
-    };
-  }, [history]);
-
-  const handlePageScroll = (): void => {
+  const handlePageScroll = useCallback((): void => {
     if (
       window.pageYOffset > window.innerHeight - 100 ||
       history.location.pathname !== '/'
@@ -49,7 +32,18 @@ export const Navbar: React.FC = observer(() => {
     } else {
       setIsTopPage(true);
     }
-  };
+  }, [history.location.pathname]);
+
+  useEffect(() => {
+    history.listen(() => {
+      handlePageScroll();
+    });
+    window.addEventListener('scroll', handlePageScroll);
+    return () => {
+      window.removeEventListener('scroll', handlePageScroll);
+    };
+  }, [history, handlePageScroll]);
+
   const toggleTheme = (): void => {
     if (store.theme === 'light') {
       store.setTheme('dark');

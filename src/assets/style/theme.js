@@ -1,4 +1,4 @@
-import { GlobalVars } from './global'
+import { GlobalVars } from './basics/vars'
 import materialBg from '../img/material-bg.png'
 import materialBgLight from '../img/material-bg-light.png'
 

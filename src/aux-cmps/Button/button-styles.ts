@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-
-import { GlobalVars } from "../../assets/style/global";
 interface Props {
   bgColor:string,
   color:string

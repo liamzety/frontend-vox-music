@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {remConverter} from '../../assets/style/global'
+import {remConverter} from '../../assets/style/main'
 
 export const PlaylistPreviewContainer = styled.div`
  display:flex;

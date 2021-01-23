@@ -1,5 +1,7 @@
 import React from 'react';
+// Imgs
 import loader from '../../assets/img/loader.gif';
+// Styles
 import { LoaderStyle } from './loader-styles';
 
 interface LoaderProps {

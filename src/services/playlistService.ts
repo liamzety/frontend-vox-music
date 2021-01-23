@@ -1,6 +1,5 @@
 import httpService from "./httpService"
 import {PlaylistType} from '../types/Playlist'
-import { songService } from "./songService"
 
 export const playlistService = {
     query,

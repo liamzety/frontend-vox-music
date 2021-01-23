@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// Styles
 import {
   InstallPopupContainer,
   InstallPopupInnerContainer,

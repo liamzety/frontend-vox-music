@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+// Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Styles
 import { LoginContainer } from './login-styles';
 
 export const Login: React.FC = observer(({ history }: any) => {

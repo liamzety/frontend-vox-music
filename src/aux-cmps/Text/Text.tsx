@@ -1,4 +1,5 @@
 import React from 'react';
+// Styles
 import { TextStyle } from './text-styles';
 
 export interface TextProps {

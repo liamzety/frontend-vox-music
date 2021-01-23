@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react';
+import { debounce } from 'lodash';
+// Services
 import { youtubeService } from '../../services/youtubeService';
 import { storageService } from '../../services/storageService';
+// Cmps
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
-import { debounce } from 'lodash';
 
 interface songSearchProps {
   onAddSong: (suggestion: any) => void;

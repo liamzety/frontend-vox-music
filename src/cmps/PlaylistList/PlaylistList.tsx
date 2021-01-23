@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+// Styles
 import { PlaylistListContainer } from './playlistList-styles';
+// Types
 import { PlaylistType } from '../../types/Playlist';
+// Services
+import { scrollService } from '../../services/scrollService';
+// Cmps
 import { PlaylistPreview } from '../PlaylistPreview/PlaylistPreview';
 import { Text } from '../../aux-cmps/Text/Text';
-import { scrollService } from '../../services/scrollService';
-
 import { SlideButton } from '../../aux-cmps/SlideButton/SlideButton';
 
 interface PlaylistListProps {
   genre: string;
   playlists: PlaylistType[];
-  onUpdatePlaylist: (playlistToUpdate: PlaylistType) => void;
 }
 export const PlaylistList: React.FC<PlaylistListProps> = ({
   genre,
   playlists,
-  onUpdatePlaylist,
 }) => {
   const history = useHistory();
   const pathname = history.location.pathname;
@@ -25,7 +26,7 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
 
   useEffect(() => {
     setIsOverflowing(scrollService.checkOverflow(listContainerRef));
-  }, [playlists.length]);
+  }, [playlists.length, listContainerRef]);
 
   const getPlaylistPreviews = () => {
     const playlistPreviewsByGenre = playlists.filter(
@@ -42,11 +43,7 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
       );
     return playlistPreviewsByGenre.map(
       (playlist: PlaylistType, idx: number) => (
-        <PlaylistPreview
-          key={idx}
-          playlist={playlist}
-          onUpdatePlaylist={onUpdatePlaylist}
-        />
+        <PlaylistPreview key={idx} playlist={playlist} />
       )
     );
   };

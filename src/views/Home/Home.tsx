@@ -1,15 +1,13 @@
 import React, { useEffect, useCallback, useRef } from 'react';
-// Cmps
-import { Banner } from '../../cmps/Banner/Banner';
-import { GenreList } from '../../cmps/GenreList/GenreList';
-// Service
-import { playlistService } from '../../services/playlistService';
-// Types
-import { PlaylistType } from '../../types/Playlist';
 //Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 import { scrollService } from '../../services/scrollService';
+// Service
+import { playlistService } from '../../services/playlistService';
+// Cmps
+import { Banner } from '../../cmps/Banner/Banner';
+import { GenreList } from '../../cmps/GenreList/GenreList';
 
 export const Home: React.FC = observer(() => {
   const store = useStore();
@@ -19,14 +17,9 @@ export const Home: React.FC = observer(() => {
   }, [store]);
 
   useEffect(() => {
-    console.log('xxxx', store.user.isSignedIn);
     getPlaylists();
   }, [getPlaylists]);
 
-  function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
-    playlistService.update(playlistToUpdate);
-    store.updatePlaylist(playlistToUpdate);
-  }
   const genreListRef = useRef<HTMLDivElement>(null);
 
   const onHandleScroll = () => {
@@ -37,10 +30,7 @@ export const Home: React.FC = observer(() => {
       <Banner onHandleScroll={onHandleScroll} playlists={store.playlists} />
       <div className="container-x">
         <div ref={genreListRef}>
-          <GenreList
-            playlists={store.playlists}
-            onUpdatePlaylist={onUpdatePlaylist}
-          />
+          <GenreList playlists={store.playlists} />
         </div>
       </div>
     </div>

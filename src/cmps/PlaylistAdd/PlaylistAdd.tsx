@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+// Services
 import { cloudinaryService } from '../../services/cloudinaryService';
-import { PlaylistType } from '../../types/Playlist';
-import { FiUpload } from 'react-icons/fi';
-import { PlaylistAddImgLabel, PlayListAddForm } from './playlistAdd-styles';
 import { genreService } from '../../services/genreService';
-import { Loader } from '../Loader/Loader';
+// Types
+import { PlaylistType } from '../../types/Playlist';
+// Icons
+import { FiUpload } from 'react-icons/fi';
+// Styles
+import { PlaylistAddImgLabel, PlayListAddForm } from './playlistAdd-styles';
+// Imgs
 import templatePlaylistImg from '../../assets/img/vox-music.png';
+// Cmps
+import { Loader } from '../Loader/Loader';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;

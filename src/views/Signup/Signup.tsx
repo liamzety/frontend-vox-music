@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+// Styles
 import { SignupContainer } from './signup-styles';
+// Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 

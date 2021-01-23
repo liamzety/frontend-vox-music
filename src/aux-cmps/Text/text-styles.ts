@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GlobalVars, neon } from '../../assets/style/global';
+import {  neon } from '../../assets/style/main';
 
 interface Props {
     size?: string;
