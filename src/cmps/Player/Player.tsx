@@ -14,7 +14,7 @@ export const Player: React.FC<PlayerProps> = ({
   handleNextPrevSong,
 }) => {
   const [player, setPlayer] = useState<PlayerType>({
-    isPlaying: true,
+    isPlaying: false,
     duration: null,
     time: 0,
     volume: 0.3,
