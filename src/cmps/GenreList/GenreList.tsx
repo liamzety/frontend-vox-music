@@ -16,10 +16,12 @@ export const GenreList: React.FC<GenreListProps> = ({
   onUpdatePlaylist,
 }) => {
   return useObserver(() => (
-    <GnereListContainer>
-      {!playlists || playlists.length === 0
-        ? ''
-        : genreService.getGenreList().map((genre, idx) => {
+    <>
+      {!playlists || playlists.length === 0 ? (
+        ''
+      ) : (
+        <GnereListContainer>
+          {genreService.getGenreList().map((genre, idx) => {
             return (
               <PlaylistList
                 key={idx}
@@ -29,6 +31,8 @@ export const GenreList: React.FC<GenreListProps> = ({
               />
             );
           })}
-    </GnereListContainer>
+        </GnereListContainer>
+      )}
+    </>
   ));
 };
