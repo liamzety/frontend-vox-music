@@ -1,6 +1,11 @@
 .container-x {
   padding-left: 30px;
   padding-right: 30px;
+
+  @media(max-width:520px) {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 .container-y {

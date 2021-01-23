@@ -6,7 +6,7 @@ interface Props {
 }
 export const SvgStyle = styled.span<Props>`
 svg {
-    color: ${({color,theme}) => color ? color : theme[color]};
+    color: ${({color,theme}) => color ? theme[color] : theme.mainSvg};
     font-size: ${({size}) => size};
 }
 `

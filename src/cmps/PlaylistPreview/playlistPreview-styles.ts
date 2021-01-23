@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {remConverter} from '../../assets/style/global'
 
 export const PlaylistPreviewContainer = styled.div`
  display:flex;
@@ -6,8 +7,10 @@ export const PlaylistPreviewContainer = styled.div`
  align-items:center;
  color:${({theme}) => theme.chipBorder};
  margin: 25px 0;
+ transition: 0.2s linear;
+
  &:not(:last-child) {
-  margin-right:50px;
+  margin-right:${remConverter(50)};
  }
 
  &:hover {
@@ -19,8 +22,8 @@ export const PlaylistPreviewContainer = styled.div`
     src:string
   }
 export const CardTopContainer = styled.div<CardTopContainerProps>`
-  width:200px;
-  height:150px;
+width: ${remConverter(200)};
+height: ${remConverter(150)};
   display:flex;
   flex-direction:column;
   align-items: center;
@@ -32,8 +35,8 @@ export const CardTopContainer = styled.div<CardTopContainerProps>`
 
 `
 export const CardBottomContainer = styled.div`
-width: 200px;
-height: 100px;
+width: ${remConverter(200)};
+height: ${remConverter(100)};
 background-color: ${({theme}) => theme.chipBorder};
 padding: 0 15px;
 display:flex;
@@ -51,3 +54,4 @@ text-overflow: ellipsis;
 
   `;
 
+ 

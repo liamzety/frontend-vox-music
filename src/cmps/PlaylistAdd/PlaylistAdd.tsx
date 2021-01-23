@@ -15,7 +15,6 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
   const DEFAULT_NAME = 'My New Playlist!';
   const DEFAULT_DESCRIPTION = 'This is my awesome playlist!';
   const DEFAULT_GENRE = 'Cyberpunk';
-
   const [playlistToAdd, setPlaylistToAdd] = useState<PlaylistType>({
     name: DEFAULT_NAME,
     description: DEFAULT_DESCRIPTION,
@@ -54,12 +53,12 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
       };
     });
   };
+
   return (
     <PlayListAddForm
       onSubmit={(ev) => {
         ev.preventDefault();
         if (isImgUploading) return;
-        console.log('playlistToAdd', playlistToAdd);
         onAddPlaylist(playlistToAdd);
       }}
     >

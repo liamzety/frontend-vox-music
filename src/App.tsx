@@ -35,10 +35,10 @@ function App() {
       <main className="app">
         <GlobalStyles />
         {/* <InstallPopup /> */}
-        {store.modal.isOn && getModal()}
         {/* <PlaylistAddModal /> */}
-        {store.modal.isOn && <ScreenWrapper />}
         <Router>
+          {store.modal.isOn && getModal()}
+          {store.modal.isOn && <ScreenWrapper />}
           <Navbar />
           <Switch>
             {routes.map((route) => (

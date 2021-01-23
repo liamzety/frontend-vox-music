@@ -6,17 +6,20 @@ export const lightTheme = {
     materialBg: materialBgLight,
 
     mainBg: GlobalVars.whiteMain,
+
     mainBtn: GlobalVars.blackMain,
-    mainBtnTxt: GlobalVars.redMain,
+    mainBtnTxt: GlobalVars.yellowMain,
+
     mainTxt: GlobalVars.blackMain,
+    secTxt: GlobalVars.yellowMain,
+
     mainSvg: GlobalVars.blackMain,
 
     songHover: GlobalVars.whiteTertiary,
 
-    secTxt: GlobalVars.redMain,
     secBg: GlobalVars.whiteSecondary,
 
-    bannerTitle: GlobalVars.redMain,
+    bannerTitle: GlobalVars.yellowMain,
     hr: GlobalVars.whiteMain,
     navbar: GlobalVars.whiteMain,
     neon: GlobalVars.redMain,
@@ -26,21 +29,28 @@ export const lightTheme = {
 
     chipBorder: GlobalVars.blackMain,
 
-    slideBtnSvg: GlobalVars.blackMain
+    slideBtnSvg: GlobalVars.blackMain,
+
+    navbarTxt: GlobalVars.blackSec,
+    navbarTxtTop: GlobalVars.yellowMain,
+
 }
 
 export const darkTheme = {
     materialBg: materialBg,
 
     mainBg: GlobalVars.blackMain,
+
     mainBtn: GlobalVars.yellowMain,
     mainBtnTxt: GlobalVars.blackMain,
+
     mainTxt: GlobalVars.yellowMain,
+    secTxt: GlobalVars.blackMain,
+
     mainSvg: GlobalVars.blackMain,
 
     songHover: GlobalVars.blackTertiary,
 
-    secTxt: GlobalVars.blackMain,
     secBg: GlobalVars.blackSecondary,
 
     bannerTitle: GlobalVars.yellowMain,
@@ -53,5 +63,9 @@ export const darkTheme = {
 
     chipBorder: GlobalVars.redMain,
 
-    slideBtnSvg: GlobalVars.yellowMain
+    slideBtnSvg: GlobalVars.yellowMain,
+
+    navbarTxt: GlobalVars.yellowMain,
+    navbarTxtTop: GlobalVars.yellowMain,
+
 }

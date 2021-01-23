@@ -9,7 +9,6 @@ background-position:center;
 background-size:cover;
 display:flex;
 justify-content:center;
-margin-bottom: 80px;
 
 `;
 export const BannerContainerInner = styled.div`
@@ -20,6 +19,8 @@ height:70%;
 margin-top: 50px;
 line-height:2;
 z-index:1;
+text-align: center;
+
 `;
 export const BannerWallpaperContainer = styled.div`
 background:black;

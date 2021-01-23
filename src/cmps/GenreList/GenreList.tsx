@@ -5,6 +5,7 @@ import { PlaylistType } from '../../types/Playlist';
 // Styles
 import { genreService } from '../../services/genreService';
 import { PlaylistList } from '../PlaylistList/PlaylistList';
+import { GnereListContainer } from './genreList-styles';
 
 interface GenreListProps {
   playlists: PlaylistType[];
@@ -15,7 +16,7 @@ export const GenreList: React.FC<GenreListProps> = ({
   onUpdatePlaylist,
 }) => {
   return useObserver(() => (
-    <div>
+    <GnereListContainer>
       {!playlists || playlists.length === 0
         ? ''
         : genreService.getGenreList().map((genre, idx) => {
@@ -28,6 +29,6 @@ export const GenreList: React.FC<GenreListProps> = ({
               />
             );
           })}
-    </div>
+    </GnereListContainer>
   ));
 };

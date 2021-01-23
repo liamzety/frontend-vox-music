@@ -16,6 +16,7 @@ export const SlideButtonRight = styled.div<SlideButtonProps>`
   position: absolute;
   right: ${({leftRight}) => leftRight};
   svg {
+    transition: 0.2s linear;
     cursor:pointer;
     opacity:0.5;
     &:hover {
@@ -30,6 +31,7 @@ export const SlideButtonLeft = styled.div<SlideButtonProps>`
   position: absolute;
   left: ${({leftRight}) => leftRight};
   svg {
+    transition: 0.2s linear;
     cursor:pointer;
     opacity:0.5;
     &:hover {

@@ -25,6 +25,9 @@ text-shadow:
     0 0 25px ${sh2},
     0 0 50px ${sh2};
 `
+export const remConverter = (pix) => {
+  return +pix / 16 + 'rem';
+}
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -33,7 +36,11 @@ export const GlobalStyles = createGlobalStyle`
   outline-style: none;
   margin: 0;
   padding: 0;
-  transition: all 0.2s linear, color 0ms;
+}
+html {
+  ${'' /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */}
+  font-size: calc(10px + (16 - 8) * ((100vw - 300px) / (1920 - 300)));
+
 }
 body {
  background-image:url(${({ theme }) => theme.materialBg});

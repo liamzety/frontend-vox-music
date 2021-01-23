@@ -12,7 +12,12 @@ export const PlaylistListContainer = styled.section<Props>`
   min-height:200px;
   margin:0 50px;
   scroll-behavior: smooth;
-
+  @media(max-width:520px) {
+    margin:0;
+    svg {
+      display:none;
+    }
+  }
   &::-webkit-scrollbar {
     width:1px;
   }

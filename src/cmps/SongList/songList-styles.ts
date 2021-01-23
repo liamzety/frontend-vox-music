@@ -10,6 +10,8 @@ background: ${({ theme }) => theme.secBg};
     cursor:pointer;
     align-items: center;
     padding: 5px;
+    transition: 0.1s linear;
+
     &:not(:last-of-type) {
       margin-bottom: 2px ;
     }

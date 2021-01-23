@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
         <Link to="/">
           <Text type="logo">VOX</Text>
         </Link>
-        <NavOptionsContainer>
+        <NavOptionsContainer isTopPage={isTopPage}>
           <Link to="/genre">
             <Text type="a">Genres</Text>
           </Link>
@@ -93,7 +93,7 @@ export const Navbar: React.FC = () => {
           ) : (
             <Link to={`/login`}>
               <Text type="a">
-                <Svg size="1.3rem">
+                <Svg size="1.3rem" color="mainTxt">
                   <AiOutlineUser />
                 </Svg>
                 Log in
