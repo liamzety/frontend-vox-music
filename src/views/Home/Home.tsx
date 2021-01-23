@@ -8,10 +8,10 @@ import { playlistService } from '../../services/playlistService';
 import { PlaylistType } from '../../types/Playlist';
 //Store
 import { useStore } from '../../store/StoreContext';
-import { useObserver } from 'mobx-react';
+import { observer } from 'mobx-react';
 import { scrollService } from '../../services/scrollService';
 
-export const Home: React.FC = () => {
+export const Home: React.FC = observer(() => {
   const store = useStore();
 
   const getPlaylists = useCallback(async () => {
@@ -32,7 +32,7 @@ export const Home: React.FC = () => {
   const onHandleScroll = () => {
     scrollService.handleScroll(genreListRef);
   };
-  return useObserver(() => (
+  return (
     <div>
       <Banner onHandleScroll={onHandleScroll} playlists={store.playlists} />
       <div className="container-x">
@@ -44,5 +44,5 @@ export const Home: React.FC = () => {
         </div>
       </div>
     </div>
-  ));
-};
+  );
+});

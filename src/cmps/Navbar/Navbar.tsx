@@ -12,10 +12,9 @@ import {
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
-import { useObserver } from 'mobx-react';
-import { Svg } from '../../aux-cmps/Svg/Svg';
+import { observer } from 'mobx-react';
 
-export const Navbar: React.FC = () => {
+export const Navbar: React.FC = observer(() => {
   const store = useStore();
   const history = useHistory();
 
@@ -35,17 +34,22 @@ export const Navbar: React.FC = () => {
         setIsTopPage(true);
       }
     });
-    window.onscroll = () => {
-      if (
-        window.pageYOffset > window.innerHeight - 100 ||
-        history.location.pathname !== '/'
-      ) {
-        setIsTopPage(false);
-      } else {
-        setIsTopPage(true);
-      }
+    window.addEventListener('scroll', handlePageScroll);
+    return () => {
+      window.removeEventListener('scroll', handlePageScroll);
     };
   }, [history]);
+
+  const handlePageScroll = (): void => {
+    if (
+      window.pageYOffset > window.innerHeight - 100 ||
+      history.location.pathname !== '/'
+    ) {
+      setIsTopPage(false);
+    } else {
+      setIsTopPage(true);
+    }
+  };
   const toggleTheme = (): void => {
     if (store.theme === 'light') {
       store.setTheme('dark');
@@ -64,7 +68,7 @@ export const Navbar: React.FC = () => {
   const handleLogout = () => {
     console.log('logging out');
   };
-  return useObserver(() => (
+  return (
     <NavbarContainer isTopPage={isTopPage}>
       <NavbarContainerInner className="container-x">
         <Link to="/">
@@ -100,5 +104,5 @@ export const Navbar: React.FC = () => {
         </NavOptionsContainer>
       </NavbarContainerInner>
     </NavbarContainer>
-  ));
-};
+  );
+});

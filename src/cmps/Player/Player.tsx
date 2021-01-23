@@ -1,81 +1,38 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { PlayerContainer, PlayerWrapper } from './player-styles';
-import { PlayerType } from '../../types/Player';
+import { useStore } from '../../store/StoreContext';
+import { observer } from 'mobx-react';
 
-interface PlayerProps {
-  currPlayingUrl: string;
-  idx: number;
-  handleNextPrevSong: (val: string, idx: number) => void;
-}
-export const Player: React.FC<PlayerProps> = ({
-  currPlayingUrl,
-  idx,
-  handleNextPrevSong,
-}) => {
-  const [player, setPlayer] = useState<PlayerType>({
-    isPlaying: true,
-    duration: null,
-    time: 0,
-    volume: 0.3,
-    isMuted: false,
-  });
+export const Player: React.FC = observer(() => {
+  const store = useStore();
+  const { player } = store;
   const reactPlayerRef = useRef(null);
 
   const togglePlay = () => {
-    setPlayer((prevState) => {
-      return {
-        ...prevState,
-        isPlaying: !prevState.isPlaying,
-      };
-    });
+    store.setPlayer({ isPlaying: !player.isPlaying });
   };
   //  Update player.duration when a song is loaded
   const setDuration = (duration: number) => {
-    setPlayer((prevState) => {
-      return {
-        ...prevState,
-        duration,
-      };
-    });
+    store.setPlayer({ duration });
   };
   // Update player.time every second
   const handleProgress = (progressData: any) => {
-    setPlayer((prevState) => {
-      return {
-        ...prevState,
-        time: progressData.playedSeconds,
-      };
-    });
+    store.setPlayer({ time: progressData.playedSeconds });
   };
   // When user slides and selects different timelapse
   const handleSongTime = (ev: any) => {
     const timestamp = +ev.currentTarget.value;
     reactPlayerRef.current.seekTo(timestamp, 'seconds');
-    setPlayer((prevState) => {
-      return {
-        ...prevState,
-        time: timestamp,
-      };
-    });
+    store.setPlayer({ time: timestamp });
   };
   // When user slides and selects different volume
   const handleSongVolume = (ev: any) => {
     const volume = +ev.currentTarget.value;
-    setPlayer((prevState) => {
-      return {
-        ...prevState,
-        volume,
-      };
-    });
+    store.setPlayer({ volume });
   };
   const toggleSongMute = () => {
-    setPlayer((prevState) => {
-      return {
-        ...prevState,
-        isMuted: !prevState.isMuted,
-      };
-    });
+    store.setPlayer({ isMuted: !player.isMuted });
   };
 
   const _getFormattedMinutes = (duration: number) => {
@@ -98,11 +55,12 @@ export const Player: React.FC<PlayerProps> = ({
   };
 
   return (
-    <PlayerWrapper className={`${currPlayingUrl ? '' : 'hidden'}`}>
+    <PlayerWrapper className={`${player.isOn ? '' : 'hidden'}`}>
       <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${currPlayingUrl}`}
+        url={`https://www.youtube.com/watch?v=${player.songUrl}`}
         playing={player.isPlaying}
         onReady={() => {
+          console.log('ready');
           reactPlayerRef.current.seekTo(0, 'seconds');
         }}
         onDuration={setDuration}
@@ -137,13 +95,13 @@ export const Player: React.FC<PlayerProps> = ({
           {_getFormattedMinutes(player.duration)}
         </p>
 
-        <button onClick={handleNextPrevSong.bind({}, 'next', idx)}>
+        <button onClick={store.handleNextPrevSong.bind({}, 'next', player.idx)}>
           NEXT SONG
         </button>
-        <button onClick={handleNextPrevSong.bind({}, 'prev', idx)}>
+        <button onClick={store.handleNextPrevSong.bind({}, 'prev', player.idx)}>
           PREV SONG
         </button>
       </PlayerContainer>
     </PlayerWrapper>
   );
-};
+});

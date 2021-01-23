@@ -1,7 +1,13 @@
+import {PlaylistType} from './Playlist'
+
 export interface PlayerType {
-    isPlaying: boolean
-    duration: number | null
-    time: number
-    volume:number
-    isMuted:boolean
+            isOn:boolean,
+            isPlaying: boolean,
+            duration: number,
+            time: number,
+            volume: number,
+            isMuted: boolean,
+            idx:number,
+            songUrl:string,
+            currPlaylist: PlaylistType
     }

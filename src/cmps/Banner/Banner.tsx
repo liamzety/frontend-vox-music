@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useObserver } from 'mobx-react';
+import { observer } from 'mobx-react';
 import {
   BannerContainer,
   BannerContainerInner,
@@ -21,58 +21,61 @@ interface BannerProps {
   onHandleScroll: () => void;
   playlists: PlaylistType[];
 }
-export const Banner: React.FC<BannerProps> = ({
-  onHandleScroll,
-  playlists,
-}) => {
-  const [currImg, setCurrImg] = useState(1);
+export const Banner: React.FC<BannerProps> = observer(
+  ({ onHandleScroll, playlists }) => {
+    const [currImg, setCurrImg] = useState(1);
 
-  const wallpapers = [
-    wallpaper1,
-    wallpaper2,
-    wallpaper3,
-    wallpaper4,
-    wallpaper5,
-    wallpaper6,
-  ];
-  const imgInterval = useRef(null);
-  useEffect(() => {
-    setImgInterval();
-    return () => {
-      clearInterval(imgInterval.current);
-    };
-  }, []);
-  function setImgInterval() {
-    imgInterval.current = setInterval(() => {
-      setCurrImg((prevState) => {
-        if (prevState === wallpapers.length) return 1;
-        return prevState + 1;
-      });
-    }, 7000);
-  }
+    const wallpapers = [
+      wallpaper1,
+      wallpaper2,
+      wallpaper3,
+      wallpaper4,
+      wallpaper5,
+      wallpaper6,
+    ];
+    const imgInterval = useRef(null);
+    useEffect(() => {
+      setImgInterval();
+      return () => {
+        clearInterval(imgInterval.current);
+      };
+    }, []);
+    function setImgInterval() {
+      imgInterval.current = setInterval(() => {
+        setCurrImg((prevState) => {
+          if (prevState === wallpapers.length) return 1;
+          return prevState + 1;
+        });
+      }, 7000);
+    }
 
-  return useObserver(() => (
-    <BannerContainer>
-      <BannerContainerInner className="container-x">
-        <BannerContainerInner>
-          <Text type="banner-title">Vox Music</Text>
-          <Text type="banner-sub-title">Immerse Youself.</Text>
+    return (
+      <BannerContainer>
+        <BannerContainerInner className="container-x">
+          <BannerContainerInner>
+            <Text type="banner-title">Vox Music</Text>
+            <Text type="banner-sub-title">Immerse Youself.</Text>
+          </BannerContainerInner>
+          <Button label="r25" cb={onHandleScroll} size="large">
+            {playlists.length === 0 ? (
+              <Loader size="50%" />
+            ) : (
+              'Start Listening_'
+            )}
+          </Button>
         </BannerContainerInner>
-        <Button label="r25" cb={onHandleScroll} size="large">
-          {playlists.length === 0 ? <Loader size="50%" /> : 'Start Listening_'}
-        </Button>
-      </BannerContainerInner>
-      <BannerWallpaperContainer>
-        {wallpapers.map((src, idx) => (
-          <BannerWallpaper
-            key={idx}
-            className="absolute w100 h100"
-            opacity={currImg === idx + 1 ? '1' : '0'}
-            src={src}
-            alt="wallpaper"
-          />
-        ))}
-      </BannerWallpaperContainer>
-    </BannerContainer>
-  ));
-};
+        <BannerWallpaperContainer>
+          {wallpapers.map((src, idx) => (
+            <BannerWallpaper
+              key={idx}
+              className="absolute w100 h100"
+              opacity={currImg === idx + 1 ? '1' : '0'}
+              src={src}
+              alt="wallpaper"
+            />
+          ))}
+        </BannerWallpaperContainer>
+      </BannerContainer>
+    );
+  }
+);

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { SignupContainer } from './signup-styles';
 import { useStore } from '../../store/StoreContext';
-import { useObserver } from 'mobx-react';
+import { observer } from 'mobx-react';
 
-export const Signup: React.FC = ({ history }: any) => {
+export const Signup: React.FC = observer(({ history }: any) => {
   const store = useStore();
   if (store.user.isSignedIn) history.push('/');
 
@@ -24,7 +24,7 @@ export const Signup: React.FC = ({ history }: any) => {
       };
     });
   };
-  return useObserver(() => (
+  return (
     <SignupContainer style={{ paddingTop: '200px' }}>
       <form
         onSubmit={(ev) => {
@@ -39,5 +39,5 @@ export const Signup: React.FC = ({ history }: any) => {
         <button>SUBMIT</button>
       </form>
     </SignupContainer>
-  ));
-};
+  );
+});

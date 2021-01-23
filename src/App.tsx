@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes';
-import { useObserver } from 'mobx-react';
+import { observer } from 'mobx-react';
 // Cmps
 import { Navbar } from './cmps/Navbar/Navbar';
 import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
@@ -14,8 +14,9 @@ import { useStore } from './store/StoreContext';
 import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
 import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
 import { cookieService } from './services/cookieService';
+import { Player } from './cmps/Player/Player';
 
-function App() {
+const App = observer(() => {
   const store = useStore();
   const getModal = () => {
     switch (store.modal.type) {
@@ -30,7 +31,7 @@ function App() {
     }
   }, []);
 
-  return useObserver(() => (
+  return (
     <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
       <main className="app">
         <GlobalStyles />
@@ -59,8 +60,9 @@ function App() {
           {store.userMsg.msg}
         </h2>
       )}
+      {store.player.isOn && <Player />}
     </ThemeProvider>
-  ));
-}
+  );
+});
 
 export default App;
