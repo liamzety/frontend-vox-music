@@ -3,6 +3,8 @@ import { createPlaylistStore } from './playlist/playlistStore'
 import { createThemeStore } from './theme/themeStore'
 import { createUserMsgStore } from './userMsg/userMsgStore'
 import { createUserStore } from './user/userStore'
+import { createPlayerStore } from './player/playerStore'
+
 export function createStore():any {
     return {
         ...createPlaylistStore,
@@ -10,5 +12,6 @@ export function createStore():any {
         ...createUserMsgStore,
         ...createModalStore,
         ...createUserStore,
+        ...createPlayerStore,
     }
 }
