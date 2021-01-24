@@ -33,10 +33,6 @@ async function ajax(endpoint:any, method:methodType = 'get', data:any = null) {
         return res.data;
     } catch (err) {
         console.log(`Had Issues ${method}ing to the backend, endpoint: ${endpoint}, with data: ${data}`);
-        if(err.response) {
-            // TODO: make userMsg
-            console.log('err fro http:', err.response.data)
-        }
-        throw err
+        throw err;
     }
 }

@@ -12,4 +12,6 @@ export const GlobalVars = {
 
     redTint: '#ff151529',
     yellowTint: '#fffa1526',
+
+    greenMain: '#21fb5c'
 }

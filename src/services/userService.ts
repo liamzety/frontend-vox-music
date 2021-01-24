@@ -15,13 +15,11 @@ export const userService = {
       return user
   } catch (err) {
       if(err.response) {
-      // TODO: make userMsg
-      console.log('err:', err.response.data)
-          throw err.response.data
+      const composedErr = {msg: err.response.data ,type:'alert'}
+          throw composedErr
       }
   }
-
-}
+ }
 interface signupProps {
     name: string,
     email: string,
@@ -33,9 +31,11 @@ interface signupProps {
      const user = await httpService.post('auth/signup',userCred)
     return user
     } catch (err) {
-            console.error('err:', err)
-            throw err
-    }
+        if(err.response) {
+            const composedErr = {msg: err.response.data ,type:'error'}
+                throw composedErr
+            }
+  }
 
 }
 async function logout() {
@@ -44,8 +44,10 @@ async function logout() {
        await httpService.post('auth/logout')
         console.log('logged out', )
     } catch (err) {
-        console.error('err:', err)
-        throw err
+        if(err.response) {
+            const composedErr = {msg: err.response.data ,type:'error'}
+                throw composedErr
+            }
     }
 
 }
@@ -56,9 +58,8 @@ async function getLoggedUser(userId:string) {
           return userFound
     } catch (err) {
         if(err.response) {
-            // TODO: make userMsg
-            console.error('err:', err)
-                throw err
+            const composedErr = {msg: err.response.data ,type:'error'}
+                throw composedErr
             }
     }
 

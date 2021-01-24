@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // Styles
 import { SignupContainer } from './signup-styles';
 // Store
@@ -8,7 +8,6 @@ import { userService } from '../../services/userService';
 
 export const Signup: React.FC = observer(({ history }: any) => {
   const store = useStore();
-  if (store.user.isSignedIn) history.push('/');
 
   const [userCred, setUserCred] = useState({
     name: '',
@@ -16,7 +15,9 @@ export const Signup: React.FC = observer(({ history }: any) => {
     password: '',
     // imgUrl:''
   });
-
+  useEffect(() => {
+    if (store.user.isSignedIn) history.push('/');
+  }, [history, store.user.isSignedIn]);
   const handleInput = (ev: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = ev.currentTarget;
 
@@ -32,10 +33,10 @@ export const Signup: React.FC = observer(({ history }: any) => {
     try {
       const user = await userService.signup(userCred);
       store.setUser(user);
-      history.push('/');
     } catch (err) {
-      // TODO: make userMsg
-      console.error(err.message);
+      store.alert(err);
+      store.clearAlert();
+      console.error(err.msg);
     }
   };
   return (

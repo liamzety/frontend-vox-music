@@ -6,21 +6,21 @@ export  const createUserMsgStore = {
             type:'',
             isOn:false
         } as userMsg,
-        alert: function(msg:string,type:string):void  {
+        alert: function(err:{msg:string,type:string}):void  {
+            console.log('alerting', )
             this.userMsg = {
-                msg,
-                type,
+                 ...err,
                 isOn:true
             }
         },
-        clearAlert: function():void  {
+        clearAlert: function(time = 3000):void  {
             setTimeout(() => {
                 this.userMsg = {
                     msg:'',
                     type:'',
                     isOn:false
                 }
-            }, 3000);
+            }, time);
         }
   
 }

@@ -30,9 +30,10 @@ export const Login: React.FC = observer(({ history }: any) => {
     try {
       const user = await userService.login(userCred);
       store.setUser(user);
-      // history.push('/');
     } catch (err) {
-      console.error(err);
+      store.alert(err);
+      store.clearAlert();
+      console.error(err.msg);
     }
   };
   return (

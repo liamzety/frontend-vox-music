@@ -17,6 +17,7 @@ import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
 import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Player } from './cmps/Player/Player';
 import { userService } from './services/userService';
+import { AlertModal } from './aux-cmps/AlertModal/AlertModal';
 
 const App = observer(() => {
   const store = useStore();
@@ -60,13 +61,7 @@ const App = observer(() => {
           </Switch>
         </Router>
       </main>
-      {store.userMsg.isOn && (
-        <h2
-          style={{ color: store.userMsg.type === 'alert' ? 'yellow' : 'red' }}
-        >
-          {store.userMsg.msg}
-        </h2>
-      )}
+      <AlertModal userMsg={store.userMsg} />
       {store.player.isOn && <Player />}
     </ThemeProvider>
   );

@@ -22,6 +22,8 @@ export const PlaylistAddModal: React.FC = () => {
       history.push(`/main/${playlistAdded.title}=${playlistAdded._id}`);
     }
     store.toggleModal();
+    store.alert({ type: 'success', msg: 'Playlist added successfully.' });
+    store.clearAlert();
   }
   return (
     <PlaylistAddModalStyles data-augmented-ui=" tr-2-clip-xy b-clip-x border">
