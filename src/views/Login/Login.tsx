@@ -9,5 +9,9 @@ export const Login: React.FC = observer(({ history }: any) => {
   const store = useStore();
   if (store.user.isSignedIn) history.push('/');
 
-  return <LoginContainer style={{ paddingTop: '200px' }}>Login</LoginContainer>;
+  return (
+    <LoginContainer style={{ paddingTop: '200px' }}>
+      <form action=""></form>
+    </LoginContainer>
+  );
 });

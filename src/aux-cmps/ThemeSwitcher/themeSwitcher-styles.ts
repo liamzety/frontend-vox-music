@@ -13,7 +13,7 @@ input {
 	cursor:pointer;
 }
 .l {
-    background-color: rgba(0,0,0,0.7);
+    background-color: #333333;
 	border-radius: 0.75em;
 	box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.3) inset;
 	color: #fdea7b;
