@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 // Styles
-import { PlaylistListContainer } from './playlistList-styles';
+import {
+  PlaylistListContainer,
+  PlaylistListStyle,
+} from './playlistList-styles';
 // Types
 import { PlaylistType } from '../../types/Playlist';
 // Services
@@ -49,8 +52,8 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
   };
 
   return (
-    <div>
-      <div className="flex space-between align-center">
+    <PlaylistListStyle>
+      <div className="genre-list-container flex space-between align-center">
         {pathname === '/' && <Text type="h3">{genre}</Text>}
         {pathname === '/' && (
           <Link to={`/genre/${genre}`}>
@@ -83,6 +86,6 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
         )}
         {getPlaylistPreviews()}
       </PlaylistListContainer>
-    </div>
+    </PlaylistListStyle>
   );
 };

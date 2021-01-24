@@ -5,10 +5,11 @@ import { observer } from 'mobx-react';
 import { scrollService } from '../../services/scrollService';
 // Service
 import { playlistService } from '../../services/playlistService';
+//  Styles
+import { LinerBuffer } from './home-styles';
 // Cmps
 import { Banner } from '../../cmps/Banner/Banner';
 import { GenreList } from '../../cmps/GenreList/GenreList';
-
 export const Home: React.FC = observer(() => {
   const store = useStore();
 
@@ -33,6 +34,7 @@ export const Home: React.FC = observer(() => {
           <GenreList playlists={store.playlists} />
         </div>
       </div>
+      <LinerBuffer />
     </div>
   );
 });

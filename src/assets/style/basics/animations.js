@@ -111,4 +111,17 @@ export const animations = `
       opacity: 1;
     }
   }
+
+
+    
+    @keyframes retro-future-tv-lines {
+      0% {
+        -webkit-mask-position: center 0rem;
+        mask-position: center 0rem;
+      }
+      100% {
+        -webkit-mask-position: center -1.5rem;
+        mask-position: center -1.5rem;
+      }
+    }
 `

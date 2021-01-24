@@ -9,6 +9,9 @@ background-position:center;
 background-size:cover;
 display:flex;
 justify-content:center;
+}
+}
+
 
 `;
 export const BannerContainerInner = styled.div`

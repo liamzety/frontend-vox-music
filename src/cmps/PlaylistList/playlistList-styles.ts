@@ -3,7 +3,31 @@ interface Props {
   justifyCenter: string;
   wrap:string;
 }
-export const PlaylistListContainer = styled.section<Props>`
+export const PlaylistListStyle = styled.section`
+.genre-list-container {
+  p.h3 {
+      border-bottom: 2px solid ${(({theme}) => theme.mainTxt)};
+      padding-bottom: 10px;
+      position: relative;
+    
+      &::before {
+        content: "";
+        width: 20%;
+        height: 0;
+        border-width: 8px 8px 0 8px;
+        border-style: solid;
+        border-color: ${(({theme}) => theme.mainTxt)} transparent ${(({theme}) => theme.mainTxt)} ${(({theme}) => theme.mainTxt)};
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+    }
+  }
+}
+& > div {
+  margin-bottom: 50px;
+}
+`
+export const PlaylistListContainer = styled.div<Props>`
   display: flex;
   align-items:center;
   justify-content: ${props => props.justifyCenter};
@@ -12,6 +36,7 @@ export const PlaylistListContainer = styled.section<Props>`
   min-height:200px;
   margin:0 50px;
   scroll-behavior: smooth;
+
   @media(max-width:520px) {
     margin:0;
     svg {
