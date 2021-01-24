@@ -3,13 +3,20 @@ import React from 'react';
 import { ThemeSwitcherStyle } from './themeSwitcher-styles';
 interface ThemeSwitcherProps {
   toggleTheme: () => void;
+  theme: string;
 }
 export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
   toggleTheme,
+  theme,
 }) => {
   return (
     <ThemeSwitcherStyle>
-      <input onChange={toggleTheme} className="l" type="checkbox"></input>
+      <input
+        onChange={toggleTheme}
+        checked={theme === 'dark' ? false : true}
+        className="l"
+        type="checkbox"
+      ></input>
     </ThemeSwitcherStyle>
   );
 };

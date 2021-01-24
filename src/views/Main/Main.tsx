@@ -51,7 +51,10 @@ export const Main: React.FC<Props> = observer(
     const onAddSong = async (songData: any) => {
       const video_id = songData.id.videoId;
       if (findIfExsits(video_id)) {
-        store.alert('This song has already been added!', 'alert');
+        store.alert({
+          msg: 'This song has already been added!',
+          type: 'error',
+        });
         store.clearAlert();
         return;
       }

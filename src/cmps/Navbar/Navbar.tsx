@@ -61,8 +61,16 @@ export const Navbar: React.FC = observer(() => {
     });
   };
   const handleLogout = () => {
-    userService.logout();
-    store.resetUser();
+    try {
+      userService.logout();
+      store.resetUser();
+      store.alert({ type: 'success', msg: 'Logged out successfully.' });
+      store.clearAlert();
+    } catch (err) {
+      store.alert(err);
+      store.clearAlert();
+      console.error(err.msg);
+    }
   };
   return (
     <NavbarContainer isTopPage={isTopPage}>
@@ -79,7 +87,7 @@ export const Navbar: React.FC = observer(() => {
             label="r35"
             cb={store.toggleModal.bind({}, 'addPlaylist')}
           >
-            Create Playlist_
+            New Playlist_
           </Button>
 
           {store.user.isSignedIn ? (
@@ -96,7 +104,7 @@ export const Navbar: React.FC = observer(() => {
             </Link>
           )}
 
-          <ThemeSwitcher toggleTheme={toggleTheme} />
+          <ThemeSwitcher theme={store.theme} toggleTheme={toggleTheme} />
         </NavOptionsContainer>
       </NavbarContainerInner>
     </NavbarContainer>

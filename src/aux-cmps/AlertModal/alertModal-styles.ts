@@ -16,7 +16,7 @@ box-shadow: 0 0 10px 0px #00000094;
 z-index: 10;
 border-bottom: 4px solid ${darken(GlobalVars.blackMain,0.5)};
 border-radius: 10px;
-transition: .25s transform linear;
+transition: .45s transform ;
 color:${({theme,type}) => theme[type]};
 
 .icon-container {

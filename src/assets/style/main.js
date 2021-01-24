@@ -31,7 +31,7 @@ ${helpers}
 }
 html {
   ${'' /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */}
-  font-size: calc(10px + (16 - 8) * ((100vw - 300px) / (1920 - 300)));
+  font-size: calc(10px + (12 - 8) * ((100vw - 300px) / (1920 - 300)));
 
 }
 body {
