@@ -14,6 +14,7 @@ import {
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
+import { userService } from '../../services/userService';
 
 export const Navbar: React.FC = observer(() => {
   const store = useStore();
@@ -60,7 +61,8 @@ export const Navbar: React.FC = observer(() => {
     });
   };
   const handleLogout = () => {
-    console.log('logging out');
+    userService.logout();
+    store.resetUser();
   };
   return (
     <NavbarContainer isTopPage={isTopPage}>

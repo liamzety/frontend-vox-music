@@ -57,7 +57,6 @@ input {
 }
 /* Checked */
 .l:checked {
-	background-color: rgba(0,0,0,0.45);
 	box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.1) inset;
 }
 .l:checked:before {

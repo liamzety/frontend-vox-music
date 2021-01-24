@@ -16,6 +16,7 @@ import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
 import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
 import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Player } from './cmps/Player/Player';
+import { userService } from './services/userService';
 
 const App = observer(() => {
   const store = useStore();
@@ -27,11 +28,16 @@ const App = observer(() => {
     }
   };
   useEffect(() => {
-    if (cookieService.getCookie('user')) {
-      store.setUser(JSON.parse(cookieService.getCookie('user')));
+    if (cookieService.getCookie('userId')) {
+      handleReturningUser();
     }
   }, []);
-
+  const handleReturningUser = async () => {
+    const user = await userService.getLoggedUser(
+      JSON.parse(cookieService.getCookie('userId'))
+    );
+    store.setUser(user);
+  };
   return (
     <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
       <main className="app">

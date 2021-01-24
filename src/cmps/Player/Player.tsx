@@ -23,13 +23,13 @@ export const Player: React.FC = observer(() => {
     store.setPlayer({ time: progressData.playedSeconds });
   };
   // When user slides and selects different timelapse
-  const handleSongTime = (ev: any) => {
+  const handleSongTime = (ev: React.FormEvent<HTMLInputElement>) => {
     const timestamp = +ev.currentTarget.value;
     reactPlayerRef.current.seekTo(timestamp, 'seconds');
     store.setPlayer({ time: timestamp });
   };
   // When user slides and selects different volume
-  const handleSongVolume = (ev: any) => {
+  const handleSongVolume = (ev: React.FormEvent<HTMLInputElement>) => {
     const volume = +ev.currentTarget.value;
     store.setPlayer({ volume });
   };
