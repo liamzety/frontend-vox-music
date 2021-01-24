@@ -42,3 +42,9 @@ export const UnkownUserPng = styled.div`
     background-size: contain;
  
   `;
+export const Logo = styled.div<Props>`
+   width:50px;
+   height:50px;
+   background-image: url(${({isTopPage,theme}) => isTopPage ? theme.navbarLogoTop : theme.navbarLogo});
+   background-size: cover;
+  `;

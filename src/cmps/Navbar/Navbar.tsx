@@ -9,6 +9,7 @@ import {
   NavbarContainerInner,
   NavOptionsContainer,
   UnkownUserPng,
+  Logo,
 } from './navbar-styles';
 // Cmps
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
@@ -76,7 +77,8 @@ export const Navbar: React.FC = observer(() => {
     <NavbarContainer isTopPage={isTopPage}>
       <NavbarContainerInner className="container-x">
         <Link to="/">
-          <Text type="logo">VOX</Text>
+          <Logo isTopPage={isTopPage} />
+          {/* <Text type="logo">VOX</Text> */}
         </Link>
         <NavOptionsContainer isTopPage={isTopPage}>
           <Link to="/genre">

@@ -1,6 +1,8 @@
 import { GlobalVars } from './basics/vars'
 import materialBg from '../img/material-bg.png'
 import materialBgLight from '../img/material-bg-light.png'
+import logoLight from '../img/vox-logo-light.png';
+import logoDark from '../img/vox-logo-dark.png';
 
 export const lightTheme = {
     materialBg: materialBgLight,
@@ -34,6 +36,8 @@ export const lightTheme = {
 
     navbarTxt: GlobalVars.blackSec,
     navbarTxtTop: GlobalVars.yellowMain,
+    navbarLogoTop: logoLight,
+    navbarLogo: logoDark,
 
     alert: GlobalVars.yellowMain,
     error: GlobalVars.redMain,
@@ -73,6 +77,8 @@ export const darkTheme = {
 
     navbarTxt: GlobalVars.yellowMain,
     navbarTxtTop: GlobalVars.yellowMain,
+    navbarLogoTop: logoLight,
+    navbarLogo: logoLight,
 
     alert: GlobalVars.yellowMain,
     error: GlobalVars.redMain,
