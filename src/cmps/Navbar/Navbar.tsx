@@ -92,7 +92,7 @@ export const Navbar: React.FC = observer(() => {
             New Playlist_
           </Button>
 
-          <div onClick={toggleProfileOptionsModal}>
+          <div onClick={store.user.isSignedIn && toggleProfileOptionsModal}>
             <UserMiniProfile
               isSignedIn={store.user.isSignedIn}
               imgUrl={store.user.imgUrl}
