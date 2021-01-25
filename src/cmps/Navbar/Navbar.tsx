@@ -8,7 +8,6 @@ import {
   NavbarContainer,
   NavbarContainerInner,
   NavOptionsContainer,
-  UnkownUserPng,
   Logo,
 } from './navbar-styles';
 // Cmps
@@ -74,6 +73,7 @@ export const Navbar: React.FC = observer(() => {
       console.error(err.msg);
     }
   };
+
   return (
     <NavbarContainer isTopPage={isTopPage}>
       <NavbarContainerInner className="container-x">
@@ -92,21 +92,19 @@ export const Navbar: React.FC = observer(() => {
             New Playlist_
           </Button>
 
-          {store.user.isSignedIn ? (
-            <div onClick={toggleProfileOptionsModal}>
-              <UserMiniProfile
-                imgUrl={store.user.imgUrl}
-                initials={userService.getInitials(store.user.name)}
-              />
-              {profileModal.isOn && (
-                <button onClick={handleLogout}>logout</button>
-              )}
-            </div>
-          ) : (
-            <Link to={`/login`}>
-              <UnkownUserPng />
-            </Link>
-          )}
+          <div onClick={toggleProfileOptionsModal}>
+            <UserMiniProfile
+              isSignedIn={store.user.isSignedIn}
+              imgUrl={store.user.imgUrl}
+              initials={
+                store.user.isSignedIn &&
+                userService.getInitials(store.user.name)
+              }
+            />
+            {profileModal.isOn && (
+              <button onClick={handleLogout}>logout</button>
+            )}
+          </div>
 
           <ThemeSwitcher theme={store.theme} toggleTheme={toggleTheme} />
         </NavOptionsContainer>

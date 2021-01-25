@@ -5,15 +5,17 @@ import { SignupContainer } from './signup-styles';
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 import { userService } from '../../services/userService';
+import { cloudinaryService } from '../../services/cloudinaryService';
 
 export const Signup: React.FC = observer(({ history }: any) => {
   const store = useStore();
+  const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
 
   const [userCred, setUserCred] = useState({
     name: '',
     email: '',
     password: '',
-    // imgUrl:''
+    imgUrl: '',
   });
   useEffect(() => {
     if (store.user.isSignedIn) history.push('/');
@@ -28,8 +30,20 @@ export const Signup: React.FC = observer(({ history }: any) => {
       };
     });
   };
+  const uploadImg = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+    setIsImgUploading(true);
+    const res = await cloudinaryService.uploadImg(ev.target.files[0]);
+    setIsImgUploading(false);
+    setUserCred((prevState) => {
+      return {
+        ...prevState,
+        imgUrl: res.url,
+      };
+    });
+  };
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
+    if (isImgUploading) return;
     try {
       const user = await userService.signup(userCred);
       store.setUser(user);
@@ -45,7 +59,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
         <input onChange={handleInput} name="name" type="text" />
         <input onChange={handleInput} name="email" type="text" />
         <input onChange={handleInput} name="password" type="password" />
-        {/* <input name="imgUrl" type="text" /> */}
+        <input onChange={uploadImg} name="imgUrl" type="file" />
         <button>SUBMIT</button>
       </form>
     </SignupContainer>

@@ -48,7 +48,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
       };
     });
   }
-  const uploadImg = async (ev: any) => {
+  const uploadImg = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     setIsImgUploading(true);
     const res = await cloudinaryService.uploadImg(ev.target.files[0]);
     setIsImgUploading(false);

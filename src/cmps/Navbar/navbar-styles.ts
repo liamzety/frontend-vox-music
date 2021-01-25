@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import unknownUserPng from '../../assets/img/unknown-user.png';
+
 import {remConverter} from '../../assets/style/main';
 
 interface Props {
@@ -34,14 +34,7 @@ export const NavOptionsContainer = styled.div<Props>`
    }
  
   `;
-export const UnkownUserPng = styled.div`
-    background-image: url(${unknownUserPng});
-    width: ${remConverter(50)};
-    height: ${remConverter(50)};
-    background-position: center;
-    background-size: contain;
- 
-  `;
+
 export const Logo = styled.div<Props>`
    width:50px;
    height:50px;
