@@ -1,3 +1,4 @@
+import { darken, fade, lighten } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import {  neon } from '../../assets/style/main';
@@ -18,8 +19,8 @@ export const TextStyle = styled.p<Props>`
     font-weight:${({bold = true} ) => bold ? '700' : '400'};
 
     color:${({active} ) => active && GlobalVars.redMain};
-    background: ${({active} ) => active && ' #ff000017'};
-    border: ${({active} ) => active && '2px solid #ff002c'};   
+    background: ${({active} ) => active && `${fade(GlobalVars.redMain,0.2)}`};
+    border: ${({active} ) => active && `2px solid ${GlobalVars.redMain}`};   
     padding : ${({active} ) => active && '10px'}; 
 
     ${({underline,theme}) => underline && 
