@@ -20,6 +20,6 @@ function handleScrollVertical (left: boolean,ref:any) {
   const scrollMax = ref.current.scrollWidth;
   const scrollMin = 0;
 
-  if (left) Math.max((ref.current.scrollLeft += 500), scrollMax);
-  else Math.min((ref.current.scrollLeft -= 500), scrollMin);
+  if (left) Math.max((ref.current.scrollLeft += ( ref.current.offsetWidth - 80)), scrollMax);
+  else Math.min((ref.current.scrollLeft -= ( ref.current.offsetWidth - 80)), scrollMin);
 };
