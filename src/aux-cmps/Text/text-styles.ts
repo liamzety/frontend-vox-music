@@ -18,9 +18,9 @@ export const TextStyle = styled.p<Props>`
     color: ${({theme,color}) =>  theme[color]};
     font-weight:${({bold = true} ) => bold ? '700' : '400'};
 
-    color:${({active} ) => active && GlobalVars.redMain};
-    background: ${({active} ) => active && `${fade(GlobalVars.redMain,0.2)}`};
-    border: ${({active} ) => active && `2px solid ${GlobalVars.redMain}`};   
+    color:${({active} ) => active && GlobalVars.pinkMain};
+    background: ${({active} ) => active && `${fade(GlobalVars.pinkMain,0.2)}`};
+    border: ${({active} ) => active && `2px solid ${GlobalVars.pinkMain}`};   
     padding : ${({active} ) => active && '10px'}; 
 
     ${({underline,theme}) => underline && 

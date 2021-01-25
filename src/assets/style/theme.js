@@ -25,10 +25,10 @@ export const lightTheme = {
     bannerTitle: GlobalVars.yellowMain,
     hr: GlobalVars.whiteMain,
     navbar: GlobalVars.whiteMain,
-    neon: GlobalVars.redMain,
+    neon: GlobalVars.pinkMain,
 
     mainModal: GlobalVars.whiteSecondary,
-    neonModal: GlobalVars.redMain,
+    neonModal: GlobalVars.pinkMain,
 
     chipBorder: GlobalVars.blackMain,
 
@@ -40,7 +40,7 @@ export const lightTheme = {
     navbarLogo: logoDark,
 
     alert: GlobalVars.yellowMain,
-    error: GlobalVars.redMain,
+    error: GlobalVars.pinkMain,
     success: GlobalVars.greenMain,
 
 }
@@ -69,9 +69,9 @@ export const darkTheme = {
     neon: GlobalVars.yellowMain,
 
     mainModal: GlobalVars.blackSecondary,
-    neonModal: GlobalVars.redMain,
+    neonModal: GlobalVars.pinkMain,
 
-    chipBorder: GlobalVars.redMain,
+    chipBorder: GlobalVars.pinkMain,
 
     slideBtnSvg: GlobalVars.yellowMain,
 
@@ -81,6 +81,6 @@ export const darkTheme = {
     navbarLogo: logoLight,
 
     alert: GlobalVars.yellowMain,
-    error: GlobalVars.redMain,
+    error: GlobalVars.pinkMain,
     success: GlobalVars.greenMain,
 }

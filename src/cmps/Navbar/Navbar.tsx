@@ -16,6 +16,7 @@ import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { userService } from '../../services/userService';
+import { UserMiniProfile } from '../../aux-cmps/UserMiniProfile/UserMiniProfile';
 
 export const Navbar: React.FC = observer(() => {
   const store = useStore();
@@ -78,7 +79,6 @@ export const Navbar: React.FC = observer(() => {
       <NavbarContainerInner className="container-x">
         <Link to="/">
           <Logo isTopPage={isTopPage} />
-          {/* <Text type="logo">VOX</Text> */}
         </Link>
         <NavOptionsContainer isTopPage={isTopPage}>
           <Link to="/genre/All">
@@ -94,8 +94,10 @@ export const Navbar: React.FC = observer(() => {
 
           {store.user.isSignedIn ? (
             <div onClick={toggleProfileOptionsModal}>
-              <img src={store.user.imgUrl} alt="" />
-              <h1>{store.user.name}</h1>
+              <UserMiniProfile
+                imgUrl={store.user.imgUrl}
+                initials={userService.getInitials(store.user.name)}
+              />
               {profileModal.isOn && (
                 <button onClick={handleLogout}>logout</button>
               )}

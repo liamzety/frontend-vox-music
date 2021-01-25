@@ -4,7 +4,8 @@ export const userService = {
     login,
     signup,
     logout,
-    getLoggedUser
+    getLoggedUser,
+    getInitials
 }
 
 
@@ -63,4 +64,10 @@ async function getLoggedUser(userId:string) {
             }
     }
 
+}
+function getInitials(fullName:string) {
+    const [firstName, lastName] = fullName.split(' ');
+    let initials = firstName.charAt(0).toUpperCase();
+    if (lastName) initials += lastName.charAt(0).toUpperCase();
+    return initials;
 }
