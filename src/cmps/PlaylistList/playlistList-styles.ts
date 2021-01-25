@@ -4,25 +4,7 @@ interface Props {
   wrap:string;
 }
 export const PlaylistListStyle = styled.section`
-.genre-list-container {
-  p.h3 {
-      border-bottom: 2px solid ${(({theme}) => theme.mainTxt)};
-      padding-bottom: 10px;
-      position: relative;
-    
-      &::before {
-        content: "";
-        width: 20%;
-        height: 0;
-        border-width: 8px 8px 0 8px;
-        border-style: solid;
-        border-color: ${(({theme}) => theme.mainTxt)} transparent ${(({theme}) => theme.mainTxt)} ${(({theme}) => theme.mainTxt)};
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-    }
-  }
-}
+
 & > div {
   margin-bottom: 50px;
 }

@@ -81,7 +81,7 @@ export const Navbar: React.FC = observer(() => {
           {/* <Text type="logo">VOX</Text> */}
         </Link>
         <NavOptionsContainer isTopPage={isTopPage}>
-          <Link to="/genre">
+          <Link to="/genre/All">
             <Text type="a">Genres</Text>
           </Link>
           <Button

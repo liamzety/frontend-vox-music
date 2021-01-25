@@ -31,6 +31,7 @@ export const Genre: React.FC<Props> = observer(
     const getPlaylists = useCallback(async () => {
       const playlists = await playlistService.query();
       const genres = await genreService.getGenreList();
+      genres.unshift('All');
       setGenres(genres);
       store.setPlaylists(playlists);
     }, [store]);
@@ -45,13 +46,15 @@ export const Genre: React.FC<Props> = observer(
     const getGenreList = () => {
       return (
         genres &&
-        genres.map((genre: string, idx: number) => (
+        genres.map((_genre: string, idx: number) => (
           <Link
             key={idx}
-            className="flex align-center text-center"
-            to={`/genre/${genre}`}
+            className="flex align-center text-center justify-center"
+            to={`/genre/${_genre}`}
           >
-            <Text type="a">{genre}</Text>
+            <Text type="a" active={genre === _genre}>
+              {_genre}
+            </Text>
           </Link>
         ))
       );
@@ -62,7 +65,9 @@ export const Genre: React.FC<Props> = observer(
           <Link to="/">Go Back</Link>{' '}
         </Text>
 
-        <Text type="h2">{genre || 'Genres'} </Text>
+        <Text underline={true} type="h2">
+          {genre}
+        </Text>
         {isOverflowing && (
           <SlideButton
             maxWidth="740px"

@@ -32,9 +32,14 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
   }, [playlists.length, listContainerRef]);
 
   const getPlaylistPreviews = () => {
-    const playlistPreviewsByGenre = playlists.filter(
-      (playlist: PlaylistType) => playlist.genre === genre
-    );
+    let playlistPreviewsByGenre = [];
+    if (genre === 'All') {
+      playlistPreviewsByGenre = playlists;
+    } else {
+      playlistPreviewsByGenre = playlists.filter(
+        (playlist: PlaylistType) => playlist.genre === genre
+      );
+    }
     if (playlistPreviewsByGenre.length === 0)
       return (
         <Text type="h3">
@@ -54,7 +59,11 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
   return (
     <PlaylistListStyle>
       <div className="genre-list-container flex space-between align-center">
-        {pathname === '/' && <Text type="h3">{genre}</Text>}
+        {pathname === '/' && (
+          <Text underline={true} type="h3">
+            {genre}
+          </Text>
+        )}
         {pathname === '/' && (
           <Link to={`/genre/${genre}`}>
             <Text type="a">Show All</Text>
