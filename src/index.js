@@ -4,11 +4,9 @@ import App from './App.tsx';
 import { StoreProvider } from './store/StoreContext';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <StoreProvider>
-      <App />
-    </StoreProvider>
-  </React.StrictMode>,
+  <StoreProvider>
+    <App />
+  </StoreProvider>,
   document.getElementById('root')
 );
 // navigator.serviceWorker.register('./sw.js');

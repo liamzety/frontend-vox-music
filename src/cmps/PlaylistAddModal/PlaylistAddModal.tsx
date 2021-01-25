@@ -10,8 +10,12 @@ import { PlaylistType } from '../../types/Playlist';
 import { PlaylistAdd } from '../PlaylistAdd/PlaylistAdd';
 // Styles
 import { PlaylistAddModalStyles } from './playlistAddModal-styles';
+import { Fade } from '@material-ui/core';
 
-export const PlaylistAddModal: React.FC = () => {
+interface PlaylistAddModal {
+  fade: boolean;
+}
+export const PlaylistAddModal: React.FC<PlaylistAddModal> = ({ fade }) => {
   const store = useStore();
   const history = useHistory();
 
@@ -26,8 +30,10 @@ export const PlaylistAddModal: React.FC = () => {
     store.clearAlert();
   }
   return (
-    <PlaylistAddModalStyles data-augmented-ui=" tr-2-clip-xy b-clip-x border">
-      <PlaylistAdd onAddPlaylist={onAddPlaylist} />
-    </PlaylistAddModalStyles>
+    <Fade in={fade}>
+      <PlaylistAddModalStyles data-augmented-ui=" tr-2-clip-xy b-clip-x border">
+        <PlaylistAdd onAddPlaylist={onAddPlaylist} />
+      </PlaylistAddModalStyles>
+    </Fade>
   );
 };

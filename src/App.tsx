@@ -6,6 +6,7 @@ import { useStore } from './store/StoreContext';
 import { observer } from 'mobx-react';
 // Services
 import { cookieService } from './services/cookieService';
+import { userService } from './services/userService';
 // Styles
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/style/theme';
@@ -16,7 +17,6 @@ import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
 import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
 import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Player } from './cmps/Player/Player';
-import { userService } from './services/userService';
 import { AlertModal } from './aux-cmps/AlertModal/AlertModal';
 
 const App = observer(() => {
@@ -24,7 +24,7 @@ const App = observer(() => {
   const getModal = () => {
     switch (store.modal.type) {
       case 'addPlaylist':
-        return <PlaylistAddModal />;
+        return <PlaylistAddModal fade={store.modal.isOn} />;
       default:
     }
   };
@@ -44,10 +44,14 @@ const App = observer(() => {
       <main className="app">
         <GlobalStyles />
         {/* <InstallPopup /> */}
-        {/* <PlaylistAddModal /> */}
+        {/* <PlaylistAddModal fade={store.modal.isOn} /> */}
         <Router>
-          {store.modal.isOn && getModal()}
-          {store.modal.isOn && <ScreenWrapper />}
+          {getModal()}
+          <ScreenWrapper
+            fade={store.modal.isOn}
+            index="9"
+            cb={store.toggleModal}
+          />
           <Navbar />
           <Switch>
             {routes.map((route) => (

@@ -10,11 +10,13 @@ interface UserMiniProfileProps {
   imgUrl: string;
   initials: string;
   isSignedIn: boolean;
+  onClick?: () => void;
 }
 export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
   imgUrl,
   initials,
   isSignedIn,
+  onClick,
 }) => {
   if (!isSignedIn)
     return (
@@ -23,7 +25,7 @@ export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
       </Link>
     );
   return (
-    <UserMiniProfileStyles>
+    <UserMiniProfileStyles onClick={onClick}>
       {imgUrl ? (
         <img src={imgUrl} alt="Profile" />
       ) : (
