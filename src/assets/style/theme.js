@@ -7,6 +7,9 @@ import logoDark from '../img/vox-logo-dark.png';
 export const lightTheme = {
     materialBg: materialBgLight,
 
+    playerMain: GlobalVars.pinkMain,
+    playerSec: GlobalVars.whiteSecondary,
+
     mainBg: GlobalVars.whiteMain,
     secBg: GlobalVars.whiteSecondary,
     tertiaryBg: GlobalVars.whiteTertiary,
@@ -47,6 +50,9 @@ export const lightTheme = {
 
 export const darkTheme = {
     materialBg: materialBg,
+
+    playerMain: GlobalVars.yellowMain,
+    playerSec: GlobalVars.whiteSecondary,
 
     mainBg: GlobalVars.blackMain,
     secBg: GlobalVars.blackSecondary,

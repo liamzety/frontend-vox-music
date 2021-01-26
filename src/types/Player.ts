@@ -6,7 +6,7 @@ export interface PlayerType {
             duration: number,
             time: number,
             volume: number,
-            isMuted: boolean,
+            lastVolume: number,
             idx:number,
             songUrl:string,
             currPlaylist: PlaylistType

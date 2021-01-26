@@ -66,7 +66,8 @@ const App = observer(() => {
         </Router>
       </main>
       <AlertModal userMsg={store.userMsg} />
-      {store.player.isOn && <Player />}
+      <Player slide={store.player.isOn} />
+      {/* <Player slide={true} /> */}
     </ThemeProvider>
   );
 });

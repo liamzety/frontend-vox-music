@@ -8,7 +8,7 @@ export const createPlayerStore = {
             duration: null,
             time: 0,
             volume: 0.3,
-            isMuted: false,
+            lastVolume: null,
             idx:null,
             songUrl:'',
             currPlaylist: {

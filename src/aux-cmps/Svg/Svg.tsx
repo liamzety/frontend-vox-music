@@ -3,13 +3,29 @@ import React from 'react';
 import { SvgStyle } from './svg-styles';
 
 interface SvgProps {
-  color?: string;
   size: string;
   children: JSX.Element;
+  pointer?: boolean;
+  color?: string;
+  className?: string;
+  cb?: () => void;
 }
-export const Svg: React.FC<SvgProps> = ({ color, size, children }) => {
+export const Svg: React.FC<SvgProps> = ({
+  size,
+  children,
+  pointer,
+  className,
+  color,
+  cb,
+}) => {
   return (
-    <SvgStyle color={color} size={size}>
+    <SvgStyle
+      onClick={cb}
+      className={className}
+      pointer={pointer}
+      color={color}
+      size={size}
+    >
       {children}
     </SvgStyle>
   );
