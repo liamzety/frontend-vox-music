@@ -27,10 +27,18 @@ export const Main: React.FC<Props> = observer(
 
     const getPlaylist = useCallback(
       async (playlistId: string) => {
+        // Get playlist data and songs
         let { playlist, playlistSongs } = await playlistService.getById(
           playlistId
         );
-        store.setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
+        await store.setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
+        // if playlist is not empty setting the currPlaying as the first song
+        if (playlistSongs.length > 0) {
+          const { title, url: imgUrl, video_id: songUrl } = playlistSongs[0];
+          const firstSong = { imgUrl, songUrl, title, idx: 0 };
+
+          store.setCurrPlaying(firstSong);
+        }
       },
       [store]
     );
@@ -95,7 +103,7 @@ export const Main: React.FC<Props> = observer(
     // When user selects a song
     const handleSongSelect = (data: { songUrl: string; idx: number }): void => {
       store.setCurrPlaying(data);
-      store.setPlayer({ ...store.player, isOn: true });
+      store.setPlayer({ ...store.player, isOn: true, isPlaying: true });
     };
 
     return (

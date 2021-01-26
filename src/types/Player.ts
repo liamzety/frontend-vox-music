@@ -7,7 +7,11 @@ export interface PlayerType {
             time: number,
             volume: number,
             lastVolume: number,
-            idx:number,
-            songUrl:string,
+            currSong: {
+                    idx:number,
+                    songUrl:string,
+                    imgUrl:string,
+                    title:string,
+            }
             currPlaylist: PlaylistType
     }

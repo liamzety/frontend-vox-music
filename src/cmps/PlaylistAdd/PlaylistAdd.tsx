@@ -12,6 +12,9 @@ import { PlaylistAddImgLabel, PlayListAddForm } from './playlistAdd-styles';
 import templatePlaylistImg from '../../assets/img/vox-music.png';
 // Cmps
 import { Loader } from '../Loader/Loader';
+import { Svg } from '../../aux-cmps/Svg/Svg';
+import { Text } from '../../aux-cmps/Text/Text';
+import { localImgService } from '../../services/localImgService';
 
 interface PlaylistAddProps {
   onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
@@ -68,27 +71,26 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
         onAddPlaylist(playlistToAdd);
       }}
     >
-      {isImgUploading ? (
+      <div>
         <PlaylistAddImgLabel htmlFor="imgUpload">
-          <Loader size="25px" />
-          <p>Loading...</p>
+          {isImgUploading ? (
+            <Loader loader={localImgService.defaultLoaderDark} size="25px" />
+          ) : (
+            <Svg size="25px">
+              <FiUpload />
+            </Svg>
+          )}
+          <Text type="p">Upload Playlist Image</Text>
         </PlaylistAddImgLabel>
-      ) : (
-        <div>
-          <PlaylistAddImgLabel htmlFor="imgUpload">
-            <FiUpload />
-            <p>Upload Playlist Image</p>
-          </PlaylistAddImgLabel>
-          <input
-            onChange={uploadImg}
-            name="img"
-            id="imgUpload"
-            type="file"
-            placeholder="playlist img"
-            hidden
-          />
-        </div>
-      )}
+        <input
+          onChange={uploadImg}
+          name="img"
+          id="imgUpload"
+          type="file"
+          placeholder="playlist img"
+          hidden
+        />
+      </div>
 
       <input
         onChange={onAddPlaylistInp}

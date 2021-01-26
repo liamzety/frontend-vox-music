@@ -1,8 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Services
+import { localImgService } from '../../services/localImgService';
 // Icons
 import {
   BiVolumeMute,
@@ -27,6 +29,7 @@ import {
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Slide } from '@material-ui/core';
+import { Loader } from '../Loader/Loader';
 interface PlayerProps {
   slide: boolean;
 }
@@ -34,10 +37,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
   const store = useStore();
   const { player } = store;
   const reactPlayerRef = useRef(null);
-  const [song, setSong] = useState(null);
-  useEffect(() => {
-    setSong(player.currPlaylist.songs[player.idx]);
-  }, [player.idx, song]);
+  const [isBuffering, setIsBuffering] = useState(true);
 
   const togglePlay = () => {
     store.setPlayer({ isPlaying: !player.isPlaying });
@@ -82,6 +82,8 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
     else return <BiVolumeMute />;
   };
   const getPlayIcon = () => {
+    if (isBuffering)
+      return <Loader loader={localImgService.bufferLoader} size="30px" />;
     if (player.isPlaying) return <BiPause />;
     else return <BiPlay />;
   };
@@ -122,10 +124,16 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
         {getPlayerToggleIcon()}
       </Svg>
       <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${player.songUrl}`}
+        url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
         playing={player.isPlaying}
         onReady={() => {
           reactPlayerRef.current.seekTo(0, 'seconds');
+        }}
+        onBuffer={() => {
+          setIsBuffering(true);
+        }}
+        onBufferEnd={() => {
+          setIsBuffering(false);
         }}
         onDuration={setDuration}
         onProgress={handleProgress}
@@ -139,9 +147,16 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
           data-augmented-ui="tl-clip-x t-clip-x tr-clip-x"
         >
           <PlayerLeftColumn>
-            <PlayerPlaylistImg src={song && song.url} alt="" />
+            <PlayerPlaylistImg
+              src={
+                player.currPlaylist.currSong &&
+                player.currPlaylist.currSong.imgUrl
+              }
+              alt=""
+            />
             <Text type="h3" size="1.5rem">
-              {song && song.title}
+              {player.currPlaylist.currSong &&
+                player.currPlaylist.currSong.title}
             </Text>
           </PlayerLeftColumn>
           <PlayerRightColumn className="">
@@ -160,7 +175,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
             </PlayerDurationContainer>
             <div className="controls-container flex align-center">
               <Svg
-                cb={store.handleNextPrevSong.bind({}, 'prev', player.idx)}
+                cb={store.handleNextPrevSong.bind({}, 'prev')}
                 size="40px"
                 pointer={true}
               >
@@ -172,7 +187,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
               </Svg>
 
               <Svg
-                cb={store.handleNextPrevSong.bind({}, 'next', player.idx)}
+                cb={store.handleNextPrevSong.bind({}, 'next')}
                 size="40px"
                 pointer={true}
               >

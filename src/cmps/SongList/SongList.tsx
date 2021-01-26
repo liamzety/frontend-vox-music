@@ -17,11 +17,16 @@ interface SongListProps {
   handleSongSelect: ({
     songUrl,
     idx,
+    imgUrl,
+    title,
   }: {
     songUrl: string;
     idx: number;
+    imgUrl: string;
+    title: string;
   }) => void;
 }
+
 export const SongList: React.FC<SongListProps> = ({
   currPlaylist,
   onRemoveSong,
@@ -36,7 +41,12 @@ export const SongList: React.FC<SongListProps> = ({
             className="test"
             key={idx}
             onClick={() => {
-              handleSongSelect({ songUrl: song.video_id, idx });
+              handleSongSelect({
+                songUrl: song.video_id,
+                imgUrl: song.url,
+                title: song.title,
+                idx,
+              });
             }}
           >
             <SongThumbnail src={song.url} alt="" />
