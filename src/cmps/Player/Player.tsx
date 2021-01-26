@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { JSXElementConstructor, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 // Store
 import { useStore } from '../../store/StoreContext';
@@ -30,6 +30,7 @@ import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Slide } from '@material-ui/core';
 import { Loader } from '../Loader/Loader';
+import { Resizable } from 're-resizable';
 interface PlayerProps {
   slide: boolean;
 }
@@ -83,17 +84,9 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
   };
   const getPlayIcon = () => {
     if (isBuffering)
-      return <Loader loader={localImgService.bufferLoader} size="30px" />;
+      return <Loader loader={localImgService.bufferLoader} size="40px" />;
     if (player.isPlaying) return <BiPause />;
     else return <BiPlay />;
-  };
-  const getPlayerToggleIcon = () => {
-    if (isPlayerHidden) return <BiUpArrow />;
-    else return <BiDownArrow />;
-  };
-  const [isPlayerHidden, setIsPlayerHidden] = useState(false);
-  const togglePlayer = () => {
-    setIsPlayerHidden(!isPlayerHidden);
   };
 
   const _getFormattedMinutes = (duration: number) => {
@@ -114,15 +107,11 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
     ret += '' + secs;
     return ret;
   };
+  const [width, setWidth] = React.useState('100%');
+  const [height, setHeight] = React.useState(125);
 
   return (
-    <PlayerWrapper
-      isPlayerHidden={isPlayerHidden}
-      className={`relative ${player.isOn ? '' : 'hidden'}`}
-    >
-      <Svg size="30px" className="toggle-player" cb={togglePlayer}>
-        {getPlayerToggleIcon()}
-      </Svg>
+    <PlayerWrapper className={`relative ${player.isOn ? '' : 'hidden'}`}>
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
         playing={player.isPlaying}
@@ -142,76 +131,94 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
         hidden
       />
       <Slide direction="up" in={slide}>
-        <PlayerContainer
-          className={`${isPlayerHidden ? 'hide-player' : ''}`}
-          data-augmented-ui="tl-clip-x t-clip-x tr-clip-x"
-        >
-          <PlayerLeftColumn>
-            <PlayerPlaylistImg
-              src={
-                player.currPlaylist.currSong &&
-                player.currPlaylist.currSong.imgUrl
-              }
-              alt=""
-            />
-            <Text type="h3" size="1.5rem">
-              {player.currPlaylist.currSong &&
-                player.currPlaylist.currSong.title}
-            </Text>
-          </PlayerLeftColumn>
-          <PlayerRightColumn className="">
-            <PlayerDurationContainer className="duration-container">
-              <Text type="h4">{_getFormattedMinutes(player.time)}</Text>
-              <input
-                className="duration-input"
-                onChange={handleSongTime}
-                type="range"
-                value={player.time}
-                min="0"
-                max={player.duration}
-                step="1"
+        <PlayerContainer data-augmented-ui="tl-clip-x t-clip-x tr-clip-x">
+          <Resizable
+            size={{ width, height }}
+            minHeight={15}
+            maxHeight={125}
+            className="resizeable"
+            handleClasses={{ top: 'top-handle' }}
+            enable={{
+              top: true,
+              right: false,
+              bottom: false,
+              left: false,
+              topRight: false,
+              bottomRight: false,
+              bottomLeft: false,
+              topLeft: false,
+            }}
+            onResizeStop={(e, direction, ref, d) => {
+              setHeight(height + d.height);
+            }}
+          >
+            <PlayerLeftColumn>
+              <PlayerPlaylistImg
+                src={
+                  player.currPlaylist.currSong &&
+                  player.currPlaylist.currSong.imgUrl
+                }
+                alt=""
               />
-              <Text type="h4">{_getFormattedMinutes(player.duration)}</Text>
-            </PlayerDurationContainer>
-            <div className="controls-container flex align-center">
-              <Svg
-                cb={store.handleNextPrevSong.bind({}, 'prev')}
-                size="40px"
-                pointer={true}
-              >
-                <BiSkipPrevious />
-              </Svg>
+              <Text type="h3" size="1.5rem">
+                {player.currPlaylist.currSong &&
+                  player.currPlaylist.currSong.title}
+              </Text>
+            </PlayerLeftColumn>
+            <PlayerRightColumn className="">
+              <PlayerDurationContainer className="duration-container">
+                <Text type="h4">{_getFormattedMinutes(player.time)}</Text>
+                <input
+                  className="duration-input"
+                  onChange={handleSongTime}
+                  type="range"
+                  value={player.time}
+                  min="0"
+                  max={player.duration}
+                  step="1"
+                />
+                <Text type="h4">{_getFormattedMinutes(player.duration)}</Text>
+              </PlayerDurationContainer>
+              <div className="controls-container flex align-center">
+                <Svg
+                  cb={store.handleNextPrevSong.bind({}, 'prev')}
+                  size="40px"
+                  pointer={true}
+                >
+                  <BiSkipPrevious />
+                </Svg>
 
-              <Svg size="40px" cb={togglePlay} pointer={true}>
-                {getPlayIcon()}
-              </Svg>
+                <Svg size="40px" cb={togglePlay} pointer={true}>
+                  {getPlayIcon()}
+                </Svg>
 
-              <Svg
-                cb={store.handleNextPrevSong.bind({}, 'next')}
-                size="40px"
-                pointer={true}
-              >
-                <BiSkipNext />
-              </Svg>
-              <input
-                className="volume-input"
-                onChange={handleSongVolume}
-                type="range"
-                value={player.volume}
-                min="0"
-                max="1"
-                step="0.01"
-              />
-              <Svg
-                cb={toggleSongMute}
-                className="mute-btn"
-                size="30px"
-                pointer={true}
-              >
-                {getMuteIcon()}
-              </Svg>
-            </div>
-          </PlayerRightColumn>
+                <Svg
+                  cb={store.handleNextPrevSong.bind({}, 'next')}
+                  size="40px"
+                  pointer={true}
+                >
+                  <BiSkipNext />
+                </Svg>
+                <Svg
+                  cb={toggleSongMute}
+                  className="mute-btn"
+                  size="30px"
+                  pointer={true}
+                >
+                  {getMuteIcon()}
+                </Svg>
+                <input
+                  className="volume-input"
+                  onChange={handleSongVolume}
+                  type="range"
+                  value={player.volume}
+                  min="0"
+                  max="1"
+                  step="0.01"
+                />
+              </div>
+            </PlayerRightColumn>
+          </Resizable>
         </PlayerContainer>
       </Slide>
     </PlayerWrapper>

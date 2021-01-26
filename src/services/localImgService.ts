@@ -9,11 +9,14 @@ import wallpaper3 from '../assets/img/wallpapers/wallpaper3.jpg';
 import wallpaper4 from '../assets/img/wallpapers/wallpaper4.jpg';
 import wallpaper5 from '../assets/img/wallpapers/wallpaper5.jpg';
 import wallpaper6 from '../assets/img/wallpapers/wallpaper6.jpg';
+// Misc
+import doubleLine from '../assets/img/double-line.png';
 
 export const localImgService = {
   defaultLoaderDark,
   defaultLoaderLight,
   bufferLoader,
+  doubleLine,
   wallpapers: [
     wallpaper1,
     wallpaper2,

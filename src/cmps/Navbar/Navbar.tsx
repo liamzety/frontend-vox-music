@@ -18,7 +18,6 @@ import { userService } from '../../services/userService';
 import { UserMiniProfile } from '../../aux-cmps/UserMiniProfile/UserMiniProfile';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
-import Fade from '@material-ui/core/Fade';
 
 export const Navbar: React.FC = observer(() => {
   const store = useStore();
@@ -72,48 +71,46 @@ export const Navbar: React.FC = observer(() => {
   };
 
   return (
-    <>
-      <NavbarContainer isTopPage={isTopPage}>
-        <NavbarContainerInner className="container-x">
-          <Link to="/">
-            <Logo isTopPage={isTopPage} />
+    <NavbarContainer isTopPage={isTopPage}>
+      <NavbarContainerInner className="container-x">
+        <Link to="/">
+          <Logo isTopPage={isTopPage} />
+        </Link>
+        <NavOptionsContainer isTopPage={isTopPage}>
+          <Link to="/genre/All">
+            <Text type="a">Genres</Text>
           </Link>
-          <NavOptionsContainer isTopPage={isTopPage}>
-            <Link to="/genre/All">
-              <Text type="a">Genres</Text>
-            </Link>
-            <Button
-              size="small"
-              label="r35"
-              cb={store.toggleModal.bind({}, 'addPlaylist')}
-            >
-              New Playlist_
-            </Button>
-            <div className="relative">
-              <UserMiniProfile
-                onClick={store.user.isSignedIn && toggleProfileOptionsModal}
-                isSignedIn={store.user.isSignedIn}
-                imgUrl={store.user.imgUrl}
-                initials={
-                  store.user.isSignedIn &&
-                  userService.getInitials(store.user.name)
-                }
-              />
+          <Button
+            size="small"
+            label="r35"
+            cb={store.toggleModal.bind({}, 'addPlaylist')}
+          >
+            New Playlist_
+          </Button>
+          <div className="relative">
+            <UserMiniProfile
+              onClick={store.user.isSignedIn && toggleProfileOptionsModal}
+              isSignedIn={store.user.isSignedIn}
+              imgUrl={store.user.imgUrl}
+              initials={
+                store.user.isSignedIn &&
+                userService.getInitials(store.user.name)
+              }
+            />
 
-              <Menu fade={isProfileMenu}>
-                <span onClick={handleLogout}>logout</span>
-              </Menu>
-              <ScreenWrapper
-                fade={isProfileMenu}
-                index="-1"
-                darkenBg={false}
-                cb={toggleProfileOptionsModal}
-              />
-            </div>
-            <ThemeSwitcher theme={store.theme} toggleTheme={toggleTheme} />
-          </NavOptionsContainer>
-        </NavbarContainerInner>
-      </NavbarContainer>
-    </>
+            <Menu fade={isProfileMenu}>
+              <span onClick={handleLogout}>logout</span>
+            </Menu>
+            <ScreenWrapper
+              fade={isProfileMenu}
+              index="-1"
+              darkenBg={false}
+              cb={toggleProfileOptionsModal}
+            />
+          </div>
+          <ThemeSwitcher theme={store.theme} toggleTheme={toggleTheme} />
+        </NavOptionsContainer>
+      </NavbarContainerInner>
+    </NavbarContainer>
   );
 });

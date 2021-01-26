@@ -12,6 +12,7 @@ import { regService } from '../../services/regService';
 // Cmps
 import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
+import { Resizable } from 're-resizable';
 
 interface MatchParams {
   playlistId: string;

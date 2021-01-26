@@ -25,6 +25,7 @@
     "mobx-react-form": "^3.0.0",
     "mongodb": "^3.6.1",
     "node-sass": "^4.14.1",
+    "re-resizable": "^6.9.0",
     "react": "^16.13.1",
     "react-dom": "^16.14.0",
     "react-icons": "^4.1.0",
