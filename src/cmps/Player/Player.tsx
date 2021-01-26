@@ -14,8 +14,6 @@ import {
   BiPause,
   BiSkipNext,
   BiSkipPrevious,
-  BiDownArrow,
-  BiUpArrow,
 } from 'react-icons/bi';
 // Styles
 import {
@@ -25,6 +23,7 @@ import {
   PlayerRightColumn,
   PlayerDurationContainer,
   PlayerLeftColumn,
+  BackgroundWrapper,
 } from './player-styles';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
@@ -132,6 +131,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
       />
       <Slide direction="up" in={slide}>
         <PlayerContainer data-augmented-ui="tl-clip-x t-clip-x tr-clip-x">
+          <BackgroundWrapper isPlaying={player.isPlaying} />
           <Resizable
             size={{ width, height }}
             minHeight={15}

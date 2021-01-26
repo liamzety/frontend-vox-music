@@ -3,7 +3,27 @@ import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { localImgService } from '../../services/localImgService';
 
+interface Props {
+  isPlaying: boolean;
+}
 export const PlayerWrapper = styled.div``;
+const retroTvEffect = `
+animation:retro-future-tv-lines linear infinite ;
+animation-duration: 500ms;
+--playstate: var(--media-prefers-reduced-motion) paused;
+animation-play-state: var(--playstate, running);
+-webkit-mask-image: repeating-linear-gradient(black,black 0.5rem,rgb(0 0 0 / 0%) 0.75rem);
+`;
+export const BackgroundWrapper = styled.div<Props>`
+  transition: 0.5s linear;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: ${({ isPlaying }) => (isPlaying ? '#00000073' : '#000000f5')};
+  left: 0;
+  top: 0;
+  ${({ isPlaying }) => (isPlaying ? retroTvEffect : '')};
+`;
 
 export const PlayerContainer = styled.div`
   position: fixed;
@@ -12,7 +32,11 @@ export const PlayerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: url(https://i.gifer.com/fyrS.gif);
   background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   padding: 20px 50px 10px;
 
   --aug-t-extend1: 60px;
@@ -59,19 +83,13 @@ export const PlayerContainer = styled.div`
     -webkit-appearance: none;
     width: 120px;
     height: 10px;
-    background: #242424;
+    background: ${GlobalVars.whiteSecondary};
     outline: none;
-    opacity: 0.7;
-    -webkit-transition: 0.2s;
-    transition: opacity 0.2s;
     border-radius: 5px;
 
     &.volume-input {
       width: 50px;
       transform: rotate(270deg);
-    }
-    &hover {
-      opacity: 1;
     }
 
     &::-webkit-slider-thumb {
@@ -80,23 +98,21 @@ export const PlayerContainer = styled.div`
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      background: ${GlobalVars.whiteMain};
+      background: ${({ theme }) => theme.playerMain};
       cursor: pointer;
     }
     &::-moz-range-thumb {
       width: 15px;
       height: 15px;
       border-radius: 50%;
-      background: ${GlobalVars.whiteMain};
+      background: ${({ theme }) => theme.playerMain};
       cursor: pointer;
     }
   }
   .resizeable {
     display: flex;
     justify-content: space-between;
-    @media (max-width: 750px) {
-      flex-direction: column;
-    }
+    flex-direction: column;
   }
   .top-handle {
     width: 50px !important;
@@ -114,6 +130,7 @@ export const PlayerContainer = styled.div`
 export const PlayerLeftColumn = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 550px) {
     margin-bottom: 10px;
@@ -129,7 +146,6 @@ export const PlayerRightColumn = styled.div`
   }
 
   @media (max-width: 550px) {
-    width: 100%;
     flex-direction: column;
 
     .volume-input,
@@ -144,9 +160,12 @@ export const PlayerDurationContainer = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  p {
+    width: 80px;
+    text-align: center;
+  }
   input[type='range'] {
     &.duration-input {
-      margin: 0 25px;
       min-width: 125px;
       width: 100%;
 
