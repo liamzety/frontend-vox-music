@@ -4,9 +4,10 @@ import { observer } from 'mobx-react';
 // Styles
 import {
   BannerContainer,
-  BannerContainerInner,
+  BannerLogo,
   BannerWallpaper,
   BannerWallpaperContainer,
+  BannerTitleContainer,
 } from './banner-styles';
 
 // Types
@@ -42,12 +43,17 @@ export const Banner: React.FC<BannerProps> = observer(
     }, [setImgInterval]);
 
     return (
-      <BannerContainer>
-        <BannerContainerInner className="container-x">
-          <BannerContainerInner>
-            <Text type="banner-title">Vox Music</Text>
+      <BannerContainer data-augmented-ui="br-clip-x b-clip-x bl-clip-x">
+        <BannerTitleContainer className="container-x">
+          <div className="flex align-center justify-center col">
+            <Text type="banner-title">
+              Vo <BannerLogo src={localImgService.logoLight} />
+              Music
+            </Text>
+
             <Text type="banner-sub-title">Immerse Youself.</Text>
-          </BannerContainerInner>
+          </div>
+
           <Button label="r25" cb={onHandleScroll} size="large">
             {playlists.length === 0 ? (
               <Loader size="50%" />
@@ -55,7 +61,7 @@ export const Banner: React.FC<BannerProps> = observer(
               'Start Listening_'
             )}
           </Button>
-        </BannerContainerInner>
+        </BannerTitleContainer>
         <BannerWallpaperContainer>
           {localImgService.wallpapers.map((src, idx) => (
             <BannerWallpaper

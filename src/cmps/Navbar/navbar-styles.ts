@@ -52,11 +52,3 @@ export const NavOptionsContainer = styled.div<Props>`
     margin-right: 25px;
   }
 `;
-
-export const Logo = styled.div<Props>`
-  width: 50px;
-  height: 50px;
-  background-image: url(${({ isTopPage, theme }) =>
-    isTopPage ? theme.navbarLogoTop : theme.navbarLogo});
-  background-size: cover;
-`;

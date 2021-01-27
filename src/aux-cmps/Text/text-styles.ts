@@ -1,30 +1,32 @@
 import { darken, fade, lighten } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
-import {  neon } from '../../assets/style/main';
+import { neon } from '../../assets/style/main';
 
 interface Props {
-    size?: string;
-    color?:string;
-    bold?:boolean;
-    uppercase?:boolean;
-    underline?:boolean;
-    active?:boolean;
-  }
+  size?: string;
+  color?: string;
+  bold?: boolean;
+  uppercase?: boolean;
+  underline?: boolean;
+  active?: boolean;
+}
 export const TextStyle = styled.p<Props>`
     width: fit-content;
     font-family: Bicubik ; 
-    text-transform:${uppercase =>  uppercase ? 'uppercase' : ''};
-    color: ${({theme,color}) =>  theme[color]};
-    font-weight:${({bold = true} ) => bold ? '700' : '400'};
+    text-transform:${(uppercase) => (uppercase ? 'uppercase' : '')};
+    color: ${({ theme, color }) => theme[color]};
+    font-weight:${({ bold = true }) => (bold ? '700' : '400')};
 
-    color:${({active} ) => active && GlobalVars.pinkMain};
-    background: ${({active} ) => active && `${fade(GlobalVars.pinkMain,0.2)}`};
-    border: ${({active} ) => active && `2px solid ${GlobalVars.pinkMain}`};   
-    padding : ${({active} ) => active && '10px'}; 
+    color:${({ active }) => active && GlobalVars.pinkMain};
+    background: ${({ active }) =>
+      active && `${fade(GlobalVars.pinkMain, 0.2)}`};
+    border: ${({ active }) => active && `2px solid ${GlobalVars.pinkMain}`};   
+    padding : ${({ active }) => active && '10px'}; 
 
-    ${({underline,theme}) => underline && 
-    `border-bottom: 2px solid ${theme.mainTxt};
+    ${({ underline, theme }) =>
+      underline &&
+      `border-bottom: 2px solid ${theme.mainTxt};
     padding-bottom: 10px;
     position: relative;
     &::before {
@@ -36,38 +38,37 @@ export const TextStyle = styled.p<Props>`
     border-color: ${theme.mainTxt} transparent ${theme.mainTxt} ${theme.mainTxt};
     position: absolute;
     bottom: -8px;
-    left: 0;`
-        }
+    left: 0;`}
     }
 
     &.banner-title {
-        font-size: ${props => props.size || '5.5rem'};
-         color: ${({theme} ) => theme.bannerTitle};
+        font-size: ${(props) => props.size || '5.5rem'};
+         color: ${({ theme }) => theme.bannerTitle};
     }
     &.banner-sub-title {
-        font-size: ${props => props.size || '2rem'};
-        color: ${({theme} ) => theme.bannerTitle};
+        font-size: ${(props) => props.size || '2rem'};
+        color: ${({ theme }) => theme.bannerTitle};
     }
     &.h1 {
-        font-size: ${props => props.size || '2.8rem'};
+        font-size: ${(props) => props.size || '2.8rem'};
     }
     &.h2 {
-        font-size: ${props => props.size || '2.2rem'};
+        font-size: ${(props) => props.size || '2.2rem'};
     }
     &.h3 {
-        font-size: ${props => props.size || '1.8rem'};
+        font-size: ${(props) => props.size || '1.8rem'};
     }
     &.h4 {
-        font-size: ${props => props.size || '1.3rem'};
+        font-size: ${(props) => props.size || '1.3rem'};
     }
     &.p {
-        font-size: ${props => props.size || '1rem'};
-        font-weight:${({bold = false} ) => bold ? '700' : '400'};
+        font-size: ${(props) => props.size || '1rem'};
+        font-weight:${({ bold = false }) => (bold ? '700' : '400')};
         font-family: Tomorrow-Regular ;
     }
     &.a {
-        font-size: ${props => props.size || '1rem'};
-        font-weight:${({bold = false} ) => bold ? '700' : '400'};
+        font-size: ${(props) => props.size || '1rem'};
+        font-weight:${({ bold = false }) => (bold ? '700' : '400')};
     }
     &.logo {
         font-size:2.8rem;
@@ -75,4 +76,4 @@ export const TextStyle = styled.p<Props>`
     }
  
  
-    `
+    `;

@@ -1,11 +1,9 @@
+import { localImgService } from '../../services/localImgService'
 import { GlobalVars } from './basics/vars'
-import materialBg from '../img/material-bg.png'
-import materialBgLight from '../img/material-bg-light.png'
-import logoLight from '../img/vox-logo-light.png';
-import logoDark from '../img/vox-logo-dark.png';
+
 
 export const lightTheme = {
-    materialBg: materialBgLight,
+    materialBg: localImgService.materialBgLight,
 
     playerMain: GlobalVars.pinkMain,
     playerSec: GlobalVars.whiteSecondary,
@@ -39,8 +37,8 @@ export const lightTheme = {
 
     navbarTxt: GlobalVars.blackSec,
     navbarTxtTop: GlobalVars.yellowMain,
-    navbarLogoTop: logoLight,
-    navbarLogo: logoDark,
+    navbarLogoTop: localImgService.logoLight,
+    navbarLogo: localImgService.logoDark,
 
     alert: GlobalVars.yellowMain,
     error: GlobalVars.pinkMain,
@@ -49,7 +47,7 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    materialBg: materialBg,
+    materialBg: localImgService.materialBgDark,
 
     playerMain: GlobalVars.yellowMain,
     playerSec: GlobalVars.whiteSecondary,
@@ -83,8 +81,8 @@ export const darkTheme = {
 
     navbarTxt: GlobalVars.yellowMain,
     navbarTxtTop: GlobalVars.yellowMain,
-    navbarLogoTop: logoLight,
-    navbarLogo: logoLight,
+    navbarLogoTop: localImgService.logoLight,
+    navbarLogo: localImgService.logoLight,
 
     alert: GlobalVars.yellowMain,
     error: GlobalVars.pinkMain,

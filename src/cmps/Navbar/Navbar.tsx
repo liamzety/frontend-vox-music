@@ -8,9 +8,9 @@ import {
   NavbarContainer,
   NavbarContainerInner,
   NavOptionsContainer,
-  Logo,
 } from './navbar-styles';
 // Cmps
+import { Logo } from '../../aux-cmps/Logo/Logo';
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';

@@ -13,6 +13,7 @@ export interface TextProps {
     | 'p'
     | 'a'
     | 'logo';
+  className?: string;
   size?: string;
   bold?: boolean;
   color?: string;
@@ -23,6 +24,7 @@ export interface TextProps {
 
 export const Text: React.FC<TextProps> = ({
   type,
+  className,
   size,
   color,
   bold,
@@ -34,7 +36,7 @@ export const Text: React.FC<TextProps> = ({
 }) => {
   return (
     <TextStyle
-      className={type}
+      className={`${type} ${className ? className : ''}`}
       color={color}
       size={size}
       bold={bold}
