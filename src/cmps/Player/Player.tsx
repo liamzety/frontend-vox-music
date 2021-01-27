@@ -148,6 +148,9 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
               bottomLeft: false,
               topLeft: false,
             }}
+            onResize={(ev) => {
+              ev.preventDefault();
+            }}
             onResizeStop={(e, direction, ref, d) => {
               setHeight(height + d.height);
             }}

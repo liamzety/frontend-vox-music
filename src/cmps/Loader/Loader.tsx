@@ -18,7 +18,6 @@ export const Loader: React.FC<LoaderProps> = ({ position, size, loader }) => {
         ? localImgService.defaultLoaderDark
         : localImgService.defaultLoaderLight;
   }
-  console.log('store.theme', store.theme);
   return (
     <LoaderStyle position={position} size={size}>
       <img src={loader} alt="Loading" />

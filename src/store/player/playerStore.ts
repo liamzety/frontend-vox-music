@@ -25,7 +25,6 @@ export const createPlayerStore = {
     },
   } as PlayerType,
   setPlayer: function (updatedPlayer: PlayerType) {
-    console.log('updatedPlayer.isPlaying', updatedPlayer);
     this.player = { ...this.player, ...updatedPlayer };
   },
   handleNextPrevSong: function (val: string) {

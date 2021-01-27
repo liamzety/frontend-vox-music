@@ -110,7 +110,11 @@ export const Main: React.FC<Props> = observer(
     return (
       <div className="container-y">
         <div className="container-x ">
-          <img src={store.player.currPlaylist.img} alt="thumbnail" />
+          <img
+            style={{ width: '50px' }}
+            src={store.player.currPlaylist.img}
+            alt="thumbnail"
+          />
           <h1>{store.player.currPlaylist.name}</h1>
           <h2>{store.player.currPlaylist.description}</h2>
           <p>Genre: {store.player.currPlaylist.genre}</p>
