@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
@@ -16,35 +16,14 @@ import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { userService } from '../../services/userService';
 import { UserMiniProfile } from '../../aux-cmps/UserMiniProfile/UserMiniProfile';
-import { Menu } from '../../aux-cmps/Menu/Menu';
 import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
+import { UserOptionsMenu } from '../UserOptionsMenu/UserOptionsMenu';
+import { SideHamburger } from '../SideHamburger/SideHamburger';
 
 export const Navbar: React.FC = observer(() => {
   const store = useStore();
-  const history = useHistory();
 
-  const [isTopPage, setIsTopPage] = useState(true);
   const [isProfileMenu, setIsProfileModal] = useState(false);
-  const handlePageScroll = useCallback((): void => {
-    if (
-      window.pageYOffset > window.innerHeight - 100 ||
-      history.location.pathname !== '/'
-    ) {
-      setIsTopPage(false);
-    } else {
-      setIsTopPage(true);
-    }
-  }, [history.location.pathname]);
-
-  useEffect(() => {
-    history.listen(() => {
-      handlePageScroll();
-    });
-    window.addEventListener('scroll', handlePageScroll);
-    return () => {
-      window.removeEventListener('scroll', handlePageScroll);
-    };
-  }, [history, handlePageScroll]);
 
   const toggleTheme = (): void => {
     if (store.theme === 'light') {
@@ -69,25 +48,31 @@ export const Navbar: React.FC = observer(() => {
       console.error(err.msg);
     }
   };
-
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
+  const openPlaylistAddModal = () => {
+    store.toggleModal('addPlaylist');
+  };
+  const toggleSideMenu = () => {
+    setIsSideMenuOpen(!isSideMenuOpen);
+  };
   return (
     <>
-      <NavbarContainer
-        data-augmented-ui={isTopPage ? `` : 'br-clip-x b-clip-x bl-clip-x'}
-        isTopPage={isTopPage}
-      >
+      <NavbarContainer data-augmented-ui="br-clip-x b-clip-x bl-clip-x">
         <NavbarContainerInner className="container-x">
           <Link to="/">
-            <Logo isTopPage={isTopPage} />
+            <Logo />
           </Link>
-          <NavOptionsContainer isTopPage={isTopPage}>
+          <NavOptionsContainer>
             <Link to="/genre/All">
-              <Text type="a">Genres</Text>
+              <Text className="genres-link" type="a">
+                Genres
+              </Text>
             </Link>
             <Button
+              className="add-playlist-btn"
               size="small"
               label="r35"
-              cb={store.toggleModal.bind({}, 'addPlaylist')}
+              cb={openPlaylistAddModal}
             >
               New Playlist_
             </Button>
@@ -102,13 +87,30 @@ export const Navbar: React.FC = observer(() => {
                 }
               />
             </div>
-            <ThemeSwitcher theme={store.theme} toggleTheme={toggleTheme} />
+            <ThemeSwitcher
+              className="theme-switcher"
+              theme={store.theme}
+              toggleTheme={toggleTheme}
+            />
+            <div onClick={toggleSideMenu} className="hamburger">
+              | | |
+            </div>
           </NavOptionsContainer>
         </NavbarContainerInner>
       </NavbarContainer>
-      <Menu fade={isProfileMenu}>
+      <UserOptionsMenu slide={isProfileMenu}>
         <span onClick={handleLogout}>logout</span>
-      </Menu>
+        <span onClick={handleLogout}>login</span>
+        <span onClick={handleLogout}>about</span>
+      </UserOptionsMenu>
+
+      <SideHamburger
+        isSideMenuOpen={isSideMenuOpen}
+        theme={store.theme}
+        toggleTheme={toggleTheme}
+        openPlaylistAddModal={openPlaylistAddModal}
+      />
+
       <ScreenWrapper
         fade={isProfileMenu}
         index="8"

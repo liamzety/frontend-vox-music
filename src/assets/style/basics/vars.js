@@ -1,5 +1,5 @@
 export const GlobalVars = {
-    whiteMain: '#f1f1f1',
+    whiteMain: '#dcdade',
     blackMain: '#161616',
     pinkMain: '#e6299a',
     yellowMain: '#fcee09',

@@ -1,29 +1,32 @@
 import React, { useState, useEffect, useCallback } from 'react';
 // Styles
-import { MenuStyles, MenuItem } from './menu-styles';
+import { MenuStyles, MenuItem } from './userOptionsMenu-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
-import { Fade } from '@material-ui/core';
+import { Slide } from '@material-ui/core';
 
-interface MenuProps {
+interface UserOptionsMenuProps {
   children: any;
-  fade: boolean;
+  slide: boolean;
 }
-export const Menu: React.FC<MenuProps> = ({ children, fade }) => {
+export const UserOptionsMenu: React.FC<UserOptionsMenuProps> = ({
+  children,
+  slide,
+}) => {
   const finalFields = React.Children.toArray(children);
   return (
-    <Fade in={fade}>
+    <Slide direction="down" in={slide}>
       <MenuStyles>
         {finalFields.map((child, idx) => {
           return (
             <MenuItem key={idx}>
-              <Text type="p" bold={true}>
+              <Text type="p" bold={true} color="yellowMain">
                 {child}
               </Text>
             </MenuItem>
           );
         })}
       </MenuStyles>
-    </Fade>
+    </Slide>
   );
 };

@@ -1,3 +1,4 @@
+import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { remConverter } from '../../assets/style/main';
 interface BannerWallpaperProps {
@@ -20,6 +21,11 @@ export const BannerContainer = styled.section`
   --aug-border-top: 0.01px;
   --aug-border-left: 0.01px;
   --aug-border-right: 0.01px;
+  --aug-border-bg: radial-gradient(
+    circle,
+    ${({ theme }) => theme.mainBorder} 75%,
+    rgba(11, 10, 10, 0.8872408826811975) 100%
+  );
 `;
 
 export const BannerTitleContainer = styled.div`

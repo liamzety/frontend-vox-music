@@ -25,25 +25,25 @@ export const lightTheme = {
 
     bannerTitle: GlobalVars.yellowMain,
     hr: GlobalVars.whiteMain,
-    navbar: GlobalVars.whiteMain,
     neon: GlobalVars.pinkMain,
 
     mainModal: GlobalVars.whiteSecondary,
     neonModal: GlobalVars.pinkMain,
 
+    mainBorder: GlobalVars.pinkMain,
     chipBorder: GlobalVars.blackMain,
 
     slideBtnSvg: GlobalVars.blackMain,
 
+    navbar: GlobalVars.whiteMain,
     navbarTxt: GlobalVars.blackSec,
-    navbarTxtTop: GlobalVars.yellowMain,
-    navbarLogoTop: localImgService.logoLight,
     navbarLogo: localImgService.logoDark,
 
     alert: GlobalVars.yellowMain,
     error: GlobalVars.pinkMain,
     success: GlobalVars.greenMain,
 
+    menuShadow: 'rgb(0 0 0 / 43%)  0px 16px 32px 0px',
 }
 
 export const darkTheme = {
@@ -69,22 +69,23 @@ export const darkTheme = {
 
     bannerTitle: GlobalVars.yellowMain,
     hr: GlobalVars.blackMain,
-    navbar: GlobalVars.blackMain,
     neon: GlobalVars.yellowMain,
 
     mainModal: GlobalVars.blackSecondary,
     neonModal: GlobalVars.pinkMain,
 
+    mainBorder: GlobalVars.yellowMain,
     chipBorder: GlobalVars.pinkMain,
 
     slideBtnSvg: GlobalVars.yellowMain,
 
+    navbar: GlobalVars.blackMain,
     navbarTxt: GlobalVars.yellowMain,
-    navbarTxtTop: GlobalVars.yellowMain,
-    navbarLogoTop: localImgService.logoLight,
     navbarLogo: localImgService.logoLight,
 
     alert: GlobalVars.yellowMain,
     error: GlobalVars.pinkMain,
     success: GlobalVars.greenMain,
+
+    menuShadow: 'rgba(1, 4, 9, 0.85) 0px 16px 32px 0px',
 }
