@@ -123,6 +123,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
         onBufferEnd={() => {
           setIsBuffering(false);
         }}
+        onEnded={store.handleNextPrevSong.bind({}, 'next')}
         onDuration={setDuration}
         onProgress={handleProgress}
         volume={player.volume}
