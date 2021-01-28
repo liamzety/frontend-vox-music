@@ -1,20 +1,24 @@
 import styled from 'styled-components';
 
-interface SlideButtonContainerProps {
+interface SliderButtonContainerProps {
   position?: 'relative';
   maxWidth?: string;
 }
-interface SlideButtonProps {
+interface SliderButtonProps {
   leftRight: string;
 }
-export const SlideButtonContainer = styled.div<SlideButtonContainerProps>`
+export const SliderButtonContainer = styled.div<SliderButtonContainerProps>`
   max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '100%')};
   position: ${({ position }) => (position ? position : 'initial')};
   margin: auto;
 `;
-export const SlideButtonRight = styled.div<SlideButtonProps>`
+export const SliderButtonRight = styled.div<SliderButtonProps>`
   position: absolute;
   right: ${({ leftRight }) => leftRight};
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+
   svg {
     transition: 0.2s linear;
     cursor: pointer;
@@ -27,9 +31,13 @@ export const SlideButtonRight = styled.div<SlideButtonProps>`
     }
   }
 `;
-export const SlideButtonLeft = styled.div<SlideButtonProps>`
+export const SliderButtonLeft = styled.div<SliderButtonProps>`
   position: absolute;
   left: ${({ leftRight }) => leftRight};
+  top: 50%;
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+
   svg {
     transition: 0.2s linear;
     cursor: pointer;

@@ -6,11 +6,12 @@ import { genreService } from '../../services/genreService';
 //Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Styles
+import { GenreHeader, GenreContainer, GenreListWrapper } from './genre-styles';
 //Cmps
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
-import { GenreContainer } from './genre-styles';
 import { scrollService } from '../../services/scrollService';
-import { SlideButton } from '../../aux-cmps/SlideButton/SlideButton';
+import { SliderButton } from '../../aux-cmps/SliderButton/SliderButton';
 import { Text } from '../../aux-cmps/Text/Text';
 
 interface MatchParams {
@@ -61,35 +62,39 @@ export const Genre: React.FC<Props> = observer(
     };
     return (
       <div className="container-y container-x">
-        <Text type="a">
-          <Link to="/">Go Back</Link>{' '}
-        </Text>
+        <GenreHeader>
+          <Text type="a">
+            <Link to="/">Go Back</Link>{' '}
+          </Text>
 
-        <Text underline={true} type="h2">
-          {genre}
-        </Text>
-        {isOverflowing && (
-          <SlideButton
-            maxWidth="740px"
-            position="relative"
-            leftRight="5px"
-            cbRight={scrollService.handleScrollVertical.bind(
-              {},
-              true,
-              listContainerRef
-            )}
-            cbLeft={scrollService.handleScrollVertical.bind(
-              {},
-              false,
-              listContainerRef
-            )}
-          />
-        )}
-        <div className="flex justify-center">
-          <GenreContainer ref={listContainerRef}>
-            {getGenreList()}
-          </GenreContainer>
-        </div>
+          <Text underline={true} type="h2">
+            {genre}
+          </Text>
+        </GenreHeader>
+        <GenreListWrapper>
+          {isOverflowing && (
+            <SliderButton
+              maxWidth="740px"
+              position="relative"
+              leftRight="5px"
+              cbRight={scrollService.handleScrollVertical.bind(
+                {},
+                true,
+                listContainerRef
+              )}
+              cbLeft={scrollService.handleScrollVertical.bind(
+                {},
+                false,
+                listContainerRef
+              )}
+            />
+          )}
+          <div className="flex justify-center">
+            <GenreContainer ref={listContainerRef}>
+              {getGenreList()}
+            </GenreContainer>
+          </div>
+        </GenreListWrapper>
         {genre && <PlaylistList genre={genre} playlists={store.playlists} />}
       </div>
     );

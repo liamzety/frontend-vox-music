@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import {
   PlaylistListContainer,
   PlaylistListStyle,
+  PlaylistListWrapper,
 } from './playlistList-styles';
 // Types
 import { PlaylistType } from '../../types/Playlist';
@@ -12,7 +13,7 @@ import { scrollService } from '../../services/scrollService';
 // Cmps
 import { PlaylistPreview } from '../PlaylistPreview/PlaylistPreview';
 import { Text } from '../../aux-cmps/Text/Text';
-import { SlideButton } from '../../aux-cmps/SlideButton/SlideButton';
+import { SliderButton } from '../../aux-cmps/SliderButton/SliderButton';
 
 interface PlaylistListProps {
   genre: string;
@@ -70,15 +71,14 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
           </Link>
         )}
       </div>
-
-      <PlaylistListContainer
-        justifyCenter={pathname === '/' ? ' initial' : 'center'}
-        wrap={pathname === '/' ? ' no-wrap' : 'wrap'}
-        ref={listContainerRef}
-      >
-        {pathname === '/' && isOverflowing && (
-          <>
-            <SlideButton
+      <PlaylistListWrapper>
+        <PlaylistListContainer
+          justifyCenter={pathname === '/' ? ' initial' : 'center'}
+          wrap={pathname === '/' ? ' no-wrap' : 'wrap'}
+          ref={listContainerRef}
+        >
+          {pathname === '/' && isOverflowing && (
+            <SliderButton
               cbRight={scrollService.handleScrollVertical.bind(
                 {},
                 true,
@@ -91,10 +91,10 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
               )}
               leftRight="15px"
             />
-          </>
-        )}
-        {getPlaylistPreviews()}
-      </PlaylistListContainer>
+          )}
+          {getPlaylistPreviews()}
+        </PlaylistListContainer>
+      </PlaylistListWrapper>
     </PlaylistListStyle>
   );
 };

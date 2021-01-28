@@ -9,10 +9,11 @@ import { PlaylistType } from '../../types/Playlist';
 import { playlistService } from '../../services/playlistService';
 import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
+// Styles
+import { MainPage } from './main-styles';
 // Cmps
 import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
-import { Resizable } from 're-resizable';
 
 interface MatchParams {
   playlistId: string;
@@ -108,33 +109,31 @@ export const Main: React.FC<Props> = observer(
     };
 
     return (
-      <div className="container-y">
-        <div className="container-x ">
-          <img
-            style={{ width: '50px' }}
-            src={store.player.currPlaylist.img}
-            alt="thumbnail"
-          />
-          <h1>{store.player.currPlaylist.name}</h1>
-          <h2>{store.player.currPlaylist.description}</h2>
-          <p>Genre: {store.player.currPlaylist.genre}</p>
-          <Link to={`/`}>
-            <button
-              onClick={() => {
-                onRemovePlaylist(store.player.currPlaylist._id!);
-              }}
-            >
-              Delete Playlist
-            </button>
-          </Link>
-          <SongList
-            handleSongSelect={handleSongSelect}
-            currPlaylist={store.player.currPlaylist}
-            onRemoveSong={onRemoveSong}
-          />
-          <SongSearch onAddSong={onAddSong} />
-        </div>
-      </div>
+      <MainPage className="container-y container-x">
+        <img
+          style={{ width: '50px' }}
+          src={store.player.currPlaylist.img}
+          alt="thumbnail"
+        />
+        <h1>{store.player.currPlaylist.name}</h1>
+        <h2>{store.player.currPlaylist.description}</h2>
+        <p>Genre: {store.player.currPlaylist.genre}</p>
+        <Link to={`/`}>
+          <button
+            onClick={() => {
+              onRemovePlaylist(store.player.currPlaylist._id!);
+            }}
+          >
+            Delete Playlist
+          </button>
+        </Link>
+        <SongList
+          handleSongSelect={handleSongSelect}
+          currPlaylist={store.player.currPlaylist}
+          onRemoveSong={onRemoveSong}
+        />
+        <SongSearch onAddSong={onAddSong} />
+      </MainPage>
     );
   }
 );

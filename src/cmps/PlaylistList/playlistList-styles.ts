@@ -8,6 +8,9 @@ export const PlaylistListStyle = styled.section`
     margin-bottom: 50px;
   }
 `;
+export const PlaylistListWrapper = styled.div`
+  position: relative;
+`;
 export const PlaylistListContainer = styled.div<Props>`
   display: flex;
   align-items: center;
