@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 // Store
 import { useStore } from '../../store/StoreContext';
@@ -10,10 +10,17 @@ import { playlistService } from '../../services/playlistService';
 import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
 // Styles
-import { MainPage } from './main-styles';
+import {
+  MainPage,
+  MainHeaderContainer,
+  MainChatContainer,
+} from './main-styles';
 // Cmps
 import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
+import { UserChat } from '../../cmps/UserChat/UserChat';
+import { MainHeader } from '../../cmps/MainHeader/MainHeader';
+import { Slide } from '@material-ui/core';
 
 interface MatchParams {
   playlistId: string;
@@ -108,34 +115,38 @@ export const Main: React.FC<Props> = observer(
       store.setPlayer({ ...store.player, isOn: true, isPlaying: true });
     };
 
+    const [isChat, setIsChat] = useState(false);
+    const onToggleChat = (): void => {
+      if (!isChat) window.scrollTo(0, 0);
+      setIsChat(!isChat);
+    };
+    console.log('', window.innerWidth > 750);
+    const isMobile = window.innerWidth > 750;
     return (
       <MainPage className="container-y container-x">
-        <div></div>
-        <div>
-          <img
-            style={{ width: '50px' }}
-            src={store.player.currPlaylist.img}
-            alt="thumbnail"
+        <Slide
+          direction={isMobile ? 'right' : 'down'}
+          in={isChat}
+          mountOnEnter
+          unmountOnExit
+        >
+          <MainChatContainer>
+            <UserChat onToggleChat={onToggleChat} />
+          </MainChatContainer>
+        </Slide>
+
+        <MainHeaderContainer>
+          <MainHeader
+            onToggleChat={onToggleChat}
+            onRemovePlaylist={onRemovePlaylist}
           />
-          <h1>{store.player.currPlaylist.name}</h1>
-          <h2>{store.player.currPlaylist.description}</h2>
-          <p>Genre: {store.player.currPlaylist.genre}</p>
-          <Link to={`/`}>
-            <button
-              onClick={() => {
-                onRemovePlaylist(store.player.currPlaylist._id!);
-              }}
-            >
-              Delete Playlist
-            </button>
-          </Link>
+          <SongSearch onAddSong={onAddSong} />
           <SongList
             handleSongSelect={handleSongSelect}
             currPlaylist={store.player.currPlaylist}
             onRemoveSong={onRemoveSong}
           />
-          <SongSearch onAddSong={onAddSong} />
-        </div>
+        </MainHeaderContainer>
       </MainPage>
     );
   }

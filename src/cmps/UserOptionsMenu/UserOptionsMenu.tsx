@@ -15,7 +15,7 @@ export const UserOptionsMenu: React.FC<UserOptionsMenuProps> = ({
 }) => {
   const finalFields = React.Children.toArray(children);
   return (
-    <Slide direction="down" in={slide}>
+    <Slide direction="down" in={slide} mountOnEnter unmountOnExit>
       <MenuStyles>
         {finalFields.map((child, idx) => {
           return (

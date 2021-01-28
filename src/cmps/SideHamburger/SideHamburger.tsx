@@ -24,7 +24,7 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
   theme,
 }) => {
   return (
-    <Slide in={isSideMenuOpen} direction="left">
+    <Slide in={isSideMenuOpen} direction="left" mountOnEnter unmountOnExit>
       <SideHamburgerStyles>
         <div className="inner-container">
           <ThemeSwitcher

@@ -111,7 +111,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
 
   return (
     <PlayerWrapper className={`relative ${player.isOn ? '' : 'hidden'}`}>
-      <ReactPlayer
+      {/* <ReactPlayer
         url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
         playing={player.isPlaying}
         onReady={() => {
@@ -130,7 +130,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
         ref={reactPlayerRef}
         hidden
       />
-      <Slide direction="up" in={slide}>
+      <Slide direction="up" in={slide} mountOnEnter unmountOnExit>
         <PlayerContainer data-augmented-ui="tl-clip-x t-clip-x tr-clip-x">
           <BackgroundWrapper isPlaying={player.isPlaying} />
           <Resizable
@@ -149,10 +149,6 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
               bottomLeft: false,
               topLeft: false,
             }}
-            // onResize={(ev) => {
-            //   console.log('ev.cancelable', ev.cancelable);
-            //   ev.preventDefault();
-            // }}
             onResizeStop={(e, direction, ref, d) => {
               setHeight(height + d.height);
             }}
@@ -225,7 +221,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
             </PlayerRightColumn>
           </Resizable>
         </PlayerContainer>
-      </Slide>
+      </Slide> */}
     </PlayerWrapper>
   );
 });

@@ -9,7 +9,7 @@ export interface ButtonProps {
   children: string | JSX.Element | (string | JSX.Element)[];
   color?: string;
   bgColor?: string;
-  cb: (ev: any) => void;
+  cb?: (ev: any) => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
