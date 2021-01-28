@@ -110,29 +110,32 @@ export const Main: React.FC<Props> = observer(
 
     return (
       <MainPage className="container-y container-x">
-        <img
-          style={{ width: '50px' }}
-          src={store.player.currPlaylist.img}
-          alt="thumbnail"
-        />
-        <h1>{store.player.currPlaylist.name}</h1>
-        <h2>{store.player.currPlaylist.description}</h2>
-        <p>Genre: {store.player.currPlaylist.genre}</p>
-        <Link to={`/`}>
-          <button
-            onClick={() => {
-              onRemovePlaylist(store.player.currPlaylist._id!);
-            }}
-          >
-            Delete Playlist
-          </button>
-        </Link>
-        <SongList
-          handleSongSelect={handleSongSelect}
-          currPlaylist={store.player.currPlaylist}
-          onRemoveSong={onRemoveSong}
-        />
-        <SongSearch onAddSong={onAddSong} />
+        <div></div>
+        <div>
+          <img
+            style={{ width: '50px' }}
+            src={store.player.currPlaylist.img}
+            alt="thumbnail"
+          />
+          <h1>{store.player.currPlaylist.name}</h1>
+          <h2>{store.player.currPlaylist.description}</h2>
+          <p>Genre: {store.player.currPlaylist.genre}</p>
+          <Link to={`/`}>
+            <button
+              onClick={() => {
+                onRemovePlaylist(store.player.currPlaylist._id!);
+              }}
+            >
+              Delete Playlist
+            </button>
+          </Link>
+          <SongList
+            handleSongSelect={handleSongSelect}
+            currPlaylist={store.player.currPlaylist}
+            onRemoveSong={onRemoveSong}
+          />
+          <SongSearch onAddSong={onAddSong} />
+        </div>
       </MainPage>
     );
   }
