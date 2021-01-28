@@ -10,12 +10,26 @@ export const SideHamburgerStyles = styled.div`
   border-left: 4px solid ${({ theme }) => fade(theme.mainBorder, 0.8)}}
   width: 50vw;
   padding-top: 150px;
-
+  z-index:8;
+  
   .inner-container {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
     height: 50%;
+  }
+
+  .theme-switcher-mobile {
+    width: 5.5rem;
+    height: 2.55rem;
+    &::before {
+      width:2.2rem;
+      height:2.2rem;
+    }
+    &::after {
+      width:2rem;
+      height:1.8rem;
+    }
   }
 `;

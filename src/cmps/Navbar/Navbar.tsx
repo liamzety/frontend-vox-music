@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Icons
+import { HiOutlineMenu } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
 // Styles
 import {
   NavbarContainer,
@@ -19,6 +22,7 @@ import { UserMiniProfile } from '../../aux-cmps/UserMiniProfile/UserMiniProfile'
 import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 import { UserOptionsMenu } from '../UserOptionsMenu/UserOptionsMenu';
 import { SideHamburger } from '../SideHamburger/SideHamburger';
+import { Svg } from '../../aux-cmps/Svg/Svg';
 
 export const Navbar: React.FC = observer(() => {
   const store = useStore();
@@ -51,6 +55,9 @@ export const Navbar: React.FC = observer(() => {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const openPlaylistAddModal = () => {
     store.toggleModal('addPlaylist');
+  };
+  const getHamburgerIcon = () => {
+    return isSideMenuOpen ? <AiOutlineClose /> : <HiOutlineMenu />;
   };
   const toggleSideMenu = () => {
     setIsSideMenuOpen(!isSideMenuOpen);
@@ -92,9 +99,9 @@ export const Navbar: React.FC = observer(() => {
               theme={store.theme}
               toggleTheme={toggleTheme}
             />
-            <div onClick={toggleSideMenu} className="hamburger">
-              | | |
-            </div>
+            <Svg cb={toggleSideMenu} size="3rem" className="hamburger">
+              {getHamburgerIcon()}
+            </Svg>
           </NavOptionsContainer>
         </NavbarContainerInner>
       </NavbarContainer>
@@ -109,8 +116,15 @@ export const Navbar: React.FC = observer(() => {
         theme={store.theme}
         toggleTheme={toggleTheme}
         openPlaylistAddModal={openPlaylistAddModal}
+        toggleSideMenu={toggleSideMenu}
       />
 
+      <ScreenWrapper
+        fade={isSideMenuOpen}
+        index="7"
+        darkenBg={true}
+        cb={toggleSideMenu}
+      />
       <ScreenWrapper
         fade={isProfileMenu}
         index="8"

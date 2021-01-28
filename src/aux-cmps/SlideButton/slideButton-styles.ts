@@ -1,26 +1,26 @@
-import  styled  from "styled-components";
+import styled from 'styled-components';
 
 interface SlideButtonContainerProps {
   position?: 'relative';
   maxWidth?: string;
 }
 interface SlideButtonProps {
-  leftRight:string;
+  leftRight: string;
 }
 export const SlideButtonContainer = styled.div<SlideButtonContainerProps>`
-max-width: ${({maxWidth}) => maxWidth ? maxWidth : '100%'};
-position: ${({position}) => position ? position: 'initial'};
-margin: auto;
+  max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '100%')};
+  position: ${({ position }) => (position ? position : 'initial')};
+  margin: auto;
 `;
 export const SlideButtonRight = styled.div<SlideButtonProps>`
   position: absolute;
-  right: ${({leftRight}) => leftRight};
+  right: ${({ leftRight }) => leftRight};
   svg {
     transition: 0.2s linear;
-    cursor:pointer;
-    opacity:0.5;
+    cursor: pointer;
+    opacity: 0.5;
     &:hover {
-      opacity:0.8;
+      opacity: 0.8;
     }
     &:active {
       transform: scale(0.58);
@@ -29,13 +29,13 @@ export const SlideButtonRight = styled.div<SlideButtonProps>`
 `;
 export const SlideButtonLeft = styled.div<SlideButtonProps>`
   position: absolute;
-  left: ${({leftRight}) => leftRight};
+  left: ${({ leftRight }) => leftRight};
   svg {
     transition: 0.2s linear;
-    cursor:pointer;
-    opacity:0.5;
+    cursor: pointer;
+    opacity: 0.5;
     &:hover {
-      opacity:0.8;
+      opacity: 0.8;
     }
     &:active {
       transform: scale(0.58);

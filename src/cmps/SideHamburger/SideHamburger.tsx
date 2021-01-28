@@ -12,12 +12,14 @@ import { Slide } from '@material-ui/core';
 interface SideHamburgerProps {
   toggleTheme: () => void;
   openPlaylistAddModal: () => void;
+  toggleSideMenu: () => void;
   isSideMenuOpen: boolean;
   theme: string;
 }
 export const SideHamburger: React.FC<SideHamburgerProps> = ({
   toggleTheme,
   openPlaylistAddModal,
+  toggleSideMenu,
   isSideMenuOpen,
   theme,
 }) => {
@@ -25,13 +27,29 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
     <Slide in={isSideMenuOpen} direction="left">
       <SideHamburgerStyles>
         <div className="inner-container">
-          <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />
+          <ThemeSwitcher
+            className="theme-switcher-mobile"
+            theme={theme}
+            toggleTheme={toggleTheme}
+          />
           <div className="relative">
-            <Link to="/genre/All">
+            <Link
+              onClick={() => {
+                toggleSideMenu();
+              }}
+              to="/genre/All"
+            >
               <Text type="a">Genres</Text>
             </Link>
           </div>
-          <Button size="small" label="r35" cb={openPlaylistAddModal}>
+          <Button
+            size="small"
+            label="r35"
+            cb={() => {
+              openPlaylistAddModal();
+              toggleSideMenu();
+            }}
+          >
             New Playlist_
           </Button>
         </div>
