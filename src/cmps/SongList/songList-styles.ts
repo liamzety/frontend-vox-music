@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const SongListContainer = styled.ul`
-  min-height: calc(50vh - 150px);
+  height: calc(50vh - 180px);
   margin-bottom: 25px;
-  margin: 10px 0;
   background: #000000c7;
+  overflow: overlay;
 `;
 export const SongContainer = styled.li`
   background: ${({ theme }) => theme.secBg};

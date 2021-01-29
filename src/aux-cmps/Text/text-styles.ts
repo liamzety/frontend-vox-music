@@ -1,4 +1,4 @@
-import { darken, fade, lighten } from '@material-ui/core';
+import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { neon } from '../../assets/style/main';
@@ -70,6 +70,7 @@ export const TextStyle = styled.p<Props>`
         font-size: ${(props) => props.size || '1rem'};
         font-weight:${({ bold = false }) => (bold ? '700' : '400')};
     }
+
     &.logo {
         font-size:2.8rem;
         ${neon()};

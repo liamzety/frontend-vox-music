@@ -171,10 +171,6 @@ export const PlayerDurationContainer = styled.div`
     &.duration-input {
       min-width: 125px;
       width: 100%;
-
-      @media (max-width: 550px) {
-        margin-bottom: 10px;
-      }
     }
   }
 `;

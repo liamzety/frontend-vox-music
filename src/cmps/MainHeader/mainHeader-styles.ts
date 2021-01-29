@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import { remConverter } from '../../assets/style/main';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 50vh;
-
+  min-height: 30vh;
+  margin-bottom: 15px;
   .outer-container {
     @media (max-width: 750px) {
       flex-direction: column;
@@ -41,5 +40,6 @@ export const ImgThumbnail = styled.div`
   }
   @media (max-width: 750px) {
     width: 100%;
+    height: 150px;
   }
 `;

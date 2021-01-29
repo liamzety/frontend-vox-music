@@ -5,6 +5,7 @@ import { youtubeService } from '../../services/youtubeService';
 import { storageService } from '../../services/storageService';
 // Cmps
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
+import { SongSearchContainer } from './songSearch-styles';
 
 interface songSearchProps {
   onAddSong: (suggestion: any) => void;
@@ -21,6 +22,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   const handler = useCallback(
     debounce((suggestions: any) => {
       setAutoSuggest((prevState: any) => {
+        console.log('hjhere');
         return {
           ...prevState,
           isOn: true,
@@ -56,7 +58,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     return res;
   };
   return (
-    <>
+    <SongSearchContainer>
       <input
         onChange={onAddSongInp}
         name="search"
@@ -69,6 +71,6 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
           suggestions={autoSuggest.suggestions}
         />
       )}
-    </>
+    </SongSearchContainer>
   );
 };

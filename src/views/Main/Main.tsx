@@ -120,8 +120,8 @@ export const Main: React.FC<Props> = observer(
       if (!isChat) window.scrollTo(0, 0);
       setIsChat(!isChat);
     };
-    console.log('', window.innerWidth > 750);
     const isMobile = window.innerWidth > 750;
+    console.log('main rednered');
     return (
       <MainPage className="container-y container-x">
         <Slide

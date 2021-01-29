@@ -34,36 +34,38 @@ export const SongList: React.FC<SongListProps> = ({
 }) => {
   if (currPlaylist.songs.length === 0) return <h1>Add new songs!</h1>;
   return (
-    <SongListContainer>
-      {currPlaylist.songs.map((song: any, idx: any) => {
-        return (
-          <SongContainer
-            className="test"
-            key={idx}
-            onClick={() => {
-              handleSongSelect({
-                songUrl: song.video_id,
-                imgUrl: song.url,
-                title: song.title,
-                idx,
-              });
-            }}
-          >
-            <SongThumbnail src={song.url} alt="" />
-            <SongTitle>{song.title}</SongTitle>
-            <Button
-              cb={(ev: any) => {
-                ev.stopPropagation();
-                onRemoveSong(song._id);
+    <div data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border">
+      <SongListContainer>
+        {currPlaylist.songs.map((song: any, idx: any) => {
+          return (
+            <SongContainer
+              className="test"
+              key={idx}
+              onClick={() => {
+                handleSongSelect({
+                  songUrl: song.video_id,
+                  imgUrl: song.url,
+                  title: song.title,
+                  idx,
+                });
               }}
-              label="x88"
-              size="small"
             >
-              X
-            </Button>
-          </SongContainer>
-        );
-      })}
-    </SongListContainer>
+              <SongThumbnail src={song.url} alt="" />
+              <SongTitle>{song.title}</SongTitle>
+              <Button
+                cb={(ev: any) => {
+                  ev.stopPropagation();
+                  onRemoveSong(song._id);
+                }}
+                label="x88"
+                size="small"
+              >
+                X
+              </Button>
+            </SongContainer>
+          );
+        })}
+      </SongListContainer>
+    </div>
   );
 };
