@@ -7,14 +7,11 @@ export const PlaylistPreviewContainer = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.chipBorder};
   margin: 25px 0;
+  margin-right: ${remConverter(50)};
   transition: 0.2s linear;
 
-  &:not(:last-child) {
-    margin-right: ${remConverter(50)};
-  }
-
   &:hover {
-    transform: scale(1.1);
+    transform: scale(0.95);
   }
 `;
 interface CardTopContainerProps {

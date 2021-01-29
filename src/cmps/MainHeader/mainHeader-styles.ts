@@ -4,6 +4,7 @@ import { remConverter } from '../../assets/style/main';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 50vh;
 
   .outer-container {
     @media (max-width: 750px) {
