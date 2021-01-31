@@ -22,6 +22,7 @@ export const lightTheme = {
 
     songHover: GlobalVars.whiteTertiary,
 
+    linkTxt: GlobalVars.pinkMain,
 
     bannerTitle: GlobalVars.pinkMain,
     hr: GlobalVars.whiteMain,
@@ -69,6 +70,7 @@ export const darkTheme = {
 
     songHover: GlobalVars.blackTertiary,
 
+    linkTxt: GlobalVars.yellowMain,
 
     bannerTitle: GlobalVars.yellowMain,
     hr: GlobalVars.blackMain,

@@ -74,6 +74,8 @@ export const TextStyle = styled.p<Props>`
         ${({ active, theme, color }) =>
           !active &&
           `
+        color: ${theme.linkTxt};
+
         &:before {
             content: "";
             position: absolute;
@@ -81,7 +83,7 @@ export const TextStyle = styled.p<Props>`
             height: 2px;
             bottom: -10px;
             left: 0;
-            background-color: ${color ? theme[color] : theme.mainTxt};
+            background-color: ${color ? theme[color] : theme.linkTxt};
             visibility: hidden;
             transform: scaleX(0);
             transition: .2s linear;
