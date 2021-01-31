@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.tsx';
-import { StoreProvider } from './store/StoreContext';
+import { RootStoreProvider } from './store/StoreContext';
 
 ReactDOM.render(
-  <StoreProvider>
+  <RootStoreProvider>
     <App />
-  </StoreProvider>,
+  </RootStoreProvider>,
   document.getElementById('root')
 );
 // navigator.serviceWorker.register('./sw.js');

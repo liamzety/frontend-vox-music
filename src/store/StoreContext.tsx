@@ -1,15 +1,26 @@
-import React from 'react';
-import { useLocalObservable } from 'mobx-react';
-import { createStore } from './store';
+import React, { createContext, ReactNode, useContext } from 'react';
+import { RootStore } from './store';
 
-const StoreContext = React.createContext(null);
+// holds a reference to the store (singleton)
+let store: RootStore;
 
-export const StoreProvider = ({ children }: any) => {
-  const store = useLocalObservable(createStore);
+// create the context
+const StoreContext = createContext<RootStore | undefined>(undefined);
 
-  return (
-    <StoreContext.Provider value={store}>{children}</StoreContext.Provider>
-  );
-};
+// create the provider component
+export function RootStoreProvider({ children }: { children: ReactNode }) {
+  //only create the store once ( store is a singleton)
+  const root = store ?? new RootStore();
 
-export const useStore = () => React.useContext(StoreContext);
+  return <StoreContext.Provider value={root}>{children}</StoreContext.Provider>;
+}
+
+// create the hook
+export function useStore() {
+  const context = useContext(StoreContext);
+  if (context === undefined) {
+    throw new Error('useStore must be used within RootStoreProvider');
+  }
+
+  return context;
+}

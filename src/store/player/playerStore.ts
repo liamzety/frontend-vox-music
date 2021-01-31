@@ -1,33 +1,56 @@
 import { PlayerType } from '../../types/Player';
 import { PlaylistType } from '../../types/Playlist';
+import { RootStore } from '../store';
+import { action, makeObservable, observable } from 'mobx';
 
-export const createPlayerStore = {
-  player: {
-    isOn: false,
-    isPlaying: true,
-    duration: null,
-    time: 0,
-    volume: 0.3,
-    lastVolume: null,
-    currPlaylist: {
-      currSong: {
-        idx: null,
-        songUrl: '',
-        imgUrl: '',
-        title: '',
+export class PlayerStore {
+  root: RootStore;
+  player: PlayerType;
+
+  constructor(root: RootStore) {
+    this.root = root;
+    this.player = {
+      isOn: false,
+      isPlaying: true,
+      duration: null,
+      time: 0,
+      volume: 0.3,
+      lastVolume: null,
+      currPlaylist: {
+        currSong: {
+          idx: null,
+          songUrl: '',
+          imgUrl: '',
+          title: '',
+        },
+        _id: null,
+        name: '',
+        description: '',
+        genre: '',
+        img: '',
+        songs: [],
       },
-      _id: null,
-      name: '',
-      description: '',
-      genre: '',
-      img: '',
-      songs: [],
-    },
-  } as PlayerType,
-  setPlayer: function (updatedPlayer: PlayerType) {
+    };
+
+    // no work here only assignments
+    makeObservable(this, {
+      player: observable,
+      setPlayer: action,
+      handleNextPrevSong: action,
+      setCurrPlaying: action,
+      setCurrPlaylist: action,
+    });
+  }
+
+  init() {
+    // safe to access other stores
+    console.log('init modal store');
+  }
+
+  setPlayer(updatedPlayer: any) {
     this.player = { ...this.player, ...updatedPlayer };
-  },
-  handleNextPrevSong: function (val: string) {
+  }
+  handleNextPrevSong(val: string) {
     if (val === 'next') {
       const nextSongIdx =
         this.player.currPlaylist.currSong.idx + 1 >
@@ -50,8 +73,8 @@ export const createPlayerStore = {
     }
 
     this.player.isPlaying = true;
-  },
-  setCurrPlaying: function ({ imgUrl, songUrl, title, idx }: any) {
+  }
+  setCurrPlaying({ imgUrl, songUrl, title, idx }: any) {
     this.player = {
       ...this.player,
       isOn: true,
@@ -65,11 +88,11 @@ export const createPlayerStore = {
         },
       },
     };
-  },
-  setCurrPlaylist: function (data: PlaylistType) {
+  }
+  setCurrPlaylist(data: PlaylistType) {
     this.player = {
       ...this.player,
       currPlaylist: { ...this.player.currPlaylist, ...data },
     };
-  },
-};
+  }
+}

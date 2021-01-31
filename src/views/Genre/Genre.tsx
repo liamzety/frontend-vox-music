@@ -24,7 +24,7 @@ export const Genre: React.FC<Props> = observer(
       params: { genre },
     },
   }) => {
-    const store = useStore();
+    const { playlistStore } = useStore();
     const [genres, setGenres] = useState<Array<string>>();
     const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
     const listContainerRef = React.createRef<HTMLDivElement>();
@@ -34,8 +34,8 @@ export const Genre: React.FC<Props> = observer(
       const genres = await genreService.getGenreList();
       genres.unshift('All');
       setGenres(genres);
-      store.setPlaylists(playlists);
-    }, [store]);
+      playlistStore.setPlaylists(playlists);
+    }, [playlistStore]);
 
     useEffect(() => {
       getPlaylists();
@@ -95,7 +95,9 @@ export const Genre: React.FC<Props> = observer(
             </GenreContainer>
           </div>
         </GenreListWrapper>
-        {genre && <PlaylistList genre={genre} playlists={store.playlists} />}
+        {genre && (
+          <PlaylistList genre={genre} playlists={playlistStore.playlists} />
+        )}
       </div>
     );
   }

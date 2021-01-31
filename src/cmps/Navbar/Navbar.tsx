@@ -25,15 +25,15 @@ import { SideHamburger } from '../SideHamburger/SideHamburger';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 
 export const Navbar: React.FC = observer(() => {
-  const store = useStore();
+  const { themeStore, userMsgStore, userStore, modalStore } = useStore();
 
   const [isProfileMenu, setIsProfileModal] = useState(false);
 
   const toggleTheme = (): void => {
-    if (store.theme === 'light') {
-      store.setTheme('dark');
+    if (themeStore.theme === 'light') {
+      themeStore.setTheme('dark');
     } else {
-      store.setTheme('light');
+      themeStore.setTheme('light');
     }
   };
   const toggleProfileOptionsModal = () => {
@@ -43,18 +43,18 @@ export const Navbar: React.FC = observer(() => {
     toggleProfileOptionsModal();
     try {
       userService.logout();
-      store.resetUser();
-      store.alert({ type: 'success', msg: 'Logged out successfully.' });
-      store.clearAlert();
+      userStore.resetUser();
+      userMsgStore.alert({ type: 'success', msg: 'Logged out successfully.' });
+      userMsgStore.clearAlert();
     } catch (err) {
-      store.alert(err);
-      store.clearAlert();
+      userMsgStore.alert(err);
+      userMsgStore.clearAlert();
       console.error(err.msg);
     }
   };
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
   const openPlaylistAddModal = () => {
-    store.toggleModal('addPlaylist');
+    modalStore.toggleModal('addPlaylist');
   };
   const getHamburgerIcon = () => {
     return isSideMenuOpen ? <AiOutlineClose /> : <HiOutlineMenu />;
@@ -85,18 +85,18 @@ export const Navbar: React.FC = observer(() => {
             </Button>
             <div className="relative">
               <UserMiniProfile
-                onClick={store.user.isSignedIn && toggleProfileOptionsModal}
-                isSignedIn={store.user.isSignedIn}
-                imgUrl={store.user.imgUrl}
+                onClick={userStore.user.isSignedIn && toggleProfileOptionsModal}
+                isSignedIn={userStore.user.isSignedIn}
+                imgUrl={userStore.user.imgUrl}
                 initials={
-                  store.user.isSignedIn &&
-                  userService.getInitials(store.user.name)
+                  userStore.user.isSignedIn &&
+                  userService.getInitials(userStore.user.name)
                 }
               />
             </div>
             <ThemeSwitcher
               className="theme-switcher"
-              theme={store.theme}
+              theme={themeStore.theme}
               toggleTheme={toggleTheme}
             />
             <Svg cb={toggleSideMenu} size="3rem" className="hamburger">
@@ -113,7 +113,7 @@ export const Navbar: React.FC = observer(() => {
 
       <SideHamburger
         isSideMenuOpen={isSideMenuOpen}
-        theme={store.theme}
+        theme={themeStore.theme}
         toggleTheme={toggleTheme}
         openPlaylistAddModal={openPlaylistAddModal}
         toggleSideMenu={toggleSideMenu}

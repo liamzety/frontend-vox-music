@@ -7,31 +7,31 @@ import { ImgThumbnail, Container } from './mainHeader-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
+import { observer } from 'mobx-react';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
   onToggleChat: () => void;
 }
 
-export const MainHeader: React.FC<MainHeaderProps> = ({
-  onRemovePlaylist,
-  onToggleChat,
-}) => {
-  const store = useStore();
-  return (
-    <Container>
-      <div className="outer-container flex">
-        <ImgThumbnail data-augmented-ui="tl-clip t-rect-x tr-clip br-clip b-rect-x bl-clip border">
-          <img src={store.player.currPlaylist.img} alt="thumbnail" />
-        </ImgThumbnail>
-        <div className="inner-container flex w100 space-between align-center">
-          <div className="txt-container flex space-between col h100 w100">
-            <div className="name-desc-container">
-              <div className="playlist-header-container flex space-between align-center">
-                <Text type="h2">{store.player.currPlaylist.name}</Text>
-                <div className="playlist-actions-container flex col space-between">
-                  <Text type="h1">. . .</Text>
-                  {/* <Link to={`/`}>
+export const MainHeader: React.FC<MainHeaderProps> = observer(
+  ({ onRemovePlaylist, onToggleChat }) => {
+    const { playerStore, userStore } = useStore();
+    console.log('playerStore', playerStore);
+    return (
+      <Container>
+        <div className="outer-container flex">
+          <ImgThumbnail data-augmented-ui="tl-clip t-rect-x tr-clip br-clip b-rect-x bl-clip border">
+            <img src={playerStore.player.currPlaylist.img} alt="thumbnail" />
+          </ImgThumbnail>
+          <div className="inner-container flex w100 space-between align-center">
+            <div className="txt-container flex space-between col h100 w100">
+              <div className="name-desc-container">
+                <div className="playlist-header-container flex space-between align-center">
+                  <Text type="h2">{playerStore.player.currPlaylist.name}</Text>
+                  <div className="playlist-actions-container flex col space-between">
+                    <Text type="h1">. . .</Text>
+                    {/* <Link to={`/`}>
                     <button
                       onClick={() => {
                         onRemovePlaylist(store.player.currPlaylist._id!);
@@ -47,28 +47,33 @@ export const MainHeader: React.FC<MainHeaderProps> = ({
                   >
                     Update
                   </button> */}
+                  </div>
                 </div>
+                <Text type="h4">
+                  {playerStore.player.currPlaylist.description}
+                </Text>
               </div>
-              <Text type="h4">{store.player.currPlaylist.description}</Text>
-            </div>
-            <div className="flex space-between align-center">
-              <Text type="p">Genre: {store.player.currPlaylist.genre}</Text>
-              {store.user.isSignedIn ? (
-                <Button cb={onToggleChat} size="small" label="G01">
-                  Chat
-                </Button>
-              ) : (
-                <Link to="/login">
-                  <Button size="small" label="G01">
-                    Login To Chat!
+              <div className="flex space-between align-center">
+                <Text type="p">
+                  Genre: {playerStore.player.currPlaylist.genre}
+                </Text>
+                {userStore.user.isSignedIn ? (
+                  <Button cb={onToggleChat} size="small" label="G01">
+                    Chat
                   </Button>
-                </Link>
-              )}
+                ) : (
+                  <Link to="/login">
+                    <Button size="small" label="G01">
+                      Login To Chat!
+                    </Button>
+                  </Link>
+                )}
+              </div>
             </div>
+            <div></div>
           </div>
-          <div></div>
         </div>
-      </div>
-    </Container>
-  );
-};
+      </Container>
+    );
+  }
+);

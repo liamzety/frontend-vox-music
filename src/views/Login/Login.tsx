@@ -8,14 +8,14 @@ import { userService } from '../../services/userService';
 import { Link } from 'react-router-dom';
 
 export const Login: React.FC = observer(({ history }: any) => {
-  const store = useStore();
+  const { userStore, userMsgStore } = useStore();
   const [userCred, setUserCred] = useState({
     email: '',
     password: '',
   });
   useEffect(() => {
-    if (store.user.isSignedIn) history.push('/');
-  }, [history, store.user.isSignedIn]);
+    if (userStore.user.isSignedIn) history.push('/');
+  }, [history, userStore.user.isSignedIn]);
   const handleInput = (ev: React.FormEvent<HTMLInputElement>) => {
     const { value, name } = ev.currentTarget;
     setUserCred((prevState) => {
@@ -29,10 +29,10 @@ export const Login: React.FC = observer(({ history }: any) => {
     ev.preventDefault();
     try {
       const user = await userService.login(userCred);
-      store.setUser(user);
+      userStore.setUser(user);
     } catch (err) {
-      store.alert(err);
-      store.clearAlert();
+      userMsgStore.alert(err);
+      userMsgStore.clearAlert();
       console.error(err.msg);
     }
   };

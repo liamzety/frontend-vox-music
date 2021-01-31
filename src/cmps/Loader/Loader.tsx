@@ -11,10 +11,10 @@ interface LoaderProps {
   size?: string;
 }
 export const Loader: React.FC<LoaderProps> = ({ position, size, loader }) => {
-  const store = useStore();
+  const { themeStore } = useStore();
   if (!loader) {
     loader =
-      store.theme === 'dark'
+      themeStore.theme === 'dark'
         ? localImgService.defaultLoaderDark
         : localImgService.defaultLoaderLight;
   }

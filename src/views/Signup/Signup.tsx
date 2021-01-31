@@ -8,7 +8,7 @@ import { userService } from '../../services/userService';
 import { cloudinaryService } from '../../services/cloudinaryService';
 
 export const Signup: React.FC = observer(({ history }: any) => {
-  const store = useStore();
+  const { userStore, userMsgStore } = useStore();
   const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
 
   const [userCred, setUserCred] = useState({
@@ -18,8 +18,8 @@ export const Signup: React.FC = observer(({ history }: any) => {
     imgUrl: '',
   });
   useEffect(() => {
-    if (store.user.isSignedIn) history.push('/');
-  }, [history, store.user.isSignedIn]);
+    if (userStore.user.isSignedIn) history.push('/');
+  }, [history, userStore.user.isSignedIn]);
   const handleInput = (ev: React.FormEvent<HTMLInputElement>) => {
     const { name, value } = ev.currentTarget;
 
@@ -46,10 +46,10 @@ export const Signup: React.FC = observer(({ history }: any) => {
     if (isImgUploading) return;
     try {
       const user = await userService.signup(userCred);
-      store.setUser(user);
+      userStore.setUser(user);
     } catch (err) {
-      store.alert(err);
-      store.clearAlert();
+      userMsgStore.alert(err);
+      userMsgStore.clearAlert();
       console.error(err.msg);
     }
   };

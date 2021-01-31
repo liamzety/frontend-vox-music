@@ -13,11 +13,11 @@ import { Banner } from '../../cmps/Banner/Banner';
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
 
 export const Home: React.FC = observer(() => {
-  const store = useStore();
+  const { playlistStore } = useStore();
 
   const getPlaylists = useCallback(async () => {
-    store.setPlaylists(await playlistService.query());
-  }, [store]);
+    playlistStore.setPlaylists(await playlistService.query());
+  }, [playlistStore]);
 
   useEffect(() => {
     getPlaylists();
@@ -30,9 +30,9 @@ export const Home: React.FC = observer(() => {
   };
   return (
     <HomePage>
-      <Banner onHandleScroll={onHandleScroll} playlists={store.playlists} />
+      <Banner onHandleScroll={onHandleScroll} />
       <div className="container-x">
-        {!store.playlists || store.playlists.length === 0 ? (
+        {!playlistStore.playlists || playlistStore.playlists.length === 0 ? (
           ''
         ) : (
           <PlaylistsSection ref={genreListRef} className="make padding top">
@@ -40,7 +40,7 @@ export const Home: React.FC = observer(() => {
               return (
                 <PlaylistList
                   key={idx}
-                  playlists={store.playlists}
+                  playlists={playlistStore.playlists}
                   genre={genre}
                 />
               );

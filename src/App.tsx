@@ -20,11 +20,11 @@ import { Player } from './cmps/Player/Player';
 import { AlertModal } from './aux-cmps/AlertModal/AlertModal';
 
 const App = observer(() => {
-  const store = useStore();
+  const { modalStore, userStore, themeStore, userMsgStore } = useStore();
   const getModal = () => {
-    switch (store.modal.type) {
+    switch (modalStore.modalType) {
       case 'addPlaylist':
-        return <PlaylistAddModal fade={store.modal.isOn} />;
+        return <PlaylistAddModal fade={modalStore.modal.isOn} />;
       default:
     }
   };
@@ -37,20 +37,22 @@ const App = observer(() => {
     const user = await userService.getLoggedUser(
       JSON.parse(cookieService.getCookie('userId'))
     );
-    store.setUser(user);
+    userStore.setUser(user);
   };
   return (
-    <ThemeProvider theme={store.theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider
+      theme={themeStore.theme === 'light' ? lightTheme : darkTheme}
+    >
       <main className="app">
         <GlobalStyles />
         {/* <InstallPopup /> */}
-        {/* <PlaylistAddModal fade={store.modal.isOn} /> */}
+        {/* <PlaylistAddModal fade={modal.isOn} /> */}
         <Router>
           {getModal()}
           <ScreenWrapper
-            fade={store.modal.isOn}
+            fade={modalStore.modal.isOn}
             index="9"
-            cb={store.toggleModal}
+            cb={modalStore.toggleModal}
           />
           <Navbar />
           <Switch>
@@ -65,8 +67,8 @@ const App = observer(() => {
           </Switch>
         </Router>
       </main>
-      <AlertModal userMsg={store.userMsg} />
-      <Player slide={store.player.isOn} />
+      <AlertModal userMsg={userMsgStore.userMsg} />
+      <Player />
       {/* <Player slide={true} /> */}
     </ThemeProvider>
   );

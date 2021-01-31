@@ -32,7 +32,7 @@ export const Main: React.FC<Props> = observer(
       params: { playlistId },
     },
   }) => {
-    const store = useStore();
+    const { playerStore, playlistStore, userMsgStore } = useStore();
 
     const getPlaylist = useCallback(
       async (playlistId: string) => {
@@ -40,16 +40,19 @@ export const Main: React.FC<Props> = observer(
         let { playlist, playlistSongs } = await playlistService.getById(
           playlistId
         );
-        await store.setCurrPlaylist({ ...playlist, songs: [...playlistSongs] });
+        await playerStore.setCurrPlaylist({
+          ...playlist,
+          songs: [...playlistSongs],
+        });
         // if playlist is not empty setting the currPlaying as the first song
         if (playlistSongs.length > 0) {
           const { title, url: imgUrl, video_id: songUrl } = playlistSongs[0];
           const firstSong = { imgUrl, songUrl, title, idx: 0 };
 
-          store.setCurrPlaying(firstSong);
+          playerStore.setCurrPlaying(firstSong);
         }
       },
-      [store]
+      [playerStore]
     );
     useEffect(() => {
       getPlaylist(playlistId);
@@ -58,45 +61,45 @@ export const Main: React.FC<Props> = observer(
 
     const onRemovePlaylist = (playlistId: string): void => {
       playlistService.remove(playlistId);
-      store.removePlaylist(playlistId);
+      playlistStore.removePlaylist(playlistId);
     };
     function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
       playlistService.update(playlistToUpdate);
-      store.updatePlaylist(playlistToUpdate);
+      playlistStore.updatePlaylist(playlistToUpdate);
     }
     // ---------------------Song CRUD ------------------
     const onAddSong = async (songData: any) => {
       const video_id = songData.id.videoId;
       if (findIfExsits(video_id)) {
-        store.alert({
+        userMsgStore.alert({
           msg: 'This song has already been added!',
           type: 'error',
         });
-        store.clearAlert();
+        userMsgStore.clearAlert();
         return;
       }
 
       let { title } = songData.snippet;
       title = regService.replaceCharRef(title);
       const { url } = songData.snippet.thumbnails.default;
-      const playlist_id = store.player.currPlaylist._id!;
+      const playlist_id = playerStore.player.currPlaylist._id!;
       const songAdded = await songService.add({
         title,
         url,
         video_id,
         playlist_id,
       });
-      store.setCurrPlaylist({
-        ...store.player.currPlaylist,
-        songs: [songAdded, ...store.player.currPlaylist.songs],
+      playerStore.setCurrPlaylist({
+        ...playerStore.player.currPlaylist,
+        songs: [songAdded, ...playerStore.player.currPlaylist.songs],
       });
     };
     const onRemoveSong = (songId: string): void => {
       songService.remove(songId);
-      store.setCurrPlaylist({
-        ...store.player.currPlaylist,
+      playerStore.setCurrPlaylist({
+        ...playerStore.player.currPlaylist,
         songs: [
-          ...store.player.currPlaylist.songs.filter(
+          ...playerStore.player.currPlaylist.songs.filter(
             (song: any) => song._id !== songId
           ),
         ],
@@ -105,14 +108,18 @@ export const Main: React.FC<Props> = observer(
 
     // Checks if the song the user wants to add already exsits in the playlist
     const findIfExsits = (video_id: string): boolean => {
-      return store.player.currPlaylist.songs.some(
+      return playerStore.player.currPlaylist.songs.some(
         (song: any) => song.video_id === video_id
       );
     };
     // When user selects a song
     const handleSongSelect = (data: { songUrl: string; idx: number }): void => {
-      store.setCurrPlaying(data);
-      store.setPlayer({ ...store.player, isOn: true, isPlaying: true });
+      playerStore.setCurrPlaying(data);
+      playerStore.setPlayer({
+        ...playerStore.player,
+        isOn: true,
+        isPlaying: true,
+      });
     };
 
     const [isChat, setIsChat] = useState(false);
@@ -143,7 +150,6 @@ export const Main: React.FC<Props> = observer(
           <SongSearch onAddSong={onAddSong} />
           <SongList
             handleSongSelect={handleSongSelect}
-            currPlaylist={store.player.currPlaylist}
             onRemoveSong={onRemoveSong}
           />
         </MainHeaderContainer>

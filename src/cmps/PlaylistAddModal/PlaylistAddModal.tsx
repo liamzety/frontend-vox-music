@@ -16,18 +16,21 @@ interface PlaylistAddModal {
   fade: boolean;
 }
 export const PlaylistAddModal: React.FC<PlaylistAddModal> = ({ fade }) => {
-  const store = useStore();
+  const { playlistStore, modalStore, userMsgStore } = useStore();
   const history = useHistory();
 
   async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
     const playlistAdded = await playlistService.add(playlistToAdd);
-    store.addPlaylist(playlistAdded);
+    playlistStore.addPlaylist(playlistAdded);
     if (history.location.pathname !== '/') {
       history.push(`/main/${playlistAdded.title}=${playlistAdded._id}`);
     }
-    store.toggleModal();
-    store.alert({ type: 'success', msg: 'Playlist added successfully.' });
-    store.clearAlert();
+    modalStore.toggleModal();
+    userMsgStore.alert({
+      type: 'success',
+      msg: 'Playlist added successfully.',
+    });
+    userMsgStore.clearAlert();
   }
   return (
     <Fade in={fade}>

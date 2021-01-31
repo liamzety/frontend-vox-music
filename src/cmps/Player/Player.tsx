@@ -30,49 +30,50 @@ import { Text } from '../../aux-cmps/Text/Text';
 import { Slide } from '@material-ui/core';
 import { Loader } from '../Loader/Loader';
 import { Resizable } from 're-resizable';
-interface PlayerProps {
-  slide: boolean;
-}
-export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
-  const store = useStore();
-  const { player } = store;
+// interface PlayerProps {
+//   slide: boolean;
+// }
+export const Player: React.FC = observer(() => {
+  const { playerStore } = useStore();
+  const { player } = playerStore;
+
   const reactPlayerRef = useRef(null);
   const [isBuffering, setIsBuffering] = useState(true);
 
   const togglePlay = () => {
-    store.setPlayer({ isPlaying: !player.isPlaying });
+    playerStore.setPlayer({ isPlaying: !player.isPlaying });
   };
   //  Update player.duration when a song is loaded
   const setDuration = (duration: number) => {
-    store.setPlayer({ duration });
+    playerStore.setPlayer({ duration });
   };
   // Update player.time every second
   const handleProgress = (progressData: any) => {
-    store.setPlayer({ time: progressData.playedSeconds });
+    playerStore.setPlayer({ time: progressData.playedSeconds });
   };
   // When user slides and selects different timelapse
   const handleSongTime = (ev: React.FormEvent<HTMLInputElement>) => {
     const timestamp = +ev.currentTarget.value;
     reactPlayerRef.current.seekTo(timestamp, 'seconds');
-    store.setPlayer({ time: timestamp });
+    playerStore.setPlayer({ time: timestamp });
   };
   // When user slides and selects different volume
   const handleSongVolume = (ev: React.FormEvent<HTMLInputElement>) => {
     const volume = +ev.currentTarget.value;
 
-    store.setPlayer({ volume, lastVolume: volume });
+    playerStore.setPlayer({ volume, lastVolume: volume });
   };
   // Toggle mute, if already muted - goes to the last volume b4 toggle,
   // if last volume was slided to 0 instead of a toggle then the toggle will make the new sound 0.5
   const toggleSongMute = () => {
     if (player.volume === 0) {
       if (player.lastVolume === 0) {
-        store.setPlayer({ volume: 0.5 });
+        playerStore.setPlayer({ volume: 0.5 });
       } else {
-        store.setPlayer({ volume: player.lastVolume });
+        playerStore.setPlayer({ volume: player.lastVolume });
       }
     } else {
-      store.setPlayer({ volume: 0 });
+      playerStore.setPlayer({ volume: 0 });
     }
   };
   const getMuteIcon = () => {
@@ -123,14 +124,19 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
         onBufferEnd={() => {
           setIsBuffering(false);
         }}
-        onEnded={store.handleNextPrevSong.bind({}, 'next')}
+        onEnded={playerStore.handleNextPrevSong.bind({}, 'next')}
         onDuration={setDuration}
         onProgress={handleProgress}
         volume={player.volume}
         ref={reactPlayerRef}
         hidden
       />
-      <Slide direction="up" in={slide} mountOnEnter unmountOnExit>
+      <Slide
+        direction="up"
+        in={playerStore.player.isOn}
+        mountOnEnter
+        unmountOnExit
+      >
         <PlayerContainer data-augmented-ui="tl-clip-x t-clip-x tr-clip-x">
           <BackgroundWrapper isPlaying={player.isPlaying} />
           <Resizable
@@ -182,7 +188,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
               </PlayerDurationContainer>
               <div className="controls-container flex align-center">
                 <Svg
-                  cb={store.handleNextPrevSong.bind({}, 'prev')}
+                  cb={playerStore.handleNextPrevSong.bind({}, 'prev')}
                   size="40px"
                   pointer={true}
                 >
@@ -194,7 +200,7 @@ export const Player: React.FC<PlayerProps> = observer(({ slide }) => {
                 </Svg>
 
                 <Svg
-                  cb={store.handleNextPrevSong.bind({}, 'next')}
+                  cb={playerStore.handleNextPrevSong.bind({}, 'next')}
                   size="40px"
                   pointer={true}
                 >
