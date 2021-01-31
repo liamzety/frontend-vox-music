@@ -1,7 +1,7 @@
 import { PlayerType } from '../../types/Player';
 import { PlaylistType } from '../../types/Playlist';
 import { RootStore } from '../store';
-import { action, makeObservable, observable } from 'mobx';
+import { action, computed, makeObservable, observable } from 'mobx';
 
 export class PlayerStore {
   root: RootStore;
@@ -35,6 +35,7 @@ export class PlayerStore {
     // no work here only assignments
     makeObservable(this, {
       player: observable,
+      currPlaylist: computed,
       setPlayer: action,
       handleNextPrevSong: action,
       setCurrPlaying: action,
@@ -46,27 +47,30 @@ export class PlayerStore {
     // safe to access other stores
     console.log('init modal store');
   }
-
+  get currPlaylist() {
+    return this.player.currPlaylist;
+  }
   setPlayer(updatedPlayer: any) {
     this.player = { ...this.player, ...updatedPlayer };
+    console.log('set player', this.player);
   }
   handleNextPrevSong(val: string) {
+    if (this.currPlaylist.songs.length === 0) return;
     if (val === 'next') {
       const nextSongIdx =
-        this.player.currPlaylist.currSong.idx + 1 >
-        this.player.currPlaylist.songs.length - 1
+        this.currPlaylist.currSong.idx + 1 > this.currPlaylist.songs.length - 1
           ? 0
-          : this.player.currPlaylist.currSong.idx + 1;
-      const nextSongData = this.player.currPlaylist.songs[nextSongIdx];
+          : this.currPlaylist.currSong.idx + 1;
+      const nextSongData = this.currPlaylist.songs[nextSongIdx];
       const { url: imgUrl, title, video_id: songUrl } = nextSongData;
 
       this.setCurrPlaying({ imgUrl, songUrl, title, idx: nextSongIdx });
     } else {
       const prevSongIdx =
-        this.player.currPlaylist.currSong.idx - 1 < 0
-          ? this.player.currPlaylist.songs.length - 1
-          : this.player.currPlaylist.currSong.idx - 1;
-      const prevSongData = this.player.currPlaylist.songs[prevSongIdx];
+        this.currPlaylist.currSong.idx - 1 < 0
+          ? this.currPlaylist.songs.length - 1
+          : this.currPlaylist.currSong.idx - 1;
+      const prevSongData = this.currPlaylist.songs[prevSongIdx];
       const { url: imgUrl, title, video_id: songUrl } = prevSongData;
 
       this.setCurrPlaying({ imgUrl, songUrl, title, idx: prevSongIdx });

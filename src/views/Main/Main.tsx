@@ -40,6 +40,8 @@ export const Main: React.FC<Props> = observer(
         let { playlist, playlistSongs } = await playlistService.getById(
           playlistId
         );
+        console.log('playlist', playlist);
+        console.log('playlistSongs', playlistSongs);
         await playerStore.setCurrPlaylist({
           ...playlist,
           songs: [...playlistSongs],

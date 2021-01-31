@@ -67,7 +67,7 @@ export const Player: React.FC = observer(() => {
   // if last volume was slided to 0 instead of a toggle then the toggle will make the new sound 0.5
   const toggleSongMute = () => {
     if (player.volume === 0) {
-      if (player.lastVolume === 0) {
+      if (!player.lastVolume) {
         playerStore.setPlayer({ volume: 0.5 });
       } else {
         playerStore.setPlayer({ volume: player.lastVolume });
@@ -124,7 +124,9 @@ export const Player: React.FC = observer(() => {
         onBufferEnd={() => {
           setIsBuffering(false);
         }}
-        onEnded={playerStore.handleNextPrevSong.bind({}, 'next')}
+        onEnded={() => {
+          playerStore.handleNextPrevSong('next');
+        }}
         onDuration={setDuration}
         onProgress={handleProgress}
         volume={player.volume}
@@ -188,7 +190,9 @@ export const Player: React.FC = observer(() => {
               </PlayerDurationContainer>
               <div className="controls-container flex align-center">
                 <Svg
-                  cb={playerStore.handleNextPrevSong.bind({}, 'prev')}
+                  cb={() => {
+                    playerStore.handleNextPrevSong('prev');
+                  }}
                   size="40px"
                   pointer={true}
                 >
@@ -200,7 +204,9 @@ export const Player: React.FC = observer(() => {
                 </Svg>
 
                 <Svg
-                  cb={playerStore.handleNextPrevSong.bind({}, 'next')}
+                  cb={() => {
+                    playerStore.handleNextPrevSong('next');
+                  }}
                   size="40px"
                   pointer={true}
                 >
