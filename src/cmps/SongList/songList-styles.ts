@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const SongListContainer = styled.ul`
-  height: calc(50vh - 180px);
-  margin-bottom: 25px;
+  height: 250px;
   background: #000000c7;
   overflow: overlay;
 `;

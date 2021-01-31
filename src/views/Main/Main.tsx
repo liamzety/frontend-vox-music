@@ -10,11 +10,7 @@ import { playlistService } from '../../services/playlistService';
 import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
 // Styles
-import {
-  MainPage,
-  MainHeaderContainer,
-  MainChatContainer,
-} from './main-styles';
+import { MainPage } from './main-styles';
 // Cmps
 import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
@@ -130,7 +126,6 @@ export const Main: React.FC<Props> = observer(
       setIsChat(!isChat);
     };
     const isMobile = window.innerWidth > 750;
-    console.log('main rednered');
     return (
       <MainPage className="container-y container-x">
         <Slide
@@ -139,12 +134,12 @@ export const Main: React.FC<Props> = observer(
           mountOnEnter
           unmountOnExit
         >
-          <MainChatContainer>
+          <div className="flex1">
             <UserChat onToggleChat={onToggleChat} />
-          </MainChatContainer>
+          </div>
         </Slide>
 
-        <MainHeaderContainer>
+        <div className="flex1">
           <MainHeader
             onToggleChat={onToggleChat}
             onRemovePlaylist={onRemovePlaylist}
@@ -154,7 +149,7 @@ export const Main: React.FC<Props> = observer(
             handleSongSelect={handleSongSelect}
             onRemoveSong={onRemoveSong}
           />
-        </MainHeaderContainer>
+        </div>
       </MainPage>
     );
   }

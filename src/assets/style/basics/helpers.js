@@ -11,13 +11,15 @@ export const helpers = `
   
   .container-y {
     padding-top: 100px;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
   }
   
   .flex {
     display: flex;
   }
-  
+  .flex1 {
+    flex: 1;
+  }
   .h100 {
     height: 100%
   }

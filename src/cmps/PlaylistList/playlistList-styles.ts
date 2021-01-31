@@ -35,9 +35,3 @@ export const PlaylistListContainer = styled.div<Props>`
     background: transparent;
   }
 `;
-export const PlaylistListContainerGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 25px;
-  min-height: 200px;
-`;
