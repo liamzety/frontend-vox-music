@@ -59,16 +59,16 @@ export const ButtonStyle = styled.button<Props>`
   &.btn-small {
     width: 120px;
     height: 40px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
   &.btn-medium {
     width: 180px;
     height: 50px;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
   &.btn-large {
     width: 230px;
     height: 60px;
-    font-size: 0.85rem;
+    font-size: 1rem;
   }
 `;

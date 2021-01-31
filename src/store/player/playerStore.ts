@@ -52,7 +52,6 @@ export class PlayerStore {
   }
   setPlayer(updatedPlayer: any) {
     this.player = { ...this.player, ...updatedPlayer };
-    console.log('set player', this.player);
   }
   handleNextPrevSong(val: string) {
     if (this.currPlaylist.songs.length === 0) return;

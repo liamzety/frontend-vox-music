@@ -174,7 +174,7 @@ export const Player: React.FC = observer(() => {
                   player.currPlaylist.currSong.title}
               </Text>
             </PlayerLeftColumn>
-            <PlayerRightColumn className="">
+            <PlayerRightColumn>
               <PlayerDurationContainer className="duration-container">
                 <Text type="h4">{_getFormattedMinutes(player.time)}</Text>
                 <input

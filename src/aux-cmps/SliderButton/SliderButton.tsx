@@ -1,6 +1,6 @@
 import React from 'react';
 // Icons
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 // Cmps
 import { Svg } from '../Svg/Svg';
 // Styles
@@ -28,12 +28,12 @@ export const SliderButton: React.FC<SliderButtonProps> = ({
     <>
       <SliderButtonRight leftRight={leftRight} onClick={cbRight}>
         <Svg color="slideBtnSvg" size="2.5rem">
-          <AiOutlineArrowRight />
+          <RiArrowRightSLine />
         </Svg>
       </SliderButtonRight>
       <SliderButtonLeft leftRight={leftRight} onClick={cbLeft}>
         <Svg color="slideBtnSvg" size="2.5rem">
-          <AiOutlineArrowLeft />
+          <RiArrowLeftSLine />
         </Svg>
       </SliderButtonLeft>
     </>

@@ -15,7 +15,7 @@ export const TextStyle = styled.p<Props>`
     width: fit-content;
     font-family: Bicubik ; 
     text-transform:${(uppercase) => (uppercase ? 'uppercase' : '')};
-    color: ${({ theme, color }) => theme[color]};
+    color: ${({ theme, color }) => color && theme[color]};
     font-weight:${({ bold = true }) => (bold ? '700' : '400')};
 
     color:${({ active }) => active && GlobalVars.pinkMain};
@@ -69,6 +69,30 @@ export const TextStyle = styled.p<Props>`
     &.a {
         font-size: ${(props) => props.size || '1rem'};
         font-weight:${({ bold = false }) => (bold ? '700' : '400')};
+        border-bottom:${({ active }) => !active && '2px solid transparent'}; 
+        position:relative;
+        ${({ active, theme, color }) =>
+          !active &&
+          `
+        &:before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -10px;
+            left: 0;
+            background-color: ${color ? theme[color] : theme.mainTxt};
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: .2s linear;
+            }
+            &:hover:before {
+            visibility: visible;
+            transform: scaleX(1);
+            }
+            `}  
+        
+        
     }
 
     &.logo {

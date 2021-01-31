@@ -13,7 +13,7 @@ export const lightTheme = {
     tertiaryBg: GlobalVars.whiteTertiary,
 
     mainBtn: GlobalVars.blackMain,
-    mainBtnTxt: GlobalVars.yellowMain,
+    mainBtnTxt: GlobalVars.pinkMain,
 
     mainTxt: GlobalVars.blackMain,
     secTxt: GlobalVars.yellowMain,
@@ -23,7 +23,7 @@ export const lightTheme = {
     songHover: GlobalVars.whiteTertiary,
 
 
-    bannerTitle: GlobalVars.yellowMain,
+    bannerTitle: GlobalVars.pinkMain,
     hr: GlobalVars.whiteMain,
     neon: GlobalVars.pinkMain,
 
@@ -31,7 +31,10 @@ export const lightTheme = {
     neonModal: GlobalVars.pinkMain,
 
     mainBorder: GlobalVars.pinkMain,
+
     chipBorder: GlobalVars.blackMain,
+    chipCard: GlobalVars.blackMain,
+    chipTxt: GlobalVars.whiteMain,
 
     slideBtnSvg: GlobalVars.blackMain,
 
@@ -75,7 +78,10 @@ export const darkTheme = {
     neonModal: GlobalVars.pinkMain,
 
     mainBorder: GlobalVars.yellowMain,
+
     chipBorder: GlobalVars.pinkMain,
+    chipCard: '#1d0208',
+    chipTxt: GlobalVars.pinkMain,
 
     slideBtnSvg: GlobalVars.yellowMain,
 

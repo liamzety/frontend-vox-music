@@ -20,7 +20,6 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
       playerStore: { currPlaylist },
       userStore,
     } = useStore();
-    console.log('playerStore', currPlaylist);
     return (
       <Container>
         <div className="outer-container flex">
@@ -63,7 +62,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                 ) : (
                   <Link to="/login">
                     <Button size="small" label="G01">
-                      Login To Chat!
+                      Login To Chat_
                     </Button>
                   </Link>
                 )}
