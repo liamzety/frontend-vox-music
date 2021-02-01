@@ -129,6 +129,10 @@ export const PlayerContainer = styled.div`
     flex-direction: column !important;
     justify-content: space-between !important;
   }
+
+  @media (max-width: 750px) {
+    padding: 20px 10px 10px;
+  }
 `;
 export const PlayerLeftColumn = styled.div`
   display: flex;
@@ -164,7 +168,7 @@ export const PlayerDurationContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   p {
-    width: 80px;
+    width: 120px;
     text-align: center;
   }
   input[type='range'] {

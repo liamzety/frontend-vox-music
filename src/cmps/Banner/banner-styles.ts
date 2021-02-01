@@ -5,12 +5,12 @@ interface BannerWallpaperProps {
   opacity: string;
 }
 export const BannerContainer = styled.section`
-  padding-top: 50px;
   height: 100vh;
   background-position: center;
   background-size: cover;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   --aug-b-extend1: 60px;
   --aug-b: 6px;
@@ -33,12 +33,17 @@ export const BannerTitleContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 50%;
-  margin-top: 100px;
+  height: 75%;
   line-height: 2;
   text-align: center;
   justify-content: space-between;
   z-index: 1;
+  .banner-title-txt-container {
+    margin-top: 100px;
+    @media (max-width: 550px) {
+      margin-top: 0;
+    }
+  }
   .banner-title {
     display: flex;
     align-items: center;

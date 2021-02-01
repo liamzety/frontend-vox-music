@@ -22,7 +22,6 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   const handler = useCallback(
     debounce((suggestions: any) => {
       setAutoSuggest((prevState: any) => {
-        console.log('hjhere');
         return {
           ...prevState,
           isOn: true,

@@ -1,14 +1,18 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
+// Material UI
+import { Slide } from '@material-ui/core';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 // Types
 import { PlaylistType } from '../../types/Playlist';
+import { ChatMsgType } from '../../types/ChatMsg';
 // Services
 import { playlistService } from '../../services/playlistService';
 import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
+import socketService from '../../services/socketService';
 // Styles
 import { MainPage } from './main-styles';
 // Cmps
@@ -16,9 +20,6 @@ import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
 import { UserChat } from '../../cmps/UserChat/UserChat';
 import { MainHeader } from '../../cmps/MainHeader/MainHeader';
-import { Slide } from '@material-ui/core';
-import socketService from '../../services/socketService';
-import { ChatMsgType } from '../../types/ChatMsg';
 
 interface MatchParams {
   playlistId: string;
@@ -32,7 +33,7 @@ export const Main: React.FC<Props> = observer(
   }) => {
     const { playerStore, playlistStore, userMsgStore, userStore } = useStore();
 
-    // Chat ---------------------------------
+    // ---------------------Chat ------------------
     const [inRoom, setInRoom] = useState(false);
     const [msgs, setMsgs] = useState([]);
     const [msg, setMsg] = useState<ChatMsgType>({
@@ -74,8 +75,9 @@ export const Main: React.FC<Props> = observer(
     const handleSendMsg = () => {
       socketService.emit('chat newMsg', msg);
     };
-    // ------------------------------------
+    // ---------------------Chat END ------------------
 
+    // ---------------------Playlist CRUD ------------------
     const getPlaylist = useCallback(
       async (playlistId: string) => {
         // Get playlist data and songs
@@ -101,7 +103,6 @@ export const Main: React.FC<Props> = observer(
     useEffect(() => {
       getPlaylist(playlistId);
     }, [getPlaylist, playlistId]);
-    // ---------------------Playlist CRUD ------------------
 
     const onRemovePlaylist = (playlistId: string): void => {
       playlistService.remove(playlistId);
@@ -111,6 +112,8 @@ export const Main: React.FC<Props> = observer(
       playlistService.update(playlistToUpdate);
       playlistStore.updatePlaylist(playlistToUpdate);
     }
+    // ---------------------Playlist CRUD END ------------------
+
     // ---------------------Song CRUD ------------------
     const onAddSong = async (songData: any) => {
       const video_id = songData.id.videoId;
@@ -149,6 +152,7 @@ export const Main: React.FC<Props> = observer(
         ],
       });
     };
+    // ---------------------Song CRUD END ------------------
 
     // Checks if the song the user wants to add already exsits in the playlist
     const findIfExsits = (video_id: string): boolean => {

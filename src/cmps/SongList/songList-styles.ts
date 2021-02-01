@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
 export const SongListContainer = styled.ul`
-  height: 250px;
+  height: calc(100vh - 600px);
+  min-height: 250px;
   background: #000000c7;
   overflow: overlay;
+  @media (max-width: 750px) {
+    min-height: 200px;
+    height: calc(100vh - 750px);
+  }
 `;
 export const SongContainer = styled.li`
   background: ${({ theme }) => theme.secBg};

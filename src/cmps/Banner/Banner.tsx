@@ -26,24 +26,24 @@ export const Banner: React.FC<BannerProps> = observer(({ onHandleScroll }) => {
   const { playlistStore } = useStore();
   const [currImg, setCurrImg] = useState(1);
   const imgInterval = useRef(null);
-  // const setImgInterval = useCallback(() => {
-  //   imgInterval.current = setInterval(() => {
-  //     setCurrImg((prevState) => {
-  //       if (prevState === localImgService.wallpapers.length) return 1;
-  //       return prevState + 1;
-  //     });
-  //   }, 7000);
-  // }, []);
-  // useEffect(() => {
-  //   setImgInterval();
-  //   return () => {
-  //     clearInterval(imgInterval.current);
-  //   };
-  // }, [setImgInterval]);
+  const setImgInterval = useCallback(() => {
+    imgInterval.current = setInterval(() => {
+      setCurrImg((prevState) => {
+        if (prevState === localImgService.wallpapers.length) return 1;
+        return prevState + 1;
+      });
+    }, 7000);
+  }, []);
+  useEffect(() => {
+    setImgInterval();
+    return () => {
+      clearInterval(imgInterval.current);
+    };
+  }, [setImgInterval]);
   return (
     <BannerContainer data-augmented-ui="br-clip-x b-clip-x bl-clip-x">
       <BannerTitleContainer className="container-x">
-        <div className="flex align-center justify-center col">
+        <div className="banner-title-txt-container flex align-center justify-center col">
           <Text type="banner-title">
             Vo <BannerLogo src={localImgService.logoLight} />
             Music

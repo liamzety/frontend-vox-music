@@ -3,7 +3,7 @@ export const helpers = `
     padding-left: 30px;
     padding-right: 30px;
   
-    @media(max-width:520px) {
+    @media(max-width:550px) {
       padding-left: 8px;
       padding-right: 8px;
     }
@@ -11,7 +11,10 @@ export const helpers = `
   
   .container-y {
     padding-top: 100px;
-    padding-bottom: 150px;
+    padding-bottom: 19vh;
+    @media(max-width:550px) {
+      padding-bottom: 29vh;
+    }
   }
   
   .flex {
