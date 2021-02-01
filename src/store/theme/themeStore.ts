@@ -1,12 +1,6 @@
 import { storageService } from '../../services/storageService';
 import { RootStore } from '../store';
-import {
-  action,
-  computed,
-  makeObservable,
-  observable,
-  runInAction,
-} from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 export class ThemeStore {
   root: RootStore;
   theme: string;

@@ -6,7 +6,7 @@ import { UserMiniProfileStyles, UnknownUser } from './userMiniProfile-styles';
 // Cmps
 import { Text } from '../Text/Text';
 
-interface UserMiniProfileProps {
+export interface UserMiniProfileProps {
   imgUrl: string;
   initials: string;
   isSignedIn: boolean;
@@ -18,12 +18,13 @@ export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
   isSignedIn,
   onClick,
 }) => {
-  if (!isSignedIn)
+  if (!isSignedIn) {
     return (
       <Link to={`/login`}>
         <UnknownUser />
       </Link>
     );
+  }
   return (
     <UserMiniProfileStyles onClick={onClick}>
       {imgUrl ? (
