@@ -42,7 +42,9 @@ export const helpers = `
   .hidden {
     display: none;
   }
-  
+  .hide {
+    visibility: hidden;
+  }
   .wrap {
     flex-wrap: wrap;
   }

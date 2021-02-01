@@ -33,11 +33,8 @@ export const UserChatStyles = styled.div`
   }
 `;
 export const ChatHeader = styled.div`
-display: flex;
 height: 50px;
 padding: 5px 25px;
-align-items: center;
-justify-content: space-between;
 }
 `;
 export const ChatFooter = styled.div`
@@ -58,5 +55,8 @@ export const ChatBubble = styled.div`
   word-break: break-all;
   &:not(:last-child) {
     margin-bottom: 25px;
+  }
+  .chat-time-sent {
+    margin-left: 50px;
   }
 `;

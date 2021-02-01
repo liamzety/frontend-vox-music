@@ -22,6 +22,19 @@ export const Container = styled.div`
   .name-desc-container {
     margin-bottom: 25px;
   }
+  .chat-btn-container {
+    height: 40px;
+    .user-typing-txt {
+      margin-right: 10px;
+      max-width: 100px;
+      max-height: 100px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 `;
 export const ImgThumbnail = styled.div`
   width: 30%;

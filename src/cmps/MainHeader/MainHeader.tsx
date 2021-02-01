@@ -1,21 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // Store
+import { observer } from 'mobx-react';
 import { useStore } from '../../store/StoreContext';
 // Styles
 import { ImgThumbnail, Container } from './mainHeader-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
-import { observer } from 'mobx-react';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
   onToggleChat: () => void;
+  userTyping: string;
+  isChat: boolean;
 }
 
 export const MainHeader: React.FC<MainHeaderProps> = observer(
-  ({ onRemovePlaylist, onToggleChat }) => {
+  ({ onRemovePlaylist, onToggleChat, userTyping, isChat }) => {
     const {
       playerStore: { currPlaylist },
       userStore,
@@ -56,9 +58,16 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
               <div className="flex space-between align-center">
                 <Text type="p">Genre: {currPlaylist.genre}</Text>
                 {userStore.user.isSignedIn ? (
-                  <Button cb={onToggleChat} size="small" label="G01">
-                    Chat
-                  </Button>
+                  <div className="chat-btn-container flex align-center">
+                    {!isChat && userTyping && (
+                      <Text className="user-typing-txt" type="p">
+                        {userTyping} is typing...
+                      </Text>
+                    )}
+                    <Button cb={onToggleChat} size="small" label="G01">
+                      Chat
+                    </Button>
+                  </div>
                 ) : (
                   <Link to="/login">
                     <Button size="small" label="G01">

@@ -20,6 +20,7 @@ import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
 import { UserChat } from '../../cmps/UserChat/UserChat';
 import { MainHeader } from '../../cmps/MainHeader/MainHeader';
+import { debounce, defer } from 'lodash';
 
 interface MatchParams {
   playlistId: string;
@@ -35,8 +36,10 @@ export const Main: React.FC<Props> = observer(
 
     // ---------------------Chat ------------------
     const [inRoom, setInRoom] = useState(false);
+    const [userTyping, setUserTyping] = useState('');
     const [msgs, setMsgs] = useState([]);
     const [msg, setMsg] = useState<ChatMsgType>({
+      timeSent: null,
       msgTxt: '',
       byUser: {
         name: '',
@@ -50,19 +53,39 @@ export const Main: React.FC<Props> = observer(
         setInRoom(true);
       }
       socketService.on('chat addMsg', handleSentMsg);
+      socketService.on('chat showTyping', showTyping);
+
       return () => {
         socketService.terminate();
       };
     }, []);
+
     const handleTyping = (ev: React.ChangeEvent<HTMLInputElement>) => {
+      socketService.emit('chat typing', userStore.user.name);
+
       setMsg({
         msgTxt: ev.target.value,
         byUser: {
           name: userStore.user.name,
           profile_img: userStore.user.profile_img,
         },
+        timeSent: Date.now(),
       });
     };
+    // Setting the UserTyping and debouncing before clearing it
+    function showTyping() {
+      const userTyping: string = arguments[0];
+      if (userTyping === userStore.user.name) return;
+      setUserTyping(userTyping);
+      handler();
+    }
+
+    const handler = useCallback(
+      debounce(() => {
+        setUserTyping('');
+      }, 800),
+      []
+    );
 
     function handleSentMsg() {
       // slimey hack because of no parameters specified in .on method
@@ -186,7 +209,9 @@ export const Main: React.FC<Props> = observer(
         >
           <div className="flex1">
             <UserChat
+              playlistName={playerStore.currPlaylist.name}
               msgs={msgs}
+              userTyping={userTyping}
               handleTyping={handleTyping}
               handleSendMsg={handleSendMsg}
               onToggleChat={onToggleChat}
@@ -196,8 +221,10 @@ export const Main: React.FC<Props> = observer(
 
         <div className="flex1">
           <MainHeader
+            isChat={isChat}
             onToggleChat={onToggleChat}
             onRemovePlaylist={onRemovePlaylist}
+            userTyping={userTyping}
           />
           <SongSearch onAddSong={onAddSong} />
           <SongList

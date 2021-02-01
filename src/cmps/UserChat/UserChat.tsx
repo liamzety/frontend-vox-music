@@ -1,4 +1,8 @@
 import React from 'react';
+// @ts-ignore
+import ScrollToBottom from 'react-scroll-to-bottom';
+// Types
+import { ChatMsgType } from '../../types/ChatMsg';
 // Styles
 import {
   UserChatStyles,
@@ -6,14 +10,16 @@ import {
   ChatHeader,
   ChatFooter,
 } from './userChat-styles';
-// @ts-ignore
-import ScrollToBottom from 'react-scroll-to-bottom';
-import { ChatMsgType } from '../../types/ChatMsg';
+// Cmps
+import { Text } from '../../aux-cmps/Text/Text';
+
 interface UserChatProps {
   onToggleChat: () => void;
   handleTyping: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   handleSendMsg: () => void;
-  msgs: any;
+  msgs: ChatMsgType[];
+  playlistName: string;
+  userTyping: string;
 }
 
 export const UserChat: React.FC<UserChatProps> = ({
@@ -21,14 +27,28 @@ export const UserChat: React.FC<UserChatProps> = ({
   handleTyping,
   handleSendMsg,
   msgs,
+  playlistName,
+  userTyping,
 }) => {
+  const _getFormattedTime = (timestamp: number) => {
+    let h: number | string = new Date(timestamp).getHours();
+    let m: number | string = new Date(timestamp).getMinutes();
+
+    h = h < 10 ? '0' + h : h;
+    m = m < 10 ? '0' + m : m;
+
+    return h + ':' + m;
+  };
   return (
     <UserChatStyles>
-      <ChatHeader className="flex space-between">
-        <h3>CHAT HERE!</h3>
-        <div>
+      <ChatHeader className="flex col space-between">
+        <div className="flex space-between">
+          <Text type="h3">{playlistName} - Chat Room</Text>
           <button onClick={onToggleChat}>CLOSE</button>
         </div>
+        <Text className={userTyping ? '' : 'hide'} type="p">
+          {userTyping} is typing
+        </Text>
       </ChatHeader>
 
       <ScrollToBottom
@@ -39,8 +59,16 @@ export const UserChat: React.FC<UserChatProps> = ({
           msgs.length > 0 &&
           msgs.map((msg: ChatMsgType, idx: number) => (
             <ChatBubble key={idx}>
-              {msg.byUser.name} <br />
-              {msg.msgTxt}
+              <Text type="p" bold={true}>
+                {msg.byUser.name}
+              </Text>
+              <br />
+              <div className="flex space-between">
+                <Text type="p">{msg.msgTxt}</Text>
+                <Text className="chat-time-sent" type="p">
+                  {_getFormattedTime(msg.timeSent)}
+                </Text>
+              </div>
             </ChatBubble>
           ))}
       </ScrollToBottom>
