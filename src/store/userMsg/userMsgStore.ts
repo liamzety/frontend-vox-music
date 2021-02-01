@@ -1,14 +1,10 @@
-import { userMsg } from '../../types/userMsg';
+import { UserMsgType } from '../../types/UserMsg';
 import { RootStore } from '../store';
 import { action, makeObservable, observable } from 'mobx';
 
 export class UserMsgStore {
   root: RootStore;
-  userMsg: {
-    msg: string;
-    type: string;
-    isOn: boolean;
-  };
+  userMsg: UserMsgType;
 
   constructor(root: RootStore) {
     this.root = root;
@@ -31,15 +27,19 @@ export class UserMsgStore {
   }
 
   alert({ msg, type }: any): void {
-    this.userMsg.msg = msg;
-    this.userMsg.type = type;
-    this.userMsg.isOn = true;
+    this.userMsg = {
+      msg,
+      type,
+      isOn: true,
+    };
   }
   clearAlert(time = 3000): void {
     setTimeout(() => {
-      this.userMsg.msg = '';
-      this.userMsg.type = '';
-      this.userMsg.isOn = false;
+      this.userMsg = {
+        msg: '',
+        type: '',
+        isOn: false,
+      };
     }, time);
   }
 }

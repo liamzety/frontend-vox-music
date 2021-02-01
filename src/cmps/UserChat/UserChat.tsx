@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // Styles
 import {
   UserChatStyles,
@@ -8,19 +8,20 @@ import {
 } from './userChat-styles';
 // @ts-ignore
 import ScrollToBottom from 'react-scroll-to-bottom';
+import { ChatMsgType } from '../../types/ChatMsg';
 interface UserChatProps {
   onToggleChat: () => void;
+  handleTyping: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSendMsg: () => void;
+  msgs: any;
 }
 
-export const UserChat: React.FC<UserChatProps> = ({ onToggleChat }) => {
-  const [msgs, setMsgs] = useState([]);
-  const [msg, setMsg] = useState('');
-  const handleTyping = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setMsg(ev.target.value);
-  };
-  const handleSendMsg = () => {
-    setMsgs([...msgs, msg]);
-  };
+export const UserChat: React.FC<UserChatProps> = ({
+  onToggleChat,
+  handleTyping,
+  handleSendMsg,
+  msgs,
+}) => {
   return (
     <UserChatStyles>
       <ChatHeader className="flex space-between">
@@ -34,8 +35,14 @@ export const UserChat: React.FC<UserChatProps> = ({ onToggleChat }) => {
         followButtonClassName="scroll-down-btn"
         className="chat-bubble-container"
       >
-        {msgs.length > 0 &&
-          msgs.map((msg, idx) => <ChatBubble key={idx}>{msg}</ChatBubble>)}
+        {msgs &&
+          msgs.length > 0 &&
+          msgs.map((msg: ChatMsgType, idx: number) => (
+            <ChatBubble key={idx}>
+              {msg.byUser.name} <br />
+              {msg.msgTxt}
+            </ChatBubble>
+          ))}
       </ScrollToBottom>
 
       <ChatFooter>

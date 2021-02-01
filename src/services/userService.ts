@@ -14,7 +14,7 @@ async function login(userCred: { email: string; password: string }) {
     return user;
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data, type: 'alert' };
+      const composedErr = { msg: err.response.data.msg, type: 'alert' };
       throw composedErr;
     }
   }
@@ -23,15 +23,17 @@ interface signupProps {
   name: string;
   email: string;
   password: string;
-  imgUrl: string;
+  profile_img: string;
 }
 async function signup(userCred: signupProps) {
   try {
     const user = await httpService.post('auth/signup', userCred);
+    console.log('user:', user);
     return user;
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data, type: 'error' };
+      console.log('err?', err.response);
+      const composedErr = { msg: err.response.data.msg, type: 'error' };
       throw composedErr;
     }
   }
@@ -41,7 +43,7 @@ async function logout() {
     await httpService.post('auth/logout');
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data, type: 'error' };
+      const composedErr = { msg: err.response.data.msg, type: 'error' };
       throw composedErr;
     }
   }
@@ -52,7 +54,7 @@ async function getLoggedUser(userId: string) {
     return userFound;
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data, type: 'error' };
+      const composedErr = { msg: err.response.data.msg, type: 'error' };
       throw composedErr;
     }
   }

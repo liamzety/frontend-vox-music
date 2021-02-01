@@ -15,7 +15,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
     name: '',
     email: '',
     password: '',
-    imgUrl: '',
+    profile_img: '',
   });
   useEffect(() => {
     if (userStore.user.isSignedIn) history.push('/');
@@ -37,7 +37,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
     setUserCred((prevState) => {
       return {
         ...prevState,
-        imgUrl: res.url,
+        profile_img: res.url,
       };
     });
   };
@@ -59,7 +59,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
         <input onChange={handleInput} name="name" type="text" />
         <input onChange={handleInput} name="email" type="text" />
         <input onChange={handleInput} name="password" type="password" />
-        <input onChange={uploadImg} name="imgUrl" type="file" />
+        <input onChange={uploadImg} name="profile_img" type="file" />
         <button>SUBMIT</button>
       </form>
     </SignupContainer>

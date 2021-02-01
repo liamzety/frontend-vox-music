@@ -17,6 +17,8 @@ import { SongSearch } from '../../cmps/SongSearch/SongSearch';
 import { UserChat } from '../../cmps/UserChat/UserChat';
 import { MainHeader } from '../../cmps/MainHeader/MainHeader';
 import { Slide } from '@material-ui/core';
+import socketService from '../../services/socketService';
+import { ChatMsgType } from '../../types/ChatMsg';
 
 interface MatchParams {
   playlistId: string;
@@ -28,7 +30,51 @@ export const Main: React.FC<Props> = observer(
       params: { playlistId },
     },
   }) => {
-    const { playerStore, playlistStore, userMsgStore } = useStore();
+    const { playerStore, playlistStore, userMsgStore, userStore } = useStore();
+
+    // Chat ---------------------------------
+    const [inRoom, setInRoom] = useState(false);
+    const [msgs, setMsgs] = useState([]);
+    const [msg, setMsg] = useState<ChatMsgType>({
+      msgTxt: '',
+      byUser: {
+        name: '',
+        profile_img: '',
+      },
+    });
+    useEffect(() => {
+      if (!inRoom) {
+        socketService.setup();
+        socketService.emit('chat connectRoom', playlistId);
+        setInRoom(true);
+      }
+      socketService.on('chat addMsg', handleSentMsg);
+      return () => {
+        socketService.terminate();
+      };
+    }, []);
+    const handleTyping = (ev: React.ChangeEvent<HTMLInputElement>) => {
+      setMsg({
+        msgTxt: ev.target.value,
+        byUser: {
+          name: userStore.user.name,
+          profile_img: userStore.user.profile_img,
+        },
+      });
+    };
+
+    function handleSentMsg() {
+      // slimey hack because of no parameters specified in .on method
+      const msg = arguments[0];
+
+      setMsgs((prevState) => {
+        return [...prevState, msg];
+      });
+    }
+    const handleSendMsg = () => {
+      socketService.emit('chat newMsg', msg);
+    };
+    // ------------------------------------
 
     const getPlaylist = useCallback(
       async (playlistId: string) => {
@@ -135,7 +181,12 @@ export const Main: React.FC<Props> = observer(
           unmountOnExit
         >
           <div className="flex1">
-            <UserChat onToggleChat={onToggleChat} />
+            <UserChat
+              msgs={msgs}
+              handleTyping={handleTyping}
+              handleSendMsg={handleSendMsg}
+              onToggleChat={onToggleChat}
+            />
           </div>
         </Slide>
 

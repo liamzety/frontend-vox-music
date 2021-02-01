@@ -87,7 +87,7 @@ export const Navbar: React.FC = observer(() => {
               <UserMiniProfile
                 onClick={userStore.user.isSignedIn && toggleProfileOptionsModal}
                 isSignedIn={userStore.user.isSignedIn}
-                imgUrl={userStore.user.imgUrl}
+                profile_img={userStore.user.profile_img}
                 initials={
                   userStore.user.isSignedIn &&
                   userService.getInitials(userStore.user.name)

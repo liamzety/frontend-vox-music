@@ -7,13 +7,13 @@ import { UserMiniProfileStyles, UnknownUser } from './userMiniProfile-styles';
 import { Text } from '../Text/Text';
 
 export interface UserMiniProfileProps {
-  imgUrl: string;
+  profile_img: string;
   initials: string;
   isSignedIn: boolean;
   onClick?: () => void;
 }
 export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
-  imgUrl,
+  profile_img,
   initials,
   isSignedIn,
   onClick,
@@ -27,8 +27,8 @@ export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
   }
   return (
     <UserMiniProfileStyles onClick={onClick}>
-      {imgUrl ? (
-        <img src={imgUrl} alt="Profile" />
+      {profile_img ? (
+        <img src={profile_img} alt="Profile" />
       ) : (
         <Text bold={true} size="1.2rem" type="p">
           {initials}
