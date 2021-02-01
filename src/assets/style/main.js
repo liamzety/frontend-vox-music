@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 import { animations } from './basics/animations';
 import { helpers } from './basics/helpers';
 import { typography } from './basics/typography';
+import { GlobalVars } from './basics/vars';
 
 
 export const neon = (sh2 = '#FF00DE', sh1 = '#FFFFFF') => `
@@ -58,12 +59,12 @@ button {
 }
 
 //tooltip
-[data-title] {
+[data-tooltip] {
   position: relative;
 }
 
-[data-title]:hover:after {
-  content: attr(data-title);
+[data-tooltip]:hover:after {
+  content: attr(data-tooltip);
   position: absolute;
   top: 175%;
   left: 25px;
@@ -73,10 +74,15 @@ button {
   color: #f1f1f1;
   background-color: rgba(#333333, 0.65);
   border-radius: 5px;
-  animation: title-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: tooltip-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   z-index: 999;
 }
-
+.typing {
+  color:${GlobalVars.blueMain};
+}
+.typing-animation {animation:pulsate-bck .5s ease-in-out infinite both}
+.scale-in-tr{animation:scale-in-tr .3s cubic-bezier(.25,.46,.45,.94) both}
+.scale-in-tl{animation:scale-in-tl .3s cubic-bezier(.25,.46,.45,.94) both}
   `
 
 

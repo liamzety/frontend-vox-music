@@ -1,4 +1,32 @@
+
 export const animations = `
+@keyframes title-animation {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+    
+@keyframes retro-future-tv-lines {
+  0% {
+    -webkit-mask-position: center 0rem;
+    mask-position: center 0rem;
+  }
+  100% {
+    -webkit-mask-position: center -1.5rem;
+    mask-position: center -1.5rem;
+  }
+}
+
+@keyframes pulsate-bck{0%{transform:scale(1)}50%{transform:scale(.9)}100%{transform:scale(1)}}
+@keyframes scale-in-tr{0%{transform:scale(0);transform-origin:100% 0;opacity:1}100%{transform:scale(1);transform-origin:100% 0;opacity:1}}
+@keyframes scale-in-tl{0%{transform:scale(0);transform-origin:0 0;opacity:1}100%{transform:scale(1);transform-origin:0 0;opacity:1}}
+
 @keyframes glitch-animation {
     0% {
       opacity: 1;
@@ -113,15 +141,5 @@ export const animations = `
   }
 
 
-    
-    @keyframes retro-future-tv-lines {
-      0% {
-        -webkit-mask-position: center 0rem;
-        mask-position: center 0rem;
-      }
-      100% {
-        -webkit-mask-position: center -1.5rem;
-        mask-position: center -1.5rem;
-      }
-    }
+
 `

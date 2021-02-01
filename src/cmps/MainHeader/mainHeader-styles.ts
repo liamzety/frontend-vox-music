@@ -24,16 +24,16 @@ export const Container = styled.div`
   }
   .chat-btn-container {
     height: 40px;
-    .user-typing-txt {
-      margin-right: 10px;
-      max-width: 100px;
-      max-height: 100px;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+  }
+  .user-typing-txt {
+    margin-right: 10px;
+    max-width: 100px;
+    max-height: 100px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
 export const ImgThumbnail = styled.div`

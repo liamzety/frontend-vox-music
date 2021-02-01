@@ -48,6 +48,9 @@ export const lightTheme = {
     success: GlobalVars.greenMain,
 
     menuShadow: 'rgb(0 0 0 / 43%)  0px 16px 32px 0px',
+
+    chatBubbleBody: GlobalVars.blackMain,
+    chatBubbleTxt: GlobalVars.whiteMain,
 }
 
 export const darkTheme = {
@@ -96,4 +99,7 @@ export const darkTheme = {
     success: GlobalVars.greenMain,
 
     menuShadow: 'rgba(1, 4, 9, 0.85) 0px 16px 32px 0px',
+
+    chatBubbleBody: GlobalVars.whiteMain,
+    chatBubbleTxt: GlobalVars.blackMain,
 }

@@ -56,7 +56,12 @@ export const helpers = `
   .align-center {
     align-items: center;
   }
-  
+  .align-end {
+    align-items:flex-end;
+  }
+  .align-baseline {
+    align-items:baseline;
+  }
   .space-between {
     justify-content: space-between;
   }

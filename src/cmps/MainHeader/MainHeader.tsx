@@ -60,8 +60,9 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                 {userStore.user.isSignedIn ? (
                   <div className="chat-btn-container flex align-center">
                     {!isChat && userTyping && (
-                      <Text className="user-typing-txt" type="p">
-                        {userTyping} is typing...
+                      <Text className="user-typing-txt flex " type="p">
+                        {userTyping}{' '}
+                        <span className="typing">is typing...</span>
                       </Text>
                     )}
                     <Button cb={onToggleChat} size="small" label="G01">

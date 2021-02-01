@@ -1,8 +1,13 @@
 import React from 'react';
 // @ts-ignore
 import ScrollToBottom from 'react-scroll-to-bottom';
+// Store
+import { useStore } from '../../store/StoreContext';
 // Types
 import { ChatMsgType } from '../../types/ChatMsg';
+// Icons
+import { BsBoxArrowInLeft, BsBoxArrowInUp } from 'react-icons/bs';
+import { AiOutlineSend } from 'react-icons/ai';
 // Styles
 import {
   UserChatStyles,
@@ -12,6 +17,7 @@ import {
 } from './userChat-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
+import { Svg } from '../../aux-cmps/Svg/Svg';
 
 interface UserChatProps {
   onToggleChat: () => void;
@@ -30,6 +36,7 @@ export const UserChat: React.FC<UserChatProps> = ({
   playlistName,
   userTyping,
 }) => {
+  const { userStore } = useStore();
   const _getFormattedTime = (timestamp: number) => {
     let h: number | string = new Date(timestamp).getHours();
     let m: number | string = new Date(timestamp).getMinutes();
@@ -42,12 +49,19 @@ export const UserChat: React.FC<UserChatProps> = ({
   return (
     <UserChatStyles>
       <ChatHeader className="flex col space-between">
-        <div className="flex space-between">
+        <div className="flex">
+          <Svg pointer={true} size="25px" color="mainTxt" cb={onToggleChat}>
+            {window.innerWidth > 1080 ? (
+              <BsBoxArrowInLeft />
+            ) : (
+              <BsBoxArrowInUp />
+            )}
+          </Svg>
           <Text type="h3">{playlistName} - Chat Room</Text>
-          <button onClick={onToggleChat}>CLOSE</button>
         </div>
-        <Text className={userTyping ? '' : 'hide'} type="p">
-          {userTyping} is typing
+        <Text className={`flex ${userTyping ? '' : 'hide'}`} type="p">
+          {userTyping} almohalum{' '}
+          <span className="typing typing-animation">is typing...</span>
         </Text>
       </ChatHeader>
 
@@ -58,7 +72,14 @@ export const UserChat: React.FC<UserChatProps> = ({
         {msgs &&
           msgs.length > 0 &&
           msgs.map((msg: ChatMsgType, idx: number) => (
-            <ChatBubble key={idx}>
+            <ChatBubble
+              className={`${
+                msg.byUser.name === userStore.user.name
+                  ? 'sent-by-me scale-in-tr'
+                  : 'scale-in-tl'
+              }`}
+              key={idx}
+            >
               <Text type="p" bold={true}>
                 {msg.byUser.name}
               </Text>
@@ -75,7 +96,9 @@ export const UserChat: React.FC<UserChatProps> = ({
 
       <ChatFooter>
         <input onChange={handleTyping} type="text" />
-        <button onClick={handleSendMsg}>SEND</button>
+        <Svg pointer={true} size="25px" color="mainTxt" cb={handleSendMsg}>
+          <AiOutlineSend />
+        </Svg>
       </ChatFooter>
     </UserChatStyles>
   );
