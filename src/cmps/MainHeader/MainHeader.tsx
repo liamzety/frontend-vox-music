@@ -1,13 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 // Store
 import { observer } from 'mobx-react';
 import { useStore } from '../../store/StoreContext';
+// Icons
+import { BiDotsHorizontalRounded } from 'react-icons/bi';
 // Styles
 import { ImgThumbnail, Container } from './mainHeader-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
+import { Svg } from '../../aux-cmps/Svg/Svg';
+import { Fade, Slide } from '@material-ui/core';
+import { Menu } from '../../aux-cmps/Menu/Menu';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
@@ -18,10 +23,12 @@ interface MainHeaderProps {
 
 export const MainHeader: React.FC<MainHeaderProps> = observer(
   ({ onRemovePlaylist, onToggleChat, userTyping, isChat }) => {
+    const [isPlaylistMenu, setIsPlaylistMenu] = useState(false);
     const {
       playerStore: { currPlaylist },
       userStore,
     } = useStore();
+    const history = useHistory();
     return (
       <Container>
         <div className="outer-container flex">
@@ -33,24 +40,44 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
               <div className="name-desc-container">
                 <div className="playlist-header-container flex space-between align-center">
                   <Text type="h2">{currPlaylist.name}</Text>
-                  <div className="playlist-actions-container flex col space-between">
-                    <Text type="h1">. . .</Text>
-                    {/* <Link to={`/`}>
-                    <button
-                      onClick={() => {
-                        onRemovePlaylist(store.player.currPlaylist._id!);
+                  <div className="playlist-actions-container flex col space-between relative">
+                    <Svg
+                      cb={() => {
+                        setIsPlaylistMenu(!isPlaylistMenu);
                       }}
+                      pointer={true}
+                      size="4rem"
+                      color="mainTxt"
                     >
-                      Delete
-                    </button>
-                  </Link>
-                  <button
-                    onClick={() => {
-                      // onRemovePlaylist(store.player.currPlaylist._id!);
-                    }}
-                  >
-                    Update
-                  </button> */}
+                      <BiDotsHorizontalRounded />
+                    </Svg>
+                    <Menu
+                      closeCb={() => {
+                        setIsPlaylistMenu(!isPlaylistMenu);
+                      }}
+                      animation={{
+                        type: 'fade',
+                        in: isPlaylistMenu,
+                      }}
+                      top="40px"
+                      right="0"
+                    >
+                      <span
+                        onClick={() => {
+                          history.push('/');
+                          onRemovePlaylist(currPlaylist._id!);
+                        }}
+                      >
+                        Delete
+                      </span>
+                      <span
+                        onClick={() => {
+                          // onUpdatePlaylist(currPlaylist._id!);
+                        }}
+                      >
+                        Update
+                      </span>
+                    </Menu>
                   </div>
                 </div>
                 <Text type="h4">{currPlaylist.description}</Text>

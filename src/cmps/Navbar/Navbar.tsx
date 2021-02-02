@@ -20,7 +20,7 @@ import { Text } from '../../aux-cmps/Text/Text';
 import { userService } from '../../services/userService';
 import { UserMiniProfile } from '../../aux-cmps/UserMiniProfile/UserMiniProfile';
 import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
-import { UserOptionsMenu } from '../UserOptionsMenu/UserOptionsMenu';
+import { Menu } from '../../aux-cmps/Menu/Menu';
 import { SideHamburger } from '../SideHamburger/SideHamburger';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 
@@ -105,11 +105,20 @@ export const Navbar: React.FC = observer(() => {
           </NavOptionsContainer>
         </NavbarContainerInner>
       </NavbarContainer>
-      <UserOptionsMenu slide={isProfileMenu}>
+
+      <Menu
+        position="fixed"
+        top="70px"
+        right="7%"
+        closeCb={toggleProfileOptionsModal}
+        className="user-options-menu"
+        hideBorderTop={true}
+        animation={{ type: 'slide', in: isProfileMenu }}
+      >
         <span onClick={handleLogout}>logout</span>
         <span onClick={handleLogout}>login</span>
         <span onClick={handleLogout}>about</span>
-      </UserOptionsMenu>
+      </Menu>
 
       <SideHamburger
         isSideMenuOpen={isSideMenuOpen}
@@ -118,18 +127,11 @@ export const Navbar: React.FC = observer(() => {
         openPlaylistAddModal={openPlaylistAddModal}
         toggleSideMenu={toggleSideMenu}
       />
-
       <ScreenWrapper
         fade={isSideMenuOpen}
-        index="7"
+        index="11"
         darkenBg={true}
         cb={toggleSideMenu}
-      />
-      <ScreenWrapper
-        fade={isProfileMenu}
-        index="8"
-        darkenBg={false}
-        cb={toggleProfileOptionsModal}
       />
     </>
   );

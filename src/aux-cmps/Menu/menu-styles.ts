@@ -1,19 +1,29 @@
 import { fade, lighten } from '@material-ui/core';
 import styled from 'styled-components';
 
-export const MenuStyles = styled.div`
-  position: fixed;
+interface Props {
+  position?: string;
+  top?: string;
+  right?: string;
+  bottom?: string;
+  left?: string;
+  hideBorderTop?: boolean;
+}
+export const MenuStyles = styled.div<Props>`
+  position: ${({ position }) => position};
   width: 120px;
   display: flex;
   flex-direction: column;
   padding: 5px;
   background: ${({ theme }) => theme.mainBg};
   border: 3px solid ${({ theme }) => fade(theme.mainBorder, 0.8)} };
-  border-top:none;
+  border-top:${({ hideBorderTop }) => (hideBorderTop ? 0 : '')};
   box-shadow: ${({ theme }) => theme.menuShadow};
-  top: 70px;
-  right: 7%;
-  z-index: 11;
+  top:${({ top }) => top};
+  right:${({ right }) => right};
+  bottom:${({ bottom }) => bottom};
+  left:${({ left }) => left};
+  z-index: 12;
 `;
 export const MenuItem = styled.div`
   padding: 10px;

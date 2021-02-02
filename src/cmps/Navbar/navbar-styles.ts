@@ -8,7 +8,7 @@ export const NavbarContainer = styled.nav`
   position: fixed;
   width: 100%;
   height: 70px;
-  z-index: 12;
+  z-index: 11;
   svg {
     margin-right: 5px;
     color: ${({ theme }) => theme.navbarTxt};
@@ -28,6 +28,7 @@ export const NavbarContainer = styled.nav`
     rgba(11, 10, 10, 0.8872408826811975) 100%
   );
 `;
+
 export const NavbarContainerInner = styled.div`
   display: flex;
   justify-content: space-between;
