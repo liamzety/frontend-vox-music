@@ -42,7 +42,7 @@ svg {
 }
 }
 `;
-export const ChatFooter = styled.div`
+export const ChatFooterForm = styled.form`
 display: flex;
 height: 50px;
 padding: 5px 25px;

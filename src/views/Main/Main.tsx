@@ -33,11 +33,11 @@ export const Main: React.FC<Props> = observer(
     },
   }) => {
     const { playerStore, playlistStore, userMsgStore, userStore } = useStore();
-
+    const isSmallScreen = window.innerWidth > 1080;
     // ---------------------Chat ------------------
     const [inRoom, setInRoom] = useState(false);
     const [userTyping, setUserTyping] = useState('');
-    const [msgs, setMsgs] = useState([]);
+    const [msgs, setMsgs] = useState<ChatMsgType[]>([]);
     const [msg, setMsg] = useState<ChatMsgType>({
       timeSent: null,
       msgTxt: '',
@@ -46,6 +46,19 @@ export const Main: React.FC<Props> = observer(
         profile_img: '',
       },
     });
+    const [isChat, setIsChat] = useState(false);
+    // When user signs off, close the chat
+    useEffect(() => {
+      if (!userStore.user.isSignedIn) {
+        setIsChat(false);
+      }
+    }, [userStore.user.isSignedIn]);
+
+    const onToggleChat = (): void => {
+      if (!isChat) window.scrollTo(0, 0);
+      setIsChat(!isChat);
+    };
+
     useEffect(() => {
       if (!inRoom) {
         socketService.setup();
@@ -193,12 +206,6 @@ export const Main: React.FC<Props> = observer(
       });
     };
 
-    const [isChat, setIsChat] = useState(false);
-    const onToggleChat = (): void => {
-      if (!isChat) window.scrollTo(0, 0);
-      setIsChat(!isChat);
-    };
-    const isSmallScreen = window.innerWidth > 1080;
     return (
       <MainPage className="container-y container-x">
         <Slide

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 // @ts-ignore
 import ScrollToBottom from 'react-scroll-to-bottom';
 // Store
@@ -13,7 +13,7 @@ import {
   UserChatStyles,
   ChatBubble,
   ChatHeader,
-  ChatFooter,
+  ChatFooterForm,
 } from './userChat-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
@@ -46,6 +46,10 @@ export const UserChat: React.FC<UserChatProps> = ({
 
     return h + ':' + m;
   };
+  const elChatInput = useRef(null);
+  useEffect(() => {
+    elChatInput.current.focus();
+  }, []);
   return (
     <UserChatStyles>
       <ChatHeader className="flex col space-between">
@@ -94,12 +98,30 @@ export const UserChat: React.FC<UserChatProps> = ({
           ))}
       </ScrollToBottom>
 
-      <ChatFooter>
-        <input onChange={handleTyping} type="text" />
-        <Svg pointer={true} size="25px" color="mainTxt" cb={handleSendMsg}>
-          <AiOutlineSend />
-        </Svg>
-      </ChatFooter>
+      <ChatFooterForm
+        onSubmit={(ev) => {
+          ev.preventDefault();
+          elChatInput.current.value = '';
+          handleSendMsg();
+        }}
+      >
+        <input ref={elChatInput} onChange={handleTyping} type="text" />
+        <button
+          onClick={() => {
+            elChatInput.current.focus();
+          }}
+          style={{ all: 'unset' }}
+          type={
+            elChatInput.current && elChatInput.current.value
+              ? 'submit'
+              : 'button'
+          }
+        >
+          <Svg pointer={true} size="25px" color="mainTxt">
+            <AiOutlineSend />
+          </Svg>
+        </button>
+      </ChatFooterForm>
     </UserChatStyles>
   );
 };

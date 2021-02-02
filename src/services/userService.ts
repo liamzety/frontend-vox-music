@@ -14,7 +14,7 @@ async function login(userCred: { email: string; password: string }) {
     return user;
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data.msg, type: 'alert' };
+      const composedErr = { msg: err.response.data.message, type: 'alert' };
       throw composedErr;
     }
   }
@@ -33,7 +33,7 @@ async function signup(userCred: signupProps) {
   } catch (err) {
     if (err.response) {
       console.log('err?', err.response);
-      const composedErr = { msg: err.response.data.msg, type: 'error' };
+      const composedErr = { msg: err.response.data.message, type: 'error' };
       throw composedErr;
     }
   }
@@ -43,7 +43,7 @@ async function logout() {
     await httpService.post('auth/logout');
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data.msg, type: 'error' };
+      const composedErr = { msg: err.response.data.message, type: 'error' };
       throw composedErr;
     }
   }
@@ -54,7 +54,7 @@ async function getLoggedUser(userId: string) {
     return userFound;
   } catch (err) {
     if (err.response) {
-      const composedErr = { msg: err.response.data.msg, type: 'error' };
+      const composedErr = { msg: err.response.data.message, type: 'error' };
       throw composedErr;
     }
   }
