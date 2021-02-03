@@ -45,10 +45,14 @@ export const Navbar: React.FC = observer(() => {
       userService.logout();
       userStore.resetUser();
       userMsgStore.alert({ type: 'success', msg: 'Logged out successfully.' });
-      userMsgStore.clearAlert();
+      setTimeout(() => {
+        userMsgStore.clearAlert();
+      }, 3000);
     } catch (err) {
       userMsgStore.alert(err);
-      userMsgStore.clearAlert();
+      setTimeout(() => {
+        userMsgStore.clearAlert();
+      }, 3000);
       console.error(err.msg);
     }
   };

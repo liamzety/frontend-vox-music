@@ -20,6 +20,8 @@ interface MenuProps {
   bottom?: string;
   left?: string;
   hideBorderTop?: boolean;
+  width?: string;
+  center?: boolean;
   className?: string;
   closeCb?: () => void;
 }
@@ -32,6 +34,8 @@ export const Menu: React.FC<MenuProps> = ({
   bottom,
   left,
   hideBorderTop,
+  width = '120px',
+  center = true,
   className,
   closeCb,
 }) => {
@@ -63,12 +67,13 @@ export const Menu: React.FC<MenuProps> = ({
           right={right}
           bottom={bottom}
           left={left}
+          width={width}
           hideBorderTop={hideBorderTop}
           className={className}
         >
           {finalFields.map((child, idx) => {
             return (
-              <MenuItem key={idx}>
+              <MenuItem key={idx} center={center}>
                 <Text type="p" bold={true} color="yellowMain">
                   {child}
                 </Text>

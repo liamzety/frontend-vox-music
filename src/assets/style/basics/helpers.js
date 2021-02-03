@@ -93,4 +93,22 @@ export const helpers = `
   .cursor-pointer {
     cursor: pointer;
   }
+  .m5 {
+      margin:5px;
+  }
+  .m10 {
+    margin:10px;
+  }
+  .m25 {
+    margin:15px;
+  }
+  .m30 {
+    margin:20px;
+  }
+  .m45 {
+    margin:25px;
+  }
+  .m50 {
+    margin:30px;
+  }
 `

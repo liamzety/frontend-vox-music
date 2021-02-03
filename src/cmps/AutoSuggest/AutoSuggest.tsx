@@ -1,37 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // Services
 import { regService } from '../../services/regService';
 // Styles
-import { AutoSuggestUl, SuggestedContainer } from './autoSuggest-styles';
+import { SuggestedContainer } from './autoSuggest-styles';
 // Cmps
-import { Text } from '../../aux-cmps/Text/Text';
+import { Menu } from '../../aux-cmps/Menu/Menu';
 
 interface AutoSuggestProps {
   onAddSong: (suggestion: any) => void;
+  closeAutoSuggest: () => void;
+  isOn: boolean;
   suggestions: any;
 }
 export const AutoSuggest: React.FC<AutoSuggestProps> = ({
-  suggestions,
   onAddSong,
+  closeAutoSuggest,
+  isOn,
+  suggestions,
 }) => {
   return (
     <div>
-      <AutoSuggestUl>
-        {suggestions.items.map((suggestion: any, idx: number) => {
+      <Menu
+        animation={{ type: 'fade', in: isOn }}
+        left="0"
+        width="100%"
+        center={false}
+        closeCb={closeAutoSuggest}
+      >
+        {suggestions.items?.map((suggestion: any, idx: number) => {
           return (
             <SuggestedContainer
-              onClick={onAddSong.bind({}, suggestion)}
+              onClick={() => {
+                onAddSong(suggestion);
+                closeAutoSuggest();
+              }}
               key={idx}
             >
               <img src={suggestion.snippet.thumbnails.default.url} alt="" />
-              <Text type="p">
-                {console.log(suggestion.snippet)}
-                {regService.replaceCharRef(suggestion.snippet.title)}
-              </Text>
+              {regService.replaceCharRef(suggestion.snippet.title)}
             </SuggestedContainer>
           );
         })}
-      </AutoSuggestUl>
+      </Menu>
     </div>
   );
 };

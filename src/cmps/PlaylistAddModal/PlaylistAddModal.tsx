@@ -26,11 +26,14 @@ export const PlaylistAddModal: React.FC<PlaylistAddModal> = ({ fade }) => {
       history.push(`/main/${playlistAdded.title}=${playlistAdded._id}`);
     }
     modalStore.toggleModal();
+
     userMsgStore.alert({
       type: 'success',
       msg: 'Playlist added successfully.',
     });
-    userMsgStore.clearAlert();
+    setTimeout(() => {
+      userMsgStore.clearAlert();
+    }, 3000);
   }
   return (
     <Fade in={fade}>

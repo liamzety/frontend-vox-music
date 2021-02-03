@@ -33,13 +33,11 @@ export class UserMsgStore {
       isOn: true,
     };
   }
-  clearAlert(time = 3000): void {
-    setTimeout(() => {
-      this.userMsg = {
-        msg: '',
-        type: '',
-        isOn: false,
-      };
-    }, time);
+  clearAlert(): void {
+    this.userMsg = {
+      msg: '',
+      type: '',
+      isOn: false,
+    };
   }
 }

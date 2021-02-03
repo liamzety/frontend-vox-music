@@ -1,6 +1,9 @@
 import React from 'react';
-// Types
-import { PlaylistType } from '../../types/Playlist';
+// Store
+import { observer } from 'mobx-react';
+import { useStore } from '../../store/StoreContext';
+// Icons
+import { GoArrowSmallUp } from 'react-icons/go';
 // Styles
 import {
   SongContainer,
@@ -10,8 +13,8 @@ import {
 } from './songList-styles';
 // Cmps
 import { Button } from '../../aux-cmps/Button/Button';
-import { useStore } from '../../store/StoreContext';
-import { observer } from 'mobx-react';
+import { Text } from '../../aux-cmps/Text/Text';
+import { Svg } from '../../aux-cmps/Svg/Svg';
 
 interface SongListProps {
   onRemoveSong: (songId: string) => void;
@@ -33,7 +36,14 @@ export const SongList: React.FC<SongListProps> = observer(
     const { playerStore } = useStore();
 
     if (playerStore.player.currPlaylist.songs.length === 0)
-      return <h1>Add new songs!</h1>;
+      return (
+        <div className="flex align-center justify-center m50">
+          <Text type="h2">Add new songs!</Text>
+          <Svg size="4rem" color="mainTxt">
+            <GoArrowSmallUp />
+          </Svg>
+        </div>
+      );
     return (
       <div data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border">
         <SongListContainer>

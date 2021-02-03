@@ -158,7 +158,9 @@ export const Main: React.FC<Props> = observer(
           msg: 'This song has already been added!',
           type: 'error',
         });
-        userMsgStore.clearAlert();
+        setTimeout(() => {
+          userMsgStore.clearAlert();
+        }, 3000);
         return;
       }
 

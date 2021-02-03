@@ -11,9 +11,6 @@ interface songSearchProps {
   onAddSong: (suggestion: any) => void;
 }
 export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
-  const [songToSuggest, setSongToSuggest] = useState({
-    name: '',
-  });
   const [autoSuggest, setAutoSuggest] = useState({
     isOn: false,
     suggestions: [],
@@ -31,10 +28,12 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     }, 800),
     []
   );
-
+  const closeAutoSuggest = () => {
+    setAutoSuggest(() => ({ isOn: false, suggestions: [] }));
+  };
   // Fires when a user searches for songs to add
   async function onAddSongInp(ev: React.FormEvent<HTMLInputElement>) {
-    setSongToSuggest({ name: ev.currentTarget.value });
+    const songToSuggest = ev.currentTarget.value;
 
     /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
     let suggestions: any;
@@ -64,12 +63,12 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
         type="text"
         placeholder="song search"
       />
-      {autoSuggest.isOn && (
-        <AutoSuggest
-          onAddSong={onAddSong}
-          suggestions={autoSuggest.suggestions}
-        />
-      )}
+      <AutoSuggest
+        closeAutoSuggest={closeAutoSuggest}
+        isOn={autoSuggest.isOn}
+        onAddSong={onAddSong}
+        suggestions={autoSuggest.suggestions}
+      />
     </SongSearchContainer>
   );
 };
