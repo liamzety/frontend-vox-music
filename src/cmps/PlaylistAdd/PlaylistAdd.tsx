@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+// Store
+import { useStore } from '../../store/StoreContext';
 // Services
+import { localImgService } from '../../services/localImgService';
 import { cloudinaryService } from '../../services/cloudinaryService';
 import { genreService } from '../../services/genreService';
+import { playlistService } from '../../services/playlistService';
 // Types
 import { PlaylistType } from '../../types/Playlist';
 // Icons
@@ -14,10 +19,6 @@ import templatePlaylistImg from '../../assets/img/vox-music.png';
 import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
-import { localImgService } from '../../services/localImgService';
-import { useHistory } from 'react-router-dom';
-import { useStore } from '../../store/StoreContext';
-import { playlistService } from '../../services/playlistService';
 
 interface PlaylistAddProps {}
 export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {

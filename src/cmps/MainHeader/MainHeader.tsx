@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 // Store
 import { observer } from 'mobx-react';
@@ -11,7 +11,6 @@ import { ImgThumbnail, Container } from './mainHeader-styles';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Svg } from '../../aux-cmps/Svg/Svg';
-import { Fade, Slide } from '@material-ui/core';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 
 interface MainHeaderProps {
@@ -84,7 +83,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                           onUpdatePlaylist(currPlaylist._id!);
                         }}
                       >
-                        Update
+                        Edit
                       </span>
                     </Menu>
                   </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 // Store
 import { useStore } from '../../store/StoreContext';
 // Services
@@ -16,9 +16,8 @@ import {
   PlaylistUpdateImgLabel,
   PlaylistUpdateForm,
 } from './playlistUpdate-styles';
-// Imgs
-import templatePlaylistImg from '../../assets/img/vox-music.png';
 // Cmps
+
 import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
@@ -69,15 +68,17 @@ export const PlaylistUpdate: React.FC = () => {
       };
     });
   };
-  async function onUpdatePlaylist(
+  const onUpdatePlaylist = async (
     playlistToUpdate: PlaylistType
-  ): Promise<void> {
+  ): Promise<void> => {
     playlistToUpdate._id = playerStore.currPlaylist._id;
     const playlistUpdated = await playlistService.update(playlistToUpdate);
     console.log('playlist ypdaed', playlistUpdated);
     playlistStore.updatePlaylist(playlistUpdated);
     history.push(`/main/${playlistUpdated.name}=${playlistUpdated._id}`);
+
     modalStore.toggleModal();
+
     userMsgStore.alert({
       type: 'success',
       msg: 'Playlist updated successfully.',
@@ -85,7 +86,7 @@ export const PlaylistUpdate: React.FC = () => {
     setTimeout(() => {
       userMsgStore.clearAlert();
     }, 3000);
-  }
+  };
   return (
     <PlaylistUpdateForm
       onSubmit={(ev) => {
