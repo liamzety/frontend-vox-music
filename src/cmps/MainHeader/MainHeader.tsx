@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 // Store
 import { observer } from 'mobx-react';
@@ -16,19 +16,27 @@ import { Menu } from '../../aux-cmps/Menu/Menu';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
+  onUpdatePlaylist: (playlistId: string) => void;
   onToggleChat: () => void;
   userTyping: string;
   isChat: boolean;
 }
 
 export const MainHeader: React.FC<MainHeaderProps> = observer(
-  ({ onRemovePlaylist, onToggleChat, userTyping, isChat }) => {
+  ({
+    onRemovePlaylist,
+    onUpdatePlaylist,
+    onToggleChat,
+    userTyping,
+    isChat,
+  }) => {
     const [isPlaylistMenu, setIsPlaylistMenu] = useState(false);
     const {
       playerStore: { currPlaylist },
       userStore,
     } = useStore();
     const history = useHistory();
+
     return (
       <Container>
         <div className="outer-container flex">
@@ -72,7 +80,8 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                       </span>
                       <span
                         onClick={() => {
-                          // onUpdatePlaylist(currPlaylist._id!);
+                          setIsPlaylistMenu(!isPlaylistMenu);
+                          onUpdatePlaylist(currPlaylist._id!);
                         }}
                       >
                         Update

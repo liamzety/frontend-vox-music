@@ -195,11 +195,17 @@ export const Player: React.FC = observer(() => {
                   }}
                   size="40px"
                   pointer={true}
+                  color="playerSec"
                 >
                   <BiSkipPrevious />
                 </Svg>
 
-                <Svg size="40px" cb={togglePlay} pointer={true}>
+                <Svg
+                  size="40px"
+                  cb={togglePlay}
+                  pointer={true}
+                  color="playerSec"
+                >
                   {getPlayIcon()}
                 </Svg>
 
@@ -209,6 +215,7 @@ export const Player: React.FC = observer(() => {
                   }}
                   size="40px"
                   pointer={true}
+                  color="playerSec"
                 >
                   <BiSkipNext />
                 </Svg>
@@ -217,6 +224,7 @@ export const Player: React.FC = observer(() => {
                   className="mute-btn"
                   size="30px"
                   pointer={true}
+                  color="playerSec"
                 >
                   {getMuteIcon()}
                 </Svg>

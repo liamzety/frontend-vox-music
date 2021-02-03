@@ -39,7 +39,6 @@ const App = observer(() => {
       <main className="app">
         <GlobalStyles />
         {/* <InstallPopup /> */}
-        {/* <PlaylistAddModal fade={modal.isOn} /> */}
         <Router>
           <Modal
             closeCb={() => {

@@ -32,7 +32,13 @@ export const Main: React.FC<Props> = observer(
       params: { playlistId },
     },
   }) => {
-    const { playerStore, playlistStore, userMsgStore, userStore } = useStore();
+    const {
+      playerStore,
+      playlistStore,
+      userMsgStore,
+      userStore,
+      modalStore,
+    } = useStore();
     const isSmallScreen = window.innerWidth > 1080;
     // ---------------------Chat ------------------
     const [inRoom, setInRoom] = useState(false);
@@ -140,14 +146,17 @@ export const Main: React.FC<Props> = observer(
       getPlaylist(playlistId);
     }, [getPlaylist, playlistId]);
 
-    const onRemovePlaylist = (playlistId: string): void => {
+    const onRemovePlaylist = (): void => {
       playlistService.remove(playlistId);
       playlistStore.removePlaylist(playlistId);
     };
-    function onUpdatePlaylist(playlistToUpdate: PlaylistType): void {
+    const onUpdatePlaylist = (): void => {
+      modalStore.toggleModal('updatePlaylist');
+    };
+    const updatePlaylist = (playlistToUpdate: PlaylistType): void => {
       playlistService.update(playlistToUpdate);
       playlistStore.updatePlaylist(playlistToUpdate);
-    }
+    };
     // ---------------------Playlist CRUD END ------------------
 
     // ---------------------Song CRUD ------------------
@@ -232,6 +241,7 @@ export const Main: React.FC<Props> = observer(
           <MainHeader
             isChat={isChat}
             onToggleChat={onToggleChat}
+            onUpdatePlaylist={onUpdatePlaylist}
             onRemovePlaylist={onRemovePlaylist}
             userTyping={userTyping}
           />

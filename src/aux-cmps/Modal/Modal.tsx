@@ -7,6 +7,7 @@ import { ModalStyles } from './modal-styles';
 import { ScreenWrapper } from '../ScreenWrapper/ScreenWrapper';
 import { useStore } from '../../store/StoreContext';
 import { PlaylistAdd } from '../../cmps/PlaylistAdd/PlaylistAdd';
+import { PlaylistUpdate } from '../../cmps/PlaylistUpdate/PlaylistUpdate';
 
 interface ModalProps {
   className?: string;
@@ -20,6 +21,8 @@ export const Modal: React.FC<ModalProps> = ({ className, type, closeCb }) => {
     switch (type) {
       case 'addPlaylist':
         return <PlaylistAdd />;
+      case 'updatePlaylist':
+        return <PlaylistUpdate />;
       default:
         return <></>;
     }

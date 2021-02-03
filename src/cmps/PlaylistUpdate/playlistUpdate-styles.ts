@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const PlaylistAddForm = styled.form`
+export const PlaylistUpdateForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -11,7 +11,7 @@ export const PlaylistAddForm = styled.form`
     width: 100%;
   }
 `;
-export const PlaylistAddImgLabel = styled.label`
+export const PlaylistUpdateImgLabel = styled.label`
   display: flex;
   align-items: center;
 `;

@@ -39,6 +39,8 @@ export class PlaylistStore {
     const playlistIdx = this.playlists.findIndex(
       (_playlist: PlaylistType) => _playlist._id === playlist._id
     );
+
     this.playlists[playlistIdx] = playlist;
+    this.root.playerStore.setCurrPlaylist(playlist);
   }
 }

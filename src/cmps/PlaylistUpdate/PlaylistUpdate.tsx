@@ -1,53 +1,57 @@
 import React, { useState } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+// Store
+import { useStore } from '../../store/StoreContext';
 // Services
 import { cloudinaryService } from '../../services/cloudinaryService';
 import { genreService } from '../../services/genreService';
+import { localImgService } from '../../services/localImgService';
+import { playlistService } from '../../services/playlistService';
 // Types
 import { PlaylistType } from '../../types/Playlist';
 // Icons
 import { FiUpload } from 'react-icons/fi';
 // Styles
-import { PlaylistAddImgLabel, PlaylistAddForm } from './playlistAdd-styles';
+import {
+  PlaylistUpdateImgLabel,
+  PlaylistUpdateForm,
+} from './playlistUpdate-styles';
 // Imgs
 import templatePlaylistImg from '../../assets/img/vox-music.png';
 // Cmps
 import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
-import { localImgService } from '../../services/localImgService';
-import { useHistory } from 'react-router-dom';
-import { useStore } from '../../store/StoreContext';
-import { playlistService } from '../../services/playlistService';
 
-interface PlaylistAddProps {}
-export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
-  const DEFAULT_IMG = templatePlaylistImg;
-  const DEFAULT_NAME = 'My New Playlist!';
-  const DEFAULT_DESCRIPTION = 'This is my awesome playlist!';
-  const DEFAULT_GENRE = 'Cyberpunk';
-  const [playlistToAdd, setPlaylistToAdd] = useState<PlaylistType>({
+export const PlaylistUpdate: React.FC = () => {
+  const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
+  const { playerStore, playlistStore, modalStore, userMsgStore } = useStore();
+  const history = useHistory();
+
+  const DEFAULT_IMG = playerStore.currPlaylist.img;
+  const DEFAULT_NAME = playerStore.currPlaylist.name;
+  const DEFAULT_DESCRIPTION = playerStore.currPlaylist.description;
+  const DEFAULT_GENRE = playerStore.currPlaylist.genre;
+
+  const [playlistToUpdate, setPlaylistToUpdate] = useState<PlaylistType>({
     name: DEFAULT_NAME,
     description: DEFAULT_DESCRIPTION,
     genre: DEFAULT_GENRE,
     img: DEFAULT_IMG,
     songs: [],
   });
-  const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
-  const { playlistStore, modalStore, userMsgStore } = useStore();
-  const history = useHistory();
-
-  async function onAddPlaylistInp(event: React.FormEvent<HTMLInputElement>) {
+  async function onUpdatePlaylistInp(event: React.FormEvent<HTMLInputElement>) {
     const { value, name } = event.currentTarget;
-    setPlaylistToAdd((prevState) => {
+    setPlaylistToUpdate((prevState) => {
       return {
         ...prevState,
         [name]: value,
       };
     });
   }
-  function onAddPlaylistSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+  function onUpdatePlaylistSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const targetValue = event.currentTarget.value;
-    setPlaylistToAdd((prevState) => {
+    setPlaylistToUpdate((prevState) => {
       return {
         ...prevState,
         genre: targetValue,
@@ -58,39 +62,40 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
     setIsImgUploading(true);
     const res = await cloudinaryService.uploadImg(ev.target.files[0]);
     setIsImgUploading(false);
-    setPlaylistToAdd((prevState) => {
+    setPlaylistToUpdate((prevState) => {
       return {
         ...prevState,
         img: res.url,
       };
     });
   };
-  async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
-    const playlistAdded = await playlistService.add(playlistToAdd);
-    playlistStore.addPlaylist(playlistAdded);
-    if (history.location.pathname !== '/') {
-      history.push(`/main/${playlistAdded.name}=${playlistAdded._id}`);
-    }
+  async function onUpdatePlaylist(
+    playlistToUpdate: PlaylistType
+  ): Promise<void> {
+    playlistToUpdate._id = playerStore.currPlaylist._id;
+    const playlistUpdated = await playlistService.update(playlistToUpdate);
+    console.log('playlist ypdaed', playlistUpdated);
+    playlistStore.updatePlaylist(playlistUpdated);
+    history.push(`/main/${playlistUpdated.name}=${playlistUpdated._id}`);
     modalStore.toggleModal();
-
     userMsgStore.alert({
       type: 'success',
-      msg: 'Playlist added successfully.',
+      msg: 'Playlist updated successfully.',
     });
     setTimeout(() => {
       userMsgStore.clearAlert();
     }, 3000);
   }
   return (
-    <PlaylistAddForm
+    <PlaylistUpdateForm
       onSubmit={(ev) => {
         ev.preventDefault();
         if (isImgUploading) return;
-        onAddPlaylist(playlistToAdd);
+        onUpdatePlaylist(playlistToUpdate);
       }}
     >
       <div>
-        <PlaylistAddImgLabel htmlFor="imgUpload">
+        <PlaylistUpdateImgLabel htmlFor="imgUpload">
           {isImgUploading ? (
             <Loader loader={localImgService.defaultLoaderDark} size="25px" />
           ) : (
@@ -99,7 +104,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
             </Svg>
           )}
           <Text type="p">Upload Playlist Image</Text>
-        </PlaylistAddImgLabel>
+        </PlaylistUpdateImgLabel>
         <input
           onChange={uploadImg}
           name="img"
@@ -109,14 +114,20 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
           hidden
         />
       </div>
-
+      <img style={{ width: '50px', height: '50px' }} src={DEFAULT_IMG} alt="" />
       <input
-        onChange={onAddPlaylistInp}
+        onChange={onUpdatePlaylistInp}
+        defaultValue={DEFAULT_NAME}
         name="name"
         type="text"
         placeholder="playlist name"
       />
-      <select onChange={onAddPlaylistSelect} name="genre" id="">
+      <select
+        defaultValue={DEFAULT_GENRE}
+        onChange={onUpdatePlaylistSelect}
+        name="genre"
+        id=""
+      >
         {genreService.getGenreList().map((genre, idx) => {
           return (
             <option key={idx} value={genre}>
@@ -127,12 +138,13 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
       </select>
 
       <input
-        onChange={onAddPlaylistInp}
+        onChange={onUpdatePlaylistInp}
+        defaultValue={DEFAULT_DESCRIPTION}
         name="description"
         type="text"
         placeholder="playlist description"
       />
-      <button>ok</button>
-    </PlaylistAddForm>
+      <button>Update</button>
+    </PlaylistUpdateForm>
   );
 };
