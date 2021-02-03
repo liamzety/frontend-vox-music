@@ -4,7 +4,8 @@ import { remConverter } from '../../assets/style/main';
 import unknownUserPng from '../../assets/img/unknown-user.png';
 
 export const UserMiniProfileStyles = styled.div`
-& , > img {
+  &,
+  > img {
     height: ${remConverter(50)};
     width: ${remConverter(50)};
     border-radius: 50%;
@@ -12,19 +13,15 @@ export const UserMiniProfileStyles = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: ${GlobalVars.blackMain};
-    color: ${GlobalVars.yellowMain};
-    border: 2px solid ${GlobalVars.yellowMain};
-
-}
-
-
-`
+    background-color: ${({ theme }) => GlobalVars.blackMain};
+    color: ${({ theme }) => theme.navbarTxt};
+    border: 2px solid ${({ theme }) => theme.navbarTxt};
+  }
+`;
 export const UnknownUser = styled.div`
-background-image: url(${unknownUserPng});
-width: ${remConverter(50)};
-height: ${remConverter(50)};
-background-position: center;
-background-size: contain;
-
-`
+  background-image: url(${unknownUserPng});
+  width: ${remConverter(50)};
+  height: ${remConverter(50)};
+  background-position: center;
+  background-size: contain;
+`;

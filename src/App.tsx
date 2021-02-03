@@ -14,20 +14,13 @@ import { GlobalStyles } from './assets/style/main';
 // Cmps
 import { Navbar } from './cmps/Navbar/Navbar';
 import { InstallPopup } from './cmps/InstallPopup/InstallPopup';
-import { PlaylistAddModal } from './cmps/PlaylistAddModal/PlaylistAddModal';
-import { ScreenWrapper } from './aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Player } from './cmps/Player/Player';
 import { AlertModal } from './aux-cmps/AlertModal/AlertModal';
+import { Modal } from './aux-cmps/Modal/Modal';
 
 const App = observer(() => {
   const { modalStore, userStore, themeStore, userMsgStore } = useStore();
-  const getModal = () => {
-    switch (modalStore.modalType) {
-      case 'addPlaylist':
-        return <PlaylistAddModal fade={modalStore.modal.isOn} />;
-      default:
-    }
-  };
+
   useEffect(() => {
     if (cookieService.getCookie('userId')) {
       handleReturningUser();
@@ -48,12 +41,13 @@ const App = observer(() => {
         {/* <InstallPopup /> */}
         {/* <PlaylistAddModal fade={modal.isOn} /> */}
         <Router>
-          {getModal()}
-          <ScreenWrapper
-            fade={modalStore.modal.isOn}
-            index="9"
-            cb={modalStore.toggleModal}
+          <Modal
+            closeCb={() => {
+              modalStore.toggleModal();
+            }}
+            type={modalStore.modalType}
           />
+
           <Navbar />
           <Switch>
             {routes.map((route) => (

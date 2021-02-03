@@ -15,11 +15,12 @@ import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
 import { localImgService } from '../../services/localImgService';
+import { useHistory } from 'react-router-dom';
+import { useStore } from '../../store/StoreContext';
+import { playlistService } from '../../services/playlistService';
 
-interface PlaylistAddProps {
-  onAddPlaylist: (songToSuggest: PlaylistType) => Promise<any>;
-}
-export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
+interface PlaylistAddProps {}
+export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
   const DEFAULT_IMG = templatePlaylistImg;
   const DEFAULT_NAME = 'My New Playlist!';
   const DEFAULT_DESCRIPTION = 'This is my awesome playlist!';
@@ -32,6 +33,8 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
     songs: [],
   });
   const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
+  const { playlistStore, modalStore, userMsgStore } = useStore();
+  const history = useHistory();
 
   async function onAddPlaylistInp(event: React.FormEvent<HTMLInputElement>) {
     const { value, name } = event.currentTarget;
@@ -62,7 +65,22 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = ({ onAddPlaylist }) => {
       };
     });
   };
+  async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
+    const playlistAdded = await playlistService.add(playlistToAdd);
+    playlistStore.addPlaylist(playlistAdded);
+    if (history.location.pathname !== '/') {
+      history.push(`/main/${playlistAdded.title}=${playlistAdded._id}`);
+    }
+    modalStore.toggleModal();
 
+    userMsgStore.alert({
+      type: 'success',
+      msg: 'Playlist added successfully.',
+    });
+    setTimeout(() => {
+      userMsgStore.clearAlert();
+    }, 3000);
+  }
   return (
     <PlayListAddForm
       onSubmit={(ev) => {

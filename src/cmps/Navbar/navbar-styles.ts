@@ -56,7 +56,6 @@ export const NavbarContainerInner = styled.div`
 export const NavOptionsContainer = styled.div`
   display: flex;
   align-items: center;
-  color: ${({ theme }) => theme.navbarTxt};
   & > *:not(:last-child) {
     margin-right: 25px;
   }

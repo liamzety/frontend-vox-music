@@ -7,6 +7,7 @@ import { Text } from '../../aux-cmps/Text/Text';
 import { SideHamburgerStyles } from './sideHamburger-styles';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Slide } from '@material-ui/core';
+import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 // Cmps
 
 interface SideHamburgerProps {
@@ -24,36 +25,45 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
   theme,
 }) => {
   return (
-    <Slide in={isSideMenuOpen} direction="left" mountOnEnter unmountOnExit>
-      <SideHamburgerStyles>
-        <div className="inner-container">
-          <ThemeSwitcher
-            className="theme-switcher-mobile"
-            theme={theme}
-            toggleTheme={toggleTheme}
-          />
-          <div className="relative">
-            <Link
-              onClick={() => {
+    <>
+      <Slide in={isSideMenuOpen} direction="left" mountOnEnter unmountOnExit>
+        <SideHamburgerStyles>
+          <div className="inner-container">
+            <ThemeSwitcher
+              className="theme-switcher-mobile"
+              theme={theme}
+              toggleTheme={toggleTheme}
+            />
+            <div className="relative">
+              <Link
+                onClick={() => {
+                  toggleSideMenu();
+                }}
+                to="/genre/All"
+              >
+                <Text type="a">Genres</Text>
+              </Link>
+            </div>
+            <Button
+              size="small"
+              label="r35"
+              cb={() => {
+                openPlaylistAddModal();
                 toggleSideMenu();
               }}
-              to="/genre/All"
             >
-              <Text type="a">Genres</Text>
-            </Link>
+              New Playlist_
+            </Button>
           </div>
-          <Button
-            size="small"
-            label="r35"
-            cb={() => {
-              openPlaylistAddModal();
-              toggleSideMenu();
-            }}
-          >
-            New Playlist_
-          </Button>
-        </div>
-      </SideHamburgerStyles>
-    </Slide>
+        </SideHamburgerStyles>
+      </Slide>
+
+      <ScreenWrapper
+        fade={isSideMenuOpen}
+        index="9"
+        darkenBg={true}
+        cb={toggleSideMenu}
+      />
+    </>
   );
 };

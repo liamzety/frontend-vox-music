@@ -40,7 +40,7 @@ export const lightTheme = {
     slideBtnSvg: GlobalVars.blackMain,
 
     navbar: GlobalVars.whiteMain,
-    navbarTxt: GlobalVars.blackSec,
+    navbarTxt: GlobalVars.pinkMain,
     navbarLogo: localImgService.logoDark,
 
     alert: GlobalVars.yellowMain,

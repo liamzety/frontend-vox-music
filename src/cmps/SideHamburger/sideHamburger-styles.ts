@@ -5,12 +5,11 @@ export const SideHamburgerStyles = styled.div`
   position: fixed;
   height: 100%;
   right: 0;
-  z-index: 8;
+  z-index: 10;
   background: ${({ theme }) => theme.mainBg};
   border-left: 4px solid ${({ theme }) => fade(theme.mainBorder, 0.8)}}
   width: 50vw;
   padding-top: 150px;
-  z-index:8;
   
   .inner-container {
     display: flex;

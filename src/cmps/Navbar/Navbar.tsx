@@ -131,12 +131,6 @@ export const Navbar: React.FC = observer(() => {
         openPlaylistAddModal={openPlaylistAddModal}
         toggleSideMenu={toggleSideMenu}
       />
-      <ScreenWrapper
-        fade={isSideMenuOpen}
-        index="11"
-        darkenBg={true}
-        cb={toggleSideMenu}
-      />
     </>
   );
 });

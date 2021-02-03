@@ -29,6 +29,7 @@ export class ModalStore {
     return this.modal.type;
   }
   toggleModal(type: string = '') {
+    console.log('this:', this);
     this.modal.type = type;
     this.modal.isOn = !this.modal.isOn;
   }
