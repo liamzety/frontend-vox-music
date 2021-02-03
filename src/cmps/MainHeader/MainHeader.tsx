@@ -71,19 +71,19 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                     >
                       <span
                         onClick={() => {
-                          history.push('/');
-                          onRemovePlaylist(currPlaylist._id!);
-                        }}
-                      >
-                        Delete
-                      </span>
-                      <span
-                        onClick={() => {
                           setIsPlaylistMenu(!isPlaylistMenu);
                           onUpdatePlaylist(currPlaylist._id!);
                         }}
                       >
                         Edit
+                      </span>
+                      <span
+                        onClick={() => {
+                          history.push('/');
+                          onRemovePlaylist(currPlaylist._id!);
+                        }}
+                      >
+                        Delete
                       </span>
                     </Menu>
                   </div>

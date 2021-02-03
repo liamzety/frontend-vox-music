@@ -48,7 +48,7 @@ export const NavbarContainerInner = styled.div`
     .add-playlist-btn {
       display: none;
     }
-    .l.theme-switcher {
+    label.theme-switcher {
       display: none;
     }
   }
@@ -58,5 +58,8 @@ export const NavOptionsContainer = styled.div`
   align-items: center;
   & > *:not(:last-child) {
     margin-right: 25px;
+    @media (max-width: 550px) {
+      margin-right: 10px;
+    }
   }
 `;

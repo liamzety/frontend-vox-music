@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { remConverter } from '../../assets/style/main';
-import unknownUserPng from '../../assets/img/unknown-user.png';
+import { localImgService } from '../../services/localImgService';
 
 export const UserMiniProfileStyles = styled.div`
   &,
@@ -19,7 +19,7 @@ export const UserMiniProfileStyles = styled.div`
   }
 `;
 export const UnknownUser = styled.div`
-  background-image: url(${unknownUserPng});
+  background-image: url(${localImgService.unknownUser});
   width: ${remConverter(50)};
   height: ${remConverter(50)};
   background-position: center;

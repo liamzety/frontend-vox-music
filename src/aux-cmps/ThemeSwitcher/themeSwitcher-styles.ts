@@ -1,76 +1,59 @@
+import { darken } from '@material-ui/core';
 import styled from 'styled-components';
+import { GlobalVars } from '../../assets/style/basics/vars';
 export const ThemeSwitcherStyle = styled.div`
-*, *:before, *:after {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-input {
-	display: block;
-	margin-bottom: 1.5em;
-	font-size: 1em;
-	line-height: 1.5;
-	cursor:pointer;
-}
-.l {
-    background-color: #333333;
-	border-radius: 0.75em;
-	box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.3) inset;
-	color: #fdea7b;
-	display: inline-flex;
-	align-items: center;
-	margin: auto;
-	padding: 0.15em;
-	width: 3em;
-	height: 1.5em;
-	transition: background-color 0.1s 0.3s ease-out, box-shadow 0.1s 0.3s ease-out;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-.l:before, .l:after {
-	content: "";
-	display: block;
-}
-.l:before {
-	background-color: #d7d7d7;
-	border-radius: 50%;
-	width: 1.2em;
-	height: 1.2em;
-	transition: background-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
-	z-index: 1;
-}
-.l:after {
-	background:
-		linear-gradient(transparent 50%, rgba(0,0,0,0.15) 0) 0 50% / 50% 100%,
-		repeating-linear-gradient(90deg,#bbb 0,#bbb,#bbb 20%,#999 20%,#999 40%) 0 50% / 50% 100%,
-		radial-gradient(circle at 50% 50%,#888 25%, transparent 26%);
-	background-repeat: no-repeat;
-	border: 0.25em solid transparent;
-	border-left: 0.4em solid #d8d8d8;
-	border-right: 0 solid transparent;
-	transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
-	transform: translateX(-22.5%);
-	transform-origin: 25% 50%;
-	width: 1.2em;
-	height: 1em;
-}
-/* Checked */
-.l:checked {
-	box-shadow: 0.125em 0.125em 0 0.125em rgba(0,0,0,0.1) inset;
-}
-.l:checked:before {
-	background-color: currentColor;
-	transform: translateX(125%)
-}
-.l:checked:after {
-	border-left-color: currentColor;
-	transform: translateX(-2.5%) rotateY(180deg);
-}
-/* Other States */
-.l:focus {
-	/* Usually an anti-A11Y practice but set to remove an annoyance just for this demo */
-	outline: 0;
-}
-
+  input[type='checkbox'] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+  }
+  .check-trail {
+    display: flex;
+    align-items: center;
+    width: 3.5rem;
+    height: 1.8rem;
+    background: ${darken(GlobalVars.pinkMain, 0.8)};
+    border: 2px solid ${GlobalVars.pinkMain};
+    border-radius: 1.25rem;
+    transition: 0.2s;
+    cursor: pointer;
+    &:hover {
+      .check-handler {
+        background: ${darken(GlobalVars.pinkMain, 0.4)};
+      }
+    }
+  }
+  .check-handler {
+    display: flex;
+    margin-left: 0.4rem;
+    justify-content: center;
+    align-items: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: ${darken(GlobalVars.pinkMain, 0.1)};
+    border-radius: 50%;
+    transition: 0.2s;
+    &:before {
+      content: '';
+      color: white;
+      font-size: 0.1rem;
+      font-weight: bold;
+    }
+  }
+  input[type='checkbox']:checked + .check-trail {
+    background: ${darken(GlobalVars.blueMain, 0.8)};
+    border: 2px solid ${GlobalVars.blueMain};
+    &:hover {
+      .check-handler {
+        background: ${darken(GlobalVars.blueMain, 0.4)};
+      }
+    }
+    .check-handler {
+      margin-left: 50%;
+      background: ${darken(GlobalVars.blueMain, 0.1)};
+      &::before {
+        content: '';
+      }
+    }
+  }
 `;

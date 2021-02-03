@@ -51,6 +51,7 @@ export const lightTheme = {
 
     chatBubbleBody: GlobalVars.blackMain,
     chatBubbleTxt: GlobalVars.whiteMain,
+
 }
 
 export const darkTheme = {
@@ -102,4 +103,5 @@ export const darkTheme = {
 
     chatBubbleBody: GlobalVars.whiteMain,
     chatBubbleTxt: GlobalVars.blackMain,
+
 }

@@ -1,9 +1,12 @@
 import styled from 'styled-components';
-
+import { localImgService } from '../../services/localImgService';
 export const SongListContainer = styled.ul`
   height: calc(100vh - 600px);
   min-height: 250px;
-  background: #000000c7;
+  background: url(${localImgService.world});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   overflow: overlay;
   @media (max-width: 750px) {
     min-height: 200px;
@@ -11,7 +14,7 @@ export const SongListContainer = styled.ul`
   }
 `;
 export const SongContainer = styled.li`
-  background: ${({ theme }) => theme.secBg};
+  // background: ${({ theme }) => theme.secBg};
   display: flex;
   cursor: pointer;
   align-items: center;

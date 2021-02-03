@@ -16,9 +16,12 @@ export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
       <input
         onChange={toggleTheme}
         checked={theme === 'dark' ? false : true}
-        className={`l ${className}`}
+        id="chck"
         type="checkbox"
-      ></input>
+      />
+      <label htmlFor="chck" className="theme-switcher check-trail">
+        <span className="check-handler"></span>
+      </label>
     </ThemeSwitcherStyle>
   );
 };

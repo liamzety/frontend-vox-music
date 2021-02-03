@@ -2,12 +2,14 @@
 import defaultLoaderDark from '../assets/img/loaders/loader.gif';
 import defaultLoaderLight from '../assets/img/loaders/loader-light.gif';
 import bufferLoader from '../assets/img/loaders/buffer.gif';
-// Bg
-import materialBgDark from '../assets/img/material-bg.png';
-import materialBgLight from '../assets/img/material-bg-light.png';
+// Background
+import materialBgDark from '../assets/img/background/material-bg.png';
+import materialBgLight from '../assets/img/background/material-bg-light.png';
+import world from '../assets/img/background/world-bg.png';
+import web from '../assets/img/background/web-bg.png';
 // Logo
-import logoLight from '../assets/img/vox-logo-light.png';
-import logoDark from '../assets/img/vox-logo-dark.png';
+import logoLight from '../assets/img/logo/vox-logo-light.png';
+import logoDark from '../assets/img/logo/vox-logo-dark.png';
 // Wallpapers
 import wallpaper1 from '../assets/img/wallpapers/wallpaper1.jpg';
 import wallpaper2 from '../assets/img/wallpapers/wallpaper2.jpg';
@@ -16,17 +18,25 @@ import wallpaper4 from '../assets/img/wallpapers/wallpaper4.jpg';
 import wallpaper5 from '../assets/img/wallpapers/wallpaper5.jpg';
 import wallpaper6 from '../assets/img/wallpapers/wallpaper6.jpg';
 // Misc
-import doubleLine from '../assets/img/double-line.png';
+import doubleLine from '../assets/img/misc/double-line.png';
+import unknownUser from '../assets/img/misc/unknown-user.png';
 
 export const localImgService = {
+  // Loaders
   defaultLoaderDark,
   defaultLoaderLight,
   bufferLoader,
-  doubleLine,
+
+  // Background
   materialBgDark,
   materialBgLight,
+  world,
+  web,
+  // Logo
   logoLight,
   logoDark,
+
+  // Wallpapers
   wallpapers: [
     wallpaper1,
     wallpaper2,
@@ -35,4 +45,8 @@ export const localImgService = {
     wallpaper5,
     wallpaper6,
   ],
+
+  // Misc
+  doubleLine,
+  unknownUser,
 };
