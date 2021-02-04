@@ -61,7 +61,7 @@ export const Genre: React.FC<Props> = observer(
       );
     };
     return (
-      <div className="container-y container-x">
+      <div className="container-y container-x ">
         <GenreHeader>
           <Text type="a">
             <Link to="/">Go Back</Link>{' '}
@@ -71,7 +71,7 @@ export const Genre: React.FC<Props> = observer(
             {genre}
           </Text>
         </GenreHeader>
-        <GenreListWrapper>
+        <GenreListWrapper data-augmented-ui="br-2-clip-x bl-2-clip-x border ">
           {isOverflowing && (
             <SliderButton
               maxWidth="740px"

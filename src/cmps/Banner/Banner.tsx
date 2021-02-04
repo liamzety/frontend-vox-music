@@ -45,7 +45,7 @@ export const Banner: React.FC<BannerProps> = observer(({ onHandleScroll }) => {
       <BannerTitleContainer className="container-x">
         <div className="banner-title-txt-container flex align-center justify-center col">
           <Text type="banner-title">
-            Vo <BannerLogo src={localImgService.logoLight} />
+            Vo <BannerLogo src={localImgService.logoDark} />
             Music
           </Text>
           <Text type="banner-sub-title">Immerse Youself.</Text>

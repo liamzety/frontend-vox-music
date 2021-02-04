@@ -6,6 +6,8 @@ import { scrollService } from '../../services/scrollService';
 // Service
 import { playlistService } from '../../services/playlistService';
 import { genreService } from '../../services/genreService';
+// Styles
+import { PlaylistListWrapper } from './home-styles';
 // Cmps
 import { Banner } from '../../cmps/Banner/Banner';
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
@@ -32,7 +34,10 @@ export const Home: React.FC = observer(() => {
       {!playlistStore.playlists || playlistStore.playlists.length === 0 ? (
         ''
       ) : (
-        <section ref={genreListRef} className="container-y container-x">
+        <PlaylistListWrapper
+          ref={genreListRef}
+          className="container-y container-x"
+        >
           {genreService.getGenreList().map((genre, idx) => {
             return (
               <PlaylistList
@@ -42,7 +47,7 @@ export const Home: React.FC = observer(() => {
               />
             );
           })}
-        </section>
+        </PlaylistListWrapper>
       )}
     </div>
   );

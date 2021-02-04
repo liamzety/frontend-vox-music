@@ -11,6 +11,25 @@ export const GenreListWrapper = styled.div`
   position: relative;
   width: fit-content;
   margin: auto;
+  width: 100%;
+  max-width: 800px;
+
+  --aug-br: 8px;
+  --aug-br-extend2: 50px;
+  --aug-bl: 8px;
+  --aug-bl-extend1: 50px;
+  --aug-border: initial;
+  --aug-border-bottom: 4px;
+  --aug-border-top: 0px;
+  --aug-border-left: 0px;
+  --aug-border-right: 0px;
+  --aug-border-bg: linear-gradient(
+    180deg,
+    rgba(84, 79, 10, 0) 10%,
+    rgba(11, 10, 10, 0.8872408826811975) 79%,
+    rgba(252, 238, 9, 1) 100%
+  );
+  padding: 10px;
 `;
 
 export const GenreContainer = styled.div`

@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core';
+import { darken, fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { remConverter } from '../../assets/style/main';
 
@@ -15,6 +15,11 @@ export const PlaylistPreviewContainer = styled.div`
   -webkit-backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   -ms-backface-visibility: hidden;
+
+  --aug-border-bottom: 4px;
+  --aug-border-top: 1px;
+  --aug-border-left: 1px;
+  --aug-border-right: 4px;
 
   &:hover {
     transform: scale(0.95);
@@ -34,11 +39,13 @@ export const CardTopContainer = styled.div<CardTopContainerProps>`
   background-image: url(${({ src }) => src});
   background-position: center;
   background-size: cover;
+  background-color: ${({ theme }) => darken(theme.chipTrunk, 0.8)};
+  background-blend-mode: normal;
 `;
 export const CardBottomContainer = styled.div`
   width: ${remConverter(200)};
   height: ${remConverter(100)};
-  background-color: ${({ theme }) => theme.chipCard};
+  background-color: ${({ theme }) => darken(theme.chipTrunk, 0.8)};
   padding: 0 15px;
   display: flex;
   align-items: center;

@@ -3,7 +3,7 @@ import { GlobalVars } from './basics/vars'
 
 
 export const lightTheme = {
-    materialBg: localImgService.materialBgLight,
+    materialBg: `background: url(${localImgService.materialBgLight}) 0 0 repeat;`,
 
     playerMain: GlobalVars.pinkMain,
     playerSec: GlobalVars.whiteSecondary,
@@ -12,8 +12,9 @@ export const lightTheme = {
     secBg: GlobalVars.whiteSecondary,
     tertiaryBg: GlobalVars.whiteTertiary,
 
-    mainBtn: GlobalVars.blackMain,
-    mainBtnTxt: GlobalVars.pinkMain,
+    mainBtn: GlobalVars.pinkMain,
+    mainBtnBorder: 'transparent',
+    mainBtnTxt: GlobalVars.whiteMain,
 
     mainTxt: GlobalVars.blackMain,
     secTxt: GlobalVars.yellowMain,
@@ -33,8 +34,9 @@ export const lightTheme = {
 
     mainBorder: GlobalVars.pinkMain,
 
-    chipBorder: GlobalVars.blackMain,
-    chipCard: GlobalVars.blackMain,
+
+    chipBorder: GlobalVars.blueMain,
+    chipTrunk: GlobalVars.blackMain,
     chipTxt: GlobalVars.whiteMain,
 
     slideBtnSvg: GlobalVars.blackMain,
@@ -55,7 +57,10 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    materialBg: localImgService.materialBgDark,
+    materialBg: `background: url(${localImgService.materialBgDark}) 0 0 repeat;
+    background-color: ${GlobalVars.yellowMain};
+    background-blend-mode: darken;
+    `,
 
     playerMain: GlobalVars.yellowMain,
     playerSec: GlobalVars.whiteSecondary,
@@ -65,6 +70,7 @@ export const darkTheme = {
     tertiaryBg: GlobalVars.blackTertiary,
 
     mainBtn: GlobalVars.yellowMain,
+    mainBtnBorder: GlobalVars.blackMain,
     mainBtnTxt: GlobalVars.blackMain,
 
     mainTxt: GlobalVars.yellowMain,
@@ -85,9 +91,9 @@ export const darkTheme = {
 
     mainBorder: GlobalVars.yellowMain,
 
-    chipBorder: GlobalVars.pinkMain,
-    chipCard: '#1d0208',
-    chipTxt: GlobalVars.pinkMain,
+    chipBorder: GlobalVars.blueMain,
+    chipTrunk: GlobalVars.blueMain,
+    chipTxt: GlobalVars.blueMain,
 
     slideBtnSvg: GlobalVars.yellowMain,
 

@@ -112,7 +112,7 @@ export const Player: React.FC = observer(() => {
 
   return (
     <PlayerWrapper className={`relative ${player.isOn ? '' : 'hidden'}`}>
-      {/* <ReactPlayer
+      <ReactPlayer
         url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
         playing={player.isPlaying}
         onReady={() => {
@@ -241,7 +241,7 @@ export const Player: React.FC = observer(() => {
             </PlayerRightColumn>
           </Resizable>
         </PlayerContainer>
-      </Slide> */}
+      </Slide>
     </PlayerWrapper>
   );
 });

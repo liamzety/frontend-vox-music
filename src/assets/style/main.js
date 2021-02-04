@@ -4,7 +4,7 @@ import { animations } from './basics/animations';
 import { helpers } from './basics/helpers';
 import { typography } from './basics/typography';
 import { GlobalVars } from './basics/vars';
-
+import { localImgService } from '../../services/localImgService'
 
 export const neon = (sh2 = '#FF00DE', sh1 = '#FFFFFF') => `
 color: ${sh1};
@@ -32,12 +32,11 @@ ${helpers}
 }
 html {
   ${'' /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */}
-  font-size: calc(10px + (12 - 8) * ((100vw - 300px) / (1920 - 300)));
+  font-size: calc(10px + (12 - 10) * ((100vw - 300px) / (1920 - 300)));
 
 }
 body {
- background-image:url(${({ theme }) => theme.materialBg});
- background-size:150px;
+ ${({ theme }) => theme.materialBg};
  color:${({ theme }) => theme.mainTxt};
 }
 

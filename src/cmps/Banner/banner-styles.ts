@@ -50,6 +50,7 @@ export const BannerTitleContainer = styled.div`
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    letter-spacing: 8px;
   }
 `;
 export const BannerWallpaperContainer = styled.div`
@@ -70,7 +71,7 @@ export const BannerLogo = styled.img`
   align-items: center;
   justify-content: center;
   margin-right: 20px;
-  width: ${remConverter(100)};
-  height: ${remConverter(100)};
-  object-fit: contain;
+
+  width: 4.05rem;
+  height: 5.25rem;
 `;

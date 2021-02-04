@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 interface Props {
   bgColor: string;
+  border: string;
   color: string;
 }
 export const ButtonStyle = styled.button<Props>`
   font-family: Bicubik;
   border: 0;
   outline: none;
-  background-color: ${({ color, theme }) => theme[color]};
+  background-color: ${({ border, theme }) => theme[border]};
   cursor: pointer;
   position: relative;
   font-size: 0.85rem;
@@ -29,7 +30,7 @@ export const ButtonStyle = styled.button<Props>`
   }
 
   .btn-label {
-    font-size: 0.4rem;
+    font-size: 0.8rem;
     position: absolute;
     bottom: -1px;
     right: 8%;
@@ -60,15 +61,24 @@ export const ButtonStyle = styled.button<Props>`
     width: 120px;
     height: 40px;
     font-size: 0.8rem;
+    .btn-label {
+      font-size: 0.4rem;
+    }
   }
   &.btn-medium {
     width: 180px;
     height: 50px;
     font-size: 0.85rem;
+    .btn-label {
+      font-size: 0.6rem;
+    }
   }
   &.btn-large {
     width: 230px;
     height: 60px;
     font-size: 1rem;
+    .btn-label {
+      font-size: 0.8rem;
+    }
   }
 `;

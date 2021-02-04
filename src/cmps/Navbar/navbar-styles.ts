@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const NavbarContainer = styled.nav`
   transition: 0.2s linear;
   background-color: ${({ theme }) => theme.mainBg};
-
   position: fixed;
   width: 100%;
   height: 70px;
@@ -39,6 +38,8 @@ export const NavbarContainerInner = styled.div`
     display: none;
   }
   @media (max-width: 550px) {
+    padding-left: 30px;
+    padding-right: 30px;
     .hamburger {
       display: flex;
     }

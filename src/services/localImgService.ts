@@ -3,8 +3,11 @@ import defaultLoaderDark from '../assets/img/loaders/loader.gif';
 import defaultLoaderLight from '../assets/img/loaders/loader-light.gif';
 import bufferLoader from '../assets/img/loaders/buffer.gif';
 // Background
-import materialBgDark from '../assets/img/background/material-bg.png';
-import materialBgLight from '../assets/img/background/material-bg-light.png';
+import materialBgDark from '../assets/img/background/material-dark.jpg';
+import materialBgLight from '../assets/img/background/material-light.jpg';
+import glitchLight1 from '../assets/img/background/glitch-light1.webp';
+import glitchLight2 from '../assets/img/background/glitch-light2.webp';
+
 import world from '../assets/img/background/world-bg.png';
 import web from '../assets/img/background/web-bg.png';
 // Logo
@@ -30,6 +33,8 @@ export const localImgService = {
   // Background
   materialBgDark,
   materialBgLight,
+  glitchLight1,
+  glitchLight2,
   world,
   web,
   // Logo

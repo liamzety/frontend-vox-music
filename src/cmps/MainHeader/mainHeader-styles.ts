@@ -41,6 +41,9 @@ export const ImgThumbnail = styled.div`
   min-width: 250px;
   height: 250px;
   margin-right: 20px;
+  background-color: #0d0d0d;
+  background-blend-mode: normal;
+
   --aug-b: 6px;
   --aug-t: 6px;
   --aug-b-extend1: 60px;
@@ -53,5 +56,6 @@ export const ImgThumbnail = styled.div`
   @media (max-width: 750px) {
     width: 100%;
     height: 150px;
+    margin-bottom: 20px;
   }
 `;

@@ -101,7 +101,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                       </Text>
                     )}
                     <Button cb={onToggleChat} size="small" label="G01">
-                      Chat
+                      Chat_
                     </Button>
                   </div>
                 ) : (

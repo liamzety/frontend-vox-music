@@ -63,7 +63,7 @@ export const ChatBubble = styled.div`
   }
   &.sent-by-me {
     margin-left: auto;
-    color: ${GlobalVars.whiteMain};
+    color: ${GlobalVars.blackMain};
     background: ${GlobalVars.blueMain};
   }
   .chat-time-sent {

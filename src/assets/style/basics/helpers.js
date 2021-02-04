@@ -4,8 +4,8 @@ export const helpers = `
     padding-right: 30px;
   
     @media(max-width:550px) {
-      padding-left: 8px;
-      padding-right: 8px;
+      padding-left: 13px;
+      padding-right: 13px;
     }
   }
   

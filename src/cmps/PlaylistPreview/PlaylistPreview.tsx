@@ -47,7 +47,7 @@ export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
           <Text type="p" bold={true} size="1.2rem" color="chipTxt">
             {playlist.name}
           </Text>
-          <Svg color="chipTxt" size="1.5rem">
+          <Svg color="chipBorder" size="1.5rem">
             <FaRegPlayCircle />
           </Svg>
         </CardBottomContainer>
