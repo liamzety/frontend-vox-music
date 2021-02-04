@@ -68,6 +68,7 @@ button {
 }
 
 [data-tooltip]:hover:after {
+
   content: attr(data-tooltip);
   position: absolute;
   top: 175%;

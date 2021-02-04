@@ -1,6 +1,6 @@
 
 export const animations = `
-@keyframes title-animation {
+@keyframes tooltip-animation {
   0% {
     transform: translateY(50px);
     opacity: 0;
@@ -31,7 +31,6 @@ export const animations = `
 @keyframes pulsate-bck{0%{transform:scale(1)}50%{transform:scale(.9)}100%{transform:scale(1)}}
 @keyframes scale-in-tr{0%{transform:scale(0);transform-origin:100% 0;opacity:1}100%{transform:scale(1);transform-origin:100% 0;opacity:1}}
 @keyframes scale-in-tl{0%{transform:scale(0);transform-origin:0 0;opacity:1}100%{transform:scale(1);transform-origin:0 0;opacity:1}}
-@keyframes vibrate-1{0%{transform:translate(0)}20%{transform:translate(-1px,1px)}40%{transform:translate(-1px,-1px)}60%{transform:translate(1px,1px)}80%{transform:translate(1px,-1px)}100%{transform:translate(0)}}
 /* ------------------------------------------------------- */
 @keyframes glitch-animation {
     0% {

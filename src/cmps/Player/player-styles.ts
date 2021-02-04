@@ -27,7 +27,7 @@ export const PlayerContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: url(https://i.gifer.com/fyrS.gif);
+  background: url(${localImgService.playerBg});
   background-color: black;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,7 +71,6 @@ export const PlayerContainer = styled.div`
   svg {
     &:hover {
       opacity: 0.8;
-      animation: vibrate-1 0.3s linear infinite both;
     }
     &:active {
       transform: scale(0.88);

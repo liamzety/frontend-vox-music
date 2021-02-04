@@ -23,6 +23,7 @@ import wallpaper6 from '../assets/img/wallpapers/wallpaper6.jpg';
 // Misc
 import doubleLine from '../assets/img/misc/double-line.png';
 import unknownUser from '../assets/img/misc/unknown-user.png';
+import playerBg from '../assets/img/misc/player-bg.gif';
 
 export const localImgService = {
   // Loaders
@@ -54,4 +55,5 @@ export const localImgService = {
   // Misc
   doubleLine,
   unknownUser,
+  playerBg,
 };

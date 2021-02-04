@@ -29,11 +29,7 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
       <Slide in={isSideMenuOpen} direction="left" mountOnEnter unmountOnExit>
         <SideHamburgerStyles>
           <div className="inner-container">
-            <ThemeSwitcher
-              className="theme-switcher-mobile"
-              theme={theme}
-              toggleTheme={toggleTheme}
-            />
+            <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />
             <div className="relative">
               <Link
                 onClick={() => {

@@ -98,11 +98,7 @@ export const Navbar: React.FC = observer(() => {
                 }
               />
             </div>
-            <ThemeSwitcher
-              className="theme-switcher"
-              theme={themeStore.theme}
-              toggleTheme={toggleTheme}
-            />
+            <ThemeSwitcher theme={themeStore.theme} toggleTheme={toggleTheme} />
             <Svg cb={toggleSideMenu} size="3rem" className="hamburger">
               {getHamburgerIcon()}
             </Svg>

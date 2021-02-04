@@ -3,12 +3,10 @@ import React from 'react';
 import { ThemeSwitcherStyle } from './themeSwitcher-styles';
 interface ThemeSwitcherProps {
   toggleTheme: () => void;
-  className?: string;
   theme: string;
 }
 export const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
   toggleTheme,
-  className,
   theme,
 }) => {
   return (
