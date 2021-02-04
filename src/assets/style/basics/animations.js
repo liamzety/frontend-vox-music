@@ -1,5 +1,85 @@
 
 export const animations = `
+@keyframes expanding-circle {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(1.1);
+  }
+  15% {
+    transform: scale(1.2);
+  }
+  20% {
+    transform: scale(1.3);
+  }
+  25% {
+    transform: scale(1.4);
+  }
+  30% {
+    transform: scale(1.5);
+  }
+  35% {
+    transform: scale(1.6);
+  }
+  40% {
+    transform: scale(1.7);
+  }
+  45% {
+    transform: scale(1.8);
+  }
+  50% {
+    transform: scale(1.9);
+    opacity:0.9;
+  }
+  55% {
+    transform: scale(2);
+    opacity:0.8;
+  }
+  60% {
+    transform: scale(2.1);
+    opacity:0.7;
+  }
+  65% {
+    transform: scale(2.2);
+    opacity:0.6;
+  }
+  70% {
+    transform: scale(2.3);
+    opacity:0.5;
+  }
+  75% {
+    transform: scale(2.4);
+    opacity:0.4;
+
+  }
+  80% {
+    transform: scale(2.5);
+    opacity:0.3;
+
+  }
+  85% {
+    transform: scale(2.6);
+    opacity:0.2;
+
+  }
+  90% {
+    transform: scale(2.7);
+    opacity:0.1;
+
+  }
+  95% {
+    transform: scale(2.8);
+    opacity:0;
+
+  }
+  100% {
+    transform: scale(2.9);
+    opacity:0;
+
+  }
+ 
+}
 @keyframes tooltip-animation {
   0% {
     transform: translateY(50px);
@@ -31,6 +111,8 @@ export const animations = `
 @keyframes pulsate-bck{0%{transform:scale(1)}50%{transform:scale(.9)}100%{transform:scale(1)}}
 @keyframes scale-in-tr{0%{transform:scale(0);transform-origin:100% 0;opacity:1}100%{transform:scale(1);transform-origin:100% 0;opacity:1}}
 @keyframes scale-in-tl{0%{transform:scale(0);transform-origin:0 0;opacity:1}100%{transform:scale(1);transform-origin:0 0;opacity:1}}
+@keyframes pulsate-fwd{0%{transform:scale(1)}50%{transform:scale(1.2)}100%{transform:scale(1)}}
+@keyframes vibrate-1{0%{transform:translate(0)}20%{transform:translate(-1px,1px)}40%{transform:translate(-1px,-1px)}60%{transform:translate(1px,1px)}80%{transform:translate(1px,-1px)}100%{transform:translate(0)}}
 /* ------------------------------------------------------- */
 @keyframes glitch-animation {
     0% {

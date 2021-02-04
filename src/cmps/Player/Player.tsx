@@ -1,5 +1,8 @@
 import React, { JSXElementConstructor, useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
+import { Slide } from '@material-ui/core';
+import { Resizable } from 're-resizable';
+
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
@@ -15,6 +18,8 @@ import {
   BiSkipNext,
   BiSkipPrevious,
 } from 'react-icons/bi';
+import { FaRegWindowMinimize } from 'react-icons/fa';
+import { FcMusic } from 'react-icons/fc';
 // Styles
 import {
   PlayerContainer,
@@ -24,22 +29,19 @@ import {
   PlayerDurationContainer,
   PlayerLeftColumn,
   BackgroundWrapper,
+  PlayerMini,
+  ClosePlayerBtnContainer,
 } from './player-styles';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
-import { Slide } from '@material-ui/core';
 import { Loader } from '../Loader/Loader';
-import { Resizable } from 're-resizable';
-// interface PlayerProps {
-//   slide: boolean;
-// }
+
 export const Player: React.FC = observer(() => {
   const { playerStore } = useStore();
   const { player } = playerStore;
 
   const reactPlayerRef = useRef(null);
   const [isBuffering, setIsBuffering] = useState(true);
-
   const togglePlay = () => {
     playerStore.setPlayer({ isPlaying: !player.isPlaying });
   };
@@ -111,7 +113,7 @@ export const Player: React.FC = observer(() => {
   const [height, setHeight] = React.useState(125);
 
   return (
-    <PlayerWrapper className={`relative ${player.isOn ? '' : 'hidden'}`}>
+    <PlayerWrapper className="relative">
       <ReactPlayer
         url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
         playing={player.isPlaying}
@@ -133,13 +135,32 @@ export const Player: React.FC = observer(() => {
         ref={reactPlayerRef}
         hidden
       />
-      <Slide
-        direction="up"
-        in={playerStore.player.isOn}
-        mountOnEnter
-        unmountOnExit
+      <PlayerMini
+        className={
+          !player.currPlaylist.currSong.songUrl || player.isOn ? 'hide' : ''
+        }
+        onClick={() => {
+          playerStore.setPlayer({ isOn: true });
+        }}
       >
-        <PlayerContainer data-augmented-ui="tl-clip-x t-clip-x tr-clip-x">
+        <Svg size="40px">
+          <FcMusic />
+        </Svg>
+      </PlayerMini>
+      <Slide direction="up" in={player.isOn} mountOnEnter unmountOnExit>
+        <PlayerContainer
+          className={player.isOn ? '' : 'hide'}
+          data-augmented-ui="tl-clip-x t-clip-x tr-clip-x"
+        >
+          <ClosePlayerBtnContainer
+            onClick={() => {
+              playerStore.setPlayer({ isOn: false });
+            }}
+          >
+            <Svg size="25px">
+              <FaRegWindowMinimize />
+            </Svg>
+          </ClosePlayerBtnContainer>
           <BackgroundWrapper isPlaying={player.isPlaying} />
           <Resizable
             size={{ width, height }}

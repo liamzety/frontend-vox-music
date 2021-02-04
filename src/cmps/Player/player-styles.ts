@@ -1,7 +1,7 @@
 import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
-import { retroTvEffect } from '../../assets/style/main';
+import { remConverter, retroTvEffect } from '../../assets/style/main';
 import { localImgService } from '../../services/localImgService';
 
 interface Props {
@@ -69,16 +69,13 @@ export const PlayerContainer = styled.div`
     text-overflow: ellipsis;
   }
   svg {
-    &:hover {
-      opacity: 0.8;
-    }
     &:active {
       transform: scale(0.88);
     }
   }
 
   input[type='range'] {
-    padding: 8px;
+    padding: 8px 1px;
     -webkit-appearance: none;
     width: 120px;
     height: 10px;
@@ -177,6 +174,63 @@ export const PlayerDurationContainer = styled.div`
   }
 `;
 
+export const ClosePlayerBtnContainer = styled.div`
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 35px;
+  top: -10px;
+  z-index: 1;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const PlayerMini = styled.div`
+  cursor: pointer;
+  width: ${remConverter(80)};
+  height: ${remConverter(80)};
+  border-radius: 50%;
+  background: ${GlobalVars.whiteMain};
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: -4px 2px 10px #0000002e;
+  &:before {
+    transition: 0.2s;
+    content: '';
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid ${GlobalVars.whiteMain};
+  }
+  &:after {
+    transition: 0.2s;
+    content: '';
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid ${fade(GlobalVars.whiteMain, 0.3)};
+  }
+  svg {
+    animation: pulsate-fwd 3s ease-in-out infinite both;
+  }
+  &:hover {
+    animation: vibrate-1 0.3s linear infinite both;
+    &:after {
+      animation: expanding-circle 1s linear both;
+    }
+  }
+`;
 export const PlayerPlaylistImg = styled.img`
   width: 80px;
   height: 50px;
