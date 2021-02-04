@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { retroTvEffect } from '../../assets/style/main';
 
 export const Container = styled.div`
   display: flex;
@@ -43,7 +44,6 @@ export const ImgThumbnail = styled.div`
   margin-right: 20px;
   background-color: #0d0d0d;
   background-blend-mode: normal;
-
   --aug-b: 6px;
   --aug-t: 6px;
   --aug-b-extend1: 60px;

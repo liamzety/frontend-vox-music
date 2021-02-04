@@ -1,19 +1,14 @@
 import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
+import { retroTvEffect } from '../../assets/style/main';
 import { localImgService } from '../../services/localImgService';
 
 interface Props {
   isPlaying: boolean;
 }
 export const PlayerWrapper = styled.div``;
-const retroTvEffect = `
-animation:retro-future-tv-lines linear infinite ;
-animation-duration: 500ms;
---playstate: var(--media-prefers-reduced-motion) paused;
-animation-play-state: var(--playstate, running);
--webkit-mask-image: repeating-linear-gradient(black,black 0.5rem,rgb(0 0 0 / 0%) 0.75rem);
-`;
+
 export const BackgroundWrapper = styled.div<Props>`
   transition: 0.5s linear;
   position: absolute;
@@ -76,6 +71,7 @@ export const PlayerContainer = styled.div`
   svg {
     &:hover {
       opacity: 0.8;
+      animation: vibrate-1 0.3s linear infinite both;
     }
     &:active {
       transform: scale(0.88);
@@ -83,14 +79,19 @@ export const PlayerContainer = styled.div`
   }
 
   input[type='range'] {
+    padding: 8px;
     -webkit-appearance: none;
     width: 120px;
     height: 10px;
-    background: ${GlobalVars.whiteSecondary};
+    background: ${GlobalVars.blackMain};
     outline: none;
     border-radius: 5px;
 
+    --aug-border-bg: ${({ theme }) => theme.playerMain};
+    --aug-border-all: 2px;
+
     &.volume-input {
+      border: 2px solid ${({ theme }) => theme.playerMain};
       width: 50px;
       transform: rotate(270deg);
     }
@@ -98,17 +99,15 @@ export const PlayerContainer = styled.div`
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: ${({ theme }) => theme.playerMain};
+      width: 12px;
+      height: 12px;
+      background: ${({ theme }) => theme.playerSec};
       cursor: pointer;
     }
     &::-moz-range-thumb {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: ${({ theme }) => theme.playerMain};
+      width: 12px;
+      height: 12px;
+      background: ${({ theme }) => theme.playerSec};
       cursor: pointer;
     }
   }

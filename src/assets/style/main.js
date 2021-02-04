@@ -4,7 +4,6 @@ import { animations } from './basics/animations';
 import { helpers } from './basics/helpers';
 import { typography } from './basics/typography';
 import { GlobalVars } from './basics/vars';
-import { localImgService } from '../../services/localImgService'
 
 export const neon = (sh2 = '#FF00DE', sh1 = '#FFFFFF') => `
 color: ${sh1};
@@ -18,7 +17,13 @@ text-shadow:
 export const remConverter = (pix) => {
   return +pix / 16 + 'rem';
 }
-
+export const retroTvEffect = `
+animation:retro-future-tv-lines linear infinite ;
+animation-duration: 500ms;
+--playstate: var(--media-prefers-reduced-motion) paused;
+animation-play-state: var(--playstate, running);
+-webkit-mask-image: repeating-linear-gradient(black,black 0.5rem,rgb(0 0 0 / 0%) 0.75rem);
+`;
 export const GlobalStyles = createGlobalStyle`
 ${animations}
 ${typography}

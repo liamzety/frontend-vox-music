@@ -74,9 +74,8 @@ export const Genre: React.FC<Props> = observer(
         <GenreListWrapper data-augmented-ui="br-2-clip-x bl-2-clip-x border ">
           {isOverflowing && (
             <SliderButton
-              maxWidth="740px"
-              position="relative"
               leftRight="5px"
+              color="mainBorder"
               cbRight={scrollService.handleScrollVertical.bind(
                 {},
                 true,

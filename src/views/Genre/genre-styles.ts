@@ -25,9 +25,9 @@ export const GenreListWrapper = styled.div`
   --aug-border-right: 0px;
   --aug-border-bg: linear-gradient(
     180deg,
-    rgba(84, 79, 10, 0) 10%,
+    rgba(84, 79, 10, 0) 70%,
     rgba(11, 10, 10, 0.8872408826811975) 79%,
-    rgba(252, 238, 9, 1) 100%
+    ${({ theme }) => theme.mainBorder} 100%
   );
   padding: 10px;
 `;
