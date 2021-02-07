@@ -14,10 +14,12 @@ import {
   ChatBubble,
   ChatHeader,
   ChatFooterForm,
+  UserChatBgWrapper,
 } from './userChat-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';
+import { Input } from '../../aux-cmps/Input/Input';
 
 interface UserChatProps {
   onToggleChat: () => void;
@@ -51,7 +53,7 @@ export const UserChat: React.FC<UserChatProps> = ({
     elChatInput.current.focus();
   }, []);
   return (
-    <UserChatStyles>
+    <UserChatStyles data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border">
       <ChatHeader className="flex col space-between">
         <div className="flex">
           <Svg
@@ -78,6 +80,7 @@ export const UserChat: React.FC<UserChatProps> = ({
         followButtonClassName="scroll-down-btn"
         className="chat-bubble-container"
       >
+        <UserChatBgWrapper />
         {msgs &&
           msgs.length > 0 &&
           msgs.map((msg: ChatMsgType, idx: number) => (
@@ -110,7 +113,13 @@ export const UserChat: React.FC<UserChatProps> = ({
           handleSendMsg();
         }}
       >
-        <input ref={elChatInput} onChange={handleTyping} type="text" />
+        <Input
+          uppercase={false}
+          domRef={elChatInput}
+          name="user-chat-input"
+          onChange={handleTyping}
+          type="text"
+        />
         <button
           onClick={() => {
             elChatInput.current.focus();

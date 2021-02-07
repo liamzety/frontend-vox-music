@@ -20,5 +20,9 @@ export const SvgStyle = styled.span<Props>`
         pointer &&
         `color: ${darken(color ? theme[color] : theme.mainSvg, 0.2)};`};
     }
+
+    &:active {
+      ${({ pointer }) => pointer && `transform: scale(0.85)`};
+    }
   }
 `;

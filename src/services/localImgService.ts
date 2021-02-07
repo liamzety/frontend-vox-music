@@ -7,6 +7,8 @@ import materialBgDark from '../assets/img/background/material-dark.jpg';
 import materialBgLight from '../assets/img/background/material-light.jpg';
 import glitchLight1 from '../assets/img/background/glitch-light1.webp';
 import glitchLight2 from '../assets/img/background/glitch-light2.webp';
+import kiss from '../assets/img/background/kiss.png';
+import astronaut from '../assets/img/background/astronaut.png';
 
 import world from '../assets/img/background/world-bg.png';
 import web from '../assets/img/background/web-bg.png';
@@ -38,6 +40,8 @@ export const localImgService = {
   glitchLight2,
   world,
   web,
+  kiss,
+  astronaut,
   // Logo
   logoLight,
   logoDark,

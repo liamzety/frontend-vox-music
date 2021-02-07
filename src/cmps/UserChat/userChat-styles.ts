@@ -1,9 +1,13 @@
+import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
+import { localImgService } from '../../services/localImgService';
 
 export const UserChatStyles = styled.div`
   margin-right: 50px;
-  background: #00000087;
+  background: ${({ theme }) => theme.mainBg};
+  --aug-border-all: 2px;
+
   @media (max-width: 1080px) {
     margin-right: 0;
     margin-bottom: 50px;
@@ -11,10 +15,15 @@ export const UserChatStyles = styled.div`
 
   .chat-bubble-container {
     display: flex;
-    height: calc(100vh - 370px);
+    height: calc(100vh - 410px);
     overflow: overlay;
     flex-direction: column;
     position: relative;
+    background: url(${localImgService.astronaut});
+    background-color: ${({ theme }) => theme.mainBg};
+    background-position: center;
+    background-size: cover;
+
     & > div {
       padding: 25px;
     }
@@ -34,21 +43,30 @@ export const UserChatStyles = styled.div`
     }
   }
 `;
+export const UserChatBgWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: ${({ theme }) => fade(theme.mainBg, 0.85)};
+`;
 export const ChatHeader = styled.div`
-height: 50px;
-padding: 5px;
-svg {
-  margin-right:15px;
-}
-}
+  height: 70px;
+  padding: 10px 25px;
+  svg {
+    margin-right: 15px;
+  }
 `;
 export const ChatFooterForm = styled.form`
-display: flex;
-height: 50px;
-padding: 5px 25px;
-align-items: center;
-justify-content: space-between;
-}
+  display: flex;
+  height: 70px;
+  padding: 5px 25px;
+  align-items: center;
+  justify-content: space-between;
+  input {
+    margin-right: 20px;
+  }
 `;
 
 export const ChatBubble = styled.div`
