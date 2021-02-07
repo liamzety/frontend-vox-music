@@ -9,12 +9,12 @@ import {
   SongContainer,
   SongListContainer,
   SongThumbnail,
-  SongTitle,
 } from './songList-styles';
 // Cmps
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';
+import { RiDeleteBin4Fill } from 'react-icons/ri';
 
 interface SongListProps {
   onRemoveSong: (songId: string) => void;
@@ -50,7 +50,6 @@ export const SongList: React.FC<SongListProps> = observer(
           {playerStore.player.currPlaylist.songs.map((song: any, idx: any) => {
             return (
               <SongContainer
-                className="test"
                 key={idx}
                 onClick={() => {
                   handleSongSelect({
@@ -62,17 +61,21 @@ export const SongList: React.FC<SongListProps> = observer(
                 }}
               >
                 <SongThumbnail src={song.url} alt="" />
-                <SongTitle>{song.title}</SongTitle>
-                <Button
-                  cb={(ev: any) => {
-                    ev.stopPropagation();
-                    onRemoveSong(song._id);
-                  }}
-                  label="x88"
-                  size="small"
-                >
-                  X
-                </Button>
+                <div className="flex align-center space-between  w100">
+                  <Text type="p" bold={true}>
+                    {song.title}
+                  </Text>
+                  <Svg
+                    color="mainTxt"
+                    size="2rem"
+                    cb={(ev: any) => {
+                      ev.stopPropagation();
+                      onRemoveSong(song._id);
+                    }}
+                  >
+                    <RiDeleteBin4Fill />
+                  </Svg>
+                </div>
               </SongContainer>
             );
           })}

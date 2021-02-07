@@ -8,7 +8,7 @@ interface SvgProps {
   pointer?: boolean;
   color?: string;
   className?: string;
-  cb?: () => void;
+  cb?: (ev?: any) => void;
 }
 export const Svg: React.FC<SvgProps> = ({
   size,

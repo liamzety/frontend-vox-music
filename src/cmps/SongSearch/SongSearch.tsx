@@ -6,6 +6,7 @@ import { storageService } from '../../services/storageService';
 // Cmps
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
 import { SongSearchContainer } from './songSearch-styles';
+import { Input } from '../../aux-cmps/Input/Input';
 
 interface songSearchProps {
   onAddSong: (suggestion: any) => void;
@@ -57,7 +58,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   };
   return (
     <SongSearchContainer>
-      <input
+      <Input
         onChange={onAddSongInp}
         name="search"
         type="text"

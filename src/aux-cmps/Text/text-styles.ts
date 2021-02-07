@@ -14,7 +14,7 @@ interface Props {
 export const TextStyle = styled.p<Props>`
     width: fit-content;
     font-family: Bicubik ; 
-    text-transform:${(uppercase) => (uppercase ? 'uppercase' : '')};
+     text-transform:${({ uppercase }) => (uppercase ? 'uppercase' : '')};
     color: ${({ theme, color }) => color && theme[color]};
     font-weight:${({ bold = true }) => (bold ? '700' : '400')};
 
@@ -42,32 +42,32 @@ export const TextStyle = styled.p<Props>`
     }
 
     &.banner-title {
-        font-size: ${(props) => props.size || '5.5rem'};
+        font-size: ${({ size }) => size || '5.5rem'};
          color: ${({ theme }) => theme.bannerTitle};
     }
     &.banner-sub-title {
-        font-size: ${(props) => props.size || '2rem'};
+        font-size: ${({ size }) => size || '2rem'};
         color: ${({ theme }) => theme.bannerTitle};
     }
     &.h1 {
-        font-size: ${(props) => props.size || '2.8rem'};
+        font-size: ${({ size }) => size || '2.8rem'};
     }
     &.h2 {
-        font-size: ${(props) => props.size || '2.2rem'};
+        font-size: ${({ size }) => size || '2.2rem'};
     }
     &.h3 {
-        font-size: ${(props) => props.size || '1.8rem'};
+        font-size: ${({ size }) => size || '1.8rem'};
     }
     &.h4 {
-        font-size: ${(props) => props.size || '1.3rem'};
+        font-size: ${({ size }) => size || '1.3rem'};
     }
     &.p {
-        font-size: ${(props) => props.size || '1rem'};
+        font-size: ${({ size }) => size || '1rem'};
         font-weight:${({ bold = false }) => (bold ? '700' : '400')};
         font-family: Tomorrow-Regular ;
     }
     &.a {
-        font-size: ${(props) => props.size || '1rem'};
+        font-size: ${({ size }) => size || '1rem'};
         font-weight:${({ bold = false }) => (bold ? '700' : '400')};
         border-bottom:${({ active }) => !active && '2px solid transparent'}; 
         position:relative;
