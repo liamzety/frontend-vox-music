@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { retroTvEffect } from '../../assets/style/main';
+import { remConverter, retroTvEffect } from '../../assets/style/main';
 
 export const Container = styled.div`
   display: flex;
@@ -37,6 +37,13 @@ export const Container = styled.div`
     text-overflow: ellipsis;
   }
 `;
+export const CreatedByContainer = styled.div`
+  line-height: 2;
+  &[data-tooltip]::after {
+    top: 120% !important;
+    left: 75px !important;
+  }
+`;
 export const ImgThumbnail = styled.div`
   width: 30%;
   min-width: 250px;
@@ -60,4 +67,10 @@ export const ImgThumbnail = styled.div`
     height: 150px;
     margin-bottom: 20px;
   }
+`;
+export const UserProfileImg = styled.img`
+  margin: 10px;
+  width: ${remConverter(45)};
+  height: ${remConverter(45)};
+  border-radius: 50%;
 `;

@@ -14,17 +14,49 @@ async function query() {
   return playlists;
 }
 async function add(playlist: PlaylistType) {
-  return await httpService.post('playlist', playlist);
+  try {
+    return await httpService.post('playlist', playlist);
+  } catch (err) {
+    console.error('Error, playlistService.ts -> function: :', err);
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
 }
 async function getById(playlistId: string) {
-  return await httpService.get(`playlist/${playlistId}`);
+  try {
+    return await httpService.get(`playlist/${playlistId}`);
+  } catch (err) {
+    console.error('Error, playlistService.ts -> function: :', err);
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
 }
 async function update(playlistToUpdate: PlaylistType) {
-  return await httpService.put(
-    `playlist/${playlistToUpdate._id}`,
-    playlistToUpdate
-  );
+  try {
+    return await httpService.put(
+      `playlist/${playlistToUpdate._id}`,
+      playlistToUpdate
+    );
+  } catch (err) {
+    console.error('Error, playlistService.ts -> function: :', err);
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
 }
-function remove(playlistId: string) {
-  httpService.delete(`playlist/${playlistId}`);
+async function remove(playlistId: string) {
+  try {
+    await httpService.delete(`playlist/${playlistId}`);
+  } catch (err) {
+    console.error('Error, playlistService.ts -> function: :', err);
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 // Store
 import { observer } from 'mobx-react';
@@ -6,13 +6,19 @@ import { useStore } from '../../store/StoreContext';
 // Icons
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 // Styles
-import { ImgThumbnail, Container } from './mainHeader-styles';
+import {
+  ImgThumbnail,
+  Container,
+  UserProfileImg,
+  CreatedByContainer,
+} from './mainHeader-styles';
 import { MenuItemSpan } from '../../aux-cmps/Menu/menu-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Menu } from '../../aux-cmps/Menu/Menu';
+import { userService } from '../../services/userService';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
@@ -35,8 +41,17 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
       playerStore: { currPlaylist },
       userStore,
     } = useStore();
-    const history = useHistory();
-
+    const [userDetails, setUserDetails] = useState({
+      name: '',
+      profile_img: '',
+    });
+    useEffect(() => {
+      getUserDetials();
+    }, [currPlaylist.created_by]);
+    const getUserDetials = async () => {
+      if (!currPlaylist.created_by) return;
+      setUserDetails(await userService.getLoggedUser(currPlaylist.created_by));
+    };
     return (
       <Container>
         <div className="outer-container flex">
@@ -80,7 +95,6 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                       </MenuItemSpan>
                       <MenuItemSpan
                         cb={() => {
-                          history.push('/');
                           onRemovePlaylist(currPlaylist._id!);
                         }}
                       >
@@ -92,7 +106,26 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                 <Text type="h4">{currPlaylist.description}</Text>
               </div>
               <div className="flex space-between align-center">
-                <Text type="p">Genre: {currPlaylist.genre}</Text>
+                <div className="flex col">
+                  <Text type="p">Genre: {currPlaylist.genre}</Text>
+                  <CreatedByContainer
+                    data-tooltip={userDetails.name}
+                    className="test flex align-center"
+                  >
+                    <Text type="p">Created by: </Text>
+                    {userDetails.profile_img ? (
+                      <UserProfileImg
+                        src={userDetails.profile_img}
+                        alt="user"
+                      />
+                    ) : (
+                      <Text capitalize={true} type="p">
+                        {' '}
+                        {userDetails.name}
+                      </Text>
+                    )}
+                  </CreatedByContainer>
+                </div>
                 {userStore.user.isSignedIn ? (
                   <div className="chat-btn-container flex align-center">
                     {!isChat && userTyping && (

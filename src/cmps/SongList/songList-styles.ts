@@ -1,4 +1,4 @@
-import { fade, lighten } from '@material-ui/core';
+import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { retroTvEffect } from '../../assets/style/main';
@@ -7,6 +7,7 @@ export const SongListContainer = styled.ul`
   height: calc(100vh - 600px);
   min-height: 250px;
   background: url(${localImgService.world});
+  background-color: ${({ theme }) => fade(theme.mainBg, 0.7)};
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

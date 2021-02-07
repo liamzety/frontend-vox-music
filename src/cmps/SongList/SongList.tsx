@@ -37,7 +37,7 @@ export const SongList: React.FC<SongListProps> = observer(
 
     if (playerStore.player.currPlaylist.songs.length === 0)
       return (
-        <div className="flex align-center justify-center m50">
+        <div className="flex align-center  m50">
           <Text type="h2">Add new songs!</Text>
           <Svg size="4rem" color="mainTxt">
             <GoArrowSmallUp />

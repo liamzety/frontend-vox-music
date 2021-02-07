@@ -18,6 +18,7 @@ export interface TextProps {
   bold?: boolean;
   color?: string;
   uppercase?: boolean;
+  capitalize?: boolean;
   underline?: boolean;
   active?: boolean;
 }
@@ -29,6 +30,7 @@ export const Text: React.FC<TextProps> = ({
   color,
   bold,
   uppercase,
+  capitalize,
   underline,
   active,
   children,
@@ -41,6 +43,7 @@ export const Text: React.FC<TextProps> = ({
       size={size}
       bold={bold}
       uppercase={uppercase}
+      capitalize={capitalize}
       underline={underline}
       active={active}
       {...props}

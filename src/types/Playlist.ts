@@ -13,4 +13,5 @@ export interface PlaylistType {
   genre: string;
   img: string;
   songs: Array<SongType>;
+  created_by?: string;
 }

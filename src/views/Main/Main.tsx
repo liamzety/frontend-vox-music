@@ -1,5 +1,6 @@
+/* eslint-disable no-throw-literal */
 import React, { useEffect, useCallback, useState } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps, useHistory } from 'react-router-dom';
 // Material UI
 import { Slide } from '@material-ui/core';
 // Store
@@ -39,6 +40,8 @@ export const Main: React.FC<Props> = observer(
       userStore,
       modalStore,
     } = useStore();
+    const history = useHistory();
+
     const isSmallScreen = window.innerWidth > 1080;
     // ---------------------Chat ------------------
     const [inRoom, setInRoom] = useState(false);
@@ -146,17 +149,33 @@ export const Main: React.FC<Props> = observer(
       getPlaylist(playlistId);
     }, [getPlaylist, playlistId]);
 
-    const onRemovePlaylist = (): void => {
-      playlistService.remove(playlistId);
-      playlistStore.removePlaylist(playlistId);
+    const onRemovePlaylist = async () => {
+      try {
+        if (userStore.user._id !== playerStore.player.currPlaylist.created_by) {
+          throw { msg: 'Only the owner of this playlist can delete it.' };
+        }
+        await playlistService.remove(playlistId);
+        playlistStore.removePlaylist(playlistId);
+        history.push('/');
+        userMsgStore.alert({
+          type: 'success',
+          msg: 'Playlist removed successfully.',
+        });
+      } catch (err) {
+        console.error('Error, Main.tsx -> function: :', err.msg);
+        userMsgStore.alert({
+          type: 'error',
+          msg: err.msg,
+        });
+      }
+      setTimeout(() => {
+        userMsgStore.clearAlert();
+      }, 3000);
     };
     const onUpdatePlaylist = (): void => {
       modalStore.toggleModal('updatePlaylist');
     };
-    const updatePlaylist = (playlistToUpdate: PlaylistType): void => {
-      playlistService.update(playlistToUpdate);
-      playlistStore.updatePlaylist(playlistToUpdate);
-    };
+
     // ---------------------Playlist CRUD END ------------------
 
     // ---------------------Song CRUD ------------------

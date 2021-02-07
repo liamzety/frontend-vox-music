@@ -1,3 +1,4 @@
+import { fade } from '@material-ui/core';
 import { createGlobalStyle } from 'styled-components';
 
 import { animations } from './basics/animations';
@@ -74,8 +75,8 @@ button {
   font-size: 1rem;
   width: max-content;
   padding: 5px 10px;
-  color: #f1f1f1;
-  background-color: rgba(#333333, 0.65);
+  color: ${GlobalVars.whiteMain};
+  background-color: ${fade(GlobalVars.blackTertiary, 0.7)};
   border-radius: 5px;
   animation: tooltip-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   z-index: 999;

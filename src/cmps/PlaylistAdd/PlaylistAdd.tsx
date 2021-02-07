@@ -34,7 +34,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
     songs: [],
   });
   const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
-  const { playlistStore, modalStore, userMsgStore } = useStore();
+  const { playlistStore, modalStore, userMsgStore, userStore } = useStore();
   const history = useHistory();
 
   async function onAddPlaylistInp(event: React.FormEvent<HTMLInputElement>) {
@@ -67,17 +67,25 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
     });
   };
   async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
-    const playlistAdded = await playlistService.add(playlistToAdd);
-    playlistStore.addPlaylist(playlistAdded);
-    if (history.location.pathname !== '/') {
-      history.push(`/main/${playlistAdded.name}=${playlistAdded._id}`);
+    playlistToAdd.created_by = userStore.user._id;
+    try {
+      const playlistAdded = await playlistService.add(playlistToAdd);
+      playlistStore.addPlaylist(playlistAdded);
+      if (history.location.pathname !== '/') {
+        history.push(`/main/${playlistAdded.name}=${playlistAdded._id}`);
+      }
+      userMsgStore.alert({
+        type: 'success',
+        msg: 'Playlist added successfully.',
+      });
+    } catch (err) {
+      console.error('Error, PlaylistAdd.tsx -> function: :', err.msg);
+      userMsgStore.alert({
+        type: 'error',
+        msg: err.msg,
+      });
     }
     modalStore.toggleModal();
-
-    userMsgStore.alert({
-      type: 'success',
-      msg: 'Playlist added successfully.',
-    });
     setTimeout(() => {
       userMsgStore.clearAlert();
     }, 3000);

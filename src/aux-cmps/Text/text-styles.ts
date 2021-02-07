@@ -8,6 +8,7 @@ interface Props {
   color?: string;
   bold?: boolean;
   uppercase?: boolean;
+  capitalize?: boolean;
   underline?: boolean;
   active?: boolean;
 }
@@ -15,6 +16,7 @@ export const TextStyle = styled.p<Props>`
     width: fit-content;
     font-family: Bicubik ; 
      text-transform:${({ uppercase }) => (uppercase ? 'uppercase' : '')};
+     text-transform:${({ capitalize }) => (capitalize ? 'capitalize' : '')};
     color: ${({ theme, color }) => color && theme[color]};
     font-weight:${({ bold = true }) => (bold ? '700' : '400')};
 

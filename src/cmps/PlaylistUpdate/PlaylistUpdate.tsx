@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // Store
@@ -24,7 +25,13 @@ import { Text } from '../../aux-cmps/Text/Text';
 
 export const PlaylistUpdate: React.FC = () => {
   const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
-  const { playerStore, playlistStore, modalStore, userMsgStore } = useStore();
+  const {
+    playerStore,
+    playlistStore,
+    modalStore,
+    userMsgStore,
+    userStore,
+  } = useStore();
   const history = useHistory();
 
   const DEFAULT_IMG = playerStore.currPlaylist.img;
@@ -72,17 +79,26 @@ export const PlaylistUpdate: React.FC = () => {
     playlistToUpdate: PlaylistType
   ): Promise<void> => {
     playlistToUpdate._id = playerStore.currPlaylist._id;
-    const playlistUpdated = await playlistService.update(playlistToUpdate);
-    console.log('playlist ypdaed', playlistUpdated);
-    playlistStore.updatePlaylist(playlistUpdated);
-    history.push(`/main/${playlistUpdated.name}=${playlistUpdated._id}`);
 
+    try {
+      if (userStore.user._id !== playerStore.player.currPlaylist.created_by) {
+        throw { msg: 'Only the owner of this playlist can edit it.' };
+      }
+      const playlistUpdated = await playlistService.update(playlistToUpdate);
+      playlistStore.updatePlaylist(playlistUpdated);
+      history.push(`/main/${playlistUpdated.name}=${playlistUpdated._id}`);
+      userMsgStore.alert({
+        type: 'success',
+        msg: 'Playlist updated successfully.',
+      });
+    } catch (err) {
+      console.error('Error, PlaylistUpdate.tsx -> function: :', err.msg);
+      userMsgStore.alert({
+        type: 'error',
+        msg: err.msg,
+      });
+    }
     modalStore.toggleModal();
-
-    userMsgStore.alert({
-      type: 'success',
-      msg: 'Playlist updated successfully.',
-    });
     setTimeout(() => {
       userMsgStore.clearAlert();
     }, 3000);
