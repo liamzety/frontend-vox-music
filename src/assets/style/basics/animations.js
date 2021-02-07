@@ -228,5 +228,4 @@ export const animations = `
   }
 
 
-
 `

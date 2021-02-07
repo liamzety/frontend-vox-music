@@ -12,6 +12,9 @@ export const SongListContainer = styled.ul`
   background-position: center;
   overflow: overlay;
   padding: 15px;
+
+  --aug-border-all: 2px;
+
   @media (max-width: 750px) {
     min-height: 200px;
     height: calc(100vh - 750px);

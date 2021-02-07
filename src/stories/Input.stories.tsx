@@ -24,4 +24,6 @@ const Template: Story<InputProps> = (args) => {
 };
 
 export const input1 = Template.bind({});
-input1.args = {};
+input1.args = {
+  placeholder: 'PLACEHOLDER',
+};

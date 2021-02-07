@@ -6,7 +6,6 @@ export const SongSearchContainer = styled.div`
   margin-bottom: 15px;
   position: relative;
   input {
-    width: 100%;
-    padding: 10px;
+    margin-left: 20px;
   }
 `;

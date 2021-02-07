@@ -45,42 +45,40 @@ export const SongList: React.FC<SongListProps> = observer(
         </div>
       );
     return (
-      <div data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border">
-        <SongListContainer>
-          {playerStore.player.currPlaylist.songs.map((song: any, idx: any) => {
-            return (
-              <SongContainer
-                key={idx}
-                onClick={() => {
-                  handleSongSelect({
-                    songUrl: song.video_id,
-                    imgUrl: song.url,
-                    title: song.title,
-                    idx,
-                  });
-                }}
-              >
-                <SongThumbnail src={song.url} alt="" />
-                <div className="flex align-center space-between  w100">
-                  <Text type="p" bold={true}>
-                    {song.title}
-                  </Text>
-                  <Svg
-                    color="mainTxt"
-                    size="2rem"
-                    onClick={(ev: any) => {
-                      ev.stopPropagation();
-                      onRemoveSong(song._id);
-                    }}
-                  >
-                    <RiDeleteBin4Fill />
-                  </Svg>
-                </div>
-              </SongContainer>
-            );
-          })}
-        </SongListContainer>
-      </div>
+      <SongListContainer data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border">
+        {playerStore.player.currPlaylist.songs.map((song: any, idx: any) => {
+          return (
+            <SongContainer
+              key={idx}
+              onClick={() => {
+                handleSongSelect({
+                  songUrl: song.video_id,
+                  imgUrl: song.url,
+                  title: song.title,
+                  idx,
+                });
+              }}
+            >
+              <SongThumbnail src={song.url} alt="" />
+              <div className="flex align-center space-between  w100">
+                <Text type="p" bold={true}>
+                  {song.title}
+                </Text>
+                <Svg
+                  color="mainTxt"
+                  size="2rem"
+                  onClick={(ev: any) => {
+                    ev.stopPropagation();
+                    onRemoveSong(song._id);
+                  }}
+                >
+                  <RiDeleteBin4Fill />
+                </Svg>
+              </div>
+            </SongContainer>
+          );
+        })}
+      </SongListContainer>
     );
   }
 );

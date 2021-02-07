@@ -1,3 +1,4 @@
+import { darken, fade } from '@material-ui/core'
 import { localImgService } from '../../services/localImgService'
 import { GlobalVars } from './basics/vars'
 
@@ -54,6 +55,9 @@ export const lightTheme = {
     chatBubbleBody: GlobalVars.blackMain,
     chatBubbleTxt: GlobalVars.whiteMain,
 
+    inputTxt: darken(GlobalVars.pinkMain, 0.3),
+    inputBackground: fade(GlobalVars.pinkMain, 0.7),
+    inputBorder: GlobalVars.pinkMain,
 }
 
 export const darkTheme = {
@@ -110,4 +114,7 @@ export const darkTheme = {
     chatBubbleBody: GlobalVars.whiteMain,
     chatBubbleTxt: GlobalVars.blackMain,
 
+    inputTxt: GlobalVars.pinkMain,
+    inputBackground: fade(GlobalVars.pinkMain, 0.7),
+    inputBorder: GlobalVars.pinkMain,
 }

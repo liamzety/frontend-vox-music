@@ -44,10 +44,12 @@ export const ImgThumbnail = styled.div`
   margin-right: 20px;
   background-color: #0d0d0d;
   background-blend-mode: normal;
+
   --aug-b: 6px;
   --aug-t: 6px;
   --aug-b-extend1: 60px;
   --aug-t-extend1: 60px;
+  --aug-border-all: 2px;
 
   img {
     height: 100%;
