@@ -8,7 +8,7 @@ export interface ButtonProps {
   color?: string;
   bgColor?: string;
   border?: string;
-  cb?: (ev: any) => void;
+  onClick?: (ev: any) => void;
   label: string;
   children: string | JSX.Element | (string | JSX.Element)[];
 }
@@ -19,14 +19,14 @@ export const Button: React.FC<ButtonProps> = ({
   color = 'mainBtnTxt',
   border = 'mainBtnBorder',
   bgColor = 'mainBtn',
-  cb,
+  onClick,
   label,
   children,
   ...props
 }) => {
   return (
     <ButtonStyle
-      onClick={cb}
+      onClick={onClick}
       color={color}
       bgColor={bgColor}
       border={border}

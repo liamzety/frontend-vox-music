@@ -49,7 +49,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                   <Text type="h2">{currPlaylist.name}</Text>
                   <div className="playlist-actions-container flex col space-between relative">
                     <Svg
-                      cb={() => {
+                      onClick={() => {
                         setIsPlaylistMenu(!isPlaylistMenu);
                       }}
                       pointer={true}
@@ -100,7 +100,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                         <span className="typing">is typing...</span>
                       </Text>
                     )}
-                    <Button cb={onToggleChat} size="small" label="G01">
+                    <Button onClick={onToggleChat} size="small" label="G01">
                       Chat_
                     </Button>
                   </div>

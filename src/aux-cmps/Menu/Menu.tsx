@@ -86,7 +86,7 @@ export const Menu: React.FC<MenuProps> = ({
         fade={animation.in}
         index="11"
         darkenBg={false}
-        cb={closeCb}
+        onClick={closeCb}
       />
     </>
   );

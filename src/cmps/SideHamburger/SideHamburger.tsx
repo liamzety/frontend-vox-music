@@ -43,7 +43,7 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
             <Button
               size="small"
               label="r35"
-              cb={() => {
+              onClick={() => {
                 openPlaylistAddModal();
                 toggleSideMenu();
               }}
@@ -58,7 +58,7 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
         fade={isSideMenuOpen}
         index="9"
         darkenBg={true}
-        cb={toggleSideMenu}
+        onClick={toggleSideMenu}
       />
     </>
   );

@@ -54,7 +54,12 @@ export const UserChat: React.FC<UserChatProps> = ({
     <UserChatStyles>
       <ChatHeader className="flex col space-between">
         <div className="flex">
-          <Svg pointer={true} size="25px" color="mainTxt" cb={onToggleChat}>
+          <Svg
+            pointer={true}
+            size="25px"
+            color="mainTxt"
+            onClick={onToggleChat}
+          >
             {window.innerWidth > 1080 ? (
               <BsBoxArrowInLeft />
             ) : (

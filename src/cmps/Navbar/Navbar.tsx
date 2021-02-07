@@ -83,7 +83,7 @@ export const Navbar: React.FC = observer(() => {
               className="add-playlist-btn"
               size="small"
               label="r35"
-              cb={openPlaylistAddModal}
+              onClick={openPlaylistAddModal}
             >
               New Playlist_
             </Button>
@@ -99,7 +99,7 @@ export const Navbar: React.FC = observer(() => {
               />
             </div>
             <ThemeSwitcher theme={themeStore.theme} toggleTheme={toggleTheme} />
-            <Svg cb={toggleSideMenu} size="3rem" className="hamburger">
+            <Svg onClick={toggleSideMenu} size="3rem" className="hamburger">
               {getHamburgerIcon()}
             </Svg>
           </NavOptionsContainer>

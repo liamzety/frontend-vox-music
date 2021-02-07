@@ -212,7 +212,7 @@ export const Player: React.FC = observer(() => {
               </PlayerDurationContainer>
               <div className="controls-container flex align-center">
                 <Svg
-                  cb={() => {
+                  onClick={() => {
                     playerStore.handleNextPrevSong('prev');
                   }}
                   size="40px"
@@ -224,7 +224,7 @@ export const Player: React.FC = observer(() => {
 
                 <Svg
                   size="40px"
-                  cb={togglePlay}
+                  onClick={togglePlay}
                   pointer={true}
                   color="playerSec"
                 >
@@ -232,7 +232,7 @@ export const Player: React.FC = observer(() => {
                 </Svg>
 
                 <Svg
-                  cb={() => {
+                  onClick={() => {
                     playerStore.handleNextPrevSong('next');
                   }}
                   size="40px"
@@ -242,7 +242,7 @@ export const Player: React.FC = observer(() => {
                   <BiSkipNext />
                 </Svg>
                 <Svg
-                  cb={toggleSongMute}
+                  onClick={toggleSongMute}
                   className="mute-btn"
                   size="30px"
                   pointer={true}

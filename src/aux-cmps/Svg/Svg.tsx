@@ -8,7 +8,7 @@ interface SvgProps {
   pointer?: boolean;
   color?: string;
   className?: string;
-  cb?: (ev?: any) => void;
+  onClick?: (ev?: any) => void;
 }
 export const Svg: React.FC<SvgProps> = ({
   size,
@@ -16,11 +16,11 @@ export const Svg: React.FC<SvgProps> = ({
   pointer,
   className,
   color,
-  cb,
+  onClick,
 }) => {
   return (
     <SvgStyle
-      onClick={cb}
+      onClick={onClick}
       className={className}
       pointer={pointer}
       color={color}

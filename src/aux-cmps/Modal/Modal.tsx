@@ -42,7 +42,7 @@ export const Modal: React.FC<ModalProps> = ({ className, type, closeCb }) => {
         fade={modalStore.modal.isOn}
         index="10"
         darkenBg={true}
-        cb={closeCb}
+        onClick={closeCb}
       />
     </>
   );

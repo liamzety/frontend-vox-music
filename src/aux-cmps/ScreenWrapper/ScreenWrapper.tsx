@@ -5,13 +5,13 @@ import React from 'react';
 import { ScreenWrapperStyle } from './screenWrapper-styles';
 
 interface ScreenWrapperProps {
-  cb: (ev: any) => void;
+  onClick: (ev: any) => void;
   index: string;
   fade: boolean;
   darkenBg?: boolean;
 }
 export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
-  cb,
+  onClick,
   index,
   fade,
   darkenBg = true,
@@ -21,7 +21,7 @@ export const ScreenWrapper: React.FC<ScreenWrapperProps> = ({
       <ScreenWrapperStyle
         index={index}
         darkenBg={darkenBg}
-        onClick={cb}
+        onClick={onClick}
       ></ScreenWrapperStyle>
     </Fade>
   );
