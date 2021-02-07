@@ -17,11 +17,11 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   });
 
   const handler = useCallback(
-    debounce((suggestions: any) => {
+    debounce((suggestions: any, songToSuggest: string) => {
       setAutoSuggest((prevState: any) => {
         return {
           ...prevState,
-          isOn: true,
+          isOn: !songToSuggest ? false : true,
           suggestions,
         };
       });
@@ -45,11 +45,11 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     }
 
     /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
-    // const suggestions = await getVideos(songToSuggest.name!);
+    // const suggestions = await getVideos(songToSuggest);
 
     /*** OPTIONAL -->  (save to storage new search words)    ***/
     // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
-    handler(suggestions);
+    handler(suggestions, songToSuggest);
   }
   const getVideos = async (query: string) => {
     const res = await youtubeService.get(query);
