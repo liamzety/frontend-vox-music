@@ -71,10 +71,10 @@ export const Menu: React.FC<MenuProps> = ({
           hideBorderTop={hideBorderTop}
           className={className}
         >
-          {finalFields.map((child, idx) => {
+          {finalFields.map((child: any, idx) => {
             return (
-              <MenuItem key={idx} center={center}>
-                <Text type="p" bold={true} color="yellowMain">
+              <MenuItem onClick={child.props.cb} key={idx} center={center}>
+                <Text type="h4" size="1rem" bold={true}>
                   {child}
                 </Text>
               </MenuItem>

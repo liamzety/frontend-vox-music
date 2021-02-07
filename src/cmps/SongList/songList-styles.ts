@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core';
+import { fade, lighten } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { retroTvEffect } from '../../assets/style/main';
@@ -41,7 +41,7 @@ export const SongContainer = styled.li`
   }
   &:hover {
     ${retroTvEffect}
-     background: ${fade(GlobalVars.blueMain, 0.2)};
+    background: ${fade(GlobalVars.pinkMain, 0.1)};
   }
 `;
 export const SongThumbnail = styled.img`

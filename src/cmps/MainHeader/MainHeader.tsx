@@ -7,6 +7,7 @@ import { useStore } from '../../store/StoreContext';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 // Styles
 import { ImgThumbnail, Container } from './mainHeader-styles';
+import { MenuItemSpan } from '../../aux-cmps/Menu/menu-styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
@@ -69,22 +70,22 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                       top="40px"
                       right="0"
                     >
-                      <span
-                        onClick={() => {
+                      <MenuItemSpan
+                        cb={() => {
                           setIsPlaylistMenu(!isPlaylistMenu);
                           onUpdatePlaylist(currPlaylist._id!);
                         }}
                       >
                         Edit
-                      </span>
-                      <span
-                        onClick={() => {
+                      </MenuItemSpan>
+                      <MenuItemSpan
+                        cb={() => {
                           history.push('/');
                           onRemovePlaylist(currPlaylist._id!);
                         }}
                       >
                         Delete
-                      </span>
+                      </MenuItemSpan>
                     </Menu>
                   </div>
                 </div>

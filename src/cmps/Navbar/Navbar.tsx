@@ -23,6 +23,7 @@ import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 import { SideHamburger } from '../SideHamburger/SideHamburger';
 import { Svg } from '../../aux-cmps/Svg/Svg';
+import { MenuItemSpan } from '../../aux-cmps/Menu/menu-styles';
 
 export const Navbar: React.FC = observer(() => {
   const { themeStore, userMsgStore, userStore, modalStore } = useStore();
@@ -115,9 +116,7 @@ export const Navbar: React.FC = observer(() => {
         hideBorderTop={true}
         animation={{ type: 'slide', in: isProfileMenu }}
       >
-        <span onClick={handleLogout}>logout</span>
-        <span onClick={handleLogout}>login</span>
-        <span onClick={handleLogout}>about</span>
+        <MenuItemSpan cb={handleLogout}>Logout</MenuItemSpan>
       </Menu>
 
       <SideHamburger

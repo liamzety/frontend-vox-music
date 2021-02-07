@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-export const SuggestedContainer = styled.span`
+interface Props {
+  cb: () => void;
+}
+export const SuggestedContainer = styled.span<Props>`
   cursor: pointer;
   display: flex;
   align-items: center;

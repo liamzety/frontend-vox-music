@@ -18,10 +18,8 @@ export const remConverter = (pix) => {
   return +pix / 16 + 'rem';
 }
 export const retroTvEffect = `
-animation:retro-future-tv-lines linear infinite ;
-animation-duration: 500ms;
---playstate: var(--media-prefers-reduced-motion) paused;
-animation-play-state: var(--playstate, running);
+animation:retro-future-tv-lines linear infinite 1s ;
+animation-duration: 1000ms;
 -webkit-mask-image: repeating-linear-gradient(black,black 0.5rem,rgb(0 0 0 / 0%) 0.75rem);
 `;
 export const GlobalStyles = createGlobalStyle`

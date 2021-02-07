@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // Services
 import { regService } from '../../services/regService';
 // Styles
@@ -22,15 +22,17 @@ export const AutoSuggest: React.FC<AutoSuggestProps> = ({
     <div>
       <Menu
         animation={{ type: 'fade', in: isOn }}
-        left="0"
-        width="100%"
+        left="20px"
+        top="50px"
+        width="fit-content"
         center={false}
         closeCb={closeAutoSuggest}
       >
         {suggestions.items?.map((suggestion: any, idx: number) => {
           return (
             <SuggestedContainer
-              onClick={() => {
+              className="sugg"
+              cb={() => {
                 onAddSong(suggestion);
                 closeAutoSuggest();
               }}

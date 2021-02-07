@@ -5,8 +5,8 @@ export const GlobalVars = {
     yellowMain: '#fcee09',
     blueMain: '#2cb2f3',
 
-    whiteSecondary: '#cdc9d0',
-    blackSecondary: '#333',
+    whiteSecondary: '#e6e5e7',
+    blackSecondary: '#111',
 
     whiteTertiary: '#dcdcdc',
     blackTertiary: '#252525',

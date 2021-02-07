@@ -1,5 +1,7 @@
 import { fade, lighten } from '@material-ui/core';
 import styled from 'styled-components';
+import { GlobalVars } from '../../assets/style/basics/vars';
+import { retroTvEffect } from '../../assets/style/main';
 
 interface MenuStylesProps {
   position?: string;
@@ -13,6 +15,7 @@ interface MenuStylesProps {
 export const MenuStyles = styled.div<MenuStylesProps>`
   position: ${({ position }) => position};
   width: ${({ width }) => width};
+  max-width: calc(100vw - 85px);
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -42,15 +45,11 @@ export const MenuItem = styled.div<MenuItemProps>`
     margin-bottom: 10px;
   }
   &:hover {
-    background: ${({ theme }) => lighten(theme.mainBg, 0.1)};
-    animation: retro-future-tv-lines linear infinite;
-    animation-duration: 500ms;
-    --playstate: var(--media-prefers-reduced-motion) paused;
-    animation-play-state: var(--playstate, running);
-    -webkit-mask-image: repeating-linear-gradient(
-      black,
-      black 0.5rem,
-      rgba(0, 0, 0, 0.5) 0.75rem
-    );
+    background: ${fade(GlobalVars.pinkMain, 0.1)};
+    ${retroTvEffect}
   }
 `;
+interface MenuItemSpanProps {
+  cb: () => void;
+}
+export const MenuItemSpan = styled.span<MenuItemSpanProps>``;
