@@ -44,8 +44,8 @@ const App = observer(() => {
             closeCb={() => {
               modalStore.toggleModal();
             }}
-            // type={modalStore.modalType}
-            type={'addPlaylist'}
+            type={modalStore.modalType}
+            // type={'updatePlaylist'}
           />
 
           <Navbar />

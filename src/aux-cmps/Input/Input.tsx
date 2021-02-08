@@ -14,7 +14,7 @@ export interface InputProps
 export const Input: React.FC<InputProps> = ({
   onChange,
   name,
-  uppercase = true,
+  uppercase = false,
   domRef,
   secondary,
   ...baseProps

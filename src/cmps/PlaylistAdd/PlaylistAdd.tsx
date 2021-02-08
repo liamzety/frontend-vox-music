@@ -44,7 +44,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
   } = useStore();
   const history = useHistory();
 
-  async function onAddPlaylistInp(event: React.FormEvent<HTMLInputElement>) {
+  const onAddPlaylistInp = async (event: React.FormEvent<HTMLInputElement>) => {
     const { value, name } = event.currentTarget;
     setPlaylistToAdd((prevState) => {
       return {
@@ -52,8 +52,8 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
         [name]: value,
       };
     });
-  }
-  function onAddPlaylistSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+  };
+  const onAddPlaylistSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const targetValue = event.currentTarget.value;
     console.log('here', targetValue);
     setPlaylistToAdd((prevState) => {
@@ -62,7 +62,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
         genre: targetValue,
       };
     });
-  }
+  };
   const uploadImg = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     setIsImgUploading(true);
     const res = await cloudinaryService.uploadImg(ev.target.files[0]);
@@ -138,27 +138,6 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
           hidden
         />
       </PlaylistAddImgLabel>
-
-      {/* <div>
-        <PlaylistAddImgLabel htmlFor="imgUpload">
-          {isImgUploading ? (
-            <Loader loader={localImgService.defaultLoaderDark} size="25px" />
-          ) : (
-            <Svg size="25px">
-              <FiUpload />
-            </Svg>
-          )}
-          <Text type="p">Upload Playlist Image</Text>
-        </PlaylistAddImgLabel>
-        <Input
-          onChange={uploadImg}
-          name="img"
-          id="imgUpload"
-          type="file"
-          placeholder="playlist img"
-          hidden
-        />
-      </div> */}
 
       <Input
         onChange={onAddPlaylistInp}

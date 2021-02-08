@@ -34,6 +34,7 @@ export const PlaylistUpdate: React.FC = () => {
     modalStore,
     userMsgStore,
     userStore,
+    themeStore,
   } = useStore();
   const history = useHistory();
 
@@ -49,7 +50,9 @@ export const PlaylistUpdate: React.FC = () => {
     img: DEFAULT_IMG,
     songs: [],
   });
-  async function onUpdatePlaylistInp(event: React.FormEvent<HTMLInputElement>) {
+  const onUpdatePlaylistInp = async (
+    event: React.FormEvent<HTMLInputElement>
+  ) => {
     const { value, name } = event.currentTarget;
     setPlaylistToUpdate((prevState) => {
       return {
@@ -57,8 +60,10 @@ export const PlaylistUpdate: React.FC = () => {
         [name]: value,
       };
     });
-  }
-  function onUpdatePlaylistSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+  };
+  const onUpdatePlaylistSelect = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const targetValue = event.currentTarget.value;
     setPlaylistToUpdate((prevState) => {
       return {
@@ -66,7 +71,7 @@ export const PlaylistUpdate: React.FC = () => {
         genre: targetValue,
       };
     });
-  }
+  };
   const uploadImg = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     setIsImgUploading(true);
     const res = await cloudinaryService.uploadImg(ev.target.files[0]);
@@ -115,15 +120,36 @@ export const PlaylistUpdate: React.FC = () => {
       }}
     >
       <div>
-        <PlaylistUpdateImgLabel htmlFor="imgUpload">
+        <PlaylistUpdateImgLabel data-augmented-ui="tl-clip t-rect-x tr-clip br-clip b-rect-x bl-clip border">
           {isImgUploading ? (
-            <Loader loader={localImgService.defaultLoaderDark} size="25px" />
+            <Loader
+              loader={
+                themeStore.theme === 'dark'
+                  ? localImgService.defaultLoaderLight
+                  : localImgService.defaultLoaderDark
+              }
+              size="55px"
+            />
           ) : (
-            <Svg size="25px">
-              <FiUpload />
-            </Svg>
+            <img
+              className="w100 h100"
+              src={
+                playlistToUpdate.img === DEFAULT_IMG
+                  ? DEFAULT_IMG
+                  : playlistToUpdate.img
+              }
+              alt=""
+            />
           )}
-          <Text type="p">Upload Playlist Image</Text>
+
+          <Input
+            onChange={uploadImg}
+            name="img"
+            id="imgUpload"
+            type="file"
+            placeholder="playlist img"
+            hidden
+          />
         </PlaylistUpdateImgLabel>
         <Input
           onChange={uploadImg}
@@ -134,7 +160,6 @@ export const PlaylistUpdate: React.FC = () => {
           hidden
         />
       </div>
-      <img style={{ width: '50px', height: '50px' }} src={DEFAULT_IMG} alt="" />
       <Input
         onChange={onUpdatePlaylistInp}
         defaultValue={DEFAULT_NAME}
