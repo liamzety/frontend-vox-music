@@ -44,7 +44,8 @@ const App = observer(() => {
             closeCb={() => {
               modalStore.toggleModal();
             }}
-            type={modalStore.modalType}
+            // type={modalStore.modalType}
+            type={'addPlaylist'}
           />
 
           <Navbar />
@@ -61,8 +62,7 @@ const App = observer(() => {
         </Router>
       </main>
       <AlertModal userMsg={userMsgStore.userMsg} />
-      <Player />
-      {/* <Player slide={true} /> */}
+      {/* <Player /> */}
     </ThemeProvider>
   );
 });

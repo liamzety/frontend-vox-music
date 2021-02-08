@@ -89,7 +89,7 @@ export const darkTheme = {
     hr: GlobalVars.blackMain,
     neon: GlobalVars.yellowMain,
 
-    mainModal: GlobalVars.blackSecondary,
+    mainModal: GlobalVars.blackMain,
     neonModal: GlobalVars.pinkMain,
 
     mainBorder: GlobalVars.yellowMain,

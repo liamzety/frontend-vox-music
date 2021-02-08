@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GlobalVars } from '../../assets/style/basics/vars';
 
 export const PlaylistAddForm = styled.form`
   display: flex;
@@ -11,7 +12,18 @@ export const PlaylistAddForm = styled.form`
     width: 100%;
   }
 `;
-export const PlaylistAddImgLabel = styled.label`
-  display: flex;
-  align-items: center;
+export const PlaylistAddImgLabel = styled.div`
+  width: 100%;
+  height: 150px;
+  --aug-b: 6px;
+  --aug-t: 6px;
+  --aug-b-extend1: 60px;
+  --aug-t-extend1: 60px;
+  --aug-border-all: 2px;
+
+  cursor: pointer;
+  transition: 0.2s linear;
+  &:hover {
+    --aug-border-bg: ${GlobalVars.pinkMain};
+  }
 `;

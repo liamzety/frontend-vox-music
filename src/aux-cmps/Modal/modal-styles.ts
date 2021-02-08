@@ -19,7 +19,8 @@ export const ModalStyles = styled.div<ModalStylesProps>`
   left: 0;
   margin: auto;
   width: 50vw;
-  height: 50vh;
+  height: 65vh;
+  min-height: 450px;
   z-index: 11;
   @media (max-width: 1080px) {
     width: 90vw;
