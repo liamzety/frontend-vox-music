@@ -25,5 +25,11 @@ export const InputStyle = styled.input<Props>`
       secondary ? GlobalVars.pinkMain : theme.inputTxt};
     font-family: Bicubik;
   }
+  transition: 0.2s;
+
+  &:hover,
+  &:focus {
+    filter: saturate(0.5);
+  }
 `;
 export const InputContainer = styled.div``;
