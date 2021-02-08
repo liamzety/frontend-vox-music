@@ -1,19 +1,22 @@
 import styled from 'styled-components';
+import { GlobalVars } from '../../assets/style/basics/vars';
 interface Props {
-  bgColor: string;
-  border: string;
-  color: string;
+  bgColor?: keyof typeof GlobalVars;
+  border?: keyof typeof GlobalVars;
+  color?: keyof typeof GlobalVars;
 }
 export const ButtonStyle = styled.button<Props>`
   font-family: Bicubik;
   border: 0;
   outline: none;
-  background-color: ${({ border, theme }) => theme[border]};
+  background-color: ${({ border, theme }) =>
+    border ? GlobalVars[border] : theme.mainBtnBorder};
   cursor: pointer;
   position: relative;
   font-size: 0.85rem;
   text-transform: uppercase;
-  color: ${({ color, theme }) => theme[color]};
+  color: ${({ color, theme }) =>
+    color ? GlobalVars[color] : theme.mainBtnTxt};
   clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
 
   .btn-content {
@@ -25,7 +28,8 @@ export const ButtonStyle = styled.button<Props>`
     left: 2px;
     right: 2px;
     bottom: 2px;
-    background-color: ${({ bgColor, theme }) => theme[bgColor]};
+    background-color: ${({ bgColor, theme }) =>
+      bgColor ? GlobalVars[bgColor] : theme.mainBtn};
     clip-path: polygon(92% 0, 100% 25%, 100% 100%, 8% 100%, 0% 75%, 0 0);
   }
 
@@ -35,7 +39,8 @@ export const ButtonStyle = styled.button<Props>`
     bottom: -1px;
     right: 8%;
     padding: 0 5px;
-    background-color: ${({ bgColor, theme }) => theme[bgColor]};
+    background-color: ${({ bgColor, theme }) =>
+      bgColor ? GlobalVars[bgColor] : theme.mainBtn};
     z-index: 3;
     border-left: 1px solid #00f0ff;
   }
@@ -47,7 +52,8 @@ export const ButtonStyle = styled.button<Props>`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: ${({ bgColor, theme }) => theme[bgColor]};
+    background-color: ${({ bgColor, theme }) =>
+      bgColor ? GlobalVars[bgColor] : theme.mainBtn};
     filter: drop-shadow(-2px 3px #67e3f3) drop-shadow(-1px -3px #02d8f3)
       drop-shadow(2px 1px #02d8f3);
   }

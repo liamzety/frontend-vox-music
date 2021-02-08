@@ -38,14 +38,13 @@ const App = observer(() => {
     >
       <main className="app">
         <GlobalStyles />
-        {/* <InstallPopup /> */}
+        <InstallPopup />
         <Router>
           <Modal
             closeCb={() => {
               modalStore.toggleModal();
             }}
             type={modalStore.modalType}
-            // type={'updatePlaylist'}
           />
 
           <Navbar />

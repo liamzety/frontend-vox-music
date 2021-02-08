@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { GlobalVars } from '../../assets/style/basics/vars';
 // Styles
 import { ButtonStyle } from './button-styles';
 
@@ -6,18 +7,18 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   size?: 'small' | 'medium' | 'large';
-  color?: string;
-  bgColor?: string;
-  border?: string;
+  color?: keyof typeof GlobalVars;
+  bgColor?: keyof typeof GlobalVars;
+  border?: keyof typeof GlobalVars;
   children: string | JSX.Element | (string | JSX.Element)[];
 }
 
 export const Button: React.FC<ButtonProps> = ({
   className,
   size = 'medium',
-  color = 'mainBtnTxt',
-  border = 'mainBtnBorder',
-  bgColor = 'mainBtn',
+  color,
+  border,
+  bgColor,
   children,
   ...baseProps
 }) => {

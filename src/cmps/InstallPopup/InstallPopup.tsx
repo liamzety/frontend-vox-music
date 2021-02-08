@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from '../../aux-cmps/Button/Button';
+import { Text } from '../../aux-cmps/Text/Text';
 // Styles
 import {
   InstallPopupContainer,
   InstallPopupInnerContainer,
-  InstallPopupBtn,
   InstallPopupCloseBtn,
   InstallPopupWordContainer,
 } from './installPopup-styles';
@@ -73,13 +74,20 @@ export const InstallPopup: React.FC = () => {
     <InstallPopupContainer>
       <InstallPopupInnerContainer>
         <InstallPopupWordContainer>
-          <h2>Install our awesome app!</h2>
-          <p>
+          <Text type="h3">Install our awesome app!</Text>
+          <Text type="p">
             No download required. Click install to add the app to your home
             screen.
-          </p>
+          </Text>
         </InstallPopupWordContainer>
-        <InstallPopupBtn onClick={handleInstall}>+ INSTALL</InstallPopupBtn>
+        <Button
+          color="blackMain"
+          border="blackMain"
+          bgColor="yellowMain"
+          onClick={handleInstall}
+        >
+          INSTALL
+        </Button>
         <InstallPopupCloseBtn onClick={setIsAppInstalled.bind({}, true)}>
           X
         </InstallPopupCloseBtn>

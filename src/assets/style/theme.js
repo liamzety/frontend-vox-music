@@ -113,6 +113,6 @@ export const darkTheme = {
     chatBubbleBody: GlobalVars.whiteMain,
     chatBubbleTxt: GlobalVars.blackMain,
 
-    inputTxt: GlobalVars.yellowMain,
+    inputTxt: darken(GlobalVars.yellowMain, 0.15),
     inputBorder: GlobalVars.yellowMain,
 }
