@@ -24,16 +24,16 @@ if (window.webkitURL !== undefined) {
 }
 
 export const InstallPopup: React.FC = () => {
-  const [isAppInstalled, setIsAppInstalled] = useState(false);
+  const [isAppInstalled, setIsAppInstalled] = useState(true);
 
   useEffect(() => {
     // variable store event
     window.deferredPrompt = {};
     window.addEventListener('beforeinstallprompt', (e: Event) => {
       // this event does not fire if the application is already installed
-      //   setTimeout(() => {
-      setIsAppInstalled(false);
-      //   }, 3000);
+      setTimeout(() => {
+        setIsAppInstalled(false);
+      }, 3000);
       e.preventDefault();
       // store install avaliable event
       window.deferredPrompt = e;
@@ -60,7 +60,7 @@ export const InstallPopup: React.FC = () => {
       if (choiceResult.outcome === 'accepted') {
         // user accept the prompt
         // we hide the popup
-        setIsAppInstalled(false);
+        setIsAppInstalled(true);
       } else {
         console.log('User dismissed the prompt');
       }
