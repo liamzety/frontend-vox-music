@@ -20,21 +20,6 @@ interface PlaylistPreviewProps {
 export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
   playlist,
 }) => {
-  // const [chips, setChips] = useState(null);
-  // useEffect(() => {
-  //   setChips(getChipVariation);
-  // }, []);
-
-  // const getChipVariation = () => {
-  //   const var1 = 'tl-2-clip-y br-2-clip-y bl-clip';
-  //   const var2 = 'tl-2-clip-x tr-clip br-2-clip-x bl-clip';
-  //   const var3 = 'tr-2-clip-x bl-2-clip-x';
-
-  //   const options = [var1, var2, var3];
-
-  //   const res = options[Math.floor(Math.random() * options.length)];
-  //   return res;
-  // };
   const _prettyUrl = (name: string | undefined): string => {
     return name!.replace(/\s/g, '_');
   };
