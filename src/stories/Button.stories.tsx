@@ -27,16 +27,13 @@ const Template: Story<ButtonProps> = (args) => {
 export const Large = Template.bind({});
 Large.args = {
   size: 'large',
-  label: 'r25',
 };
 
 export const Meduim = Template.bind({});
 Meduim.args = {
   size: 'medium',
-  label: 'r25',
 };
 export const Small = Template.bind({});
 Small.args = {
   size: 'small',
-  label: 'r25',
 };

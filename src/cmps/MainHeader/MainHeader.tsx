@@ -70,7 +70,6 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                       }}
                       pointer={true}
                       size="4rem"
-                      color="mainTxt"
                     >
                       <BiDotsHorizontalRounded />
                     </Svg>
@@ -134,15 +133,13 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                         <span className="typing">is typing...</span>
                       </Text>
                     )}
-                    <Button onClick={onToggleChat} size="small" label="G01">
+                    <Button onClick={onToggleChat} size="small">
                       Chat_
                     </Button>
                   </div>
                 ) : (
                   <Link to="/login">
-                    <Button size="small" label="G01">
-                      Login To Chat_
-                    </Button>
+                    <Button size="small">Login To Chat_</Button>
                   </Link>
                 )}
               </div>

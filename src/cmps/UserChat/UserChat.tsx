@@ -56,12 +56,7 @@ export const UserChat: React.FC<UserChatProps> = ({
     <UserChatStyles data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border">
       <ChatHeader className="flex col space-between">
         <div className="flex">
-          <Svg
-            pointer={true}
-            size="25px"
-            color="mainTxt"
-            onClick={onToggleChat}
-          >
+          <Svg pointer={true} size="25px" onClick={onToggleChat}>
             {window.innerWidth > 1080 ? (
               <BsBoxArrowInLeft />
             ) : (
@@ -131,7 +126,7 @@ export const UserChat: React.FC<UserChatProps> = ({
               : 'button'
           }
         >
-          <Svg pointer={true} size="25px" color="mainTxt">
+          <Svg pointer={true} size="25px">
             <AiOutlineSend />
           </Svg>
         </button>

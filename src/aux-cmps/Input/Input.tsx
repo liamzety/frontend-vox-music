@@ -9,17 +9,20 @@ export interface InputProps
   type: string;
   uppercase?: boolean;
   domRef?: MutableRefObject<any>;
+  secondary?: boolean;
 }
 export const Input: React.FC<InputProps> = ({
   onChange,
   name,
   uppercase = true,
   domRef,
+  secondary,
   ...baseProps
 }) => {
   return (
     <InputStyle
       {...baseProps}
+      secondary={secondary}
       ref={domRef}
       data-augmented-ui="tr-clip bl-clip border"
       onChange={onChange}

@@ -56,7 +56,6 @@ export const lightTheme = {
     chatBubbleTxt: GlobalVars.whiteMain,
 
     inputTxt: darken(GlobalVars.pinkMain, 0.3),
-    inputBackground: fade(GlobalVars.pinkMain, 0.7),
     inputBorder: GlobalVars.pinkMain,
 }
 
@@ -80,7 +79,7 @@ export const darkTheme = {
     mainTxt: GlobalVars.yellowMain,
     secTxt: GlobalVars.blackMain,
 
-    mainSvg: GlobalVars.blackMain,
+    mainSvg: GlobalVars.blueMain,
 
     songHover: GlobalVars.blackTertiary,
 
@@ -114,7 +113,6 @@ export const darkTheme = {
     chatBubbleBody: GlobalVars.whiteMain,
     chatBubbleTxt: GlobalVars.blackMain,
 
-    inputTxt: GlobalVars.pinkMain,
-    inputBackground: fade(GlobalVars.pinkMain, 0.7),
-    inputBorder: GlobalVars.pinkMain,
+    inputTxt: GlobalVars.yellowMain,
+    inputBorder: GlobalVars.yellowMain,
 }

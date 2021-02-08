@@ -83,7 +83,6 @@ export const Navbar: React.FC = observer(() => {
             <Button
               className="add-playlist-btn"
               size="small"
-              label="r35"
               onClick={openPlaylistAddModal}
             >
               New Playlist_

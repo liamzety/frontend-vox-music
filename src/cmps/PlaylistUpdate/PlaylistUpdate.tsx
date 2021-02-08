@@ -22,6 +22,9 @@ import {
 import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
+import { Input } from '../../aux-cmps/Input/Input';
+import { Select } from '../../aux-cmps/Select/Select';
+import { Button } from '../../aux-cmps/Button/Button';
 
 export const PlaylistUpdate: React.FC = () => {
   const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
@@ -122,7 +125,7 @@ export const PlaylistUpdate: React.FC = () => {
           )}
           <Text type="p">Upload Playlist Image</Text>
         </PlaylistUpdateImgLabel>
-        <input
+        <Input
           onChange={uploadImg}
           name="img"
           id="imgUpload"
@@ -132,36 +135,29 @@ export const PlaylistUpdate: React.FC = () => {
         />
       </div>
       <img style={{ width: '50px', height: '50px' }} src={DEFAULT_IMG} alt="" />
-      <input
+      <Input
         onChange={onUpdatePlaylistInp}
         defaultValue={DEFAULT_NAME}
         name="name"
         type="text"
         placeholder="playlist name"
       />
-      <select
-        defaultValue={DEFAULT_GENRE}
-        onChange={onUpdatePlaylistSelect}
-        name="genre"
-        id=""
-      >
-        {genreService.getGenreList().map((genre, idx) => {
-          return (
-            <option key={idx} value={genre}>
-              {genre}
-            </option>
-          );
-        })}
-      </select>
 
-      <input
+      <Input
         onChange={onUpdatePlaylistInp}
         defaultValue={DEFAULT_DESCRIPTION}
         name="description"
         type="text"
         placeholder="playlist description"
       />
-      <button>Update</button>
+      <Select
+        defaultValue={DEFAULT_GENRE}
+        onChange={onUpdatePlaylistSelect}
+        name="genre"
+        id=""
+        options={genreService.getGenreList()}
+      />
+      <Button>Update</Button>
     </PlaylistUpdateForm>
   );
 };

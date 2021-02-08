@@ -42,7 +42,6 @@ export const SideHamburger: React.FC<SideHamburgerProps> = ({
             </div>
             <Button
               size="small"
-              label="r35"
               onClick={() => {
                 openPlaylistAddModal();
                 toggleSideMenu();

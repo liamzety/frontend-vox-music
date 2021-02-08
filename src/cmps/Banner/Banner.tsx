@@ -51,7 +51,7 @@ export const Banner: React.FC<BannerProps> = observer(({ onHandleScroll }) => {
           <Text type="banner-sub-title">Immerse Youself.</Text>
         </div>
 
-        <Button label="r25" onClick={onHandleScroll} size="large">
+        <Button onClick={onHandleScroll} size="large">
           {playlistStore.playlists.length === 0 ? (
             <Loader size="50%" />
           ) : (

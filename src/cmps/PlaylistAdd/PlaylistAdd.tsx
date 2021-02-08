@@ -20,6 +20,8 @@ import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Input } from '../../aux-cmps/Input/Input';
+import { Select } from '../../aux-cmps/Select/Select';
+import { Button } from '../../aux-cmps/Button/Button';
 
 interface PlaylistAddProps {}
 export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
@@ -49,6 +51,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
   }
   function onAddPlaylistSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const targetValue = event.currentTarget.value;
+    console.log('here', targetValue);
     setPlaylistToAdd((prevState) => {
       return {
         ...prevState,
@@ -126,23 +129,19 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
         type="text"
         placeholder="playlist name"
       />
-      <select onChange={onAddPlaylistSelect} name="genre" id="">
-        {genreService.getGenreList().map((genre, idx) => {
-          return (
-            <option key={idx} value={genre}>
-              {genre}
-            </option>
-          );
-        })}
-      </select>
-
       <Input
         onChange={onAddPlaylistInp}
         name="description"
         type="text"
         placeholder="playlist description"
       />
-      <button>ok</button>
+      <Select
+        options={genreService.getGenreList()}
+        onChange={onAddPlaylistSelect}
+        name="genre"
+        id=""
+      />
+      <Button>Create Playlist</Button>
     </PlaylistAddForm>
   );
 };
