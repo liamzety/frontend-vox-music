@@ -7,7 +7,7 @@ export const NavbarContainer = styled.nav`
   position: fixed;
   width: 100%;
   height: 70px;
-  z-index: 11;
+  z-index: 13;
   svg {
     margin-right: 5px;
     color: ${({ theme }) => theme.navbarTxt};

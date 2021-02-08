@@ -2,13 +2,13 @@ import React from 'react';
 // Styles
 import { ButtonStyle } from './button-styles';
 
-export interface ButtonProps {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   size?: 'small' | 'medium' | 'large';
   color?: string;
   bgColor?: string;
   border?: string;
-  onClick?: (ev: any) => void;
   label: string;
   children: string | JSX.Element | (string | JSX.Element)[];
 }
@@ -19,19 +19,17 @@ export const Button: React.FC<ButtonProps> = ({
   color = 'mainBtnTxt',
   border = 'mainBtnBorder',
   bgColor = 'mainBtn',
-  onClick,
   label,
   children,
-  ...props
+  ...baseProps
 }) => {
   return (
     <ButtonStyle
-      onClick={onClick}
+      {...baseProps}
       color={color}
       bgColor={bgColor}
       border={border}
       className={`btn-${size} ${className ? className : ''}`}
-      {...props}
     >
       <span className="btn-content">{children}</span>
       <span className="btn-glitch"></span>

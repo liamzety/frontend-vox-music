@@ -19,6 +19,7 @@ import templatePlaylistImg from '../../assets/img/vox-music.png';
 import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
+import { Input } from '../../aux-cmps/Input/Input';
 
 interface PlaylistAddProps {}
 export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
@@ -109,7 +110,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
           )}
           <Text type="p">Upload Playlist Image</Text>
         </PlaylistAddImgLabel>
-        <input
+        <Input
           onChange={uploadImg}
           name="img"
           id="imgUpload"
@@ -119,7 +120,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
         />
       </div>
 
-      <input
+      <Input
         onChange={onAddPlaylistInp}
         name="name"
         type="text"
@@ -135,7 +136,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
         })}
       </select>
 
-      <input
+      <Input
         onChange={onAddPlaylistInp}
         name="description"
         type="text"

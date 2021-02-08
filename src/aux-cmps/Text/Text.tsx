@@ -2,7 +2,8 @@ import React from 'react';
 // Styles
 import { TextStyle } from './text-styles';
 
-export interface TextProps {
+export interface TextProps
+  extends React.BaseHTMLAttributes<HTMLParagraphElement> {
   type:
     | 'banner-title'
     | 'banner-sub-title'
