@@ -57,6 +57,11 @@ export const lightTheme = {
 
     inputTxt: darken(GlobalVars.pinkMain, 0.3),
     inputBorder: GlobalVars.pinkMain,
+
+    selectionBg: GlobalVars.pinkMain,
+    selectionTxt: GlobalVars.whiteMain,
+
+    scrollbarThumb: GlobalVars.pinkMain
 }
 
 export const darkTheme = {
@@ -115,4 +120,9 @@ export const darkTheme = {
 
     inputTxt: darken(GlobalVars.yellowMain, 0.15),
     inputBorder: GlobalVars.yellowMain,
+
+    selectionBg: GlobalVars.yellowMain,
+    selectionTxt: GlobalVars.blackMain,
+
+    scrollbarThumb: GlobalVars.yellowMain
 }

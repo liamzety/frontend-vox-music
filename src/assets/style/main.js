@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core';
+import { darken, fade } from '@material-ui/core';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { animations } from './basics/animations';
@@ -88,6 +88,36 @@ button {
   z-index: 999;
   font-family: Bicubik;
 }
+::-moz-selection { /* Code for Firefox */
+  color: ${({ theme }) => theme.selectionTxt};
+  background: ${({ theme }) => theme.selectionBg};
+}
+
+::selection {
+  color: ${({ theme }) => theme.selectionTxt};
+  background: ${({ theme }) => theme.selectionBg};
+}
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: ${GlobalVars.blackMain};
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: ${({ theme }) => theme.scrollbarThumb};
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: ${({ theme }) => darken(theme.scrollbarThumb, 0.3)};
+}
+
+
 .typing {
   color:${GlobalVars.blueMain};
 }
