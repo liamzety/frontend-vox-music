@@ -80,6 +80,7 @@ button {
   border-radius: 5px;
   animation: tooltip-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   z-index: 999;
+  font-family: Bicubik;
 }
 .typing {
   color:${GlobalVars.blueMain};

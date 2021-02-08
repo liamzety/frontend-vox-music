@@ -111,7 +111,9 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                     data-tooltip={userDetails.name}
                     className="test flex align-center"
                   >
-                    <Text type="p">Created by: </Text>
+                    <Text style={{ marginRight: '10px' }} type="p">
+                      Created by:{' '}
+                    </Text>
                     {userDetails.profile_img ? (
                       <UserProfileImg
                         src={userDetails.profile_img}
