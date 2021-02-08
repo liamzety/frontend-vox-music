@@ -182,7 +182,7 @@ export const PlaylistUpdate: React.FC = () => {
         id=""
         options={genreService.getGenreList()}
       />
-      <Button>Update</Button>
+      <Button>Update Playlist_</Button>
     </PlaylistUpdateForm>
   );
 };
