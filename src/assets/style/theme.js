@@ -52,7 +52,7 @@ export const lightTheme = {
 
     menuShadow: 'rgb(0 0 0 / 43%)  0px 16px 32px 0px',
 
-    chatBubbleBody: GlobalVars.blackMain,
+    chatBubbleBody: GlobalVars.whiteSecondary,
     chatBubbleTxt: GlobalVars.whiteMain,
 
     inputTxt: darken(GlobalVars.pinkMain, 0.3),

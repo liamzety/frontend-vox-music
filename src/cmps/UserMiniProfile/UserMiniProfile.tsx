@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import { UserMiniProfileStyles, UnknownUser } from './userMiniProfile-styles';
 
 // Cmps
-import { Text } from '../Text/Text';
+import { Text } from '../../aux-cmps/Text/Text';
 
 export interface UserMiniProfileProps {
   profile_img: string;
   initials: string;
   isSignedIn: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 }
 export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
   profile_img,

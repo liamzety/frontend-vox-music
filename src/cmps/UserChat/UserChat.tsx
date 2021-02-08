@@ -20,6 +20,7 @@ import {
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Input } from '../../aux-cmps/Input/Input';
+import { UserProfileImg } from '../../assets/style/main';
 
 interface UserChatProps {
   onToggleChat: () => void;
@@ -66,7 +67,7 @@ export const UserChat: React.FC<UserChatProps> = ({
           <Text type="h3">{playlistName} - Chat Room</Text>
         </div>
         <Text className={`flex ${userTyping ? '' : 'hide'}`} type="p">
-          {userTyping} almohalum{' '}
+          {userTyping}{' '}
           <span className="typing typing-animation">is typing...</span>
         </Text>
       </ChatHeader>
@@ -87,13 +88,20 @@ export const UserChat: React.FC<UserChatProps> = ({
               }`}
               key={idx}
             >
-              <Text type="p" bold={true}>
-                {msg.byUser.name}
-              </Text>
+              <div>
+                {msg.byUser.profile_img && (
+                  <UserProfileImg src={msg.byUser.profile_img} alt="profile" />
+                )}
+                <Text type="p" bold={true} color="blackMain">
+                  {msg.byUser.name}
+                </Text>
+              </div>
               <br />
-              <div className="flex space-between">
-                <Text type="p">{msg.msgTxt}</Text>
-                <Text className="chat-time-sent" type="p">
+              <div className="content-container flex space-between wrap">
+                <Text type="p" color="blackMain">
+                  {msg.msgTxt}
+                </Text>
+                <Text color="blackSecondary" type="p">
                   {_getFormattedTime(msg.timeSent)}
                 </Text>
               </div>

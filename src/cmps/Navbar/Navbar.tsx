@@ -18,7 +18,7 @@ import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { userService } from '../../services/userService';
-import { UserMiniProfile } from '../../aux-cmps/UserMiniProfile/UserMiniProfile';
+import { UserMiniProfile } from '../UserMiniProfile/UserMiniProfile';
 import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 import { SideHamburger } from '../SideHamburger/SideHamburger';

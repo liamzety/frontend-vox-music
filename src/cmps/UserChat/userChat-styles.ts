@@ -73,18 +73,36 @@ export const ChatBubble = styled.div`
   background: ${({ theme }) => theme.chatBubbleBody};
   color: ${({ theme }) => theme.chatBubbleTxt};
   padding: 5px;
-  border-radius: 10px;
+  border-radius: 5px;
   width: fit-content;
+  max-width: 45%;
   word-break: break-all;
+  box-shadow: 3px 3px 10px #00000038;
   &:not(:last-child) {
     margin-bottom: 25px;
   }
+  img {
+    position: absolute;
+    right: -60px;
+    top: -10px;
+  }
+
   &.sent-by-me {
     margin-left: auto;
     color: ${GlobalVars.blackMain};
     background: ${GlobalVars.blueMain};
+    box-shadow: -3px 3px 10px #00000038;
+    img {
+      left: -60px;
+    }
   }
-  .chat-time-sent {
-    margin-left: 50px;
+
+  .content-container {
+    margin-top: -10px;
+    p {
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
   }
 `;

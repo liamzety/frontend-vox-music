@@ -1,4 +1,5 @@
 import React from 'react';
+import { GlobalVars } from '../../assets/style/basics/vars';
 // Styles
 import { TextStyle } from './text-styles';
 
@@ -17,7 +18,7 @@ export interface TextProps
   className?: string;
   size?: string;
   bold?: boolean;
-  color?: string;
+  color?: keyof typeof GlobalVars;
   uppercase?: boolean;
   capitalize?: boolean;
   underline?: boolean;

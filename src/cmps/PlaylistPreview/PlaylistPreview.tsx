@@ -29,7 +29,7 @@ export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
       <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
         <CardTopContainer src={playlist.img}></CardTopContainer>
         <CardBottomContainer>
-          <Text type="p" bold={true} size="1.2rem" color="chipTxt">
+          <Text type="p" bold={true} size="1.2rem" color="blueMain">
             {playlist.name}
           </Text>
           <Svg size="1.5rem">

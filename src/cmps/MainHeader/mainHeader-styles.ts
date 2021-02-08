@@ -68,9 +68,3 @@ export const ImgThumbnail = styled.div`
     margin-bottom: 20px;
   }
 `;
-export const UserProfileImg = styled.img`
-  margin: 10px;
-  width: ${remConverter(45)};
-  height: ${remConverter(45)};
-  border-radius: 50%;
-`;

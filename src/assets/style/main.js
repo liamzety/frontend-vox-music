@@ -1,5 +1,5 @@
 import { fade } from '@material-ui/core';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 import { animations } from './basics/animations';
 import { helpers } from './basics/helpers';
@@ -22,6 +22,12 @@ export const retroTvEffect = `
 animation:retro-future-tv-lines linear infinite 1s ;
 animation-duration: 1000ms;
 -webkit-mask-image: repeating-linear-gradient(black,black 0.5rem,rgb(0 0 0 / 0%) 0.75rem);
+`;
+export const UserProfileImg = styled.img`
+  margin: 10px;
+  width: ${remConverter(45)};
+  height: ${remConverter(45)};
+  border-radius: 50%;
 `;
 export const GlobalStyles = createGlobalStyle`
 ${animations}

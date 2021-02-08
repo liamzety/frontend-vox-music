@@ -5,7 +5,7 @@ import { neon } from '../../assets/style/main';
 
 interface Props {
   size?: string;
-  color?: string;
+  color?: keyof typeof GlobalVars;
   bold?: boolean;
   uppercase?: boolean;
   capitalize?: boolean;
@@ -17,7 +17,7 @@ export const TextStyle = styled.p<Props>`
     font-family: Bicubik ; 
      text-transform:${({ uppercase }) => (uppercase ? 'uppercase' : '')};
      text-transform:${({ capitalize }) => (capitalize ? 'capitalize' : '')};
-    color: ${({ theme, color }) => color && theme[color]};
+    color: ${({ theme, color }) => (color ? GlobalVars[color] : theme.mainTxt)};
     font-weight:${({ bold = true }) => (bold ? '700' : '400')};
 
     color:${({ active }) => active && GlobalVars.pinkMain};

@@ -9,7 +9,6 @@ import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import {
   ImgThumbnail,
   Container,
-  UserProfileImg,
   CreatedByContainer,
 } from './mainHeader-styles';
 import { MenuItemSpan } from '../../aux-cmps/Menu/menu-styles';
@@ -19,6 +18,7 @@ import { Button } from '../../aux-cmps/Button/Button';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 import { userService } from '../../services/userService';
+import { UserProfileImg } from '../../assets/style/main';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
