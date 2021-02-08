@@ -40,19 +40,15 @@ export const GenreContainer = styled.div`
   scroll-behavior: smooth;
 
   a {
-    min-width: 8rem;
+    min-width: 12rem;
     border: 2px solid transparent;
   }
 
   a:not(:last-child) {
     width: fit-content;
-    margin-right: ${remConverter(100)};
+    margin-right: ${remConverter(20)};
   }
-  &::-webkit-scrollbar {
-    width: 1px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: transparent;
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;

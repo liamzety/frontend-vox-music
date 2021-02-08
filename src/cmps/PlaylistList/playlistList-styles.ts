@@ -31,11 +31,7 @@ export const PlaylistListContainer = styled.div<Props>`
       display: none;
     }
   }
-  &::-webkit-scrollbar {
-    width: 1px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: transparent;
+  ::-webkit-scrollbar {
+    display: none;
   }
 `;
