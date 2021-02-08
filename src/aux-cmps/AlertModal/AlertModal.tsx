@@ -31,12 +31,12 @@ export const AlertModal: React.FC<AlertModalProps> = ({
       type={type}
     >
       <div className="icon-container flex align-center justify-center">
-        <Svg color={type} size="2.5rem">
+        <Svg color={type} size="2.25rem">
           {getIcon()}
         </Svg>
       </div>
       <div className="msg-container flex align-center justify-center">
-        <Text size="1.1rem" type="h4">
+        <Text size="1rem" type="h4">
           {msg}
         </Text>
       </div>

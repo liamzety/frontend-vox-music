@@ -10,6 +10,20 @@ function handleScroll(ref: any) {
   });
 }
 function checkOverflow(ref: any) {
+  // console.log('ref.current.offsetWidth', ref.current.offsetWidth);
+  // console.log('---------IS LESS THAN-----------');
+  // console.log('ref.current.scrollWidth', ref.current.scrollWidth);
+  // console.log('---------------ANSWER----------------');
+  // console.log(ref.current.offsetWidth < ref.current.scrollWidth);
+  // console.log('    ');
+  // console.log('    ');
+  // console.log('    ');
+  // console.log(' ref.current.offsetHeight', ref.current.offsetHeight);
+  // console.log('---------IS LESS THAN-----------');
+  // console.log('ref.current.scrollHeight', ref.current.scrollHeight);
+  // console.log('---------------ANSWER----------------');
+  // console.log(ref.current.offsetHeight < ref.current.scrollHeight);
+  // console.log('--------------------------------------------');
   return (
     ref.current.offsetWidth < ref.current.scrollWidth ||
     ref.current.offsetHeight < ref.current.scrollHeight

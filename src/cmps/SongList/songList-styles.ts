@@ -3,6 +3,10 @@ import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { retroTvEffect } from '../../assets/style/main';
 import { localImgService } from '../../services/localImgService';
+
+export const SongListWrapper = styled.div`
+  --aug-border-all: 2px;
+`;
 export const SongListContainer = styled.ul`
   height: calc(100vh - 600px);
   min-height: 250px;
@@ -14,15 +18,12 @@ export const SongListContainer = styled.ul`
   overflow: overlay;
   padding: 15px;
 
-  --aug-border-all: 2px;
-
   @media (max-width: 750px) {
     min-height: 200px;
     height: calc(100vh - 750px);
   }
 `;
 export const SongContainer = styled.li`
-  // background: ${({ theme }) => theme.secBg};
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -35,7 +36,7 @@ export const SongContainer = styled.li`
   }
   svg {
   transition: 0.1s linear;
-
+    margin-left:10px;
     &:hover {
       transform:rotate(20deg);
     }

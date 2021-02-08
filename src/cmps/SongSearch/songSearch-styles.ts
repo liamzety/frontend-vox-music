@@ -7,5 +7,8 @@ export const SongSearchContainer = styled.div`
   position: relative;
   input {
     margin-left: 20px;
+    @media (max-width: 750px) {
+      margin-left: 0;
+    }
   }
 `;

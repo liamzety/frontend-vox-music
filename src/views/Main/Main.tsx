@@ -208,15 +208,35 @@ export const Main: React.FC<Props> = observer(
       });
     };
     const onRemoveSong = (songId: string): void => {
-      songService.remove(songId);
-      playerStore.setCurrPlaylist({
-        ...playerStore.player.currPlaylist,
-        songs: [
-          ...playerStore.player.currPlaylist.songs.filter(
-            (song: any) => song._id !== songId
-          ),
-        ],
-      });
+      try {
+        if (userStore.user._id !== playerStore.player.currPlaylist.created_by) {
+          throw {
+            msg: 'Only the owner of this playlist can delete song from it.',
+          };
+        }
+        songService.remove(songId);
+        playerStore.setCurrPlaylist({
+          ...playerStore.player.currPlaylist,
+          songs: [
+            ...playerStore.player.currPlaylist.songs.filter(
+              (song: any) => song._id !== songId
+            ),
+          ],
+        });
+        userMsgStore.alert({
+          type: 'success',
+          msg: 'Song was removed from playlist',
+        });
+      } catch (err) {
+        console.error('Error, Main.tsx -> function: :', err.msg);
+        userMsgStore.alert({
+          type: 'error',
+          msg: err.msg,
+        });
+      }
+      setTimeout(() => {
+        userMsgStore.clearAlert();
+      }, 3000);
     };
     // ---------------------Song CRUD END ------------------
 
