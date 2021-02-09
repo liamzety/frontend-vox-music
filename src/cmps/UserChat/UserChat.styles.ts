@@ -45,7 +45,7 @@ export const UserChatStyles = styled.div`
 `;
 export const UserChatBgWrapper = styled.div`
   position: absolute;
-  width: calc(100% - 8px);
+  width: calc(100% - 6px);
   height: 100%;
   left: 0;
   top: 0;

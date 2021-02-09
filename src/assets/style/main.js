@@ -42,7 +42,7 @@ ${helpers}
 }
 html {
   ${'' /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */}
-  font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1920 - 300)));
+  font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (4920 - 300)));
 
 }
 body {
@@ -99,7 +99,7 @@ button {
 }
 /* width */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 /* Track */
@@ -109,12 +109,12 @@ button {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: ${({ theme }) => theme.scrollbarThumb};
+  background: ${({ theme }) => fade(theme.scrollbarThumb, 0.7)};
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: ${({ theme }) => darken(theme.scrollbarThumb, 0.3)};
+  background: ${({ theme }) => fade(theme.scrollbarThumb, 0.9)};
 }
 
 
