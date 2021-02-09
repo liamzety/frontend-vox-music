@@ -37,7 +37,7 @@ import { Text } from '../../aux-cmps/Text/Text';
 import { Loader } from '../Loader/Loader';
 
 export const Player: React.FC = observer(() => {
-  const { playerStore } = useStore();
+  const { playerStore, themeStore } = useStore();
   const { player } = playerStore;
 
   const reactPlayerRef = useRef(null);
@@ -189,14 +189,23 @@ export const Player: React.FC = observer(() => {
                 }
                 alt=""
               />
-              <Text color="pinkMain" type="h3" size="1.5rem">
+              <Text
+                color={themeStore.theme === 'light' ? 'pinkMain' : 'yellowMain'}
+                type="h3"
+                size="1.5rem"
+              >
                 {player.currPlaylist.currSong &&
                   player.currPlaylist.currSong.title}
               </Text>
             </PlayerLeftColumn>
             <PlayerRightColumn>
               <PlayerDurationContainer className="duration-container">
-                <Text color="pinkMain" type="h4">
+                <Text
+                  color={
+                    themeStore.theme === 'light' ? 'pinkMain' : 'yellowMain'
+                  }
+                  type="h4"
+                >
                   {_getFormattedMinutes(player.time)}
                 </Text>
                 <input
@@ -209,7 +218,12 @@ export const Player: React.FC = observer(() => {
                   max={player.duration}
                   step="1"
                 />
-                <Text color="pinkMain" type="h4">
+                <Text
+                  color={
+                    themeStore.theme === 'light' ? 'pinkMain' : 'yellowMain'
+                  }
+                  type="h4"
+                >
                   {_getFormattedMinutes(player.duration)}
                 </Text>
               </PlayerDurationContainer>
