@@ -48,6 +48,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
     });
     useEffect(() => {
       getUserDetials();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currPlaylist.created_by]);
     const getUserDetials = async () => {
       if (!currPlaylist.created_by) return;
@@ -145,7 +146,6 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                 )}
               </div>
             </div>
-            <div></div>
           </div>
         </div>
       </Container>

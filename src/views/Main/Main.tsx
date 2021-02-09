@@ -80,6 +80,7 @@ export const Main: React.FC<Props> = observer(
       return () => {
         socketService.terminate();
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleTyping = (ev: React.ChangeEvent<HTMLInputElement>) => {

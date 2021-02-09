@@ -1,4 +1,4 @@
-import { darken, fade } from '@material-ui/core'
+import { darken } from '@material-ui/core'
 import { localImgService } from '../../services/localImgService'
 import { GlobalVars } from './basics/vars'
 

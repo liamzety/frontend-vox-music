@@ -1,4 +1,4 @@
-import { darken, fade } from '@material-ui/core';
+import { darken } from '@material-ui/core';
 import styled from 'styled-components';
 import { remConverter } from '../../assets/style/main';
 

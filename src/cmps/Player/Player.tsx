@@ -109,7 +109,6 @@ export const Player: React.FC = observer(() => {
     ret += '' + secs;
     return ret;
   };
-  const [width, setWidth] = React.useState('100%');
   const [height, setHeight] = React.useState(125);
 
   return (
@@ -163,7 +162,7 @@ export const Player: React.FC = observer(() => {
           </ClosePlayerBtnContainer>
           <BackgroundWrapper isPlaying={player.isPlaying} />
           <Resizable
-            size={{ width, height }}
+            size={{ width: '100%', height }}
             minHeight={15}
             maxHeight={125}
             className="resizeable"

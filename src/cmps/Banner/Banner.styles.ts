@@ -1,6 +1,4 @@
-import { fade } from '@material-ui/core';
 import styled from 'styled-components';
-import { remConverter } from '../../assets/style/main';
 interface BannerWallpaperProps {
   opacity: string;
 }

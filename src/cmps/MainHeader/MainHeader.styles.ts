@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { remConverter, retroTvEffect } from '../../assets/style/main';
 
 export const Container = styled.div`
   display: flex;

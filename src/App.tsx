@@ -25,6 +25,7 @@ const App = observer(() => {
     if (cookieService.getCookie('userId')) {
       handleReturningUser();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleReturningUser = async () => {
     const user = await userService.getLoggedUser(

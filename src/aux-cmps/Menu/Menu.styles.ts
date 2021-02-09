@@ -1,4 +1,4 @@
-import { fade, lighten } from '@material-ui/core';
+import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { retroTvEffect } from '../../assets/style/main';

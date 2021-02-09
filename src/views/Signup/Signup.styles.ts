@@ -1,7 +1,5 @@
-import { fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
-import { remConverter } from '../../assets/style/main';
 
 export const UserAddImgLabel = styled.label`
   display: flex;

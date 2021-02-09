@@ -1,4 +1,4 @@
-import { darken, fade } from '@material-ui/core';
+import { fade } from '@material-ui/core';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { animations } from './basics/animations';
