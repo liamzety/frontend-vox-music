@@ -189,14 +189,16 @@ export const Player: React.FC = observer(() => {
                 }
                 alt=""
               />
-              <Text type="h3" size="1.5rem">
+              <Text color="pinkMain" type="h3" size="1.5rem">
                 {player.currPlaylist.currSong &&
                   player.currPlaylist.currSong.title}
               </Text>
             </PlayerLeftColumn>
             <PlayerRightColumn>
               <PlayerDurationContainer className="duration-container">
-                <Text type="h4">{_getFormattedMinutes(player.time)}</Text>
+                <Text color="pinkMain" type="h4">
+                  {_getFormattedMinutes(player.time)}
+                </Text>
                 <input
                   data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border"
                   className="duration-input"
@@ -207,7 +209,9 @@ export const Player: React.FC = observer(() => {
                   max={player.duration}
                   step="1"
                 />
-                <Text type="h4">{_getFormattedMinutes(player.duration)}</Text>
+                <Text color="pinkMain" type="h4">
+                  {_getFormattedMinutes(player.duration)}
+                </Text>
               </PlayerDurationContainer>
               <div className="controls-container flex align-center">
                 <Svg
