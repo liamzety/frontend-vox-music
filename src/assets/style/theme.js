@@ -46,9 +46,7 @@ export const lightTheme = {
     navbarTxt: GlobalVars.pinkMain,
     navbarLogo: localImgService.logoDark,
 
-    alert: GlobalVars.yellowMain,
-    error: GlobalVars.pinkMain,
-    success: GlobalVars.greenMain,
+
 
     menuShadow: 'rgb(0 0 0 / 43%)  0px 16px 32px 0px',
 

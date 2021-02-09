@@ -15,5 +15,8 @@ export const GlobalVars = {
     yellowTint: '#fffa1526',
 
     greenMain: '#21fb5c',
-    transparent: 'transparent'
+    transparent: 'transparent',
+    alert: '#fcee09',
+    error: '#FA1D4D',
+    success: '#21fb5c',
 }

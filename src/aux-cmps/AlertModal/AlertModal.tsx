@@ -7,9 +7,14 @@ import { BiErrorAlt, BiCheckCircle } from 'react-icons/bi';
 // Cmps
 import { Svg } from '../Svg/Svg';
 import { Text } from '../Text/Text';
+import { GlobalVars } from '../../assets/style/basics/vars';
 
 interface AlertModalProps {
-  userMsg: { type: string; msg: string; isOn: boolean };
+  userMsg: {
+    type: keyof typeof GlobalVars | any;
+    msg: string;
+    isOn: boolean;
+  };
 }
 
 export const AlertModal: React.FC<AlertModalProps> = ({
@@ -36,7 +41,7 @@ export const AlertModal: React.FC<AlertModalProps> = ({
         </Svg>
       </div>
       <div className="msg-container flex align-center justify-center">
-        <Text size="1rem" type="h4">
+        <Text color={type} size="1rem" type="h4">
           {msg}
         </Text>
       </div>

@@ -2,7 +2,7 @@ import { darken } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 interface Props {
-  type: string;
+  type: keyof typeof GlobalVars;
 }
 export const AlertModalStyle = styled.div<Props>`
   bottom: 15px;
@@ -17,7 +17,7 @@ export const AlertModalStyle = styled.div<Props>`
   border-bottom: 4px solid ${darken(GlobalVars.blackMain, 0.5)};
   border-radius: 10px;
   transition: 0.45s transform;
-  color: ${({ theme, type }) => theme[type]};
+  color: ${({ type }) => GlobalVars[type]};
 
   .icon-container {
     background-color: ${GlobalVars.blackTertiary};
