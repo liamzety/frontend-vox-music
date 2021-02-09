@@ -5,7 +5,7 @@ export const LoginContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1.5;
+  line-height: 2;
 
   form {
     display: flex;
