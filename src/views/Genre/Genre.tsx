@@ -7,7 +7,7 @@ import { genreService } from '../../services/genreService';
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 // Styles
-import { GenreHeader, GenreContainer, GenreListWrapper } from './genre-styles';
+import { GenreHeader, GenreContainer, GenreListWrapper } from './Genre.styles';
 //Cmps
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
 import { scrollService } from '../../services/scrollService';

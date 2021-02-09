@@ -15,7 +15,7 @@ import { songService } from '../../services/songService';
 import { regService } from '../../services/regService';
 import socketService from '../../services/socketService';
 // Styles
-import { MainPage } from './main-styles';
+import { MainPage } from './Main.styles';
 // Cmps
 import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';

@@ -11,7 +11,7 @@ import {
   NavbarContainer,
   NavbarContainerInner,
   NavOptionsContainer,
-} from './navbar-styles';
+} from './Navbar.styles';
 // Cmps
 import { Logo } from '../../aux-cmps/Logo/Logo';
 import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
@@ -23,7 +23,7 @@ import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 import { SideHamburger } from '../SideHamburger/SideHamburger';
 import { Svg } from '../../aux-cmps/Svg/Svg';
-import { MenuItemSpan } from '../../aux-cmps/Menu/menu-styles';
+import { MenuItemSpan } from '../../aux-cmps/Menu/Menu.styles';
 
 export const Navbar: React.FC = observer(() => {
   const { themeStore, userMsgStore, userStore, modalStore } = useStore();

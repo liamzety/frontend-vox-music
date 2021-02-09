@@ -7,7 +7,7 @@ import {
   InstallPopupInnerContainer,
   InstallPopupCloseBtn,
   InstallPopupWordContainer,
-} from './installPopup-styles';
+} from './InstallPopup.styles';
 
 interface Window {
   webkitURL?: any;

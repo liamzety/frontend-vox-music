@@ -5,7 +5,7 @@ import { youtubeService } from '../../services/youtubeService';
 import { storageService } from '../../services/storageService';
 // Cmps
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
-import { SongSearchContainer } from './songSearch-styles';
+import { SongSearchContainer } from './SongSearch.styles';
 import { Input } from '../../aux-cmps/Input/Input';
 
 interface songSearchProps {

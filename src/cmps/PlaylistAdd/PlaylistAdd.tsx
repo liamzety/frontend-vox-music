@@ -12,7 +12,7 @@ import { PlaylistType } from '../../types/Playlist';
 // Icons
 import { FiUpload } from 'react-icons/fi';
 // Styles
-import { PlaylistAddImgLabel, PlaylistAddForm } from './playlistAdd-styles';
+import { PlaylistAddImgLabel, PlaylistAddForm } from './PlaylistAdd.styles';
 // Cmps
 import { Loader } from '../Loader/Loader';
 import { Svg } from '../../aux-cmps/Svg/Svg';

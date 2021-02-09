@@ -5,7 +5,7 @@ import {
   PlaylistListContainer,
   PlaylistListStyle,
   PlaylistListWrapper,
-} from './playlistList-styles';
+} from './PlaylistList.styles';
 // Types
 import { PlaylistType } from '../../types/Playlist';
 // Services

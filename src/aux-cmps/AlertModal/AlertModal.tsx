@@ -1,6 +1,6 @@
 import React from 'react';
 // Styles
-import { AlertModalStyle } from './alertModal-styles';
+import { AlertModalStyle } from './AlertModal.styles';
 // Icons
 import { ImWarning } from 'react-icons/im';
 import { BiErrorAlt, BiCheckCircle } from 'react-icons/bi';

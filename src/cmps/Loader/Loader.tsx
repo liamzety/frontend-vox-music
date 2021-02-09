@@ -3,7 +3,7 @@ import React from 'react';
 import { localImgService } from '../../services/localImgService';
 import { useStore } from '../../store/StoreContext';
 // Styles
-import { LoaderStyle } from './loader-styles';
+import { LoaderStyle } from './Loader.styles';
 
 interface LoaderProps {
   loader?: string;

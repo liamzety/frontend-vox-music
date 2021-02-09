@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // Styles
-import { SignupContainer } from './signup-styles';
+import { SignupContainer } from './Signup.styles';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';

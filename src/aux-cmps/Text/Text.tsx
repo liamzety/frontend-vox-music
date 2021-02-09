@@ -1,7 +1,7 @@
 import React from 'react';
 import { GlobalVars } from '../../assets/style/basics/vars';
 // Styles
-import { TextStyle } from './text-styles';
+import { TextStyle } from './Text.styles';
 
 export interface TextProps
   extends React.BaseHTMLAttributes<HTMLParagraphElement> {

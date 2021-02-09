@@ -10,7 +10,7 @@ import {
   PlaylistPreviewContainer,
   CardTopContainer,
   CardBottomContainer,
-} from './playlistPreview-styles';
+} from './PlaylistPreview.styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 

@@ -15,7 +15,7 @@ import {
   ChatHeader,
   ChatFooterForm,
   UserChatBgWrapper,
-} from './userChat-styles';
+} from './UserChat.styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';

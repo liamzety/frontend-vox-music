@@ -2,7 +2,7 @@ import React from 'react';
 import { Slide } from '@material-ui/core';
 import { Fade } from '@material-ui/core';
 // Styles
-import { MenuStyles, MenuItem } from './menu-styles';
+import { MenuStyles, MenuItem } from './Menu.styles';
 // Cmps
 import { Text } from '../Text/Text';
 import { ScreenWrapper } from '../ScreenWrapper/ScreenWrapper';

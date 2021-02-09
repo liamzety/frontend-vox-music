@@ -2,7 +2,7 @@ import React from 'react';
 // Services
 import { regService } from '../../services/regService';
 // Styles
-import { SuggestedContainer } from './autoSuggest-styles';
+import { SuggestedContainer } from './AutoSuggest.styles';
 // Cmps
 import { Menu } from '../../aux-cmps/Menu/Menu';
 

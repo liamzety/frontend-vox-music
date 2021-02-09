@@ -10,8 +10,8 @@ import {
   ImgThumbnail,
   Container,
   CreatedByContainer,
-} from './mainHeader-styles';
-import { MenuItemSpan } from '../../aux-cmps/Menu/menu-styles';
+} from './MainHeader.styles';
+import { MenuItemSpan } from '../../aux-cmps/Menu/Menu.styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Slide } from '@material-ui/core';
 import { Fade } from '@material-ui/core';
 // Styles
-import { ModalStyles } from './modal-styles';
+import { ModalStyles } from './Modal.styles';
 // Cmps
 import { ScreenWrapper } from '../ScreenWrapper/ScreenWrapper';
 import { useStore } from '../../store/StoreContext';

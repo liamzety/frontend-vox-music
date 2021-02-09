@@ -16,7 +16,7 @@ import { FiUpload } from 'react-icons/fi';
 import {
   PlaylistUpdateImgLabel,
   PlaylistUpdateForm,
-} from './playlistUpdate-styles';
+} from './PlaylistUpdate.styles';
 // Cmps
 
 import { Loader } from '../Loader/Loader';

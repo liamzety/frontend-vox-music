@@ -7,7 +7,7 @@ import { scrollService } from '../../services/scrollService';
 import { playlistService } from '../../services/playlistService';
 import { genreService } from '../../services/genreService';
 // Styles
-import { PlaylistListWrapper } from './home-styles';
+import { PlaylistListWrapper } from './Home.styles';
 // Cmps
 import { Banner } from '../../cmps/Banner/Banner';
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';

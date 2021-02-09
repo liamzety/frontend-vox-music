@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 // Styles
-import { LoginContainer } from './login-styles';
+import { LoginContainer } from './Login.styles';
 import { userService } from '../../services/userService';
 import { Link } from 'react-router-dom';
 

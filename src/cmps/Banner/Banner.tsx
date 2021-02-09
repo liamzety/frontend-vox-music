@@ -8,7 +8,7 @@ import {
   BannerWallpaper,
   BannerWallpaperContainer,
   BannerTitleContainer,
-} from './banner-styles';
+} from './Banner.styles';
 
 // Types
 import { PlaylistType } from '../../types/Playlist';

@@ -1,6 +1,6 @@
 import React from 'react';
 // Styles
-import { SvgStyle } from './svg-styles';
+import { SvgStyle } from './Svg.styles';
 
 interface SvgProps {
   size: string;

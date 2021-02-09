@@ -10,7 +10,7 @@ import {
   SongListContainer,
   SongListWrapper,
   SongThumbnail,
-} from './songList-styles';
+} from './SongList.styles';
 // Cmps
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';

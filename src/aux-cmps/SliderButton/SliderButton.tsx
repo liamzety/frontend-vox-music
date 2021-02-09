@@ -4,7 +4,7 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri';
 // Cmps
 import { Svg } from '../Svg/Svg';
 // Styles
-import { SliderButtonRight, SliderButtonLeft } from './sliderButton-styles';
+import { SliderButtonRight, SliderButtonLeft } from './SliderButton.styles';
 
 interface SliderButtonProps {
   cbRight: () => void;

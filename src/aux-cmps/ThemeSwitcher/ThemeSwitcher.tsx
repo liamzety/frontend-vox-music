@@ -1,6 +1,6 @@
 import React from 'react';
 // Styles
-import { ThemeSwitcherStyle } from './themeSwitcher-styles';
+import { ThemeSwitcherStyle } from './ThemeSwitcher.styles';
 interface ThemeSwitcherProps {
   toggleTheme: () => void;
   theme: string;

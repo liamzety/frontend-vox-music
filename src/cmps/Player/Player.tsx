@@ -31,7 +31,7 @@ import {
   BackgroundWrapper,
   PlayerMini,
   ClosePlayerBtnContainer,
-} from './player-styles';
+} from './Player.styles';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Loader } from '../Loader/Loader';

@@ -4,7 +4,7 @@ import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
 import { Text } from '../../aux-cmps/Text/Text';
 
 // Styles
-import { SideHamburgerStyles } from './sideHamburger-styles';
+import { SideHamburgerStyles } from './SideHamburger.styles';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Slide } from '@material-ui/core';
 import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';

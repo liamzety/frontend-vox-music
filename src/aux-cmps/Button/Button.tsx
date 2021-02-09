@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { GlobalVars } from '../../assets/style/basics/vars';
 // Styles
-import { ButtonStyle } from './button-styles';
+import { ButtonStyle } from './Button.styles';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
