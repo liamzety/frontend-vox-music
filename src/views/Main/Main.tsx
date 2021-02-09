@@ -210,7 +210,7 @@ export const Main: React.FC<Props> = observer(
       try {
         if (userStore.user._id !== playerStore.player.currPlaylist.created_by) {
           throw {
-            msg: 'Only the owner of this playlist can delete song from it.',
+            msg: 'Only the owner of this playlist can delete songs from it.',
           };
         }
         songService.remove(songId);
