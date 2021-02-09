@@ -104,7 +104,7 @@ export const PlaylistUpdate: React.FC = () => {
     modalStore.toggleModal();
     setTimeout(() => {
       userMsgStore.clearAlert();
-    }, 3000);
+    }, 4000);
   };
   return (
     <PlaylistUpdateForm

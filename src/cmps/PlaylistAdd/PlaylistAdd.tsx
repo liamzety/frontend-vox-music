@@ -91,7 +91,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
     modalStore.toggleModal();
     setTimeout(() => {
       userMsgStore.clearAlert();
-    }, 3000);
+    }, 4000);
   }
   return (
     <PlaylistAddForm

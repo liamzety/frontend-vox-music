@@ -64,7 +64,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
       userMsgStore.alert(err);
       setTimeout(() => {
         userMsgStore.clearAlert();
-      }, 3000);
+      }, 4000);
       console.error(err.msg);
     }
   };

@@ -169,7 +169,7 @@ export const Main: React.FC<Props> = observer(
       }
       setTimeout(() => {
         userMsgStore.clearAlert();
-      }, 3000);
+      }, 4000);
     };
     const onUpdatePlaylist = (): void => {
       modalStore.toggleModal('updatePlaylist');
@@ -187,7 +187,7 @@ export const Main: React.FC<Props> = observer(
         });
         setTimeout(() => {
           userMsgStore.clearAlert();
-        }, 3000);
+        }, 4000);
         return;
       }
 
@@ -235,7 +235,7 @@ export const Main: React.FC<Props> = observer(
       }
       setTimeout(() => {
         userMsgStore.clearAlert();
-      }, 3000);
+      }, 4000);
     };
     // ---------------------Song CRUD END ------------------
 
