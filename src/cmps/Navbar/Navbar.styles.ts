@@ -16,11 +16,9 @@ export const NavbarContainer = styled.nav`
   --aug-b: 6px;
   --aug-br: 10px;
   --aug-bl: 10px;
+  --aug-border-all: 0px;
   --aug-border: initial;
   --aug-border-bottom: 4px;
-  --aug-border-top: 0.01px;
-  --aug-border-left: 0.01px;
-  --aug-border-right: 0.01px;
   --aug-border-bg: radial-gradient(
     circle,
     ${({ theme }: any) => fade(theme.mainBorder, 0.8)} 35%,

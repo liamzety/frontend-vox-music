@@ -55,7 +55,7 @@ export const LoginContainer = styled.div`
     --aug-border: initial;
     --aug-border-bottom: 6px;
     --aug-border-right: 6px;
-    background: ${({ theme }) => fade(theme.mainBg, 0.5)};
+    background: ${({ theme }) => fade(theme.mainBg, 0.3)};
     backdrop-filter: blur(4px);
     padding: 20px;
   }

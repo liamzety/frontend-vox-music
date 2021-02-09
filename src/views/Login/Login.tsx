@@ -41,6 +41,21 @@ export const Login: React.FC = observer(({ history }: any) => {
       console.error(err.msg);
     }
   };
+  const handleSubmitGuest = async () => {
+    try {
+      const user = await userService.login({
+        email: 'guest@guest.com',
+        password: 'guest',
+      });
+      userStore.setUser(user);
+    } catch (err) {
+      userMsgStore.alert(err);
+      setTimeout(() => {
+        userMsgStore.clearAlert();
+      }, 3000);
+      console.error(err.msg);
+    }
+  };
   return (
     <LoginContainer>
       <form onSubmit={handleSubmit}>
@@ -53,7 +68,7 @@ export const Login: React.FC = observer(({ history }: any) => {
             onChange={handleInput}
             placeholder="Email"
             name="email"
-            type="text"
+            type="email"
           />
           <Input
             onChange={handleInput}
@@ -66,15 +81,20 @@ export const Login: React.FC = observer(({ history }: any) => {
             <Text type="h4" size="1rem">
               Or
             </Text>
-            <Button type="button" bgColor="blueMain" border="transparent">
+            <Button
+              onClick={handleSubmitGuest}
+              type="button"
+              bgColor="blueMain"
+              border="transparent"
+            >
               Try as a Guest_
             </Button>
-            <Text type="p">
-              Dont have an account yet?{' '}
+            <div>
+              <Text type="p">Dont have an account yet? </Text>
               <Link to="/signup">
                 <Text type="a">Signup</Text>
               </Link>{' '}
-            </Text>
+            </div>
           </ActionsContainer>
         </div>
       </form>
@@ -94,12 +114,12 @@ export const Login: React.FC = observer(({ history }: any) => {
             <Button type="button" bgColor="blueMain" border="transparent">
               Try as a Guest_
             </Button>
-            <Text type="p">
-              Dont have an account yet?{' '}
+            <div>
+              <Text type="p">Dont have an account yet? </Text>
               <Link to="/signup">
                 <Text type="a">Signup</Text>
               </Link>{' '}
-            </Text>
+            </div>
           </ActionsContainer>
         </div>
       </form>

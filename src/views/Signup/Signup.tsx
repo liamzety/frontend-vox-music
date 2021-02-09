@@ -109,7 +109,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
             onChange={handleInput}
             placeholder="Email"
             name="email"
-            type="text"
+            type="email"
           />
           <Input
             onChange={handleInput}
