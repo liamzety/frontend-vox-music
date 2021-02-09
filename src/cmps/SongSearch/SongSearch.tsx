@@ -3,9 +3,10 @@ import { debounce } from 'lodash';
 // Services
 import { youtubeService } from '../../services/youtubeService';
 import { storageService } from '../../services/storageService';
+// Styles
+import { SongSearchContainer } from './SongSearch.styles';
 // Cmps
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
-import { SongSearchContainer } from './SongSearch.styles';
 import { Input } from '../../aux-cmps/Input/Input';
 
 interface songSearchProps {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import { GlobalVars } from '../../assets/style/basics/vars';
 // Styles
+import { GlobalVars } from '../../assets/style/basics/vars';
 import { ButtonStyle } from './Button.styles';
 
 export interface ButtonProps
@@ -29,7 +29,6 @@ export const Button: React.FC<ButtonProps> = ({
     res += characters.charAt(Math.floor(Math.random() * characters.length));
     res += numbers.charAt(Math.floor(Math.random() * numbers.length));
     res += numbers.charAt(Math.floor(Math.random() * numbers.length));
-    console.log('res:', res);
     return res;
   };
   let label = useRef(null);

@@ -16,11 +16,11 @@ import {
   ChatFooterForm,
   UserChatBgWrapper,
 } from './UserChat.styles';
+import { UserProfileImg } from '../../assets/style/main';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Input } from '../../aux-cmps/Input/Input';
-import { UserProfileImg } from '../../assets/style/main';
 
 interface UserChatProps {
   onToggleChat: () => void;

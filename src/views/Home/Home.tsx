@@ -2,8 +2,8 @@ import React, { useEffect, useCallback, useRef } from 'react';
 //Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
-import { scrollService } from '../../services/scrollService';
 // Service
+import { scrollService } from '../../services/scrollService';
 import { playlistService } from '../../services/playlistService';
 import { genreService } from '../../services/genreService';
 // Styles

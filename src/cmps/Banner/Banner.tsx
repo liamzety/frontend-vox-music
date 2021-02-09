@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 // Store
 import { observer } from 'mobx-react';
+import { useStore } from '../../store/StoreContext';
+// Services
+import { localImgService } from '../../services/localImgService';
 // Styles
 import {
   BannerContainer,
@@ -10,14 +13,10 @@ import {
   BannerTitleContainer,
 } from './Banner.styles';
 
-// Types
-import { PlaylistType } from '../../types/Playlist';
 // Cmps
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Loader } from '../Loader/Loader';
-import { localImgService } from '../../services/localImgService';
-import { useStore } from '../../store/StoreContext';
 
 interface BannerProps {
   onHandleScroll: () => void;

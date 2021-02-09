@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '../../aux-cmps/Button/Button';
-import { Text } from '../../aux-cmps/Text/Text';
 // Styles
 import {
   InstallPopupContainer,
@@ -8,6 +6,9 @@ import {
   InstallPopupCloseBtn,
   InstallPopupWordContainer,
 } from './InstallPopup.styles';
+// Cmps
+import { Button } from '../../aux-cmps/Button/Button';
+import { Text } from '../../aux-cmps/Text/Text';
 
 interface Window {
   webkitURL?: any;

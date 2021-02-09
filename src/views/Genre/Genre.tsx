@@ -1,16 +1,16 @@
 import React, { useEffect, useCallback, useState } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
-// Service
-import { playlistService } from '../../services/playlistService';
-import { genreService } from '../../services/genreService';
 //Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Service
+import { playlistService } from '../../services/playlistService';
+import { genreService } from '../../services/genreService';
+import { scrollService } from '../../services/scrollService';
 // Styles
 import { GenreHeader, GenreContainer, GenreListWrapper } from './Genre.styles';
 //Cmps
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
-import { scrollService } from '../../services/scrollService';
 import { SliderButton } from '../../aux-cmps/SliderButton/SliderButton';
 import { Text } from '../../aux-cmps/Text/Text';
 

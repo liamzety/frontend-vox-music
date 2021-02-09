@@ -1,6 +1,6 @@
 import React, { MutableRefObject } from 'react';
 // Styles
-import { InputStyle, InputContainer } from './Input.styles';
+import { InputStyle } from './Input.styles';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

@@ -23,7 +23,6 @@ export class ModalStore {
 
   init() {
     // safe to access other stores
-    console.log('init modal store');
   }
   get modalType() {
     return this.modal.type;

@@ -19,7 +19,6 @@ import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { userService } from '../../services/userService';
 import { UserMiniProfile } from '../UserMiniProfile/UserMiniProfile';
-import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 import { Menu } from '../../aux-cmps/Menu/Menu';
 import { SideHamburger } from '../SideHamburger/SideHamburger';
 import { Svg } from '../../aux-cmps/Svg/Svg';

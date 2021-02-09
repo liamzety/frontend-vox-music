@@ -1,5 +1,6 @@
 import React from 'react';
 // Styles
+import { GlobalVars } from '../../assets/style/basics/vars';
 import { AlertModalStyle } from './AlertModal.styles';
 // Icons
 import { ImWarning } from 'react-icons/im';
@@ -7,7 +8,6 @@ import { BiErrorAlt, BiCheckCircle } from 'react-icons/bi';
 // Cmps
 import { Svg } from '../Svg/Svg';
 import { Text } from '../Text/Text';
-import { GlobalVars } from '../../assets/style/basics/vars';
 
 interface AlertModalProps {
   userMsg: {

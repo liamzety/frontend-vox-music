@@ -4,6 +4,7 @@ import { observer } from 'mobx-react';
 import { useStore } from '../../store/StoreContext';
 // Icons
 import { GoArrowSmallUp } from 'react-icons/go';
+import { RiDeleteBin4Fill } from 'react-icons/ri';
 // Styles
 import {
   SongContainer,
@@ -12,10 +13,8 @@ import {
   SongThumbnail,
 } from './SongList.styles';
 // Cmps
-import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Svg } from '../../aux-cmps/Svg/Svg';
-import { RiDeleteBin4Fill } from 'react-icons/ri';
 
 interface SongListProps {
   onRemoveSong: (songId: string) => void;

@@ -20,7 +20,6 @@ export class PlaylistStore {
   }
   init() {
     // safe to access other stores
-    console.log('init playlist store');
   }
 
   setPlaylists(playlists: PlaylistType[]) {

@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-// Styles
-import { UserAddImgLabel } from './Signup.styles';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
+// Services
 import { userService } from '../../services/userService';
 import { cloudinaryService } from '../../services/cloudinaryService';
+import { localImgService } from '../../services/localImgService';
+// Styles
+import { UserAddImgLabel } from './Signup.styles';
+import { ActionsContainer, LoginContainer } from '../Login/Login.styles';
+// Cmps
 import { Input } from '../../aux-cmps/Input/Input';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Text } from '../../aux-cmps/Text/Text';
-import { ActionsContainer, LoginContainer } from '../Login/Login.styles';
-import { Link } from '@material-ui/core';
-import { localImgService } from '../../services/localImgService';
 import { Loader } from '../../cmps/Loader/Loader';
 
 export const Signup: React.FC = observer(({ history }: any) => {
@@ -119,7 +120,7 @@ export const Signup: React.FC = observer(({ history }: any) => {
           />
 
           <ActionsContainer className="flex align-center col">
-            <Button type="submit">SIGNUP_</Button>
+            <Button type="submit">Signup_</Button>
           </ActionsContainer>
         </div>
       </form>

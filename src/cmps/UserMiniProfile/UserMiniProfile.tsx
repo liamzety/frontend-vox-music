@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // Styles
 import { UserMiniProfileStyles, UnknownUser } from './UserMiniProfile.styles';
-
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 

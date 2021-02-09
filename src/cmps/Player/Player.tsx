@@ -1,8 +1,7 @@
-import React, { JSXElementConstructor, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import ReactPlayer from 'react-player';
 import { Slide } from '@material-ui/core';
 import { Resizable } from 're-resizable';
-
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
@@ -32,6 +31,7 @@ import {
   PlayerMini,
   ClosePlayerBtnContainer,
 } from './Player.styles';
+// Cmps
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Text } from '../../aux-cmps/Text/Text';
 import { Loader } from '../Loader/Loader';

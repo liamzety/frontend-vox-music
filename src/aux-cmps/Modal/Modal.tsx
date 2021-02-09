@@ -1,11 +1,11 @@
 import React from 'react';
-import { Slide } from '@material-ui/core';
 import { Fade } from '@material-ui/core';
+// Store
+import { useStore } from '../../store/StoreContext';
 // Styles
 import { ModalStyles } from './Modal.styles';
 // Cmps
 import { ScreenWrapper } from '../ScreenWrapper/ScreenWrapper';
-import { useStore } from '../../store/StoreContext';
 import { PlaylistAdd } from '../../cmps/PlaylistAdd/PlaylistAdd';
 import { PlaylistUpdate } from '../../cmps/PlaylistUpdate/PlaylistUpdate';
 

@@ -20,7 +20,6 @@ function setup() {
 }
 
 function terminate() {
-  console.log('terminate');
   socket = null;
 }
 
@@ -29,7 +28,6 @@ function on(eventName: any, cb: () => any) {
 }
 
 function off(eventName: any, cb: () => any) {
-  console.log('OFF!');
   socket.off(eventName, cb);
 }
 

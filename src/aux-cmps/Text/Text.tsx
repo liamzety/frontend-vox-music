@@ -1,6 +1,6 @@
 import React from 'react';
-import { GlobalVars } from '../../assets/style/basics/vars';
 // Styles
+import { GlobalVars } from '../../assets/style/basics/vars';
 import { TextStyle } from './Text.styles';
 
 export interface TextProps

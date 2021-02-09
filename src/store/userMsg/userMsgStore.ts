@@ -23,7 +23,6 @@ export class UserMsgStore {
 
   init() {
     // safe to access other stores
-    console.log('init user store');
   }
 
   alert({ msg, type }: any): void {

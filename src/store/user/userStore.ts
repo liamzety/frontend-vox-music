@@ -41,7 +41,6 @@ export class UserStore {
 
   init() {
     // safe to access other stores
-    console.log('init user store');
   }
 
   setUser(user: UserType) {

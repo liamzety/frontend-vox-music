@@ -45,7 +45,6 @@ export class PlayerStore {
 
   init() {
     // safe to access other stores
-    console.log('init modal store');
   }
   get currPlaylist() {
     return this.player.currPlaylist;

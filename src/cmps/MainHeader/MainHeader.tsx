@@ -1,8 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // Store
 import { observer } from 'mobx-react';
 import { useStore } from '../../store/StoreContext';
+// Services
+import { userService } from '../../services/userService';
 // Icons
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 // Styles
@@ -12,13 +14,12 @@ import {
   CreatedByContainer,
 } from './MainHeader.styles';
 import { MenuItemSpan } from '../../aux-cmps/Menu/Menu.styles';
+import { UserProfileImg } from '../../assets/style/main';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
 import { Button } from '../../aux-cmps/Button/Button';
 import { Svg } from '../../aux-cmps/Svg/Svg';
 import { Menu } from '../../aux-cmps/Menu/Menu';
-import { userService } from '../../services/userService';
-import { UserProfileImg } from '../../assets/style/main';
 
 interface MainHeaderProps {
   onRemovePlaylist: (playlistId: string) => void;
@@ -107,21 +108,19 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
               <div className="flex space-between align-center">
                 <div className="flex col">
                   <Text type="p">Genre: {currPlaylist.genre}</Text>
-                  <CreatedByContainer
-                    data-tooltip={userDetails.name}
-                    className="test flex align-center"
-                  >
+                  <CreatedByContainer className="test flex align-center">
                     <Text style={{ marginRight: '10px' }} type="p">
-                      Created by:{' '}
+                      Created by:
                     </Text>
                     {userDetails.profile_img ? (
-                      <UserProfileImg
-                        src={userDetails.profile_img}
-                        alt="user"
-                      />
+                      <div data-tooltip={userDetails.name}>
+                        <UserProfileImg
+                          src={userDetails.profile_img}
+                          alt="user"
+                        />
+                      </div>
                     ) : (
                       <Text capitalize={true} type="p">
-                        {' '}
                         {userDetails.name}
                       </Text>
                     )}

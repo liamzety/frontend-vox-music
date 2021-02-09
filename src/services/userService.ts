@@ -28,11 +28,9 @@ interface signupProps {
 async function signup(userCred: signupProps) {
   try {
     const user = await httpService.post('auth/signup', userCred);
-    console.log('user:', user);
     return user;
   } catch (err) {
     if (err.response) {
-      console.log('err?', err.response);
       const composedErr = { msg: err.response.data.message, type: 'error' };
       throw composedErr;
     }

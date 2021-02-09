@@ -1,14 +1,15 @@
 /* eslint-disable no-throw-literal */
 import React, { useEffect, useCallback, useState } from 'react';
-import { Link, RouteComponentProps, useHistory } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
+import { debounce } from 'lodash';
+
 // Material UI
 import { Slide } from '@material-ui/core';
+// Types
+import { ChatMsgType } from '../../types/ChatMsg';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
-// Types
-import { PlaylistType } from '../../types/Playlist';
-import { ChatMsgType } from '../../types/ChatMsg';
 // Services
 import { playlistService } from '../../services/playlistService';
 import { songService } from '../../services/songService';
@@ -21,7 +22,6 @@ import { SongList } from '../../cmps/SongList/SongList';
 import { SongSearch } from '../../cmps/SongSearch/SongSearch';
 import { UserChat } from '../../cmps/UserChat/UserChat';
 import { MainHeader } from '../../cmps/MainHeader/MainHeader';
-import { debounce, defer } from 'lodash';
 
 interface MatchParams {
   playlistId: string;
@@ -129,8 +129,6 @@ export const Main: React.FC<Props> = observer(
         let { playlist, playlistSongs } = await playlistService.getById(
           playlistId
         );
-        console.log('playlist', playlist);
-        console.log('playlistSongs', playlistSongs);
         await playerStore.setCurrPlaylist({
           ...playlist,
           songs: [...playlistSongs],

@@ -39,9 +39,9 @@ export const Container = styled.div`
 `;
 export const CreatedByContainer = styled.div`
   line-height: 2;
-  &[data-tooltip]::after {
-    top: 120% !important;
-    left: 100px !important;
+  [data-tooltip]::after {
+    top: 100%;
+    left: 15px;
   }
 `;
 export const ImgThumbnail = styled.div`

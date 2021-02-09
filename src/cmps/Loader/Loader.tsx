@@ -1,7 +1,8 @@
 import React from 'react';
+// Store
+import { useStore } from '../../store/StoreContext';
 // Services
 import { localImgService } from '../../services/localImgService';
-import { useStore } from '../../store/StoreContext';
 // Styles
 import { LoaderStyle } from './Loader.styles';
 

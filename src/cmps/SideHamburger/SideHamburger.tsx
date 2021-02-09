@@ -1,14 +1,13 @@
 import React from 'react';
+import { Slide } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
-import { Text } from '../../aux-cmps/Text/Text';
-
 // Styles
 import { SideHamburgerStyles } from './SideHamburger.styles';
-import { Button } from '../../aux-cmps/Button/Button';
-import { Slide } from '@material-ui/core';
-import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 // Cmps
+import { Text } from '../../aux-cmps/Text/Text';
+import { Button } from '../../aux-cmps/Button/Button';
+import { ThemeSwitcher } from '../../aux-cmps/ThemeSwitcher/ThemeSwitcher';
+import { ScreenWrapper } from '../../aux-cmps/ScreenWrapper/ScreenWrapper';
 
 interface SideHamburgerProps {
   toggleTheme: () => void;

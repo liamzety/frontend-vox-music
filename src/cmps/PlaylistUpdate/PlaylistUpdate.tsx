@@ -3,25 +3,20 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 // Store
 import { useStore } from '../../store/StoreContext';
+// Types
+import { PlaylistType } from '../../types/Playlist';
 // Services
 import { cloudinaryService } from '../../services/cloudinaryService';
 import { genreService } from '../../services/genreService';
 import { localImgService } from '../../services/localImgService';
 import { playlistService } from '../../services/playlistService';
-// Types
-import { PlaylistType } from '../../types/Playlist';
-// Icons
-import { FiUpload } from 'react-icons/fi';
 // Styles
 import {
   PlaylistUpdateImgLabel,
   PlaylistUpdateForm,
 } from './PlaylistUpdate.styles';
 // Cmps
-
 import { Loader } from '../Loader/Loader';
-import { Svg } from '../../aux-cmps/Svg/Svg';
-import { Text } from '../../aux-cmps/Text/Text';
 import { Input } from '../../aux-cmps/Input/Input';
 import { Select } from '../../aux-cmps/Select/Select';
 import { Button } from '../../aux-cmps/Button/Button';

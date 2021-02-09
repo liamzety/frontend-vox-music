@@ -17,7 +17,6 @@ export class ThemeStore {
 
   init() {
     // safe to access other stores
-    console.log('init modal store');
   }
 
   setTheme(theme: string) {

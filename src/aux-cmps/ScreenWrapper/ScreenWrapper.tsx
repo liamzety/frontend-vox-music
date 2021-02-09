@@ -1,6 +1,5 @@
-import { Fade } from '@material-ui/core';
 import React from 'react';
-
+import { Fade } from '@material-ui/core';
 // Styles
 import { ScreenWrapperStyle } from './ScreenWrapper.styles';
 

@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 // Types
 import { PlaylistType } from '../../types/Playlist';
-import { Svg } from '../../aux-cmps/Svg/Svg';
 // Icons
 import { FaRegPlayCircle } from 'react-icons/fa';
 //Styles
@@ -13,6 +12,7 @@ import {
 } from './PlaylistPreview.styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
+import { Svg } from '../../aux-cmps/Svg/Svg';
 
 interface PlaylistPreviewProps {
   playlist: PlaylistType;
