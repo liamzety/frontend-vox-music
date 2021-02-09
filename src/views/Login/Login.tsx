@@ -43,35 +43,65 @@ export const Login: React.FC = observer(({ history }: any) => {
   };
   return (
     <LoginContainer>
-      <form onSubmit={handleSubmit} action="">
-        <Text type="h2">Login</Text>
-        <Input
-          onChange={handleInput}
-          placeholder="Email"
-          name="email"
-          type="text"
-        />
-        <Input
-          onChange={handleInput}
-          placeholder="Password"
-          name="password"
-          type="password"
-        />
-        <ActionsContainer className="flex align-center col">
-          <Button type="submit">Login_</Button>
-          <Text type="h4" size="1rem">
-            Or
-          </Text>
-          <Button type="button" bgColor="blueMain" border="transparent">
-            Try as a Guest_
-          </Button>
-          <Text type="p">
-            Dont have an account yet?{' '}
-            <Link to="/signup">
-              <Text type="a">Signup</Text>
-            </Link>{' '}
-          </Text>
-        </ActionsContainer>
+      <form onSubmit={handleSubmit}>
+        <div
+          className="form-inner flex col space-evenly w100 h100"
+          data-augmented-ui="tl-2-clip-y tr-2-clip-y br-2-clip-x bl-2-clip-x border"
+        >
+          <Text type="h2">Login</Text>
+          <Input
+            onChange={handleInput}
+            placeholder="Email"
+            name="email"
+            type="text"
+          />
+          <Input
+            onChange={handleInput}
+            placeholder="Password"
+            name="password"
+            type="password"
+          />
+          <ActionsContainer className="flex align-center col">
+            <Button type="submit">Login_</Button>
+            <Text type="h4" size="1rem">
+              Or
+            </Text>
+            <Button type="button" bgColor="blueMain" border="transparent">
+              Try as a Guest_
+            </Button>
+            <Text type="p">
+              Dont have an account yet?{' '}
+              <Link to="/signup">
+                <Text type="a">Signup</Text>
+              </Link>{' '}
+            </Text>
+          </ActionsContainer>
+        </div>
+      </form>
+      <form className="shadow-form">
+        <div
+          className="form-inner flex col space-evenly w100 h100"
+          data-augmented-ui="tl-2-clip-y tr-2-clip-y br-2-clip-x bl-2-clip-x border"
+        >
+          <Text type="h2">Login</Text>
+          <Input onChange={() => {}} name="shadow" type="shadow" />
+          <Input onChange={() => {}} name="shadow" type="shadow" />
+          <ActionsContainer className="flex align-center col">
+            <Button>Login_</Button>
+            <Text type="h4" size="1rem">
+              Or
+            </Text>
+            <Button type="button" bgColor="blueMain" border="transparent">
+              Try as a Guest_
+            </Button>
+            <Text type="p">
+              Dont have an account yet?{' '}
+              <Link to="/signup">
+                <Text type="a">Signup</Text>
+              </Link>{' '}
+            </Text>
+          </ActionsContainer>
+        </div>
       </form>
     </LoginContainer>
   );

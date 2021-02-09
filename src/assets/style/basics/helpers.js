@@ -69,6 +69,9 @@ export const helpers = `
   .space-around {
     justify-content: space-around;
   }
+  .space-evenly {
+    justify-content: space-evenly;
+  }
   
   .grow {
     flex-grow: 1;

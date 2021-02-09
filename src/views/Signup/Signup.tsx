@@ -1,22 +1,31 @@
 import React, { useState, useEffect } from 'react';
 // Styles
-import { SignupContainer } from './Signup.styles';
+import { UserAddImgLabel } from './Signup.styles';
 // Store
 import { useStore } from '../../store/StoreContext';
 import { observer } from 'mobx-react';
 import { userService } from '../../services/userService';
 import { cloudinaryService } from '../../services/cloudinaryService';
+import { Input } from '../../aux-cmps/Input/Input';
+import { Button } from '../../aux-cmps/Button/Button';
+import { Text } from '../../aux-cmps/Text/Text';
+import { ActionsContainer, LoginContainer } from '../Login/Login.styles';
+import { Link } from '@material-ui/core';
+import { localImgService } from '../../services/localImgService';
+import { Loader } from '../../cmps/Loader/Loader';
 
 export const Signup: React.FC = observer(({ history }: any) => {
-  const { userStore, userMsgStore } = useStore();
-  const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
+  const DEFAULT_IMG = localImgService.playlistImgPlaceholder;
 
+  const { userStore, userMsgStore, themeStore } = useStore();
+  const [isImgUploading, setIsImgUploading] = useState<boolean>(false);
   const [userCred, setUserCred] = useState({
     name: '',
     email: '',
     password: '',
-    profile_img: '',
+    profile_img: DEFAULT_IMG,
   });
+
   useEffect(() => {
     if (userStore.user.isSignedIn) history.push('/');
   }, [history, userStore.user.isSignedIn]);
@@ -44,6 +53,9 @@ export const Signup: React.FC = observer(({ history }: any) => {
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (isImgUploading) return;
+    if (userCred.profile_img === DEFAULT_IMG) {
+      userCred.profile_img = '';
+    }
     try {
       const user = await userService.signup(userCred);
       userStore.setUser(user);
@@ -56,14 +68,100 @@ export const Signup: React.FC = observer(({ history }: any) => {
     }
   };
   return (
-    <SignupContainer style={{ paddingTop: '200px' }}>
+    <LoginContainer>
       <form onSubmit={handleSubmit}>
-        <input onChange={handleInput} name="name" type="text" />
-        <input onChange={handleInput} name="email" type="text" />
-        <input onChange={handleInput} name="password" type="password" />
-        <input onChange={uploadImg} name="profile_img" type="file" />
-        <button>SUBMIT</button>
+        <div
+          className="form-inner flex col space-evenly w100 h100"
+          data-augmented-ui="tl-2-clip-y tr-2-clip-y br-2-clip-x bl-2-clip-x border"
+        >
+          <Text type="h2">Signup</Text>
+          <UserAddImgLabel data-augmented-ui="tl-clip t-rect-x tr-clip br-clip b-rect-x bl-clip border">
+            {isImgUploading ? (
+              <Loader
+                loader={
+                  themeStore.theme === 'dark'
+                    ? localImgService.defaultLoaderLight
+                    : localImgService.defaultLoaderDark
+                }
+                size="55px"
+              />
+            ) : (
+              <img
+                className="w100 h100"
+                src={
+                  userCred.profile_img === DEFAULT_IMG
+                    ? localImgService.imgPlaceholder
+                    : userCred.profile_img
+                }
+                alt=""
+              />
+            )}
+
+            <Input onChange={uploadImg} name="profile_img" type="file" hidden />
+          </UserAddImgLabel>
+          <Input
+            onChange={handleInput}
+            placeholder="Full Name"
+            name="name"
+            type="text"
+          />
+          <Input
+            onChange={handleInput}
+            placeholder="Email"
+            name="email"
+            type="text"
+          />
+          <Input
+            onChange={handleInput}
+            placeholder="Password"
+            name="password"
+            type="password"
+          />
+
+          <ActionsContainer className="flex align-center col">
+            <Button type="submit">SIGNUP_</Button>
+          </ActionsContainer>
+        </div>
       </form>
-    </SignupContainer>
+      <form className="shadow-form">
+        <div
+          className="form-inner flex col space-evenly w100 h100"
+          data-augmented-ui="tl-2-clip-y tr-2-clip-y br-2-clip-x bl-2-clip-x border"
+        >
+          <Text type="h2">Signup</Text>
+          <UserAddImgLabel data-augmented-ui="tl-clip t-rect-x tr-clip br-clip b-rect-x bl-clip border">
+            {isImgUploading ? (
+              <Loader
+                loader={
+                  themeStore.theme === 'dark'
+                    ? localImgService.defaultLoaderLight
+                    : localImgService.defaultLoaderDark
+                }
+                size="55px"
+              />
+            ) : (
+              <img
+                className="w100 h100"
+                src={
+                  userCred.profile_img === DEFAULT_IMG
+                    ? localImgService.imgPlaceholder
+                    : userCred.profile_img
+                }
+                alt=""
+              />
+            )}
+
+            <Input onChange={() => {}} name="profile_img" type="file" hidden />
+          </UserAddImgLabel>
+          <Input onChange={() => {}} name="name" type="text" />
+          <Input onChange={() => {}} name="email" type="text" />
+          <Input onChange={() => {}} name="password" type="password" />
+
+          <ActionsContainer className="flex align-center col">
+            <Button type="submit">SIGNUP_</Button>
+          </ActionsContainer>
+        </div>
+      </form>
+    </LoginContainer>
   );
 });
