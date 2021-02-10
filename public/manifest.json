@@ -3,7 +3,8 @@
   "short_name": "Vox",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fff",
+  "theme_color": "#FCEE09",
+  "background_color": "#FCEE09",
   "description": "Your place to crank up the volume.",
   "icons": [
     {

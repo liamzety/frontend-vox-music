@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 // Types
 import { PlaylistType } from '../../types/Playlist';
 // Icons
@@ -23,7 +24,6 @@ export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
   const _prettyUrl = (name: string | undefined): string => {
     return name!.replace(/\s/g, '_');
   };
-
   return (
     <PlaylistPreviewContainer data-augmented-ui="tr-clip bl-clip border">
       <Link to={`/main/${_prettyUrl(playlist.name)}=${playlist._id}`}>
@@ -32,7 +32,7 @@ export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
           <Text type="p" bold={true} size="1.2rem" color="blueMain">
             {playlist.name}
           </Text>
-          <Svg size="1.5rem">
+          <Svg size="1.5rem" color="blueMain">
             <FaRegPlayCircle />
           </Svg>
         </CardBottomContainer>
