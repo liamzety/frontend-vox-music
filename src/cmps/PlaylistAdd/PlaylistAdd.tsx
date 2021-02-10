@@ -70,8 +70,11 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
     });
   };
   async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
-    playlistToAdd.created_by = userStore.user._id;
     try {
+      if (!userStore.user._id) {
+        throw { msg: 'You need to be logged in.' };
+      }
+      playlistToAdd.created_by = userStore.user._id;
       const playlistAdded = await playlistService.add(playlistToAdd);
       playlistStore.addPlaylist(playlistAdded);
       if (history.location.pathname !== '/') {
