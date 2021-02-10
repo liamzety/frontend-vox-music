@@ -9,4 +9,6 @@ ReactDOM.render(
   </RootStoreProvider>,
   document.getElementById('root')
 );
-navigator.serviceWorker.register('./sw.js');
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js');
+}
