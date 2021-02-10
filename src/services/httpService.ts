@@ -1,10 +1,12 @@
-import axios from 'axios';
+import Axios from 'axios';
 
 const BASE_URL =
   process.env.NODE_ENV === 'production'
     ? 'https://vox-music-api.herokuapp.com/api/'
     : '//localhost:3030/api/';
-
+var axios = Axios.create({
+  withCredentials: true,
+});
 type methodType =
   | 'get'
   | 'GET'
@@ -50,7 +52,6 @@ async function ajax(
   try {
     const res = await axios({
       url: `${BASE_URL}${endpoint}`,
-      withCredentials: true,
       method,
       data,
     });
