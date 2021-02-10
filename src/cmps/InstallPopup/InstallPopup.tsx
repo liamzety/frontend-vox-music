@@ -75,8 +75,10 @@ export const InstallPopup: React.FC = () => {
     <InstallPopupContainer>
       <InstallPopupInnerContainer>
         <InstallPopupWordContainer>
-          <Text type="h3">Install our awesome app!</Text>
-          <Text type="p">
+          <Text color="blackMain" type="h3">
+            Install our awesome app!
+          </Text>
+          <Text color="blackMain" type="p">
             No download required. Click install to add the app to your home
             screen.
           </Text>

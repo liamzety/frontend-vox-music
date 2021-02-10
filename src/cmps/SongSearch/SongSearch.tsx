@@ -38,16 +38,16 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     const songToSuggest = ev.currentTarget.value;
 
     /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
-    let suggestions: any;
-    if (storageService.load('cyberpunk')) {
-      suggestions = storageService.load('cyberpunk');
-    } else {
-      await storageService.save('cyberpunk', await getVideos('cyberpunk'));
-      suggestions = storageService.load();
-    }
+    // let suggestions: any;
+    // if (storageService.load('cyberpunk')) {
+    //   suggestions = storageService.load('cyberpunk');
+    // } else {
+    //   await storageService.save('cyberpunk', await getVideos('cyberpunk'));
+    //   suggestions = storageService.load();
+    // }
 
     /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
-    // const suggestions = await getVideos(songToSuggest);
+    const suggestions = await getVideos(songToSuggest);
 
     /*** OPTIONAL -->  (save to storage new search words)    ***/
     // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
