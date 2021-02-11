@@ -41,9 +41,13 @@ export const AlertModal: React.FC<AlertModalProps> = ({
         </Svg>
       </div>
       <div className="msg-container flex align-center justify-center">
-        <Text color={type} size="1rem" type="h4">
-          {msg}
-        </Text>
+        <Text
+          color={type}
+          size="1.1rem"
+          type="p"
+          bold={true}
+          dangerouslySetInnerHTML={{ __html: msg }}
+        />
       </div>
     </AlertModalStyle>
   );

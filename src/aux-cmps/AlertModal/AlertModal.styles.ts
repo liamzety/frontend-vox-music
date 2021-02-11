@@ -7,9 +7,9 @@ interface Props {
 export const AlertModalStyle = styled.div<Props>`
   bottom: 15px;
   right: 15px;
+  margin-left: 15px;
   position: fixed;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: ${GlobalVars.blackSecondary};
   box-shadow: 0 0 10px 0px #00000094;
@@ -18,6 +18,7 @@ export const AlertModalStyle = styled.div<Props>`
   border-radius: 10px;
   transition: 0.45s transform;
   color: ${({ type }) => GlobalVars[type]};
+  line-height: 1.5;
 
   .icon-container {
     background-color: ${GlobalVars.blackTertiary};

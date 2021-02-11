@@ -1,16 +1,16 @@
-
 export const regService = {
-    replaceCharRef
-}
+  replaceCharRef,
+};
 
 const charRefMap: any = {
-    '&#39;': "'",
-    '&amp;': '&',
-  };
-  function replaceCharRef(str: string): string {
-    const re = new RegExp(Object.keys(charRefMap).join('|'), 'gi');
+  '&#39;': "'",
+  '&amp;': '&',
+  '&quot;': '"',
+};
+function replaceCharRef(str: string): string {
+  const re = new RegExp(Object.keys(charRefMap).join('|'), 'gi');
 
-    return str.replace(re, function (matched: string) {
-      return charRefMap[matched.toLowerCase()];
-    });
-  }
+  return str.replace(re, function (matched: string) {
+    return charRefMap[matched.toLowerCase()];
+  });
+}

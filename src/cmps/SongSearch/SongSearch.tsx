@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { debounce } from 'lodash';
+// Store
+import { useStore } from '../../store/StoreContext';
 // Services
 import { youtubeService } from '../../services/youtubeService';
 import { storageService } from '../../services/storageService';
@@ -17,7 +19,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     isOn: false,
     suggestions: [],
   });
-
+  const { userMsgStore } = useStore();
   const handler = useCallback(
     debounce((suggestions: any, songToSuggest: string) => {
       setAutoSuggest((prevState: any) => {
@@ -37,21 +39,35 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   async function onAddSongInp(ev: React.FormEvent<HTMLInputElement>) {
     const songToSuggest = ev.currentTarget.value;
 
-    /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
-    // let suggestions: any;
-    // if (storageService.load('cyberpunk')) {
-    //   suggestions = storageService.load('cyberpunk');
-    // } else {
-    //   await storageService.save('cyberpunk', await getVideos('cyberpunk'));
-    //   suggestions = storageService.load();
-    // }
+    try {
+      /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
+      // let suggestions: any;
+      // if (storageService.load('cyberpunk')) {
+      //   suggestions = storageService.load('cyberpunk');
+      // } else {
+      //   await storageService.save('cyberpunk', await getVideos('cyberpunk'));
+      //   suggestions = storageService.load();
+      // }
 
-    /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
-    const suggestions = await getVideos(songToSuggest);
+      /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
+      const suggestions = await getVideos(songToSuggest);
 
-    /*** OPTIONAL -->  (save to storage new search words)    ***/
-    // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
-    handler(suggestions, songToSuggest);
+      /*** OPTIONAL -->  (save to storage new search words)    ***/
+      // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
+      handler(suggestions, songToSuggest);
+    } catch (err) {
+      if (err.response.status === 403) {
+        console.log('Error (Probably exceeded YouTube Points...)', err);
+        userMsgStore.alert({
+          type: 'alert',
+          msg:
+            "Dear Recruiter/Developer - YouTube API's Points have run out for the day.</br>Unfortunately it will only replenish tomorrow.</br>As this is a demo site for recruiters i did not purchase a pack.</br>This message will close in 20 seconds.",
+        });
+        setTimeout(() => {
+          userMsgStore.clearAlert();
+        }, 20000);
+      }
+    }
   }
   const getVideos = async (query: string) => {
     const res = await youtubeService.get(query);
