@@ -17,12 +17,12 @@ export const InputStyle = styled.input<Props>`
   color: ${({ theme, secondary }) =>
     secondary ? GlobalVars.pinkMain : theme.inputTxt};
   text-transform: ${({ uppercase }) => (uppercase ? 'uppercase' : '')};
-  font-family: Tomorrow-Regular;
+  font-family: Tomorrow-Regular, MPLUS;
 
   &::placeholder {
     color: ${({ theme, secondary }) =>
       secondary ? GlobalVars.pinkMain : theme.inputTxt};
-    font-family: Bicubik;
+    font-family: Bicubik, MPLUS;
   }
   transition: 0.2s;
 

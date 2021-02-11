@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserMiniProfileStyles, UnknownUser } from './UserMiniProfile.styles';
 // Cmps
 import { Text } from '../../aux-cmps/Text/Text';
+import { useStore } from '../../store/StoreContext';
 
 export interface UserMiniProfileProps {
   profile_img: string;
@@ -17,6 +18,7 @@ export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
   isSignedIn,
   onClick,
 }) => {
+  const { themeStore } = useStore();
   if (!isSignedIn) {
     return (
       <Link to={`/login`}>
@@ -29,7 +31,12 @@ export const UserMiniProfile: React.FC<UserMiniProfileProps> = ({
       {profile_img ? (
         <img src={profile_img} alt="Profile" />
       ) : (
-        <Text bold={true} size="1.2rem" type="p">
+        <Text
+          color={themeStore.theme === 'dark' ? 'yellowMain' : 'pinkMain'}
+          bold={true}
+          size="1.2rem"
+          type="p"
+        >
           {initials}
         </Text>
       )}

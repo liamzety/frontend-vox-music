@@ -48,6 +48,7 @@ html {
 body {
  ${({ theme }) => theme.materialBg};
  color:${({ theme }) => theme.mainTxt};
+ 
 }
 
 

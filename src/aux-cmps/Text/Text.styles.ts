@@ -14,7 +14,7 @@ interface Props {
 }
 export const TextStyle = styled.p<Props>`
     width: fit-content;
-    font-family: Bicubik ; 
+    font-family: Bicubik,MPLUS ; 
      text-transform:${({ uppercase }) => (uppercase ? 'uppercase' : '')};
      text-transform:${({ capitalize }) => (capitalize ? 'capitalize' : '')};
     color: ${({ theme, color }) => (color ? GlobalVars[color] : theme.mainTxt)};
@@ -66,7 +66,7 @@ export const TextStyle = styled.p<Props>`
     &.p {
         font-size: ${({ size }) => size || '1.1rem'};
         font-weight:${({ bold = false }) => (bold ? '700' : '400')};
-        font-family: Tomorrow-Regular ;
+        font-family: Tomorrow-Regular,MPLUS ;
     }
     &.a {
         font-size: ${({ size }) => size || '1rem'};

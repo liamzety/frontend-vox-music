@@ -23,7 +23,7 @@ export const UserChatStyles = styled.div`
     background-color: ${({ theme }) => theme.mainBg};
     background-position: center;
     background-size: cover;
-
+    z-index: -1;
     & > div {
       padding: 25px;
     }
@@ -45,11 +45,12 @@ export const UserChatStyles = styled.div`
 `;
 export const UserChatBgWrapper = styled.div`
   position: absolute;
-  width: calc(100% - 6px);
+  width: 100%;
   height: 100%;
   left: 0;
   top: 0;
   background-color: ${({ theme }) => fade(theme.mainBg, 0.85)};
+  z-index: -1;
 `;
 export const ChatHeader = styled.div`
   height: 70px;

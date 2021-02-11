@@ -13,8 +13,7 @@ export const UserMiniProfileStyles = styled.div`
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: ${({ theme }) => GlobalVars.blackMain};
-    color: ${({ theme }) => theme.navbarTxt};
+    background-color: transperant;
     border: 2px solid ${({ theme }) => theme.navbarTxt};
   }
 `;
