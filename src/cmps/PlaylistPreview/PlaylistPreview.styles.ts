@@ -38,7 +38,8 @@ export const CardTopContainer = styled.div<CardTopContainerProps>`
   background-blend-mode: multiply;
   background-image: url(${({ src }) => src});
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   background-color: ${({ theme }) => darken(theme.chipTrunk, 0.8)};
   background-blend-mode: normal;
 `;

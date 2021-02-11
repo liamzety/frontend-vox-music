@@ -22,7 +22,8 @@ export const PlaylistPreview: React.FC<PlaylistPreviewProps> = ({
   playlist,
 }) => {
   const _prettyUrl = (name: string | undefined): string => {
-    return name!.replace(/\s/g, '_');
+    let prettyUrl = name!.replace(/\s/g, '_');
+    return prettyUrl.replace(/[^a-zA-Z0-9-_]/g, '');
   };
   return (
     <PlaylistPreviewContainer data-augmented-ui="tr-clip bl-clip border">

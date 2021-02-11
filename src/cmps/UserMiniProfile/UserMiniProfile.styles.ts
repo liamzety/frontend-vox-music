@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { GlobalVars } from '../../assets/style/basics/vars';
 import { remConverter } from '../../assets/style/main';
 import { localImgService } from '../../services/localImgService';
 

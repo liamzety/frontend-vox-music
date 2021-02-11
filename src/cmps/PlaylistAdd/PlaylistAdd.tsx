@@ -72,6 +72,7 @@ export const PlaylistAdd: React.FC<PlaylistAddProps> = () => {
   async function onAddPlaylist(playlistToAdd: PlaylistType): Promise<void> {
     try {
       if (!userStore.user._id) {
+        // eslint-disable-next-line no-throw-literal
         throw { msg: 'You need to be logged in.' };
       }
       playlistToAdd.created_by = userStore.user._id;
