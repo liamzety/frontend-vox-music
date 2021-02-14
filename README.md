@@ -4,10 +4,10 @@
 
 ***Check it out <a href="https://vox-music.netlify.app/">Vox Music</a>*** 
 
-
 > Listen, Create and Enjoy the best songs with style and comfort.
 
-## End-to-End, PWA, SPA App created with React, Typescript, Mobx, NodeJS, Express, PostgreSQL.
+
+### End-to-End, PWA, SPA App created with React, Typescript, Mobx, NodeJS, Express, PostgreSQL.
 > Designed and Created by me, UI and Design was influenced by modern games such as Cyberpunk 2077™ and Watch Dogs: Legion™.
 ---
 
