@@ -21,7 +21,19 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
   });
   const { userMsgStore } = useStore();
   const handler = useCallback(
-    debounce((suggestions: any, songToSuggest: string) => {
+    debounce(async (songToSuggest: string) => {
+      /*** USE THIS FOR DEVELOPMENT (contains entries with fallbackQuery constant (at storageService))  ***/
+      let suggestions: any;
+      if (storageService.load('fallbackQuery')) {
+        suggestions = storageService.load('fallbackQuery');
+      } else {
+        await storageService.save('fallbackQuery');
+        suggestions = storageService.load('fallbackQuery');
+      }
+
+      /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
+      // const suggestions = await getVideos(songToSuggest);
+
       setAutoSuggest((prevState: any) => {
         return {
           ...prevState,
@@ -40,21 +52,9 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     const songToSuggest = ev.currentTarget.value;
 
     try {
-      /*** USE THIS FOR DEVELOPMENT (contains entries for 'cyberpunk' search word only)  ***/
-      // let suggestions: any;
-      // if (storageService.load('cyberpunk')) {
-      //   suggestions = storageService.load('cyberpunk');
-      // } else {
-      //   await storageService.save('cyberpunk', await getVideos('cyberpunk'));
-      //   suggestions = storageService.load();
-      // }
-
-      /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
-      const suggestions = await getVideos(songToSuggest);
-
       /*** OPTIONAL -->  (save to storage new search words)    ***/
       // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
-      handler(suggestions, songToSuggest);
+      handler(songToSuggest);
     } catch (err) {
       if (err.response.status === 403) {
         console.log('Error (Probably exceeded YouTube Points...)', err);
