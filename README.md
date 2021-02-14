@@ -10,9 +10,9 @@
 ## End-to-End, PWA, SPA App created with React, Typescript, Mobx, NodeJS, Express, PostgreSQL.
 
 - Playlists centered app where you can browse existing playlists or create your own.
-
+<img src="/readme.assets/playlist-add-demo.gif">
 - Chat with other people on playlist specific chat room.
-<img src="/readme.assets/chat-demo.gif" width="200px">
+<img src="/readme.assets/chat-demo.gif">
 
 Designed and Created by me, UI and Design was influenced by modern games such as Cyberpunk 2077™ and Watch Dogs: Legion™.
 
