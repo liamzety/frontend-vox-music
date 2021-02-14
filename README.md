@@ -28,6 +28,26 @@
 
 ---
 
+### Full list of the tools used:
+- <a href="https://www.npmjs.com/package/react">*React*</a>.
+- <a href="https://www.npmjs.com/package/mobx-react">*Mobx*</a> for state managment.
+- <a href="https://www.npmjs.com/package/typescript">*Typescript*.</a>
+- <a href="https://www.npmjs.com/package/styled-components">*Styled-Components*</a> for styling.
+- <a href="https://www.npmjs.com/package/pg">*PostgreSQL*</a> database.
+- <a href="https://nodejs.org/en/">*NodeJS*</a> for the backend.
+- <a href="https://www.npmjs.com/package/express">*Express*</a>
+- <a href="https://www.npmjs.com/package/bcrypt">*bcrypt*</a> for password encryption.
+- <a href="https://www.npmjs.com/package/axios">*axios*</a> for API calls.
+- <a href="http://augmented-ui.com/">*augmented-ui*</a> for the awesome chip-like clipping.
+- <a href="https://www.npmjs.com/package/lodash">*lodash*</a> for the debounce function.
+- <a href="https://www.npmjs.com/package/react-player">*react-player*</a> as the player.
+- <a href="https://www.npmjs.com/package/re-resizable">*re-resizable*</a> resizing the Player component.
+- <a href="https://storybook.js.org/">*storybook*</a> for some of the basic auxiliary components.
+- <a href="https://www.npmjs.com/package/@material-ui/core">*Material-UI core*</a> for basic tolls.
+- <a href="https://www.npmjs.com/package/react-scroll-to-bottom">*react-scroll-to-bottom*</a> for chat scrolling.
+
+---
+
 ## Installation
 ### Step 1
 
