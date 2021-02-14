@@ -122,6 +122,7 @@ export const UserChat: React.FC<UserChatProps> = ({
           name="user-chat-input"
           onChange={handleTyping}
           type="text"
+          autoComplete="off"
         />
         <button
           onClick={() => {
