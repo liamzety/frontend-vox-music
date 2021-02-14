@@ -12,7 +12,7 @@
 - Playlists centered app where you can browse existing playlists or create your own.
 
 - Chat with other people on playlist specific chat room.
-![Recordit GIF](http://g.recordit.co/JtoCJt8cKH.gif)
+<img src="/readme/chat-demo.gif" width="200px">
 
 Designed and Created by me, UI and Design was influenced by modern games such as Cyberpunk 2077™ and Watch Dogs: Legion™.
 
