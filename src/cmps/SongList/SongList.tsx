@@ -66,7 +66,7 @@ export const SongList: React.FC<SongListProps> = observer(
                     {song.title}
                   </Text>
                   <Svg
-                    size="2rem"
+                    size="20px"
                     onClick={(ev: any) => {
                       ev.stopPropagation();
                       onRemoveSong(song._id);

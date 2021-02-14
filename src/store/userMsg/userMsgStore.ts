@@ -1,4 +1,4 @@
-import { UserMsgType } from '../../types/UserMsg';
+import { UserMsgType } from '../../types/userMsg';
 import { RootStore } from '../store';
 import { action, makeObservable, observable } from 'mobx';
 
