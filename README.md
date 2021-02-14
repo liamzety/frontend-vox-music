@@ -1,8 +1,9 @@
-<a href="https://i.ibb.co/ydcwtX2/vox-logo-dark.png"><img src="https://i.ibb.co/ydcwtX2/vox-logo-dark.png"/></a>
+<a href="https://vox-music.netlify.app/"><img src="https://i.ibb.co/ydcwtX2/vox-logo-dark.png" align="right" width=150>  </a>
+
+# Vox Music 
 
 ***Check it out <a href="https://vox-music.netlify.app/">Vox Music</a>*** 
 
-# Vox Music
 
 > Listen, Create and Enjoy the best songs with style and comfort.
 
