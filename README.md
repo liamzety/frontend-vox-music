@@ -1,4 +1,3 @@
-# Detailed Readme coming soon.
 <a href="https://i.ibb.co/ydcwtX2/vox-logo-dark.png"><img src="https://i.ibb.co/ydcwtX2/vox-logo-dark.png"/></a>
 
 ***Check it out <a href="https://vox-music.netlify.app/">Vox Music</a>*** 
