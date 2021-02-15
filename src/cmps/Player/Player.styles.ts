@@ -33,6 +33,7 @@ export const PlayerContainer = styled.div`
   background-size: cover;
   background-position: center;
   padding: 20px 50px 10px;
+  z-index: 1;
 
   touch-action: none;
   // Disables mobile scroll ^^^
