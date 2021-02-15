@@ -41,6 +41,7 @@
 - <a href="http://augmented-ui.com/">*Augmented-ui*</a> for the awesome chip-like clipping.
 - <a href="https://www.npmjs.com/package/lodash">*Lodash*</a> for the debounce function.
 - <a href="https://www.npmjs.com/package/socket.io">*Socket.io*</a> synchronous communication.
+- <a href="https://www.npmjs.com/package/react-speech-recognition">*React-Speech-Recognition*</a> for voice search.
 - <a href="https://www.npmjs.com/package/react-player">*React-Player*</a> as the player.
 - <a href="https://www.npmjs.com/package/re-resizable">*Re-Resizable*</a> resizing the Player component.
 - <a href="https://storybook.js.org/">*Storybook*</a> for some of the basic auxiliary components.
