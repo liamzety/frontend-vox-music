@@ -114,7 +114,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
           <BsFillMicFill />
         </Svg>
       )}
-      {SpeechRecognition.browserSupportsSpeechRecognition() && listening && (
+      {SpeechRecognition.browserSupportsSpeechRecognition() && !listening && (
         <ListeningOverlay>
           <audio autoPlay={true} src={record}></audio>
           <Svg className="pulsate-back" size="60px" color="secTxt">

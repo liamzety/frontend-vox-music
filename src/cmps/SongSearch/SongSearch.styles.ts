@@ -38,7 +38,7 @@ export const ListeningOverlay = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  padding: 70px 30px;
+  padding: 70px 15px;
 
   &:before {
     content: '';
