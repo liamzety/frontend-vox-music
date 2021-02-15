@@ -41,18 +41,16 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     debounce(async (songToSuggest: string) => {
       try {
         /*** USE THIS FOR DEVELOPMENT (contains entries with fallbackQuery constant (at storageService))  ***/
-        let suggestions: any;
-        if (storageService.load('fallbackQuery')) {
-          suggestions = storageService.load('fallbackQuery');
-        } else {
-          await storageService.save('fallbackQuery');
-          suggestions = storageService.load('fallbackQuery');
-        }
-        /*** OPTIONAL -->  (save to storage new search words)    ***/
-        // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
+        // let suggestions: any;
+        // if (storageService.load('fallbackQuery')) {
+        //   suggestions = storageService.load('fallbackQuery');
+        // } else {
+        //   await storageService.save('fallbackQuery');
+        //   suggestions = storageService.load('fallbackQuery');
+        // }
 
         /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
-        // const suggestions = await getVideos(songToSuggest);
+        const suggestions = await getVideos(songToSuggest);
 
         setAutoSuggest((prevState: any) => {
           return {
