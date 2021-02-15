@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { GlobalVars } from '../../assets/style/basics/vars';
 
 export const SongSearchContainer = styled.div`
   display: flex;
@@ -12,14 +13,15 @@ export const SongSearchContainer = styled.div`
     }
   }
 
-  svg {
+  span.mic {
     margin-left: -35px;
     z-index: 1;
   }
 `;
 
 export const ListeningOverlay = styled.div`
-  background: red;
+  background: ${GlobalVars.whiteSecondary};
+
   width: 250px;
   height: 250px;
   position: fixed;
@@ -30,8 +32,21 @@ export const ListeningOverlay = styled.div`
   bottom: 0;
   margin: auto;
   border-radius: 50%;
+  box-shadow: 6px 7px 6px 0px #00000040;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 70px 30px;
+
+  &:before {
+    content: '';
+    width: 255px;
+    top: -5px;
+    height: 255px;
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid ${GlobalVars.whiteMain};
+  }
 `;

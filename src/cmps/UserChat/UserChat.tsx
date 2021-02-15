@@ -67,8 +67,7 @@ export const UserChat: React.FC<UserChatProps> = ({
           <Text type="h3">{playlistName} - Chat Room</Text>
         </div>
         <Text className={`flex ${userTyping ? '' : 'hide'}`} type="p">
-          {userTyping}{' '}
-          <span className="typing typing-animation">is typing...</span>
+          {userTyping} <span className="typing pulsate-back">is typing...</span>
         </Text>
       </ChatHeader>
 

@@ -16,6 +16,10 @@ import { ListeningOverlay, SongSearchContainer } from './SongSearch.styles';
 import { AutoSuggest } from '../AutoSuggest/AutoSuggest';
 import { Input } from '../../aux-cmps/Input/Input';
 import { Svg } from '../../aux-cmps/Svg/Svg';
+import { FaAssistiveListeningSystems } from 'react-icons/fa';
+import { Text } from '../../aux-cmps/Text/Text';
+// @ts-ignore
+import record from '../../assets/sound/record.wav';
 
 interface songSearchProps {
   onAddSong: (suggestion: any) => void;
@@ -37,18 +41,18 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
     debounce(async (songToSuggest: string) => {
       try {
         /*** USE THIS FOR DEVELOPMENT (contains entries with fallbackQuery constant (at storageService))  ***/
-        // let suggestions: any;
-        // if (storageService.load('fallbackQuery')) {
-        //   suggestions = storageService.load('fallbackQuery');
-        // } else {
-        //   await storageService.save('fallbackQuery');
-        //   suggestions = storageService.load('fallbackQuery');
-        // }
+        let suggestions: any;
+        if (storageService.load('fallbackQuery')) {
+          suggestions = storageService.load('fallbackQuery');
+        } else {
+          await storageService.save('fallbackQuery');
+          suggestions = storageService.load('fallbackQuery');
+        }
         /*** OPTIONAL -->  (save to storage new search words)    ***/
         // storageService.save('cyberpunk' /* change here */, await getVideos('cyberpunk' /* change here */));
 
         /*** USE THIS FOR PRODUCTION (enables youtube queries)  ***/
-        const suggestions = await getVideos(songToSuggest);
+        // const suggestions = await getVideos(songToSuggest);
 
         setAutoSuggest((prevState: any) => {
           return {
@@ -102,6 +106,7 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
 
       {SpeechRecognition.browserSupportsSpeechRecognition() && (
         <Svg
+          className="mic"
           pointer={true}
           size="25px"
           onClick={() => {
@@ -112,7 +117,15 @@ export const SongSearch: React.FC<songSearchProps> = ({ onAddSong }) => {
         </Svg>
       )}
       {SpeechRecognition.browserSupportsSpeechRecognition() && listening && (
-        <ListeningOverlay>listening</ListeningOverlay>
+        <ListeningOverlay>
+          <audio autoPlay={true} src={record}></audio>
+          <Svg className="pulsate-back" size="60px" color="secTxt">
+            <FaAssistiveListeningSystems />
+          </Svg>
+          <Text color="blackMain" type="h4">
+            You can talk now.
+          </Text>
+        </ListeningOverlay>
       )}
       <AutoSuggest
         closeAutoSuggest={closeAutoSuggest}

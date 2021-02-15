@@ -206,8 +206,8 @@ export const PlayerMini = styled.div`
   &:before {
     transition: 0.2s;
     content: '';
-    width: 60px;
-    height: 60px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     position: absolute;
     border: 2px solid ${GlobalVars.whiteMain};

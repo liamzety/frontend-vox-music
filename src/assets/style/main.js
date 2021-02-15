@@ -122,7 +122,7 @@ button {
 .typing {
   color:${GlobalVars.blueMain};
 }
-.typing-animation {animation:pulsate-bck .5s ease-in-out infinite both}
+.pulsate-back {animation:pulsate-bck .6s ease-in-out infinite both}
 .scale-in-tr{animation:scale-in-tr .3s cubic-bezier(.25,.46,.45,.94) both}
 .scale-in-tl{animation:scale-in-tl .3s cubic-bezier(.25,.46,.45,.94) both}
   `

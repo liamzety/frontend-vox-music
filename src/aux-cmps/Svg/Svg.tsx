@@ -3,15 +3,15 @@ import React from 'react';
 import { SvgStyle } from './Svg.styles';
 
 interface SvgProps extends React.SVGAttributes<HTMLElement> {
-  size: string;
   children: JSX.Element;
+  size?: string;
   pointer?: boolean;
   color?: string;
   className?: string;
   onClick?: (ev?: any) => void;
 }
 export const Svg: React.FC<SvgProps> = ({
-  size,
+  size = '40px',
   children,
   pointer,
   className,

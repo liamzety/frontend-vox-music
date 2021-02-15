@@ -18,7 +18,7 @@ export const lightTheme = {
     mainBtnTxt: GlobalVars.whiteMain,
 
     mainTxt: GlobalVars.blackMain,
-    secTxt: GlobalVars.yellowMain,
+    secTxt: GlobalVars.blackMain,
 
     mainSvg: GlobalVars.blackMain,
 
