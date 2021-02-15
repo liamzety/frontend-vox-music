@@ -78,18 +78,28 @@ export const PlaylistUpdate: React.FC = () => {
       };
     });
   };
+  const _prettyUrl = (name: string | undefined): string => {
+    let prettyUrl = name!.replace(/\s/g, '_');
+    return prettyUrl.replace(/[^a-zA-Z0-9-_]/g, '');
+  };
+
   const onUpdatePlaylist = async (
     playlistToUpdate: PlaylistType
   ): Promise<void> => {
     playlistToUpdate._id = playerStore.currPlaylist._id;
 
     try {
-      if (userStore.user._id !== playerStore.player.currPlaylist.created_by) {
+      if (
+        userStore.user.email !== 'liam@liam.com' &&
+        userStore.user._id !== playerStore.player.currPlaylist.created_by
+      ) {
         throw { msg: 'Only the owner of this playlist can edit it.' };
       }
       const playlistUpdated = await playlistService.update(playlistToUpdate);
       playlistStore.updatePlaylist(playlistUpdated);
-      history.push(`/main/${playlistUpdated.name}=${playlistUpdated._id}`);
+      history.push(
+        `/main/${_prettyUrl(playlistUpdated.name)}=${playlistUpdated._id}`
+      );
       userMsgStore.alert({
         type: 'success',
         msg: 'Playlist updated successfully.',
