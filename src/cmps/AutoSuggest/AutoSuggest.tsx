@@ -28,7 +28,7 @@ export const AutoSuggest: React.FC<AutoSuggestProps> = ({
         center={false}
         closeCb={closeAutoSuggest}
       >
-        {suggestions.items?.map((suggestion: any, idx: number) => {
+        {suggestions?.items?.map((suggestion: any, idx: number) => {
           return (
             <SuggestedContainer
               className="sugg"

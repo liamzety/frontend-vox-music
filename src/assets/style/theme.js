@@ -82,7 +82,7 @@ export const darkTheme = {
     mainTxt: GlobalVars.yellowMain,
     secTxt: GlobalVars.blackMain,
 
-    mainSvg: GlobalVars.blueMain,
+    mainSvg: GlobalVars.whiteSecondary,
 
     songHover: GlobalVars.blackTertiary,
 

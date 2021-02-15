@@ -18,7 +18,7 @@ export const SongSearchContainer = styled.div`
   }
 `;
 
-export const ListeningDisplay = styled.div`
+export const ListeningOverlay = styled.div`
   background: red;
   width: 250px;
   height: 250px;
