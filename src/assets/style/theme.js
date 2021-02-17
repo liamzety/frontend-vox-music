@@ -59,7 +59,9 @@ export const lightTheme = {
     selectionBg: GlobalVars.pinkMain,
     selectionTxt: GlobalVars.whiteMain,
 
-    scrollbarThumb: GlobalVars.pinkMain
+    scrollbarThumb: GlobalVars.pinkMain,
+
+    favouriteIcon: GlobalVars.yellowMain,
 }
 
 export const darkTheme = {
@@ -122,5 +124,7 @@ export const darkTheme = {
     selectionBg: GlobalVars.yellowMain,
     selectionTxt: GlobalVars.blackMain,
 
-    scrollbarThumb: GlobalVars.yellowMain
+    scrollbarThumb: GlobalVars.yellowMain,
+
+    favouriteIcon: GlobalVars.yellowMain,
 }

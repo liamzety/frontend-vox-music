@@ -7,6 +7,7 @@ import { useStore } from '../../store/StoreContext';
 import { userService } from '../../services/userService';
 // Icons
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 // Styles
 import {
   ImgThumbnail,
@@ -41,18 +42,72 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
     const {
       playerStore: { currPlaylist },
       userStore,
+      userMsgStore,
     } = useStore();
     const [userDetails, setUserDetails] = useState({
       name: '',
       profile_img: '',
     });
+    const [isFavourite, setIsFavourite] = useState(false);
     useEffect(() => {
       getUserDetials();
+      setIsFavourite(
+        userStore.user.favouritePlaylists?.find(
+          (playlist) => playlist._id === currPlaylist._id
+        )
+          ? true
+          : false
+      );
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currPlaylist.created_by]);
     const getUserDetials = async () => {
       if (!currPlaylist.created_by) return;
       setUserDetails(await userService.getLoggedUser(currPlaylist.created_by));
+    };
+
+    const onFavouritePlaylist = async () => {
+      if (!userStore.user._id) {
+        userMsgStore.alert({ type: 'alert', msg: 'You need to be logged in.' });
+        setTimeout(() => {
+          userMsgStore.clearAlert();
+        }, 4000);
+      } else {
+        setIsFavourite(true);
+        try {
+          await userService.favouritePlaylist(
+            userStore.user._id,
+            currPlaylist._id
+          );
+          userMsgStore.alert({
+            type: 'success',
+            msg: 'Playlist successfuly added to favourites.',
+          });
+          setTimeout(() => {
+            userMsgStore.clearAlert();
+          }, 4000);
+        } catch (err) {
+          userMsgStore.alert(err);
+          setTimeout(() => {
+            userMsgStore.clearAlert();
+          }, 4000);
+          console.error('Error, MainHeader.tsx -> function: :', err.message);
+        }
+      }
+    };
+    const onUnFavouritePlaylist = async () => {
+      setIsFavourite(false);
+      try {
+        await userService.unFavouritePlaylist(
+          userStore.user._id,
+          currPlaylist._id
+        );
+      } catch (err) {
+        userMsgStore.alert(err);
+        setTimeout(() => {
+          userMsgStore.clearAlert();
+        }, 4000);
+        console.error('Error, MainHeader.tsx -> function: :', err.message);
+      }
     };
     return (
       <Container>
@@ -127,23 +182,45 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                     )}
                   </CreatedByContainer>
                 </div>
-                {userStore.user.isSignedIn ? (
-                  <div className="chat-btn-container flex align-center">
-                    {!isChat && userTyping && (
-                      <Text className="user-typing-txt flex " type="p">
-                        {userTyping}{' '}
-                        <span className="typing">is typing...</span>
-                      </Text>
-                    )}
-                    <Button onClick={onToggleChat} size="small">
-                      Chat_
-                    </Button>
-                  </div>
-                ) : (
-                  <Link to="/login">
-                    <Button size="small">Login To Chat_</Button>
-                  </Link>
-                )}
+                <div className="chat-btn-container flex align-center">
+                  {isFavourite ? (
+                    <Svg
+                      color="favouriteIcon"
+                      className="favourite-icon"
+                      size="25px"
+                      onClick={onUnFavouritePlaylist}
+                      pointer={true}
+                    >
+                      <FaHeart />
+                    </Svg>
+                  ) : (
+                    <Svg
+                      className="favourite-icon"
+                      size="25px"
+                      onClick={onFavouritePlaylist}
+                      pointer={true}
+                    >
+                      <FaRegHeart />
+                    </Svg>
+                  )}
+                  {userStore.user.isSignedIn ? (
+                    <>
+                      {!isChat && userTyping && (
+                        <Text className="user-typing-txt flex " type="p">
+                          {userTyping}{' '}
+                          <span className="typing">is typing...</span>
+                        </Text>
+                      )}
+                      <Button onClick={onToggleChat} size="small">
+                        Chat_
+                      </Button>
+                    </>
+                  ) : (
+                    <Link to="/login">
+                      <Button size="small">Login To Chat_</Button>
+                    </Link>
+                  )}
+                </div>
               </div>
             </div>
           </div>

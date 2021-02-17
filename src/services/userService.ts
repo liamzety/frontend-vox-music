@@ -5,7 +5,11 @@ export const userService = {
   signup,
   logout,
   getLoggedUser,
+  updateUser,
   getInitials,
+  favouritePlaylist,
+  unFavouritePlaylist,
+  getFavouritePlaylists,
 };
 
 async function login(userCred: { email: string; password: string }) {
@@ -46,6 +50,19 @@ async function logout() {
     }
   }
 }
+async function updateUser(userId: string, playlist_id: string) {
+  try {
+    const userUpdated = await httpService.put(`user/${userId}`, {
+      playlist_id,
+    });
+    return userUpdated;
+  } catch (err) {
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
+}
 async function getLoggedUser(userId: string) {
   try {
     const userFound = await httpService.get(`user/${userId}`);
@@ -62,4 +79,46 @@ function getInitials(fullName: string) {
   let initials = firstName.charAt(0).toUpperCase();
   if (lastName) initials += lastName.charAt(0).toUpperCase();
   return initials;
+}
+
+async function getFavouritePlaylists(userId: string) {
+  console.log('userid', userId);
+  try {
+    const favouritePlaylistsFound = await httpService.get(
+      `favourite/user_playlists/${userId}`
+    );
+    return favouritePlaylistsFound;
+  } catch (err) {
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
+}
+async function unFavouritePlaylist(userId: string, playlist_id: string) {
+  console.log('playlist_id', playlist_id);
+  try {
+    await httpService.delete(`favourite/user_playlists/${userId}`, {
+      playlist_id,
+    });
+    return Promise.resolve();
+  } catch (err) {
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
+}
+async function favouritePlaylist(userId: string, playlist_id: string) {
+  try {
+    await httpService.post(`favourite/user_playlists/${userId}`, {
+      playlist_id,
+    });
+    return Promise.resolve();
+  } catch (err) {
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
 }

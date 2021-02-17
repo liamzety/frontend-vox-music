@@ -24,7 +24,7 @@ export const Genre: React.FC<Props> = observer(
       params: { genre },
     },
   }) => {
-    const { playlistStore } = useStore();
+    const { playlistStore, userStore } = useStore();
     const [genres, setGenres] = useState<Array<string>>();
     const [isOverflowing, setIsOverflowing] = useState<boolean>(false);
     const listContainerRef = React.createRef<HTMLDivElement>();
@@ -46,18 +46,32 @@ export const Genre: React.FC<Props> = observer(
 
     const getGenreList = () => {
       return (
-        genres &&
-        genres.map((_genre: string, idx: number) => (
-          <Link
-            key={idx}
-            className="flex align-center text-center justify-center"
-            to={`/genre/${_genre}`}
-          >
-            <Text type="a" active={genre === _genre}>
-              {_genre}
-            </Text>
-          </Link>
-        ))
+        <>
+          {userStore.user.favouritePlaylists &&
+            userStore.user.favouritePlaylists.length !== 0 && (
+              <Link
+                key="4444"
+                className="flex align-center text-center justify-center"
+                to={`/genre/Favourites`}
+              >
+                <Text type="a" active={genre === 'Favourites'}>
+                  Favourites
+                </Text>
+              </Link>
+            )}
+          {genres &&
+            genres.map((_genre: string, idx: number) => (
+              <Link
+                key={idx}
+                className="flex align-center text-center justify-center"
+                to={`/genre/${_genre}`}
+              >
+                <Text type="a" active={genre === _genre}>
+                  {_genre}
+                </Text>
+              </Link>
+            ))}
+        </>
       );
     };
     return (
@@ -95,7 +109,14 @@ export const Genre: React.FC<Props> = observer(
           </div>
         </GenreListWrapper>
         {genre && (
-          <PlaylistList genre={genre} playlists={playlistStore.playlists} />
+          <PlaylistList
+            genre={genre}
+            playlists={
+              genre === 'Favourites'
+                ? userStore.user.favouritePlaylists
+                : playlistStore.playlists
+            }
+          />
         )}
       </div>
     );

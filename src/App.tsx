@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import routes from './routes';
 // Store
@@ -33,6 +33,7 @@ const App = observer(() => {
     );
     userStore.setUser(user);
   };
+
   return (
     <ThemeProvider
       theme={themeStore.theme === 'light' ? lightTheme : darkTheme}
@@ -62,7 +63,7 @@ const App = observer(() => {
         </Router>
       </main>
       <AlertModal userMsg={userMsgStore.userMsg} />
-      <Player />
+      {/* <Player /> */}
     </ThemeProvider>
   );
 });

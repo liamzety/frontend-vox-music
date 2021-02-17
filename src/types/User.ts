@@ -1,3 +1,5 @@
+import { PlaylistType } from './Playlist';
+
 export interface UserType {
   _id: string;
   email: string;
@@ -5,4 +7,5 @@ export interface UserType {
   name: string;
   profile_img: string;
   isSignedIn: boolean;
+  favouritePlaylists: PlaylistType[];
 }

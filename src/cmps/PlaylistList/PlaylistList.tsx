@@ -34,7 +34,7 @@ export const PlaylistList: React.FC<PlaylistListProps> = ({
 
   const getPlaylistPreviews = () => {
     let playlistPreviewsByGenre = [];
-    if (genre === 'All') {
+    if (genre === 'All' || genre === 'Favourites') {
       playlistPreviewsByGenre = playlists;
     } else {
       playlistPreviewsByGenre = playlists.filter(

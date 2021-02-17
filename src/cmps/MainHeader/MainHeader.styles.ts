@@ -24,6 +24,9 @@ export const Container = styled.div`
   }
   .chat-btn-container {
     height: 40px;
+    .favourite-icon {
+      margin-right: 10px;
+    }
   }
   .user-typing-txt {
     margin-right: 10px;

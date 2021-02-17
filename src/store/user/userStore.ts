@@ -1,6 +1,7 @@
 import { RootStore } from '../store';
 import { action, makeObservable, observable } from 'mobx';
 import { UserType } from '../../types/User';
+import { PlaylistType } from '../../types/Playlist';
 
 export const createUserStore = {
   user: {},
@@ -30,12 +31,14 @@ export class UserStore {
       name: '',
       profile_img: '',
       isSignedIn: false,
+      favouritePlaylists: [],
     };
     // no work here only assignments
     makeObservable(this, {
       user: observable,
       setUser: action,
       resetUser: action,
+      setFavourites: action,
     });
   }
 
@@ -43,6 +46,10 @@ export class UserStore {
     // safe to access other stores
   }
 
+  setFavourites(favourites: any) {
+    console.log('SETTING FAVOURITES', favourites);
+    this.user.favouritePlaylists = favourites;
+  }
   setUser(user: UserType) {
     //1 Month cookie
     const now = new Date();
@@ -59,6 +66,7 @@ export class UserStore {
       name: '',
       profile_img: '',
       isSignedIn: false,
+      favouritePlaylists: [],
     };
   }
 }
