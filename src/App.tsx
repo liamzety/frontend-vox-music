@@ -63,7 +63,7 @@ const App = observer(() => {
         </Router>
       </main>
       <AlertModal userMsg={userMsgStore.userMsg} />
-      {/* <Player /> */}
+      <Player />
     </ThemeProvider>
   );
 });
