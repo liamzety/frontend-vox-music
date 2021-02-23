@@ -78,9 +78,8 @@ button {
   content: attr(data-tooltip);
   position: absolute;
   top: 175%;
-  left: 25px;
+  left: 0;
   font-size: 1rem;
-  width: max-content;
   padding: 5px 10px;
   color: ${GlobalVars.whiteMain};
   background-color: ${fade(GlobalVars.blackTertiary, 0.7)};

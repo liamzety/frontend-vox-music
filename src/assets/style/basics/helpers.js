@@ -12,9 +12,6 @@ export const helpers = `
   .container-y {
     padding-top: 100px;
     padding-bottom: 19vh;
-    @media(max-width:550px) {
-      padding-bottom: 29vh;
-    }
   }
   
   .flex {

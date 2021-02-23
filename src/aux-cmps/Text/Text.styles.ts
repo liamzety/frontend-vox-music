@@ -65,7 +65,7 @@ export const TextStyle = styled.p<Props>`
     }
     &.p {
         font-size: ${({ size }) => size || '1.1rem'};
-        font-weight:${({ bold = false }) => (bold ? '700' : '400')};
+        font-weight:${({ bold }) => (bold ? '700' : '400')};
         font-family: Tomorrow-Regular,MPLUS ;
     }
     &.a {

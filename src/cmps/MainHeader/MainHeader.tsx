@@ -185,6 +185,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                 <div className="chat-btn-container flex align-center">
                   {isFavourite ? (
                     <Svg
+                      data-tooltip="Remove playlist from favourites"
                       color="favouriteIcon"
                       className="favourite-icon"
                       size="25px"
@@ -195,6 +196,7 @@ export const MainHeader: React.FC<MainHeaderProps> = observer(
                     </Svg>
                   ) : (
                     <Svg
+                      data-tooltip="Add playlist to favourites"
                       className="favourite-icon"
                       size="25px"
                       onClick={onFavouritePlaylist}

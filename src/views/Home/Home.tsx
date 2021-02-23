@@ -6,15 +6,20 @@ import { observer } from 'mobx-react';
 import { scrollService } from '../../services/scrollService';
 import { playlistService } from '../../services/playlistService';
 import { genreService } from '../../services/genreService';
+// Icons
+import { BiWorld } from 'react-icons/bi';
+import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 // Styles
-import { PlaylistListWrapper } from './Home.styles';
+import { Footer, PlaylistListWrapper, AuthorCard } from './Home.styles';
 // Cmps
 import { Banner } from '../../cmps/Banner/Banner';
 import { PlaylistList } from '../../cmps/PlaylistList/PlaylistList';
 import { userService } from '../../services/userService';
+import { Text } from '../../aux-cmps/Text/Text';
+import { Svg } from '../../aux-cmps/Svg/Svg';
 
 export const Home: React.FC = observer(() => {
-  const { playlistStore, userStore, playerStore } = useStore();
+  const { playlistStore, userStore } = useStore();
 
   const getPlaylists = useCallback(async () => {
     playlistStore.setPlaylists(await playlistService.query());
@@ -47,10 +52,7 @@ export const Home: React.FC = observer(() => {
       {!playlistStore.playlists || playlistStore.playlists.length === 0 ? (
         ''
       ) : (
-        <PlaylistListWrapper
-          ref={genreListRef}
-          className="container-y container-x"
-        >
+        <PlaylistListWrapper ref={genreListRef} className=" container-x">
           {!userStore.user.favouritePlaylists ||
           userStore.user.favouritePlaylists.length === 0 ? (
             <>
@@ -77,6 +79,43 @@ export const Home: React.FC = observer(() => {
           })}
         </PlaylistListWrapper>
       )}
+      <Footer>
+        <AuthorCard data-augmented-ui="tr-clip bl-clip border">
+          <Text bold={true} type="p" color="blackMain">
+            Liam Zety
+          </Text>
+          <a
+            href="https://github.com/liamzety"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Svg pointer={true} size="24px" color="secTxt">
+              <AiFillGithub />
+            </Svg>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/liam-zety-0b157b1b6/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Svg pointer={true} size="24px" color="secTxt">
+              <AiFillLinkedin />
+            </Svg>
+          </a>
+          <a
+            href="https://liamzety.herokuapp.com/#/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Svg pointer={true} size="24px" color="secTxt">
+              <BiWorld />
+            </Svg>
+          </a>
+        </AuthorCard>
+        <Text type="p" color="yellowMain">
+          Copyrights 2021 © Vox Music.
+        </Text>
+      </Footer>
     </div>
   );
 });
