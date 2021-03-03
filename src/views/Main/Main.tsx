@@ -138,8 +138,18 @@ export const Main: React.FC<Props> = observer(
         if (playlistSongs.length > 0) {
           const { title, url: imgUrl, video_id: songUrl } = playlistSongs[0];
           const firstSong = { imgUrl, songUrl, title, idx: 0 };
-
-          playerStore.setCurrPlaying(firstSong);
+          const currPlayingSong = playerStore.player.currPlaylist.currSong;
+          if (!currPlayingSong.songUrl) {
+            playerStore.setCurrPlaying(firstSong);
+          }
+          playerStore.setCurrPlaying(
+            (await playlistService.checkIfSamePlaylist(
+              currPlayingSong.songUrl,
+              playerStore.player.currPlaylist._id
+            ))
+              ? currPlayingSong
+              : firstSong
+          );
         }
       },
       [playerStore]

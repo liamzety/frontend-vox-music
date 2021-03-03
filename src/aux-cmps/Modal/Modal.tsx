@@ -31,7 +31,6 @@ export const Modal: React.FC<ModalProps> = ({ className, type, closeCb }) => {
   return (
     <>
       <Fade in={modalStore.modal.isOn}>
-        {/* <Fade in={true}> */}
         <ModalStyles
           className={className}
           data-augmented-ui=" tl-2-clip-y tr-2-clip-y br-2-clip-y bl-2-clip-y border"

@@ -47,7 +47,6 @@ export class UserStore {
   }
 
   setFavourites(favourites: any) {
-    console.log('SETTING FAVOURITES', favourites);
     this.user.favouritePlaylists = favourites;
   }
   setUser(user: UserType) {

@@ -1,4 +1,4 @@
-import { fade } from '@material-ui/core';
+import { darken, fade } from '@material-ui/core';
 import styled from 'styled-components';
 import { GlobalVars } from '../../assets/style/basics/vars';
 import { remConverter, retroTvEffect } from '../../assets/style/main';
@@ -136,6 +136,7 @@ export const PlayerLeftColumn = styled.div`
   justify-content: center;
 
   @media (max-width: 550px) {
+    margin-top: 10px;
     margin-bottom: 10px;
     padding: 0 20px;
   }
@@ -175,7 +176,7 @@ export const PlayerDurationContainer = styled.div`
   }
 `;
 
-export const ClosePlayerBtnContainer = styled.div`
+export const SvgWrapper = styled.div`
   cursor: pointer;
   width: 50px;
   height: 50px;
@@ -187,7 +188,13 @@ export const ClosePlayerBtnContainer = styled.div`
   top: -10px;
   z-index: 1;
   &:hover {
-    opacity: 0.8;
+    span svg {
+      color: ${({ theme }) => darken(theme.playerSec, 0.2)};
+    }
+  }
+  &:first-of-type {
+    right: 80px;
+    top: -6px;
   }
 `;
 

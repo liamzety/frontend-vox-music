@@ -7,6 +7,7 @@ export const playlistService = {
   remove,
   add,
   getById,
+  checkIfSamePlaylist,
 };
 
 async function query() {
@@ -52,6 +53,27 @@ async function update(playlistToUpdate: PlaylistType) {
 async function remove(playlistId: string) {
   try {
     await httpService.delete(`playlist/${playlistId}`);
+  } catch (err) {
+    console.error('Error, playlistService.ts -> function: :', err);
+    if (err.response) {
+      const composedErr = { msg: err.response.data.message, type: 'error' };
+      throw composedErr;
+    }
+  }
+}
+async function checkIfSamePlaylist(
+  playlistUrl: string,
+  currPlaylistId: string
+) {
+  try {
+    const playlistId = await httpService.get(
+      `playlist/checkIfSongExsits/${playlistUrl}`
+    );
+    if (playlistId.toString() === currPlaylistId) {
+      return true;
+    } else {
+      return false;
+    }
   } catch (err) {
     console.error('Error, playlistService.ts -> function: :', err);
     if (err.response) {

@@ -60,10 +60,10 @@ const App = observer(() => {
               />
             ))}
           </Switch>
+          <Player />
         </Router>
       </main>
       <AlertModal userMsg={userMsgStore.userMsg} />
-      <Player />
     </ThemeProvider>
   );
 });

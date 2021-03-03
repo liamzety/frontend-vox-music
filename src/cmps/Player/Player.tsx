@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player';
 import { Slide } from '@material-ui/core';
 import { Resizable } from 're-resizable';
@@ -17,6 +18,7 @@ import {
   BiSkipNext,
   BiSkipPrevious,
 } from 'react-icons/bi';
+import { RiPlayListFill } from 'react-icons/ri';
 import { FaRegWindowMinimize } from 'react-icons/fa';
 import { FcMusic } from 'react-icons/fc';
 // Styles
@@ -29,7 +31,7 @@ import {
   PlayerLeftColumn,
   BackgroundWrapper,
   PlayerMini,
-  ClosePlayerBtnContainer,
+  SvgWrapper,
 } from './Player.styles';
 // Cmps
 import { Svg } from '../../aux-cmps/Svg/Svg';
@@ -41,6 +43,7 @@ export const Player: React.FC = observer(() => {
   const { player } = playerStore;
 
   const reactPlayerRef = useRef(null);
+  const history = useHistory();
   const [isBuffering, setIsBuffering] = useState(true);
   const togglePlay = () => {
     playerStore.setPlayer({ isPlaying: !player.isPlaying });
@@ -109,6 +112,12 @@ export const Player: React.FC = observer(() => {
     ret += '' + secs;
     return ret;
   };
+
+  const _prettyUrl = (name: string | undefined): string => {
+    let prettyUrl = name!.replace(/\s/g, '_');
+    return prettyUrl.replace(/[^a-zA-Z0-9-_]/g, '');
+  };
+
   const [height, setHeight] = React.useState(125);
 
   return (
@@ -151,7 +160,23 @@ export const Player: React.FC = observer(() => {
           className={player.isOn ? '' : 'hide'}
           data-augmented-ui="tl-clip-x t-clip-x tr-clip-x"
         >
-          <ClosePlayerBtnContainer
+          <SvgWrapper>
+            <Svg
+              data-tooltip="Return to current playlist"
+              size="25px"
+              onClick={() => {
+                history.push(
+                  `/main/${_prettyUrl(player.currPlaylist.name)}=${
+                    player.currPlaylist._id
+                  }`
+                );
+              }}
+            >
+              <RiPlayListFill />
+            </Svg>
+          </SvgWrapper>
+
+          <SvgWrapper
             onClick={() => {
               playerStore.setPlayer({ isOn: false });
             }}
@@ -159,7 +184,8 @@ export const Player: React.FC = observer(() => {
             <Svg size="25px">
               <FaRegWindowMinimize />
             </Svg>
-          </ClosePlayerBtnContainer>
+          </SvgWrapper>
+
           <BackgroundWrapper isPlaying={player.isPlaying} />
           <Resizable
             size={{ width: '100%', height }}
@@ -192,7 +218,7 @@ export const Player: React.FC = observer(() => {
               <Text
                 color={themeStore.theme === 'light' ? 'pinkMain' : 'yellowMain'}
                 type="h3"
-                size="1.5rem"
+                size="1.2rem"
               >
                 {player.currPlaylist.currSong &&
                   player.currPlaylist.currSong.title}
@@ -205,6 +231,7 @@ export const Player: React.FC = observer(() => {
                     themeStore.theme === 'light' ? 'pinkMain' : 'yellowMain'
                   }
                   type="h4"
+                  size="1.15rem"
                 >
                   {_getFormattedMinutes(player.time)}
                 </Text>
@@ -223,6 +250,7 @@ export const Player: React.FC = observer(() => {
                     themeStore.theme === 'light' ? 'pinkMain' : 'yellowMain'
                   }
                   type="h4"
+                  size="1.15rem"
                 >
                   {_getFormattedMinutes(player.duration)}
                 </Text>

@@ -82,7 +82,6 @@ function getInitials(fullName: string) {
 }
 
 async function getFavouritePlaylists(userId: string) {
-  console.log('userid', userId);
   try {
     const favouritePlaylistsFound = await httpService.get(
       `favourite/user_playlists/${userId}`
@@ -96,7 +95,6 @@ async function getFavouritePlaylists(userId: string) {
   }
 }
 async function unFavouritePlaylist(userId: string, playlist_id: string) {
-  console.log('playlist_id', playlist_id);
   try {
     await httpService.delete(`favourite/user_playlists/${userId}`, {
       playlist_id,

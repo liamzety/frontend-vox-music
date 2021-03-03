@@ -82,11 +82,15 @@ button {
   font-size: 1rem;
   padding: 5px 10px;
   color: ${GlobalVars.whiteMain};
-  background-color: ${fade(GlobalVars.blackTertiary, 0.7)};
+  background-color: ${GlobalVars.blackTertiary};
   border-radius: 5px;
   animation: tooltip-animation 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   z-index: 999;
   font-family: Bicubik;
+
+  @media (max-width:450px) {
+    all: initial;
+  }
 }
 ::-moz-selection { /* Code for Firefox */
   color: ${({ theme }) => theme.selectionTxt};
