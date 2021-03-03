@@ -27,7 +27,7 @@ async function add(playlist: PlaylistType) {
 }
 async function getById(playlistId: string) {
   try {
-    return await httpService.get(`playlist/${playlistId}`);
+    return await httpService.get(`playlist/getPlaylist/${playlistId}`);
   } catch (err) {
     console.error('Error, playlistService.ts -> function: :', err);
     if (err.response) {
@@ -67,7 +67,7 @@ async function checkIfSamePlaylist(
 ) {
   try {
     const playlistId = await httpService.get(
-      `playlist/checkIfSongExsits/${playlistUrl}`
+      `playlist/checkIfSongExists/${playlistUrl}`
     );
     if (playlistId.toString() === currPlaylistId) {
       return true;
