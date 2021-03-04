@@ -7,7 +7,36 @@ import { localImgService } from '../../services/localImgService';
 interface Props {
   isPlaying: boolean;
 }
-export const PlayerWrapper = styled.div``;
+export const PlayerWrapper = styled.div`
+  .video-player {
+    position: fixed;
+    width: 100%;
+    height: 400px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding-top: 40px;
+    background: black;
+    border-top: 2px solid ${({ theme }) => theme.playerMain};
+    z-index: 9;
+
+    .video-player-control {
+      position: absolute;
+      top: 3px;
+      cursor: pointer;
+    }
+    .video-player-return {
+      right: 10px;
+    }
+    .video-player-next {
+      right: 40px;
+    }
+    .video-player-prev {
+      right: 70px;
+    }
+  }
+`;
 
 export const BackgroundWrapper = styled.div<Props>`
   transition: 0.5s linear;
@@ -184,17 +213,20 @@ export const SvgWrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 35px;
-  top: -10px;
+  right: 110px;
+  top: -6px;
   z-index: 1;
   &:hover {
     span svg {
       color: ${({ theme }) => darken(theme.playerSec, 0.2)};
     }
   }
-  &:first-of-type {
-    right: 80px;
-    top: -6px;
+  &.video-mode {
+    right: 70px;
+  }
+  &.minimize-player {
+    right: 30px;
+    top: -8px;
   }
 `;
 
@@ -211,6 +243,8 @@ export const PlayerMini = styled.div`
   align-items: center;
   justify-content: center;
   box-shadow: -4px 2px 10px #0000002e;
+  z-index: 16;
+
   &:before {
     transition: 0.2s;
     content: '';

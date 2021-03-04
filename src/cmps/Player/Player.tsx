@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import { Slide } from '@material-ui/core';
+import { Fade, Slide } from '@material-ui/core';
 import { Resizable } from 're-resizable';
 // Store
 import { useStore } from '../../store/StoreContext';
@@ -18,7 +18,8 @@ import {
   BiSkipNext,
   BiSkipPrevious,
 } from 'react-icons/bi';
-import { RiPlayListFill } from 'react-icons/ri';
+import { RiPlayListFill, RiFullscreenExitFill } from 'react-icons/ri';
+import { MdOndemandVideo } from 'react-icons/md';
 import { FaRegWindowMinimize } from 'react-icons/fa';
 import { FcMusic } from 'react-icons/fc';
 // Styles
@@ -94,6 +95,11 @@ export const Player: React.FC = observer(() => {
     else return <BiPlay />;
   };
 
+  const [isVideoMode, setIsVideoMode] = useState(false);
+  const onToggleVideoMode = () => {
+    setIsVideoMode(!isVideoMode);
+  };
+
   const _getFormattedMinutes = (duration: number) => {
     if (!duration) return '0:00';
     if (duration >= 86400) return 'Live';
@@ -122,27 +128,65 @@ export const Player: React.FC = observer(() => {
 
   return (
     <PlayerWrapper className="relative">
-      <ReactPlayer
-        url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
-        playing={player.isPlaying}
-        onReady={() => {
-          reactPlayerRef.current.seekTo(0, 'seconds');
-        }}
-        onBuffer={() => {
-          setIsBuffering(true);
-        }}
-        onBufferEnd={() => {
-          setIsBuffering(false);
-        }}
-        onEnded={() => {
-          playerStore.handleNextPrevSong('next');
-        }}
-        onDuration={setDuration}
-        onProgress={handleProgress}
-        volume={player.volume}
-        ref={reactPlayerRef}
-        hidden
-      />
+      <Fade in={isVideoMode}>
+        <div
+          className={`video-player relative ${isVideoMode ? 'show' : 'hidden'}`}
+        >
+          <ReactPlayer
+            url={`https://www.youtube.com/watch?v=${player.currPlaylist.currSong.songUrl}`}
+            playing={player.isPlaying}
+            onReady={() => {
+              reactPlayerRef.current.seekTo(0, 'seconds');
+            }}
+            onBuffer={() => {
+              setIsBuffering(true);
+            }}
+            onBufferEnd={() => {
+              setIsBuffering(false);
+            }}
+            onEnded={() => {
+              playerStore.handleNextPrevSong('next');
+            }}
+            onDuration={setDuration}
+            onProgress={handleProgress}
+            volume={player.volume}
+            ref={reactPlayerRef}
+            width="100%"
+            height="100%"
+            controls={true}
+          />
+          <Svg
+            color="playerSec"
+            className="video-player-control video-player-prev"
+            size="35px"
+            onClick={() => {
+              playerStore.handleNextPrevSong('prev');
+            }}
+          >
+            <BiSkipPrevious />
+          </Svg>
+          <Svg
+            color="playerSec"
+            className="video-player-control video-player-next"
+            size="35px"
+            onClick={() => {
+              playerStore.handleNextPrevSong('next');
+            }}
+          >
+            <BiSkipNext />
+          </Svg>
+          <Svg
+            color="playerSec"
+            className="video-player-control video-player-return"
+            size="20px"
+            onClick={() => {
+              onToggleVideoMode();
+            }}
+          >
+            <FaRegWindowMinimize />
+          </Svg>
+        </div>
+      </Fade>
       <PlayerMini
         className={
           !player.currPlaylist.currSong.songUrl || player.isOn ? 'hide' : ''
@@ -176,7 +220,20 @@ export const Player: React.FC = observer(() => {
             </Svg>
           </SvgWrapper>
 
+          <SvgWrapper className="video-mode">
+            <Svg
+              data-tooltip="Video mode"
+              size="25px"
+              onClick={() => {
+                onToggleVideoMode();
+              }}
+            >
+              <MdOndemandVideo />
+            </Svg>
+          </SvgWrapper>
+
           <SvgWrapper
+            className="minimize-player"
             onClick={() => {
               playerStore.setPlayer({ isOn: false });
             }}
