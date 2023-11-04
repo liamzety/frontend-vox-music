@@ -293,7 +293,7 @@ export const Player: React.FC = observer(() => {
                   {_getFormattedMinutes(player.time)}
                 </Text>
                 <input
-                  data-augmented-ui="tl-clip  tr-clip br-clip  bl-clip border"
+                  data-augmented-ui="border"
                   className="duration-input"
                   onChange={handleSongTime}
                   type="range"
