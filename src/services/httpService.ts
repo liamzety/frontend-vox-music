@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? 'https://vox-music-api.netlify.app/api/'
+    ? 'https://vox-music-api.onrender.com/api/'
     : '//localhost:3030/api/';
 var axios = Axios.create({
   withCredentials: true,
