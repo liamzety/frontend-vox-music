@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 
 const BASE_URL =
   process.env.NODE_ENV === 'production'
-    ? '//vox-music-api.herokuapp.com'
+    ? '//https://vox-music-api.onrender.com'
     : '//localhost:3030';
 
 let socket: any;
